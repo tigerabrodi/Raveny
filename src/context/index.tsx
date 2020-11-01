@@ -1,18 +1,16 @@
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react'
+import React, { FC } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { GlobalStyle } from 'theme/globalStyles'
 import { theme } from 'theme/theme'
+import { Navigation } from 'components/Navigation'
 
-type AppProviderProps = {
-    children: ReactNode
-}
-
-export const AppProviders: FunctionComponent<AppProviderProps> = ({
-    children,
-}: AppProviderProps): ReactElement => (
+export const AppProviders: FC = ({ children }) => (
     <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Router>{children}</Router>
+        <Router>
+            <Navigation />
+            {children}
+        </Router>
     </ThemeProvider>
 )

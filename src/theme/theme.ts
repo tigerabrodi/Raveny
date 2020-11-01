@@ -8,8 +8,8 @@ export const theme: DefaultTheme = {
     colors: {
         Brown: '#854d27',
         Orange: '#dd7230',
-        Beige: '#f4c95d',
-        Yellow: '#e7e393',
-        Black: '#04030f',
+        Black: '#171717',
+        White: '#ffffff',
+        Gray: '#D3D3D3',
     },
 }

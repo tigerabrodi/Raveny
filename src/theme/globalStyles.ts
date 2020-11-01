@@ -15,5 +15,6 @@ export const GlobalStyle = styled.createGlobalStyle`
 
     body {
         box-sizing: border-box;
+        background: ${({ theme }) => theme.colors.Black};
     }
 `

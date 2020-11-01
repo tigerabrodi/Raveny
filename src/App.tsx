@@ -1,9 +1,9 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { FC } from 'react'
 import { AppProviders } from 'context'
 import { Home } from 'pages/Home'
+import { Route, Switch } from 'react-router-dom'
 
-const App: React.FC = () => (
+const App: FC = () => (
     <AppProviders>
         <Switch>
             <Route exact path="/" component={Home} />

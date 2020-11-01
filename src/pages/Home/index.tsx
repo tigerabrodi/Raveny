@@ -1,5 +1,5 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FC } from 'react'
 
-export const Home: FunctionComponent<ReactNode> = () => {
+export const Home: FC = () => {
     return <div>Hello</div>
 }
