@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 
 /* Home Header Wrapper */
-export const Wrapper = styled.div`
+export const HomeWrapper = styled.div`
     grid-area: children;
     display: grid;
     grid-template-areas:

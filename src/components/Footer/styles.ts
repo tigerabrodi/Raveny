@@ -1,10 +1,9 @@
 import styled, { keyframes } from 'styled-components'
 import { HeartFill } from '@styled-icons/bootstrap'
 
-export const Wrapper = styled.div`
+export const FooterWrapper = styled.div`
     height: 8rem;
     width: 100vw;
-    background-color: transparent;
     grid-area: footer;
     display: flex;
     align-items: center;

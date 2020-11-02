@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import {
     InfoWrapper,
-    Wrapper,
+    HomeWrapper,
     ImageWrapper,
     RecipeBook,
     InfoText,
@@ -12,7 +12,7 @@ import {
 export const Home: FC = () => {
     const [buttonHoverState, setButtonHoverState] = useState(false)
     return (
-        <Wrapper>
+        <HomeWrapper>
             <InfoWrapper>
                 <InfoText>Find Your Dream Recipes and Enjoy.</InfoText>
                 <InfoButton
@@ -27,6 +27,6 @@ export const Home: FC = () => {
             <ImageWrapper>
                 <RecipeBook />
             </ImageWrapper>
-        </Wrapper>
+        </HomeWrapper>
     )
 }

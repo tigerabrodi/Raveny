@@ -1,15 +1,15 @@
 import React, { FC } from 'react'
-import { HeartIcon, Text, TextLink, Wrapper } from './styles'
+import { HeartIcon, Text, TextLink, FooterWrapper } from './styles'
 
 export const Footer: FC = () => {
     return (
-        <Wrapper>
+        <FooterWrapper>
             <Text>
                 Built with <HeartIcon /> by{' '}
                 <TextLink href="/" target="_blank">
                     Tiger Abrodi
                 </TextLink>
             </Text>
-        </Wrapper>
+        </FooterWrapper>
     )
 }
