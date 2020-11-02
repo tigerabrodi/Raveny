@@ -6,6 +6,7 @@ import { media } from 'theme/media'
 
 /* Home Header Wrapper */
 export const Wrapper = styled.div`
+    grid-area: children;
     display: grid;
     grid-template-areas:
         'info'
@@ -13,7 +14,7 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-items: center;
     align-content: space-around;
-    height: calc(100vh - 10rem);
+    height: calc(100vh - 18rem);
     grid-template-rows: 1fr 1fr;
     ${media.tablet} {
         grid-template-columns: repeat(2, 1fr);

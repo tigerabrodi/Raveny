@@ -16,5 +16,12 @@ export const GlobalStyle = styled.createGlobalStyle`
     body {
         box-sizing: border-box;
         background: ${({ theme }) => theme.colors.Black};
+        #root {
+            display: grid;
+            grid-template-areas:
+                'nav'
+                'children'
+                'footer';
+        }
     }
 `
