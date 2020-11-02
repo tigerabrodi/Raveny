@@ -18,7 +18,7 @@ export const Navigation: FC = () => {
             <Nav>
                 <LogoWrapper to="/">
                     <LogoText>Yummly</LogoText>
-                    <CookingSVG height="50" width="50" />
+                    <CookingSVG height="60" width="60" />
                 </LogoWrapper>
                 <LinksWrapper isToggled={toggleState}>
                     <Link to="/search">Search</Link>

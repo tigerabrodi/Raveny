@@ -63,7 +63,7 @@ export const LinksWrapper = styled.div<{ isToggled: boolean }>`
 
 export const LogoText = styled.p`
     font-family: ${({ theme }) => theme.fonts.Lora};
-    font-size: 3rem;
+    font-size: max(3rem, 2vw);
     font-weight: 700;
     color: ${({ theme }) => theme.colors.Brown};
     margin: 0 1rem 0 2rem;
@@ -102,7 +102,7 @@ export const Link = styled(RouterLink)`
         opacity: 1;
     }
     ${media.tablet} {
-        font-size: 1.7rem;
+        font-size: max(1.7rem, 1.5vw);
         margin-top: 0;
         &::after {
             height: 3px;
