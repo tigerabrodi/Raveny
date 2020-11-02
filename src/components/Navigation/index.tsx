@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { CookingSVG } from 'components/CookingSVG'
+import { CookingSVG } from 'components/SVG/CookingSVG'
 import {
     HamburgerMenuLine,
     HamburgerMenuOverlay,
