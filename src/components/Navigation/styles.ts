@@ -170,7 +170,7 @@ export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
     background-color: black;
     opacity: 0;
     position: fixed;
-    height: 100vh;
+    height: 30vh;
     width: 100vw;
     transition: all 0.2s;
     z-index: -10;
@@ -179,6 +179,7 @@ export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
         css`
             visibility: visible;
             opacity: 0.5;
+            height: 100vh;
             z-index: 5;
         `};
     ${media.tablet} {
