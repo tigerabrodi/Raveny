@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-type CookingSVGProps = {
+type TCookingSVG = {
     height: string
     width: string
 }
@@ -8,7 +8,7 @@ type CookingSVGProps = {
 export const CookingSVG = ({
     height = '40',
     width = '40',
-}: CookingSVGProps): ReactElement => (
+}: TCookingSVG): ReactElement => (
     <svg
         height={height}
         viewBox="0 -14 512 512"

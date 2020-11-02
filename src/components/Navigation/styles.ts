@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
+/* Navigation Bar */
 export const Nav = styled.nav`
     position: sticky;
     z-index: 10;
@@ -13,7 +14,7 @@ export const Nav = styled.nav`
     align-items: center;
     justify-content: space-between;
 `
-
+/* Logo */
 export const LogoWrapper = styled(RouterLink)`
     position: relative;
     z-index: 10;
@@ -25,7 +26,18 @@ export const LogoWrapper = styled(RouterLink)`
         width: 30%;
     }
 `
+export const LogoText = styled.p`
+    font-family: ${({ theme }) => theme.fonts.Lora};
+    font-size: max(3rem, 2vw);
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.Brown};
+    margin: 0 1rem 0 2rem;
+    ${media.phone} {
+        margin: 0 1rem 0 4rem;
+    }
+`
 
+/* Navigation Links */
 export const LinksWrapper = styled.div<{ isToggled: boolean }>`
     position: fixed;
     z-index: -10;
@@ -58,17 +70,6 @@ export const LinksWrapper = styled.div<{ isToggled: boolean }>`
         visibility: visible;
         opacity: 1;
         z-index: 0;
-    }
-`
-
-export const LogoText = styled.p`
-    font-family: ${({ theme }) => theme.fonts.Lora};
-    font-size: max(3rem, 2vw);
-    font-weight: 700;
-    color: ${({ theme }) => theme.colors.Brown};
-    margin: 0 1rem 0 2rem;
-    ${media.phone} {
-        margin: 0 1rem 0 4rem;
     }
 `
 
@@ -110,13 +111,15 @@ export const Link = styled(RouterLink)`
         }
     }
 `
-type HamburgerMenuLineProps = {
+
+/* Hamburger Menu */
+type THamburgerMenuLine = {
     topToggled?: boolean
     hideMiddle?: boolean
     bottomToggled?: boolean
 }
 
-export const HamburgerMenuLine = styled.span<HamburgerMenuLineProps>`
+export const HamburgerMenuLine = styled.span<THamburgerMenuLine>`
     width: 55%;
     ${media.phone} {
         width: 44%;
@@ -178,9 +181,9 @@ export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
         isToggled &&
         css`
             visibility: visible;
-            opacity: 0.5;
+            opacity: 0.95;
             height: 100vh;
-            z-index: 5;
+            z-index: 7;
         `};
     ${media.tablet} {
         display: none;
