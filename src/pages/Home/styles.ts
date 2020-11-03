@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
-import { ReactComponent as RecipeBookSVG } from 'components/SVG/recipe.svg'
+import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
 import { Search } from '@styled-icons/bootstrap'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'

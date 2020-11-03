@@ -11,7 +11,7 @@ const App: FC = () => (
         <Navigation />
         <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/" component={Search} />
+            <Route exact path="/search" component={Search} />
         </Switch>
         <Footer />
     </AppProviders>
