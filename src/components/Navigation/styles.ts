@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
@@ -39,6 +39,14 @@ export const LogoText = styled.p`
 `
 
 /* Navigation Links */
+const mobileNavVisible = keyframes`
+    to {
+            visibility: visible;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+    }
+`
 export const LinksWrapper = styled.div<{ isToggled: boolean }>`
     position: fixed;
     z-index: -10;
@@ -47,15 +55,13 @@ export const LinksWrapper = styled.div<{ isToggled: boolean }>`
     transform: translate(-50%, -30%);
     opacity: 0;
     flex-direction: column;
-    display: flex;
-    transition: all 0.3s ease-out;
+    display: none;
+    transition: all ease-out;
     ${({ isToggled }) =>
         isToggled &&
         css`
-            visibility: visible;
-            opacity: 1;
-            transform: translate(-50%, -50%);
-            z-index: 10;
+            display: flex;
+            animation: ${mobileNavVisible} 0.3s forwards;
         `};
     ${media.tablet} {
         position: relative;
@@ -174,16 +180,18 @@ export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
     background-color: black;
     opacity: 0;
     position: fixed;
-    height: 30vh;
+    height: 100vh;
     width: 100vw;
-    transition: all 0.2s;
+    transition: all 0.3s;
+    transform-origin: top;
+    transform: scaleY(0);
     z-index: -10;
     ${({ isToggled }) =>
         isToggled &&
         css`
             visibility: visible;
             opacity: 0.95;
-            height: 100vh;
+            transform: scaleY(1);
             z-index: 7;
         `};
     ${media.tablet} {

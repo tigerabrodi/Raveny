@@ -65,6 +65,9 @@ export const InfoButton = styled(Link)`
     justify-content: center;
     transition: all 0.2s;
     z-index: 5;
+    &:active {
+        transform: scale(0.95);
+    }
     &:hover {
         color: ${({ theme }) => theme.colors.White};
         box-shadow: 0 5px 10px black;

@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 import { ReactComponent as PanSVG } from 'assets/fried.svg'
 import { Search } from '@styled-icons/bootstrap'
+import { media } from 'theme/media'
 
 /* Wrappers */
 export const SearchWrapper = styled.div`
@@ -31,6 +32,9 @@ export const Title = styled.label`
     color: ${({ theme }) => theme.colors.Orange};
     font-weight: 700;
     letter-spacing: 1px;
+    ${media.tablet} {
+        font-size: max(3.5rem, 4vw);
+    }
 `
 
 export const TitleWrapper = styled.div`
@@ -40,6 +44,9 @@ export const TitleWrapper = styled.div`
     justify-content: space-around;
     width: 100%;
     border-bottom: 3px solid ${({ theme }) => theme.colors.Orange};
+    ${media.desktop} {
+        width: 90%;
+    }
 `
 
 const cook = keyframes`
@@ -59,6 +66,10 @@ export const Pan = styled(PanSVG)`
     margin-left: 2rem;
     transform: scale(-1, 1);
     animation: ${cook} 1s infinite alternate;
+    ${media.tablet} {
+        width: max(7rem, 7.5vw);
+        height: max(9rem, 9.5vw);
+    }
 `
 
 /* Search */
@@ -72,6 +83,9 @@ export const SearchInputWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    ${media.desktop} {
+        width: 80%;
+    }
 `
 
 export const SearchInput = styled.input`
