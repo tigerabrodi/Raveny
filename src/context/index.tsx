@@ -3,10 +3,13 @@ import { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { GlobalStyle } from 'theme/globalStyles'
 import { theme } from 'theme/theme'
+import { YummlyProvider } from './YummlyContext'
 
 export const AppProviders: FC = ({ children }) => (
     <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Router>{children}</Router>
+        <Router>
+            <YummlyProvider>{children}</YummlyProvider>
+        </Router>
     </ThemeProvider>
 )

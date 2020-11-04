@@ -16,16 +16,26 @@ export const Navigation: FC = () => {
     return (
         <>
             <Nav>
-                <LogoWrapper to="/">
+                <LogoWrapper to="/" onClick={() => setToggleState(false)}>
                     <LogoText>Yummly</LogoText>
                     <CookingSVG height="60" width="60" />
                 </LogoWrapper>
                 <LinksWrapper isToggled={toggleState}>
-                    <Link to="/search">Search</Link>
-                    <Link to="/keto">Ketogenic</Link>
-                    <Link to="/vegan">Vegan</Link>
-                    <Link to="/desserts">Desserts</Link>
-                    <Link to="/wine">Wine</Link>
+                    <Link to="/search" onClick={() => setToggleState(false)}>
+                        Search
+                    </Link>
+                    <Link to="/keto" onClick={() => setToggleState(false)}>
+                        Ketogenic
+                    </Link>
+                    <Link to="/vegan" onClick={() => setToggleState(false)}>
+                        Vegan
+                    </Link>
+                    <Link to="/desserts" onClick={() => setToggleState(false)}>
+                        Desserts
+                    </Link>
+                    <Link to="/wine" onClick={() => setToggleState(false)}>
+                        Wine
+                    </Link>
                 </LinksWrapper>
                 <HamburgerMenuWrapper
                     isToggled={toggleState}

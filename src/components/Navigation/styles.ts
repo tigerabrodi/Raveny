@@ -120,13 +120,13 @@ export const Link = styled(RouterLink)`
 `
 
 /* Hamburger Menu */
-type THamburgerMenuLine = {
+type HamburgerMenuLineProps = {
     topToggled?: boolean
     hideMiddle?: boolean
     bottomToggled?: boolean
 }
 
-export const HamburgerMenuLine = styled.span<THamburgerMenuLine>`
+export const HamburgerMenuLine = styled.span<HamburgerMenuLineProps>`
     width: 55%;
     ${media.phone} {
         width: 44%;
