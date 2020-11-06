@@ -121,7 +121,33 @@ export const SearchInput = styled.input`
         box-shadow: 0 5px 5px black;
     }
     ${media.tablet} {
-        width: 100%;
+        width: 90%;
+    }
+`
+
+export const SearchInputValidLength = styled.span<{
+    searchNumberLength: number
+}>`
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: ${({ searchNumberLength, theme }) => {
+        return searchNumberLength < 3 ? theme.colors.Red : theme.colors.Green
+    }};
+    font-family: ${({ theme }) => theme.fonts.Montserrat};
+    top: 83%;
+    left: 64%;
+    ${media.phone} {
+        left: 76%;
+    }
+    ${media.tablet} {
+        left: 87.5%;
+    }
+    ${media.desktop} {
+        top: 75%;
+        font-size: max(1.5rem, 1vw);
     }
 `
 
@@ -136,8 +162,8 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
     border-left: 2px solid #854d27;
     cursor: pointer;
     background-color: transparent;
-    transition: all 0.8s;
-    height: 100%;
+    height: 98%;
+    transition: all 0.2s;
     ${media.phone} {
         left: 90%;
         width: 20%;
@@ -152,17 +178,25 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
         position: relative;
         top: 0;
         left: 0;
+        transition: all 0.8s;
         transform: translate(0, 0);
+        height: 100%;
     }
     &:hover {
-        box-shadow: 0 5px 5px black;
+        ${media.tablet} {
+            box-shadow: 0 5px 5px black;
+        }
     }
     &:hover svg {
-        color: ${({ theme }) => theme.colors.White};
-        transform: scale(1.1);
+        ${media.tablet} {
+            color: ${({ theme }) => theme.colors.White};
+            transform: scale(1.1);
+        }
     }
     &:hover::after {
-        transform: scaleY(1);
+        ${media.tablet} {
+            transform: scaleY(1);
+        }
     }
     &::after {
         content: '';
@@ -173,13 +207,20 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
         transform-origin: top;
         transform: scaleY(0);
         transition: all 0.5s;
+        top: 0;
+        left: 0;
     }
     &:focus {
         outline: none;
     }
+    &:active svg {
+        transform: scale(0.9);
+    }
     &:active {
         box-shadow: none;
-        transform: scale(0.9);
+        ${media.tablet} {
+            transform: scale(0.9);
+        }
     }
     ${(props) =>
         props.isFocus &&
@@ -195,4 +236,89 @@ export const SearchIcon = styled(Search)`
     z-index: 5;
     color: ${({ theme }) => theme.colors.Orange};
     transition: all 0.5s;
+`
+
+const showError = keyframes`
+    100% {
+        visibility: visible;
+        opacity: 1;
+        transform: translate(-50%, -50%); 
+    }
+`
+
+export const ErrorToast = styled.div<{ isError: boolean }>`
+    position: absolute;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    height: 60%;
+    background-color: ${({ theme }) => theme.colors.DarkRed};
+    top: 165%;
+    left: 45%;
+    transform: translate(-50%, -80%);
+    z-index: 3;
+    border-radius: 5px;
+    box-shadow: 0 0 3px black;
+    ${media.tablet} {
+        height: 90%;
+        top: 195%;
+    }
+    ${(props) =>
+        props.isError &&
+        css`
+            display: flex;
+            animation: ${showError} 0.3s forwards;
+        `};
+    &::after {
+        content: '';
+        left: 40.2%;
+        width: 20%;
+        height: 50%;
+        background-color: ${({ theme }) => theme.colors.DarkRed};
+        position: absolute;
+        transform: translate(-50%, -50%) skewY(-25deg);
+        top: 26%;
+        z-index: -1;
+        ${media.tablet} {
+            left: 43.2%;
+            width: 15%;
+        }
+        ${media.desktop} {
+            left: 46.2%;
+            width: 10%;
+        }
+    }
+    &::before {
+        content: '';
+        width: 20%;
+        height: 50%;
+        right: 20%;
+        background-color: ${({ theme }) => theme.colors.DarkRed};
+        position: absolute;
+        transform: translate(-50%, -50%) skewY(25deg);
+        top: 26%;
+        z-index: -1;
+        ${media.tablet} {
+            width: 15%;
+            right: 27%;
+        }
+        ${media.desktop} {
+            width: 10%;
+            right: 34%;
+        }
+    }
+`
+export const ErrorText = styled.span`
+    font-size: min(2rem, 3.7vw);
+    color: ${({ theme }) => theme.colors.White};
+    font-family: ${({ theme }) => theme.fonts.Montserrat};
+    ${media.tablet} {
+        font-size: 2rem;
+    }
+    ${media.desktop} {
+        font-size: max(2rem, 1.5vw);
+    }
 `

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 import {
     Pan,
     SearchInnerWrapper,
@@ -9,6 +9,9 @@ import {
     Title,
     SearchIcon,
     TitleWrapper,
+    SearchInputValidLength,
+    ErrorToast,
+    ErrorText,
 } from './styles'
 
 type SearchState = {
@@ -18,11 +21,15 @@ type SearchState = {
 export const Search: FC = () => {
     const [focusState, setFocusState] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
+    const [isErrorCharacters, setIsErrorCharacters] = useState(false)
     const [searchState, setSearchState] = useState<SearchState>({
         search: '',
     })
 
     const { search } = searchState
+
+    const searchLengthValidation =
+        search.length < 3 ? `${search.length}/3` : '3/3'
 
     const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setSearchState({
@@ -33,7 +40,10 @@ export const Search: FC = () => {
 
     const onSubmit = (): void => {
         if (search.length < 3) {
-            console.log('Must be greater than 3 characters')
+            setIsErrorCharacters(true)
+            setTimeout(() => {
+                return setIsErrorCharacters(false)
+            }, 3000)
         }
     }
 
@@ -67,9 +77,19 @@ export const Search: FC = () => {
                         onFocus={() => setFocusState(!focusState)}
                         onBlur={() => setFocusState(!focusState)}
                     />
+                    <SearchInputValidLength searchNumberLength={search.length}>
+                        {searchLengthValidation}
+                    </SearchInputValidLength>
                     <SearchButton isFocus={focusState} onClick={onSubmit}>
                         <SearchIcon />
                     </SearchButton>
+                    {isErrorCharacters && (
+                        <ErrorToast isError={isErrorCharacters}>
+                            <ErrorText>
+                                Please enter at least 3 characters.
+                            </ErrorText>
+                        </ErrorToast>
+                    )}
                 </SearchInputWrapper>
             </SearchInnerWrapper>
         </SearchWrapper>
