@@ -77,7 +77,7 @@ export const Pan = styled(PanSVG)`
 `
 
 /* Search */
-export const SearchInputWrapper = styled.div`
+export const SearchForm = styled.form`
     height: 32%;
     bottom: 0;
     width: 95%;

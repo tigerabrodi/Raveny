@@ -29,6 +29,7 @@
         "project": "./tsconfig.json"
     },
     "rules": {
+        "@typescript-eslint/no-non-null-assertion": 0,
         "react/jsx-props-no-spreading": 0,
         "linebreak-style": "off",
         "import/prefer-default-export": 0,

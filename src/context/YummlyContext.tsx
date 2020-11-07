@@ -8,13 +8,23 @@ import React, {
     useReducer,
 } from 'react'
 
-// Recipe Type
-type Recipe = {
+// Response
+export type SpoonacularResponse = {
+    number: number
+    offset: number
+    results: Recipe[]
+    totalResults: number
+}
+
+//  Recipe
+export type Recipe = {
     id: number
     title: string
     image: string
-    servings: number
     readyInMinutes: number
+    diets: string[]
+    pricePerServing: number
+    servings: number
 }
 
 // Yummly State Type
