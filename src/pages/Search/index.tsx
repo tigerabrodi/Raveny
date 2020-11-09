@@ -1,3 +1,4 @@
+import { Spinner } from 'components/Spinner'
 import { SpoonacularResponse, useYummlyContext } from 'context/YummlyContext'
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
@@ -38,7 +39,7 @@ export const Search: FC = () => {
 
     const history = useHistory()
 
-    const { dispatch } = useYummlyContext()
+    const { state, dispatch } = useYummlyContext()
 
     // So we can append query params to the URL and also access them
     // Here we are using non null assertion, because typescript do not know if this env var could be undefined
@@ -101,6 +102,10 @@ export const Search: FC = () => {
         window.addEventListener('resize', setIsMobileView)
         return () => window.removeEventListener('resize', setIsMobileView)
     }, [])
+
+    if (state.status === 'pending') {
+        return <Spinner />
+    }
 
     return (
         <SearchWrapper>

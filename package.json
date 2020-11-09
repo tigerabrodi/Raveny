@@ -28,7 +28,9 @@
         "eject": "react-scripts eject",
         "format": "prettier --write src/**/*.ts{,x}",
         "lint": "tsc --noEmit && eslint --fix --ext src/**/*.ts{,x}",
-        "lint:css": "stylelint src/**/*.ts{,x}"
+        "lint:css": "stylelint src/**/*.ts{,x}",
+        "storybook": "start-storybook -p 6006 -s public --no-dll",
+        "build-storybook": "build-storybook -s public --no-dll"
     },
     "eslintConfig": {
         "extends": [
@@ -49,8 +51,16 @@
         ]
     },
     "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@storybook/addon-actions": "^6.0.28",
+        "@storybook/addon-essentials": "^6.0.28",
+        "@storybook/addon-links": "^6.0.28",
+        "@storybook/node-logger": "^6.0.28",
+        "@storybook/preset-create-react-app": "^3.1.5",
+        "@storybook/react": "^6.0.28",
         "@typescript-eslint/eslint-plugin": "^4.6.0",
         "@typescript-eslint/parser": "^4.6.0",
+        "babel-loader": "^8.1.0",
         "eslint-config-airbnb": "^18.2.0",
         "eslint-config-airbnb-typescript": "^12.0.0",
         "eslint-config-prettier": "^6.15.0",
@@ -61,6 +71,7 @@
         "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-react-hooks": "^4.0.0",
         "prettier": "^2.1.2",
+        "react-is": "^17.0.1",
         "stylelint": "^13.7.2",
         "stylelint-config-recommended": "^3.0.0",
         "stylelint-config-styled-components": "^0.1.1",
