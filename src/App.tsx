@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import { AppProviders } from 'context'
-import { Home } from 'pages/Home'
-import { Search } from 'pages/Search'
 import { Route, Switch } from 'react-router-dom'
 import { Footer } from 'components/Footer'
 import { Navigation } from 'components/Navigation'
+import { Home } from 'pages/Home'
+import { Search } from 'pages/Search'
+import { Recipes } from 'pages/Recipes'
 
 const App: FC = () => (
     <AppProviders>
@@ -12,6 +13,7 @@ const App: FC = () => (
         <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
+            <Route exact path="/recipes" component={Recipes} />
         </Switch>
         <Footer />
     </AppProviders>

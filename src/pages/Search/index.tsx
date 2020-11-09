@@ -9,12 +9,12 @@ import {
     SearchButton,
     SearchForm,
     SearchWrapper,
-    Title,
     SearchIcon,
     TitleWrapper,
     SearchInputValidLength,
     ErrorToast,
     ErrorText,
+    Title,
 } from './styles'
 
 // Api key and spoonacular url
@@ -55,7 +55,7 @@ export const Search: FC = () => {
         })
     }
 
-    const onSubmit = async (event: FormEvent): Promise<void | number> => {
+    const onSubmit = async (event: FormEvent): Promise<number | void> => {
         event.preventDefault()
         // Input validation
         if (searchValue.length < 3) {
@@ -70,8 +70,11 @@ export const Search: FC = () => {
         url.searchParams.append('query', searchValue)
         url.searchParams.append('number', '10')
         url.searchParams.append('addRecipeInformation', 'true')
-        // url endpoint
-        const urlEndpoint = url.origin + url.pathname + url.search
+
+        // For history's search params (url state persistance)
+        const splittedSearchParams = url.search.split('&')
+        const pushSearchParams = `?${splittedSearchParams[1]}&${splittedSearchParams[2]}&${splittedSearchParams[3]}`
+
         //  request config
         const config = {
             method: 'GET',
@@ -81,16 +84,19 @@ export const Search: FC = () => {
             },
         }
         // fetch recipes
-        return window.fetch(urlEndpoint, config).then(async (response) => {
-            const data: SpoonacularResponse = await response.json()
+        const response = await window.fetch(url.href, config)
+        const data: SpoonacularResponse = await response.json()
+        try {
             if (response.ok) {
                 dispatch({ type: 'recipesResolved', payload: data.results })
-                history.push('/recipes')
+                history.push(`/recipes${pushSearchParams}`)
             } else {
-                dispatch({ type: 'rejected', payload: data })
-                history.push('/recipes')
+                dispatch({ type: 'rejected', payload: Promise.reject(data) })
+                history.push(`/recipes${pushSearchParams}`)
             }
-        })
+        } catch (error) {
+            throw new Error('Something went terribly wrong! :D')
+        }
     }
 
     useEffect(() => {
