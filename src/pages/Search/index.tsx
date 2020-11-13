@@ -1,6 +1,6 @@
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { Spinner } from 'components/Spinner'
 import { SpoonacularResponse, useYummlyContext } from 'context/YummlyContext'
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
     Pan,
@@ -91,8 +91,10 @@ export const Search: FC = () => {
                 dispatch({ type: 'recipesResolved', payload: data.results })
                 history.push(`/recipes${pushSearchParams}`)
             } else {
-                dispatch({ type: 'rejected', payload: Promise.reject(data) })
-                history.push(`/recipes${pushSearchParams}`)
+                dispatch({ type: 'rejected', payload: data })
+                throw new Error(
+                    'Something went wrong with the request, please try again!'
+                )
             }
         } catch (error) {
             throw new Error('Something went terribly wrong! :D')

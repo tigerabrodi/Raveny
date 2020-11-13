@@ -8,14 +8,6 @@ import React, {
     useReducer,
 } from 'react'
 
-// Response
-export type SpoonacularResponse = {
-    number: number
-    offset: number
-    results: Recipe[]
-    totalResults: number
-}
-
 //  Recipe
 export type Recipe = {
     id: number
@@ -27,72 +19,86 @@ export type Recipe = {
     servings: number
 }
 
-// Yummly State Type
-type YummlyState = {
-    recipe: Recipe | null
-    recipes: Recipe[] | null
-    error: string | null
-    status: string
+// Response
+export type SpoonacularResponse = {
+    number: number
+    offset: number
+    results: Recipe[]
+    totalResults: number
 }
+
+// Yummly State
+interface InitialState {
+    status: 'idle'
+}
+
+interface LoadingState {
+    status: 'pending'
+}
+
+interface SingleRecipeState {
+    recipe: Recipe
+    status: 'resolved'
+}
+
+interface RecipesState {
+    status: 'resolved'
+    recipes: Recipe[]
+}
+
+interface ErrorState {
+    status: 'rejected'
+    error: unknown
+}
+
+type YummlyState =
+    | InitialState
+    | LoadingState
+    | SingleRecipeState
+    | RecipesState
+    | ErrorState
 
 // Action Union Type for the reducer
 type Action =
-    | { type: 'idle' }
     | { type: 'pending' }
     | { type: 'singleRecipeResolved'; payload: Recipe }
     | { type: 'recipesResolved'; payload: Recipe[] }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    | { type: 'rejected'; payload: any }
+    | { type: 'rejected'; payload: unknown }
 
 // The initial state
 const initialState: YummlyState = {
-    error: null,
-    recipe: null,
     status: 'idle',
-    recipes: null,
 }
 
 //  The Reducer
 function yummlyReducer(state: YummlyState, action: Action): YummlyState {
     switch (action.type) {
-        case 'idle':
-            return {
-                ...state,
-            }
         case 'pending':
             return {
-                ...state,
                 status: 'pending',
             }
         case 'singleRecipeResolved':
             return {
-                ...state,
                 status: 'resolved',
                 recipe: action.payload,
-                recipes: null,
             }
         case 'recipesResolved':
             return {
-                ...state,
                 status: 'resolved',
-                recipe: null,
                 recipes: action.payload,
             }
         case 'rejected':
             return {
-                ...state,
                 status: 'rejected',
-                recipe: null,
-                recipes: null,
                 error: action.payload,
             }
         default:
-            throw new Error()
+            throw new Error('This should not happen :D')
     }
 }
 
 type YummlyContextType = {
-    state: Partial<YummlyState>
+    state: YummlyState
     dispatch: Dispatch<Action>
 }
 
@@ -116,7 +122,7 @@ function YummlyProvider(props: PropsWithChildren<{}>): ReactElement {
 function useYummlyContext(): YummlyContextType {
     const context = useContext(YummlyContext)
     if (!context) {
-        throw new Error(`No provider for AppContext given`)
+        throw new Error(`No provider for YummlyContext given`)
     }
     return context
 }
