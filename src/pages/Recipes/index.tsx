@@ -43,6 +43,7 @@ export const Recipes: FC = () => {
             const response = await window.fetch(completeUrl, config)
             try {
                 if (response.ok) {
+                    // Successful response
                     const successData: SuccessResponse = await response.json()
                     window.sessionStorage.setItem(
                         'recipesMount',
@@ -53,6 +54,7 @@ export const Recipes: FC = () => {
                         payload: successData.results,
                     })
                 } else {
+                    // Failed response
                     const failureData: FailureResponse = await response.json()
                     dispatch({ type: 'rejected', payload: failureData.message })
                     throw new Error(

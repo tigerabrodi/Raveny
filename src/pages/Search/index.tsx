@@ -21,7 +21,7 @@ import {
     Title,
 } from './styles'
 
-// Api key and spoonacular url
+// API key and spoonacular request url
 const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
 
@@ -46,9 +46,10 @@ export const Search: FC = () => {
     const { state, dispatch } = useYummlyContext()
 
     // So we can append query params to the URL and also access them
-    // Here we are using non null assertion, because typescript do not know if this env var could be undefined
+    // Here we are using non null assertion, because typescript thinks environment variables could be undefined
     const url = new URL(apiURL!)
 
+    // Number of input length (validation)
     const searchLengthValidation =
         searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
 
@@ -91,6 +92,7 @@ export const Search: FC = () => {
         const response = await window.fetch(url.href, config)
         try {
             if (response.ok) {
+                // Successful response
                 const successData: SuccessResponse = await response.json()
                 window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
                 dispatch({
@@ -99,6 +101,7 @@ export const Search: FC = () => {
                 })
                 history.push(`/recipes${pushSearchParams}`)
             } else {
+                // Failed response
                 const failureData: FailureResponse = await response.json()
                 dispatch({ type: 'rejected', payload: failureData.message })
                 throw new Error(

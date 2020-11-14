@@ -8,7 +8,7 @@ import React, {
     useReducer,
 } from 'react'
 
-// Response Types
+/* The Success response that Spoonacular returns if response.ok is true */
 export type SuccessResponse = {
     tag: 'success'
     number: number
@@ -17,6 +17,7 @@ export type SuccessResponse = {
     totalResults: number
 }
 
+/* The Failure response that Spoonacular returns if response.ok is false */
 export type FailureResponse = {
     tag: 'failure'
     status: 'failure'
@@ -24,7 +25,7 @@ export type FailureResponse = {
     message: string
 }
 
-//  Recipe
+/* Recipe Type */
 export type Recipe = {
     id: number
     title: string
@@ -35,30 +36,35 @@ export type Recipe = {
     servings: number
 }
 
-// Yummly State
+/* Initial State */
 interface InitialState {
     status: 'idle'
 }
 
+/* Loading State */
 interface LoadingState {
     status: 'pending'
 }
 
+/* Single Recipes State */
 interface SingleRecipeState {
     recipe: Recipe
     status: 'resolved'
 }
 
+/* Recipes State */
 interface RecipesState {
     status: 'resolved'
     recipes: Recipe[]
 }
 
+/* Error State */
 interface ErrorState {
     status: 'rejected'
     error: string
 }
 
+/* Yummly State */
 type YummlyState =
     | InitialState
     | LoadingState
@@ -66,19 +72,17 @@ type YummlyState =
     | RecipesState
     | ErrorState
 
-// Action Union Type for the reducer
+/* Yummly action union type for the reducer */
 type Action =
     | { type: 'pending' }
     | { type: 'singleRecipeResolved'; payload: Recipe }
     | { type: 'recipesResolved'; payload: Recipe[] }
     | { type: 'rejected'; payload: string }
 
-// The initial state
 const initialState: YummlyState = {
     status: 'idle',
 }
 
-//  The Reducer
 function yummlyReducer(state: YummlyState, action: Action): YummlyState {
     switch (action.type) {
         case 'pending':
@@ -105,6 +109,7 @@ function yummlyReducer(state: YummlyState, action: Action): YummlyState {
     }
 }
 
+/* The Yummly context's type */
 type YummlyContextType = {
     state: YummlyState
     dispatch: Dispatch<Action>
