@@ -88,6 +88,7 @@ export const Search: FC = () => {
         const data: SpoonacularResponse = await response.json()
         try {
             if (response.ok) {
+                window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
                 dispatch({ type: 'recipesResolved', payload: data.results })
                 history.push(`/recipes${pushSearchParams}`)
             } else {
@@ -97,7 +98,9 @@ export const Search: FC = () => {
                 )
             }
         } catch (error) {
-            throw new Error('Something went terribly wrong! :D')
+            throw new Error(
+                `Something went terribly wrong! Message: ${error.message}`
+            )
         }
     }
 

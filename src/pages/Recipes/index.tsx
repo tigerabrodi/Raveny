@@ -1,13 +1,63 @@
 import React, { FC, useEffect } from 'react'
-import { useYummlyContext } from 'context/YummlyContext'
 import { useLocation } from 'react-router-dom'
+import { SpoonacularResponse, useYummlyContext } from 'context/YummlyContext'
+import { Spinner } from 'components/Spinner'
 import { RecipesWrapper, SingleRecipeWrapper } from './styles'
+
+const apiURL = process.env.REACT_APP_API_URL
+const apiKEY = process.env.REACT_APP_API_KEY
 
 export const Recipes: FC = () => {
     const { state, dispatch } = useYummlyContext()
-    const locationSearch = useLocation().search
+    const searchParams = useLocation().search
+    const url = new URL(apiURL!)
+    const numbersOfMount = JSON.parse(
+        window.sessionStorage.getItem('recipesMount') as string
+    )
+    console.log(numbersOfMount)
 
-    useEffect(() => {}, [dispatch, locationSearch])
+    const completeUrl = `${url.href}${searchParams}&apiKey=${apiKEY}`
+
+    useEffect(() => {
+        // 'recipesMount' in sessionStorage will always be one number greater than numbersOfMount
+        window.sessionStorage.setItem(
+            'recipesMount',
+            JSON.stringify(numbersOfMount + 1)
+        )
+        //  request config
+        const fetchRecipes = async () => {
+            dispatch({ type: 'pending' })
+            window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
+            const config = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            }
+            // fetch recipes
+            const response = await window.fetch(completeUrl, config)
+            const data: SpoonacularResponse = await response.json()
+            try {
+                if (response.ok) {
+                    dispatch({ type: 'recipesResolved', payload: data.results })
+                } else {
+                    dispatch({ type: 'rejected', payload: data })
+                    throw new Error(
+                        'Something went wrong with the request, please try again!'
+                    )
+                }
+            } catch (error) {
+                throw new Error(
+                    `Something went terribly wrong! Message: ${error.message}`
+                )
+            }
+        }
+    }, [completeUrl, dispatch, numbersOfMount])
+
+    if (state.status === 'pending') {
+        return <Spinner />
+    }
 
     return (
         <RecipesWrapper>
