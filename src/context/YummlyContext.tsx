@@ -8,7 +8,7 @@ import React, {
     useReducer,
 } from 'react'
 
-/* The Success response that Spoonacular returns if response.ok is true */
+/** The Success response that Spoonacular returns if response.ok is true */
 export type SuccessResponse = {
     tag: 'success'
     number: number
@@ -17,7 +17,7 @@ export type SuccessResponse = {
     totalResults: number
 }
 
-/* The Failure response that Spoonacular returns if response.ok is false */
+/** The Failure response that Spoonacular returns if response.ok is false */
 export type FailureResponse = {
     tag: 'failure'
     status: 'failure'
@@ -25,7 +25,7 @@ export type FailureResponse = {
     message: string
 }
 
-/* Recipe Type */
+/** Recipe Type */
 export type Recipe = {
     id: number
     title: string
@@ -36,35 +36,35 @@ export type Recipe = {
     servings: number
 }
 
-/* Initial State */
+/** Initial State */
 interface InitialState {
     status: 'idle'
 }
 
-/* Loading State */
+/** Loading State */
 interface LoadingState {
     status: 'pending'
 }
 
-/* Single Recipes State */
+/** Single Recipes State */
 interface SingleRecipeState {
     recipe: Recipe
     status: 'resolved'
 }
 
-/* Recipes State */
+/** Recipes State */
 interface RecipesState {
     status: 'resolved'
     recipes: Recipe[]
 }
 
-/* Error State */
+/** Error State */
 interface ErrorState {
     status: 'rejected'
     error: string
 }
 
-/* Yummly State */
+/** Yummly State */
 type YummlyState =
     | InitialState
     | LoadingState
@@ -72,7 +72,7 @@ type YummlyState =
     | RecipesState
     | ErrorState
 
-/* Yummly action union type for the reducer */
+/** Yummly action union type for the reducer */
 type Action =
     | { type: 'pending' }
     | { type: 'singleRecipeResolved'; payload: Recipe }
@@ -109,7 +109,7 @@ function yummlyReducer(state: YummlyState, action: Action): YummlyState {
     }
 }
 
-/* The Yummly context's type */
+/** The Yummly context's type */
 type YummlyContextType = {
     state: YummlyState
     dispatch: Dispatch<Action>
