@@ -1,6 +1,10 @@
 import React, { FC, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { SpoonacularResponse, useYummlyContext } from 'context/YummlyContext'
+import {
+    FailureResponse,
+    SuccessResponse,
+    useYummlyContext,
+} from 'context/YummlyContext'
 import { Spinner } from 'components/Spinner'
 import { RecipesWrapper, SingleRecipeWrapper } from './styles'
 
@@ -37,14 +41,22 @@ export const Recipes: FC = () => {
             }
             // fetch recipes
             const response = await window.fetch(completeUrl, config)
-            const data: SpoonacularResponse = await response.json()
             try {
                 if (response.ok) {
-                    dispatch({ type: 'recipesResolved', payload: data.results })
+                    const successData: SuccessResponse = await response.json()
+                    window.sessionStorage.setItem(
+                        'recipesMount',
+                        JSON.stringify(1)
+                    )
+                    dispatch({
+                        type: 'recipesResolved',
+                        payload: successData.results,
+                    })
                 } else {
-                    dispatch({ type: 'rejected', payload: data })
+                    const failureData: FailureResponse = await response.json()
+                    dispatch({ type: 'rejected', payload: failureData.message })
                     throw new Error(
-                        'Something went wrong with the request, please try again!'
+                        `Something went wrong with the request, message: ${failureData.message}`
                     )
                 }
             } catch (error) {

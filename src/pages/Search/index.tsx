@@ -1,6 +1,10 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { Spinner } from 'components/Spinner'
-import { SpoonacularResponse, useYummlyContext } from 'context/YummlyContext'
+import {
+    FailureResponse,
+    SuccessResponse,
+    useYummlyContext,
+} from 'context/YummlyContext'
 import { useHistory } from 'react-router-dom'
 import {
     Pan,
@@ -85,16 +89,20 @@ export const Search: FC = () => {
         }
         // fetch recipes
         const response = await window.fetch(url.href, config)
-        const data: SpoonacularResponse = await response.json()
         try {
             if (response.ok) {
+                const successData: SuccessResponse = await response.json()
                 window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
-                dispatch({ type: 'recipesResolved', payload: data.results })
+                dispatch({
+                    type: 'recipesResolved',
+                    payload: successData.results,
+                })
                 history.push(`/recipes${pushSearchParams}`)
             } else {
-                dispatch({ type: 'rejected', payload: data })
+                const failureData: FailureResponse = await response.json()
+                dispatch({ type: 'rejected', payload: failureData.message })
                 throw new Error(
-                    'Something went wrong with the request, please try again!'
+                    `Something went wrong with the request, message: ${failureData.message}`
                 )
             }
         } catch (error) {

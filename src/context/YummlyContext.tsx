@@ -8,6 +8,22 @@ import React, {
     useReducer,
 } from 'react'
 
+// Response Types
+export type SuccessResponse = {
+    tag: 'success'
+    number: number
+    offset: number
+    results: Recipe[]
+    totalResults: number
+}
+
+export type FailureResponse = {
+    tag: 'failure'
+    status: 'failure'
+    code: number
+    message: string
+}
+
 //  Recipe
 export type Recipe = {
     id: number
@@ -17,14 +33,6 @@ export type Recipe = {
     diets: string[]
     pricePerServing: number
     servings: number
-}
-
-// Response
-export type SpoonacularResponse = {
-    number: number
-    offset: number
-    results: Recipe[]
-    totalResults: number
 }
 
 // Yummly State
@@ -48,7 +56,7 @@ interface RecipesState {
 
 interface ErrorState {
     status: 'rejected'
-    error: unknown
+    error: string
 }
 
 type YummlyState =
@@ -63,7 +71,7 @@ type Action =
     | { type: 'pending' }
     | { type: 'singleRecipeResolved'; payload: Recipe }
     | { type: 'recipesResolved'; payload: Recipe[] }
-    | { type: 'rejected'; payload: unknown }
+    | { type: 'rejected'; payload: string }
 
 // The initial state
 const initialState: YummlyState = {
