@@ -6,17 +6,17 @@ A website where people can search for recipes.
 
 I love food and I like cooking. My goal with this side-project is to maximize my learning when it comes to the field of frontend.
 
-The goal is to create highly beautiful, responsive and complex user interfaces, technically try to build and do things I have not done before. I also try to follow good TypeScript patterns, and implement things I have learned from reading Effective TypeScript.
+The goal is to create highly beautiful and responsive user interfaces, technically try to build and do things I have not done before. I also try to follow good TypeScript patterns, and implement things I have learned from reading Effective TypeScript.
 
-This project will also include tests. My goal is not to write tests for every single function, rather writing the tests resembling the user, in order to get the most confidence, that my software does what it is suppose to be doing when the user interacts with it.
+This project will also include tests. My goal is not to write tests for every single function, rather writing the tests resembling the user, in order to get the most confidence that my software does what it is suppose to be doing, when the user interacts with it.
 
 ## Installation
 
 After cloning the project, you need to run `npm install`.
 
-This project uses two environment variables, one for URL and one for the API key.
-Create a `.env` file in the root folder.
+This project uses two environment variables, one for URL and one for the API key that I am using to retrieve the food/recipes information.
 <br>
+Create a `.env` file in the root folder.
 It should have two environment variables:
 <br>
 `REACT_APP_API_URL=https://api.spoonacular.com/recipes/complexSearch`
@@ -29,7 +29,8 @@ The second key is the API key from https://spoonacular.com/food-api/, there you 
 
 -   Building: React, TypeScript & Styled-Components
 -   Integration Tests: Jest and React Testing Library
--   E2ETests: Cypress
+-   E2E Tests: Cypress
+-   Developing component in isolation: StoryBook
 -   Mocking requests in StoryBook and Tests: Mock Service worker (MSW)
 
 ## License
