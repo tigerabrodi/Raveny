@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# Yummly
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A website where people can search for recipes.
 
-## Available Scripts
+## Background and Goal
 
-In the project directory, you can run:
+I love food and I like cooking. My goal with this side-project is to maximize my learning when it comes to the field of frontend.
 
-### `npm start`
+The goal is to create highly beautiful, responsive and complex user interfaces, technically try to build and do things I have not done before. I also try to follow good TypeScript patterns, and implement things I have learned from reading Effective TypeScript.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project will also include tests. My goal is not to write tests for every single function, rather writing the tests resembling the user, in order to get the most confidence, that my software does what it is suppose to be doing when the user interacts with it.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+After cloning the project, you need to run `npm install`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project uses two environment variables, one for URL and one for the API key.
+Create a `.env` file in the root folder.
+<br>
+It should have two environment variables:
+<br>
+`REACT_APP_API_URL=https://api.spoonacular.com/recipes/complexSearch`
+<br>
+`REACT_APP_API_KEY=YourApiKeyFromSpoonacular`
+<br>
+The second key is the API key from https://spoonacular.com/food-api/, there you need to create an account in order to get your API key.
 
-### `npm run build`
+## Tools
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   Building: React, TypeScript & Styled-Components
+-   Integration Tests: Jest and React Testing Library
+-   E2ETests: Cypress
+-   Mocking requests in StoryBook and Tests: Mock Service worker (MSW)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## License
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Built by Tiger Abrodi under MIT license.
