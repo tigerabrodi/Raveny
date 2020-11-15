@@ -78,7 +78,7 @@ export const Pan = styled(PanSVG)`
 
 /* Search */
 export const SearchForm = styled.form`
-    height: 32%;
+    height: 50%;
     bottom: 0;
     width: 95%;
 
@@ -88,13 +88,19 @@ export const SearchForm = styled.form`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    ${media.custom(370)} {
+        height: 40%;
+    }
+    ${media.phone} {
+        height: 32%;
+    }
     ${media.tablet} {
         height: 25%;
         width: 98%;
         bottom: 10%;
     }
     ${media.desktop} {
-        width: 80%;
+        width: 90%;
     }
 `
 
@@ -137,13 +143,13 @@ export const SearchInputValidLength = styled.span<{
         return searchNumberLength < 3 ? theme.colors.Red : theme.colors.Green
     }};
     font-family: ${({ theme }) => theme.fonts.Montserrat};
-    top: 83%;
+    top: 78%;
     left: 64%;
     ${media.phone} {
         left: 76%;
     }
     ${media.tablet} {
-        left: 87.5%;
+        left: 87%;
     }
     ${media.desktop} {
         top: 75%;
