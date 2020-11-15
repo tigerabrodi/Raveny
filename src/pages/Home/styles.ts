@@ -22,6 +22,7 @@ export const HomeWrapper = styled.div`
         align-content: stretch;
         justify-content: space-around;
         grid-template-rows: none;
+        align-items: flex-start;
     }
 `
 
@@ -65,6 +66,8 @@ export const InfoButton = styled(Link)`
     justify-content: center;
     transition: all 0.2s;
     z-index: 5;
+    padding: 1rem 0;
+    margin: 1rem 0;
     &:active {
         transform: scale(0.95);
     }
@@ -92,6 +95,7 @@ export const InfoButton = styled(Link)`
         width: 19rem;
         height: 6rem;
         font-size: 3rem;
+        padding: 0;
     }
     ${media.desktop} {
         width: max(19rem, 15vw);
