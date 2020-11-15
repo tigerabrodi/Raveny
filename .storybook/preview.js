@@ -2,6 +2,9 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from '../src/theme/globalStyles'
 import { theme } from '../src/theme/theme'
+import { Navigation } from '../src/components/Navigation'
+import { Footer } from '../src/components/Footer'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 if (typeof global.process === 'undefined') {
     const { worker } = require('../src/mocks/browser')
@@ -14,7 +17,11 @@ export const decorators = [
         <>
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
-                <Story />
+                <Router>
+                    <Navigation />
+                    <Story />
+                    <Footer />
+                </Router>
             </ThemeProvider>
         </>
     ),
@@ -22,4 +29,5 @@ export const decorators = [
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
+    layout: 'fullscreen',
 }

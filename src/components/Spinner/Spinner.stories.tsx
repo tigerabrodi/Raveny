@@ -3,9 +3,9 @@ import { Spinner } from '.'
 
 export default {
     component: Spinner,
-    title: 'Spinner',
+    title: 'components/Spinner',
 }
 
-export const SpinnerStory: FC = () => {
+export const SpinnerComponent: FC = () => {
     return <Spinner />
 }

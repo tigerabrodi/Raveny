@@ -6,6 +6,7 @@ import { Navigation } from 'components/Navigation'
 import { Home } from 'pages/Home'
 import { Search } from 'pages/Search'
 import { Recipes } from 'pages/Recipes'
+import { NotFound } from 'pages/NotFound'
 
 const App: FC = () => (
     <AppProviders>
@@ -14,6 +15,7 @@ const App: FC = () => (
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/recipes" component={Recipes} />
+            <Route exact path="*" component={NotFound} />
         </Switch>
         <Footer />
     </AppProviders>
