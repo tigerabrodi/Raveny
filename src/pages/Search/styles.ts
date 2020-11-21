@@ -152,6 +152,7 @@ export const SearchInputValidLength = styled.span<{
         left: 87%;
     }
     ${media.desktop} {
+        left: 88%;
         top: 75%;
         font-size: max(1.5rem, 1vw);
     }
