@@ -88,9 +88,10 @@ export const Search: FC = () => {
                 Accept: 'application/json',
             },
         }
+
         // fetch recipes
-        const response = await window.fetch(url.href, config)
         try {
+            const response = await window.fetch(url.href, config)
             if (response.ok) {
                 // Successful response
                 const successData: SuccessResponse = await response.json()
