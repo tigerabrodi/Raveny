@@ -27,11 +27,11 @@ The second key is the API key from https://spoonacular.com/food-api/, there you 
 
 ## Tools
 
--   Building: React, TypeScript & Styled-Components
--   Integration Tests: Jest and React Testing Library
--   E2E Tests: Cypress
--   Developing component in isolation: StoryBook
--   Mocking requests in StoryBook and Tests: Mock Service worker (MSW)
+- Building: React, TypeScript & Styled-Components
+- Integration Tests: Jest and React Testing Library
+- E2E Tests: Cypress
+- Developing component in isolation: StoryBook
+- Mocking requests in StoryBook and Tests: Mock Service worker (MSW)
 
 ## License
 

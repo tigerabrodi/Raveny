@@ -7,12 +7,12 @@ import { ErrorBoundaryProvider } from 'components/ErrorBoundary'
 import { YummlyProvider } from './YummlyContext'
 
 export const AppProviders: FC = ({ children }) => (
-    <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <ErrorBoundaryProvider>
-            <Router>
-                <YummlyProvider>{children}</YummlyProvider>
-            </Router>
-        </ErrorBoundaryProvider>
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    <ErrorBoundaryProvider>
+      <Router>
+        <YummlyProvider>{children}</YummlyProvider>
+      </Router>
+    </ErrorBoundaryProvider>
+  </ThemeProvider>
 )

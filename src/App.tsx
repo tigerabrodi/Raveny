@@ -13,20 +13,20 @@ const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
 
 const App: FC = () => (
-    <AppProviders>
-        <Navigation />
-        {!apiURL && !apiKEY ? (
-            <NoEnvironmentVariables />
-        ) : (
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/search" component={Search} />
-                <Route exact path="/recipes" component={Recipes} />
-                <Route exact path="*" component={NotFound} />
-            </Switch>
-        )}
-        <Footer />
-    </AppProviders>
+  <AppProviders>
+    <Navigation />
+    {!apiURL && !apiKEY ? (
+      <NoEnvironmentVariables />
+    ) : (
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/recipes" component={Recipes} />
+        <Route exact path="*" component={NotFound} />
+      </Switch>
+    )}
+    <Footer />
+  </AppProviders>
 )
 
 export default App
