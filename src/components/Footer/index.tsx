@@ -6,7 +6,7 @@ export const Footer: FC = () => {
     <FooterWrapper>
       <Text>
         Built with <HeartIcon /> by{' '}
-        <TextLink href="/" target="_blank">
+        <TextLink href="https://github.com/tigerabrodi" target="_blank">
           Tiger Abrodi
         </TextLink>
       </Text>

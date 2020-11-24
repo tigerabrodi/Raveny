@@ -6,8 +6,8 @@ import { media } from 'theme/media'
 /* Wrappers */
 export const SearchWrapper = styled.div`
   grid-area: children;
-  height: calc(100vh - 18rem);
-  width: 100vw;
+  min-height: calc(100vh - 18rem);
+  width: 100%;
 `
 
 export const SearchInnerWrapper = styled.div`

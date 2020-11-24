@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
-import { Spinner } from 'components/Spinner'
+import { useHistory } from 'react-router-dom'
 import {
   FailureResponse,
   SuccessResponse,
   useYummlyContext,
 } from 'context/YummlyContext'
-import { useHistory } from 'react-router-dom'
+import { Spinner } from 'components/Spinner'
 import {
   Pan,
   SearchInnerWrapper,
@@ -73,7 +73,7 @@ export const Search: FC = () => {
     // Set query params
     url.searchParams.append('apiKey', apiKEY!)
     url.searchParams.append('query', searchValue)
-    url.searchParams.append('number', '10')
+    url.searchParams.append('number', '8')
     url.searchParams.append('addRecipeInformation', 'true')
 
     // For history's search params (url state persistance)

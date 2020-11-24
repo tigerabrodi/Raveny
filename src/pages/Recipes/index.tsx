@@ -1,12 +1,26 @@
 import React, { FC, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 import {
   FailureResponse,
   SuccessResponse,
   useYummlyContext,
 } from 'context/YummlyContext'
 import { Spinner } from 'components/Spinner'
-import { RecipesWrapper, Recipe, NoRecipesWrapper } from './styles'
+import {
+  RecipesWrapper,
+  Recipe,
+  NoRecipesWrapper,
+  Title,
+  Image,
+  Minutes,
+  Price,
+  Serving,
+  DietWrapper,
+  DietLabel,
+  Check,
+  Strong,
+} from './styles'
 
 // Environment variables
 const apiURL = process.env.REACT_APP_API_URL
@@ -23,17 +37,11 @@ export const Recipes: FC = () => {
   const completeUrl = `${url.href}${searchParams}&apiKey=${apiKEY}`
 
   useEffect(() => {
-    // 'recipesMount' in sessionStorage will always be one number greater than numbersOfMount
-    window.sessionStorage.setItem(
-      'recipesMount',
-      JSON.stringify(numbersOfMount + 1)
-    )
+    // 'recipesMount' in sessionStorage will be 2 after the first render, therefore fetchRecipes will not be fired on the first render
+    window.sessionStorage.setItem('recipesMount', JSON.stringify(2))
 
     const fetchRecipes = async () => {
       dispatch({ type: 'pending' })
-
-      // Need to set 'recipesMount' to 1 in order to prevent infinite requests
-      window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
 
       //  request config
       const config = {
@@ -44,7 +52,6 @@ export const Recipes: FC = () => {
         },
       }
 
-      window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
       // fetch recipes
       try {
         const response = await window.fetch(completeUrl, config)
@@ -70,7 +77,9 @@ export const Recipes: FC = () => {
         )
       }
     }
-    fetchRecipes()
+    if (numbersOfMount === 2) {
+      fetchRecipes()
+    }
   }, [completeUrl, dispatch, numbersOfMount])
 
   if (state.status === 'pending') {
@@ -80,7 +89,30 @@ export const Recipes: FC = () => {
   return (
     <RecipesWrapper>
       {'recipes' in state && state.recipes.length > 0 ? (
-        state.recipes.map((recipe) => <Recipe key={recipe.id} />)
+        state.recipes.map((recipe) => (
+          <Recipe key={recipe.id} to={`/recipe/${recipe.id}`}>
+            <Image src={recipe.image} alt={recipe.title} />
+            <Title> {recipe.title} </Title>
+            <Minutes>
+              <Strong>Time:</Strong> {recipe.readyInMinutes} Minutes
+            </Minutes>
+            <Price>
+              <Strong>Cost:</Strong> {Math.round(recipe.pricePerServing)}$
+            </Price>
+            <Serving>
+              <Strong>Servings:</Strong> {recipe.servings}
+            </Serving>
+            {recipe.diets.length > 0 && (
+              <DietWrapper>
+                {recipe.diets.map((diet) => (
+                  <DietLabel key={uuidv4()}>
+                    {diet} <Check />
+                  </DietLabel>
+                ))}
+              </DietWrapper>
+            )}
+          </Recipe>
+        ))
       ) : (
         <NoRecipesWrapper />
       )}
