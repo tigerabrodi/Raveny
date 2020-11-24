@@ -3,7 +3,7 @@ import { HeartFill } from '@styled-icons/bootstrap'
 
 export const FooterWrapper = styled.div`
   height: 8rem;
-  width: 100vw;
+  width: 100%;
   grid-area: footer;
   display: flex;
   align-items: center;

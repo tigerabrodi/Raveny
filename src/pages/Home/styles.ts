@@ -14,7 +14,7 @@ export const HomeWrapper = styled.div`
   align-items: center;
   justify-items: center;
   align-content: space-around;
-  height: calc(100vh - 18rem);
+  min-height: calc(100vh - 18rem);
   grid-template-rows: 1fr 1fr;
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
