@@ -20,6 +20,9 @@ import {
   DietLabel,
   Check,
   Strong,
+  NoRecipesTitle,
+  SadFace,
+  NoRecipesButton,
 } from './styles'
 
 // Environment variables
@@ -86,36 +89,38 @@ export const Recipes: FC = () => {
     return <Spinner />
   }
 
-  return (
+  return 'recipes' in state && state.recipes.length > 0 ? (
     <RecipesWrapper>
-      {'recipes' in state && state.recipes.length > 0 ? (
-        state.recipes.map((recipe) => (
-          <Recipe key={recipe.id} to={`/recipe/${recipe.id}`}>
-            <Image src={recipe.image} alt={recipe.title} />
-            <Title> {recipe.title} </Title>
-            <Minutes>
-              <Strong>Time:</Strong> {recipe.readyInMinutes} Minutes
-            </Minutes>
-            <Price>
-              <Strong>Cost:</Strong> {Math.round(recipe.pricePerServing)}$
-            </Price>
-            <Serving>
-              <Strong>Servings:</Strong> {recipe.servings}
-            </Serving>
-            {recipe.diets.length > 0 && (
-              <DietWrapper>
-                {recipe.diets.map((diet) => (
-                  <DietLabel key={uuidv4()}>
-                    {diet} <Check />
-                  </DietLabel>
-                ))}
-              </DietWrapper>
-            )}
-          </Recipe>
-        ))
-      ) : (
-        <NoRecipesWrapper />
-      )}
+      {state.recipes.map((recipe) => (
+        <Recipe key={recipe.id} to={`/recipe/${recipe.id}`}>
+          <Image src={recipe.image} alt={recipe.title} />
+          <Title> {recipe.title} </Title>
+          <Minutes>
+            <Strong>Time:</Strong> {recipe.readyInMinutes} Minutes
+          </Minutes>
+          <Price>
+            <Strong>Cost:</Strong> {Math.round(recipe.pricePerServing)}$
+          </Price>
+          <Serving>
+            <Strong>Servings:</Strong> {recipe.servings}
+          </Serving>
+          {recipe.diets.length > 0 && (
+            <DietWrapper>
+              {recipe.diets.map((diet) => (
+                <DietLabel key={uuidv4()}>
+                  {diet} <Check />
+                </DietLabel>
+              ))}
+            </DietWrapper>
+          )}
+        </Recipe>
+      ))}
     </RecipesWrapper>
+  ) : (
+    <NoRecipesWrapper>
+      <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
+      <SadFace />
+      <NoRecipesButton to="/search">Back To Search</NoRecipesButton>
+    </NoRecipesWrapper>
   )
 }
