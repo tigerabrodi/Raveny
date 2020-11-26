@@ -43,6 +43,7 @@ export const InfoText = styled.h1`
   color: ${({ theme }) => theme.colors.White};
   font-weight: 600;
   font-size: clamp(4rem, 10vw, 6rem);
+  filter: drop-shadow(2px 4px 6px black);
   ${media.tablet} {
     font-size: 7rem;
   }

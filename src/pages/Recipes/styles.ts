@@ -50,6 +50,7 @@ export const Recipe = styled(Link)`
 `
 
 export const Title = styled.h1`
+  filter: drop-shadow(2px 4px 6px black);
   font-size: 3rem;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
@@ -58,6 +59,7 @@ export const Title = styled.h1`
 `
 
 export const Image = styled.img`
+  box-shadow: 0 2px 5px black;
   border: 2px solid ${({ theme }) => theme.colors.Brown};
   border-radius: 2px;
   height: 50%;
@@ -78,18 +80,21 @@ export const Image = styled.img`
 
 export const Minutes = styled.span`
   font-size: 1.5rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
 `
 
 export const Price = styled.span`
   font-size: 1.5rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
 `
 
 export const Serving = styled.span`
   font-size: 1.5rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
 `
@@ -116,6 +121,7 @@ export const Check = styled(Check2Square)`
 `
 
 export const Strong = styled.span`
+  filter: drop-shadow(0 2px 2px black);
   font-weight: bold;
 `
 
