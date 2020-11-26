@@ -31,6 +31,7 @@ export const Title = styled.label`
   font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
   font-weight: 700;
+  filter: drop-shadow(2px 4px 6px black);
   letter-spacing: 1px;
   ${media.tablet} {
     font-size: max(3.5rem, 4vw);
