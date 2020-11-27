@@ -1,4 +1,4 @@
-# Yummly
+# Raveny
 
 A website where people can search for recipes.
 
@@ -6,7 +6,7 @@ A website where people can search for recipes.
 
 I love food and I like cooking. My goal with this side-project is to maximize my learning when it comes to the field of frontend.
 
-The goal is to create highly beautiful and responsive user interfaces, technically try to build and do things I have not done before. I also try to follow good TypeScript patterns, and implement things I have learned from reading Effective TypeScript.
+The goal is to not create an awesome website where people can search for recipes, but also implement things I have learned and am learning from EpicReact, TestingJavaScript, Frontend Masters (Workshops in CSS/JS/TS) and Effective TypeScript.
 
 This project will also include tests. My goal is not to write tests for every single function, rather writing the tests resembling the user, in order to get the most confidence that my software does what it is suppose to be doing, when the user interacts with it.
 
