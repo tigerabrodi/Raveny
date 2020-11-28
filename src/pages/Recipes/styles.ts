@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
-import { Check2Square, EmojiFrown } from '@styled-icons/bootstrap'
+import {
+  Check2Square,
+  EmojiFrown,
+  ExclamationTriangleFill,
+} from '@styled-icons/bootstrap'
 
 // Recipes
 export const RecipesWrapper = styled.div`
@@ -37,7 +41,7 @@ export const Recipe = styled(Link)`
     background-color: rgba(221, 114, 48, 0.1);
   }
   ${media.phone} {
-    height: 45rem;
+    height: 60rem;
     flex-basis: 45%;
   }
   ${media.tablet} {
@@ -78,13 +82,6 @@ export const Image = styled.img`
   }
 `
 
-export const Minutes = styled.span`
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.Orange};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-`
-
 export const Price = styled.span`
   font-size: 1.5rem;
   font-weight: 500;
@@ -93,6 +90,13 @@ export const Price = styled.span`
 `
 
 export const Serving = styled.span`
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.Orange};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+`
+
+export const Calories = styled.span`
   font-size: 1.5rem;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.Orange};
@@ -115,6 +119,22 @@ export const DietLabel = styled.span`
   margin-top: 0.5rem;
 `
 
+export const HealthWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`
+
+export const HealthLabel = styled.span`
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.Green};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  margin-top: 0.5rem;
+`
+
 export const Check = styled(Check2Square)`
   color: ${({ theme }) => theme.colors.Green};
   height: 2rem;
@@ -125,7 +145,12 @@ export const Strong = styled.span`
   font-weight: bold;
 `
 
-// No recipes found page
+export const Warn = styled(ExclamationTriangleFill)`
+  height: 2rem;
+  color: ${({ theme }) => theme.colors.DarkRed};
+`
+
+/*  No recipes found page */
 export const NoRecipesWrapper = styled.div`
   grid-area: children;
   width: 100vw;

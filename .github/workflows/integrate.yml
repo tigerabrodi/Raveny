@@ -1,4 +1,4 @@
-name: CI for Yummly
+name: CI for Raveny
 
 on: push
 

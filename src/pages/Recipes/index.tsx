@@ -1,11 +1,7 @@
 import React, { FC, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import {
-  FailureResponse,
-  SuccessResponse,
-  useYummlyContext,
-} from 'context/YummlyContext'
+import { useRavenyContext } from 'context/RavenyContext'
+import { SuccessResponse } from 'types'
 import { Spinner } from 'components/Spinner'
 import {
   RecipesWrapper,
@@ -13,8 +9,6 @@ import {
   NoRecipesWrapper,
   Title,
   Image,
-  Minutes,
-  Price,
   Serving,
   DietWrapper,
   DietLabel,
@@ -23,21 +17,31 @@ import {
   NoRecipesTitle,
   SadFace,
   NoRecipesButton,
+  Calories,
+  HealthLabel,
+  HealthWrapper,
+  Warn,
 } from './styles'
 
-// Environment variables
-const apiURL = process.env.REACT_APP_API_URL
+// API Key & ID
 const apiKEY = process.env.REACT_APP_API_KEY
+const apiID = process.env.REACT_APP_API_ID
 
 export const Recipes: FC = () => {
-  const { state, dispatch } = useYummlyContext()
-  const searchParams = useLocation().search
-  const url = new URL(apiURL!)
+  const { state, dispatch } = useRavenyContext()
+
   const numbersOfMount = JSON.parse(
     window.sessionStorage.getItem('recipesMount') as string
   )
 
-  const completeUrl = `${url.href}${searchParams}&apiKey=${apiKEY}`
+  // URL without key and id
+  const urlToQuery = new URL(
+    JSON.parse(window.sessionStorage.getItem('recipesQueryUrl') as string)
+  )
+
+  // We need to append key and id since they are not included in the URL that gets persisted in sessionStorage
+  urlToQuery.searchParams.append('app_key', apiKEY!)
+  urlToQuery.searchParams.append('app_id', apiID!)
 
   useEffect(() => {
     // 'recipesMount' in sessionStorage will be 2 after the first render, therefore fetchRecipes will not be fired on the first render
@@ -46,29 +50,21 @@ export const Recipes: FC = () => {
     const fetchRecipes = async () => {
       dispatch({ type: 'pending' })
 
-      //  request config
-      const config = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      }
-
       // fetch recipes
       try {
-        const response = await window.fetch(completeUrl, config)
+        const response = await window.fetch(urlToQuery.href)
         if (response.ok) {
           // Successful response
           const successData: SuccessResponse = await response.json()
           window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
           dispatch({
             type: 'recipesResolved',
-            payload: successData.results,
+            // payload should be an array of recipes
+            payload: successData.hits.map((hit) => hit.recipe),
           })
         } else {
           // Failed response
-          const failureData: FailureResponse = await response.json()
+          const failureData = await response.json()
           dispatch({ type: 'rejected', payload: failureData.message })
           throw new Error(
             `Something went wrong with the request, message: ${failureData.message}`
@@ -80,10 +76,11 @@ export const Recipes: FC = () => {
         )
       }
     }
+
     if (numbersOfMount === 2) {
       fetchRecipes()
     }
-  }, [completeUrl, dispatch, numbersOfMount])
+  }, [dispatch, numbersOfMount, urlToQuery.href])
 
   if (state.status === 'pending') {
     return <Spinner />
@@ -92,25 +89,38 @@ export const Recipes: FC = () => {
   return 'recipes' in state && state.recipes.length > 0 ? (
     <RecipesWrapper>
       {state.recipes.map((recipe) => (
-        <Recipe key={recipe.id} to={`/recipe/${recipe.id}`}>
-          <Image src={recipe.image} alt={recipe.title} />
-          <Title> {recipe.title} </Title>
-          <Minutes>
-            <Strong>Time:</Strong> {recipe.readyInMinutes} Minutes
-          </Minutes>
-          <Price>
-            <Strong>Cost:</Strong> {Math.round(recipe.pricePerServing)}$
-          </Price>
+        <Recipe key={recipe.uri} to={`/recipe/${recipe.uri}`}>
+          <Image src={recipe.image} alt={recipe.label} />
+          <Title> {recipe.label} </Title>
+          <Calories>
+            <Strong>Calories:</Strong> {Math.round(recipe.calories)}
+          </Calories>
           <Serving>
-            <Strong>Servings:</Strong> {recipe.servings}
+            <Strong>Servings:</Strong> {recipe.yield}
           </Serving>
-          {recipe.diets.length > 0 && (
+          {recipe.cautions.length > 0 && (
             <DietWrapper>
-              {recipe.diets.map((diet) => (
-                <DietLabel key={uuidv4()}>
-                  {diet} <Check />
+              {recipe.cautions.map((caution) => (
+                <DietLabel>
+                  {caution} <Warn />
                 </DietLabel>
               ))}
+            </DietWrapper>
+          )}
+          {(recipe.dietLabels.length > 0 || recipe.healthLabels.length > 0) && (
+            <DietWrapper>
+              {recipe.dietLabels.length > 0 &&
+                recipe.dietLabels.map((diet) => (
+                  <DietLabel key={uuidv4()}>
+                    {diet} <Check />
+                  </DietLabel>
+                ))}
+              {recipe.healthLabels.length > 0 &&
+                recipe.healthLabels.map((health) => (
+                  <DietLabel key={uuidv4()}>
+                    {health} <Check />
+                  </DietLabel>
+                ))}
             </DietWrapper>
           )}
         </Recipe>

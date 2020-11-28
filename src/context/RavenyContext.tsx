@@ -7,34 +7,7 @@ import React, {
   useContext,
   useReducer,
 } from 'react'
-
-/** The Success response that Spoonacular returns if response.ok is true */
-export type SuccessResponse = {
-  tag: 'success'
-  number: number
-  offset: number
-  results: Recipe[]
-  totalResults: number
-}
-
-/** The Failure response that Spoonacular returns if response.ok is false */
-export type FailureResponse = {
-  tag: 'failure'
-  status: 'failure'
-  code: number
-  message: string
-}
-
-/** Recipe Type */
-export type Recipe = {
-  id: number
-  title: string
-  image: string
-  readyInMinutes: number
-  diets: string[]
-  pricePerServing: number
-  servings: number
-}
+import { Recipe } from 'types'
 
 /** Initial State */
 interface InitialState {
@@ -64,26 +37,26 @@ interface ErrorState {
   error: string
 }
 
-/** Yummly State */
-type YummlyState =
+/** Raveny State */
+type RavenyState =
   | InitialState
   | LoadingState
   | SingleRecipeState
   | RecipesState
   | ErrorState
 
-/** Yummly action union type for the reducer */
+/** Raveny action union type for the reducer */
 type Action =
   | { type: 'pending' }
   | { type: 'singleRecipeResolved'; payload: Recipe }
   | { type: 'recipesResolved'; payload: Recipe[] }
   | { type: 'rejected'; payload: string }
 
-const initialState: YummlyState = {
+const initialState: RavenyState = {
   status: 'idle',
 }
 
-function yummlyReducer(state: YummlyState, action: Action): YummlyState {
+function ravenyReducer(state: RavenyState, action: Action): RavenyState {
   switch (action.type) {
     case 'pending':
       return {
@@ -109,35 +82,35 @@ function yummlyReducer(state: YummlyState, action: Action): YummlyState {
   }
 }
 
-/** The Yummly context's type */
-type YummlyContextType = {
-  state: YummlyState
+/** The Raveny context's type */
+type RavenyContextType = {
+  state: RavenyState
   dispatch: Dispatch<Action>
 }
 
-const YummlyContext = createContext<YummlyContextType>({
+const RavenyContext = createContext<RavenyContextType>({
   state: initialState,
   dispatch: () => {},
 })
 
-YummlyContext.displayName = 'YummlyContext'
+RavenyContext.displayName = 'RavenyContext'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function YummlyProvider(props: PropsWithChildren<{}>): ReactElement {
-  const [state, dispatch] = useReducer<Reducer<YummlyState, Action>>(
-    yummlyReducer,
+function RavenyProvider(props: PropsWithChildren<{}>): ReactElement {
+  const [state, dispatch] = useReducer<Reducer<RavenyState, Action>>(
+    ravenyReducer,
     initialState
   )
   const value = { state, dispatch }
-  return <YummlyContext.Provider value={value} {...props} />
+  return <RavenyContext.Provider value={value} {...props} />
 }
 
-function useYummlyContext(): YummlyContextType {
-  const context = useContext(YummlyContext)
+function useRavenyContext(): RavenyContextType {
+  const context = useContext(RavenyContext)
   if (!context) {
-    throw new Error(`No provider for YummlyContext given`)
+    throw new Error(`No provider for RavenyContext given`)
   }
   return context
 }
 
-export { YummlyProvider, useYummlyContext }
+export { RavenyProvider, useRavenyContext }
