@@ -16,7 +16,7 @@ export const Nav = styled.nav`
   grid-area: nav;
 `
 /* Logo */
-export const LogoWrapper = styled(RouterLink)`
+export const LogoWrapper = styled.div`
   position: relative;
   z-index: 10;
   display: flex;
@@ -27,12 +27,22 @@ export const LogoWrapper = styled(RouterLink)`
     width: 30%;
   }
 `
+
+export const LogoLink = styled(RouterLink)`
+  text-decoration: none;
+`
+
 export const LogoText = styled.p`
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: max(3rem, 2vw);
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.Brown};
+  color: ${({ theme }) => theme.colors.Orange};
   margin: 0 1rem 0 2rem;
+  filter: drop-shadow(2px 4px 6px black);
+  transition: all 0.2s;
+  &:hover {
+    transform: translateY(-2px);
+  }
   ${media.phone} {
     margin: 0 1rem 0 4rem;
   }
