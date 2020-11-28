@@ -11,9 +11,9 @@ export const NoEnvironmentVariables: FC = () => {
           keys documented here:{' '}
           <DocLink
             target="_blank"
-            href="https://github.com/tigerabrodi/Yummly#installation"
+            href="https://github.com/tigerabrodi/Raveny#installation"
           >
-            https://github.com/tigerabrodi/Yummly#installation
+            https://github.com/tigerabrodi/Raveny#installation
           </DocLink>
         </Text>
       </TextWrapper>

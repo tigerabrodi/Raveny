@@ -14,16 +14,18 @@ This project will also include tests. My goal is not to write tests for every si
 
 After cloning the project, you need to run `npm install`.
 
-This project uses two environment variables, one for URL and one for the API key that I am using to retrieve the food/recipes information.
+This project uses two environment variables, one for URL and one for the API key that I am using to retrieve the recipes information.
 <br>
 Create a `.env.development.local` file in the root folder.
 It should have two environment variables:
 <br>
-`REACT_APP_API_URL=https://api.spoonacular.com/recipes/complexSearch`
+`REACT_APP_API_URL=https://api.edamam.com/search`
 <br>
-`REACT_APP_API_KEY=YourApiKeyFromSpoonacular`
+`REACT_APP_API_KEY=YourApiKeyFromEdamam`
 <br>
-The second key is the API key from https://spoonacular.com/food-api/, there you need to create an account in order to get your API key.
+`REACT_APP_API_ID=YourApiIdFromEdamam`
+<br>
+The second key is the API key from https://developer.edamam.com/edamam-docs-recipe-api, there you need to create an account in order to get your API key.
 
 ## Tools
 

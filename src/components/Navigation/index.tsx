@@ -19,7 +19,7 @@ export const Navigation: FC = () => {
       <Nav>
         <LogoWrapper>
           <LogoLink to="/" onClick={() => setToggleState(false)}>
-            <LogoText>Yummly</LogoText>
+            <LogoText>Raveny</LogoText>
           </LogoLink>
           <CookingSVG height="60" width="60" />
         </LogoWrapper>

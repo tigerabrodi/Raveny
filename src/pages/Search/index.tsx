@@ -1,11 +1,8 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import {
-  FailureResponse,
-  SuccessResponse,
-  useYummlyContext,
-} from 'context/YummlyContext'
+import { useRavenyContext } from 'context/RavenyContext'
 import { Spinner } from 'components/Spinner'
+import { SuccessResponse } from 'types'
 import {
   Pan,
   SearchInnerWrapper,
@@ -21,18 +18,17 @@ import {
   Title,
 } from './styles'
 
-// API key and spoonacular request url
+// API Key, ID and URL
 const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
+const apiID = process.env.REACT_APP_API_ID
 
 type SearchState = {
   searchValue: string
 }
 
 export const Search: FC = () => {
-  // Focus state for input
   const [focusState, setFocusState] = useState(false)
-
   const [isMobile, setIsMobile] = useState(false)
   const [isErrorCharacters, setIsErrorCharacters] = useState(false)
   const [searchState, setSearchState] = useState<SearchState>({
@@ -43,11 +39,10 @@ export const Search: FC = () => {
 
   const history = useHistory()
 
-  const { state, dispatch } = useYummlyContext()
+  const { state, dispatch } = useRavenyContext()
 
-  // So we can append query params to the URL and also access them
-  // Here we are using non null assertion, because typescript thinks environment variables could be undefined
-  const url = new URL(apiURL!)
+  // So we can append query params to the URL and also access them. Here we are using non null assertion, because typescript thinks environment variables could be undefined
+  const urlToQuery = new URL(apiURL!)
 
   // Number of input length (validation)
   const searchLengthValidation =
@@ -62,6 +57,7 @@ export const Search: FC = () => {
 
   const onSubmit = async (event: FormEvent): Promise<number | void> => {
     event.preventDefault()
+
     // Input validation
     if (searchValue.length < 3) {
       setIsErrorCharacters(true)
@@ -69,42 +65,45 @@ export const Search: FC = () => {
         return setIsErrorCharacters(false)
       }, 3000)
     }
+
     dispatch({ type: 'pending' })
+
     // Set query params
-    url.searchParams.append('apiKey', apiKEY!)
-    url.searchParams.append('query', searchValue)
-    url.searchParams.append('number', '8')
-    url.searchParams.append('addRecipeInformation', 'true')
+    urlToQuery.searchParams.append('app_key', apiKEY!)
+    urlToQuery.searchParams.append('app_id', apiID!)
+    urlToQuery.searchParams.append('q', searchValue.toLowerCase())
+    urlToQuery.searchParams.append('from', '0')
+    urlToQuery.searchParams.append('to', '8')
 
-    // For history's search params (url state persistance)
-    const splittedSearchParams = url.search.split('&')
-    const pushSearchParams = `?${splittedSearchParams[1]}&${splittedSearchParams[2]}&${splittedSearchParams[3]}`
-
-    //  request config
-    const config = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    }
+    const urlToSessionStorage = new URL(urlToQuery.href)
+    urlToSessionStorage.searchParams.delete('app_key')
+    urlToSessionStorage.searchParams.delete('app_id')
 
     // fetch recipes
     try {
-      const response = await window.fetch(url.href, config)
+      const response = await window.fetch(urlToQuery.href)
       if (response.ok) {
         // Successful response
         const successData: SuccessResponse = await response.json()
         window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
+        window.sessionStorage.setItem(
+          'recipesQueryUrl',
+          JSON.stringify(urlToSessionStorage.href)
+        )
+
         dispatch({
           type: 'recipesResolved',
-          payload: successData.results,
+          // payload should be an array of recipes
+          payload: successData.hits.map((hit) => hit.recipe),
         })
-        history.push(`/recipes${pushSearchParams}`)
+
+        history.push(`/recipes`)
       } else {
-        // Failed response
-        const failureData: FailureResponse = await response.json()
+        // The response.body could be different depending on the failed response data, therefore Edamam suggest checking if response.ok is false, then  we just throw an error, sometimes the failed response will contain useful data, but not everytime.
+        const failureData = await response.json()
+
         dispatch({ type: 'rejected', payload: failureData.message })
+
         throw new Error(
           `Something went wrong with the request, message: ${failureData.message}`
         )
