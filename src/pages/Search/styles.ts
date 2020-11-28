@@ -25,7 +25,7 @@ export const SearchInnerWrapper = styled.div`
   width: 98%;
 `
 
-/* Title */
+/* Title Area */
 export const Title = styled.label`
   font-size: min(6rem, 9vw);
   font-family: ${({ theme }) => theme.fonts.Lora};
@@ -254,6 +254,7 @@ const showError = keyframes`
     }
 `
 
+/*  Error Messages */
 export const ErrorToast = styled.div<{ isError: boolean }>`
   position: absolute;
   display: none;
@@ -319,6 +320,7 @@ export const ErrorToast = styled.div<{ isError: boolean }>`
     }
   }
 `
+
 export const ErrorText = styled.span`
   font-size: min(2rem, 3.7vw);
   color: ${({ theme }) => theme.colors.White};

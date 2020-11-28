@@ -6,6 +6,7 @@ import {
   HamburgerMenuWrapper,
   Link,
   LinksWrapper,
+  LogoLink,
   LogoText,
   LogoWrapper,
   Nav,
@@ -16,8 +17,10 @@ export const Navigation: FC = () => {
   return (
     <>
       <Nav>
-        <LogoWrapper to="/" onClick={() => setToggleState(false)}>
-          <LogoText>Yummly</LogoText>
+        <LogoWrapper>
+          <LogoLink to="/" onClick={() => setToggleState(false)}>
+            <LogoText>Yummly</LogoText>
+          </LogoLink>
           <CookingSVG height="60" width="60" />
         </LogoWrapper>
         <LinksWrapper isToggled={toggleState}>
