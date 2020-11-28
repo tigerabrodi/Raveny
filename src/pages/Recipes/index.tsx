@@ -18,8 +18,8 @@ import {
   SadFace,
   NoRecipesButton,
   Calories,
-  HealthLabel,
-  HealthWrapper,
+  // HealthLabel,
+  // HealthWrapper,
   Warn,
 } from './styles'
 
