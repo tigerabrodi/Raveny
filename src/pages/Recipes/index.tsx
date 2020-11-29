@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useRavenyContext } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { Spinner } from 'components/Spinner'
+import { Strong, Check, Warn } from 'styles'
 import {
   RecipesWrapper,
   Recipe,
@@ -10,17 +11,15 @@ import {
   Title,
   Image,
   Serving,
-  DietWrapper,
   DietLabel,
-  Check,
-  Strong,
   NoRecipesTitle,
   SadFace,
   NoRecipesButton,
   Calories,
-  // HealthLabel,
-  // HealthWrapper,
-  Warn,
+  HealthLabel,
+  CautionWrapper,
+  CautionLabel,
+  LabelWrapper,
 } from './styles'
 
 // API Key & ID
@@ -90,8 +89,8 @@ export const Recipes: FC = () => {
     <RecipesWrapper>
       {state.recipes.map((recipe) => (
         <Recipe key={recipe.uri} to={`/recipe/${recipe.uri}`}>
-          <Image src={recipe.image} alt={recipe.label} />
           <Title> {recipe.label} </Title>
+          <Image src={recipe.image} alt={recipe.label} />
           <Calories>
             <Strong>Calories:</Strong> {Math.round(recipe.calories)}
           </Calories>
@@ -99,16 +98,16 @@ export const Recipes: FC = () => {
             <Strong>Servings:</Strong> {recipe.yield}
           </Serving>
           {recipe.cautions.length > 0 && (
-            <DietWrapper>
+            <CautionWrapper>
               {recipe.cautions.map((caution) => (
-                <DietLabel>
+                <CautionLabel>
                   {caution} <Warn />
-                </DietLabel>
+                </CautionLabel>
               ))}
-            </DietWrapper>
+            </CautionWrapper>
           )}
           {(recipe.dietLabels.length > 0 || recipe.healthLabels.length > 0) && (
-            <DietWrapper>
+            <LabelWrapper>
               {recipe.dietLabels.length > 0 &&
                 recipe.dietLabels.map((diet) => (
                   <DietLabel key={uuidv4()}>
@@ -117,11 +116,11 @@ export const Recipes: FC = () => {
                 ))}
               {recipe.healthLabels.length > 0 &&
                 recipe.healthLabels.map((health) => (
-                  <DietLabel key={uuidv4()}>
+                  <HealthLabel key={uuidv4()}>
                     {health} <Check />
-                  </DietLabel>
+                  </HealthLabel>
                 ))}
-            </DietWrapper>
+            </LabelWrapper>
           )}
         </Recipe>
       ))}

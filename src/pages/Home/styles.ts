@@ -3,10 +3,11 @@ import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
 import { Search } from '@styled-icons/bootstrap'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
+import { wrapperStyles } from 'styles'
 
 /* Home Header Wrapper */
 export const HomeWrapper = styled.div`
-  grid-area: children;
+  ${wrapperStyles}
   display: grid;
   grid-template-areas:
     'info'
@@ -14,7 +15,6 @@ export const HomeWrapper = styled.div`
   align-items: center;
   justify-items: center;
   align-content: space-around;
-  min-height: calc(100vh - 18rem);
   grid-template-rows: 1fr 1fr;
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);

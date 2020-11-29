@@ -2,12 +2,11 @@ import styled, { css, keyframes } from 'styled-components'
 import { ReactComponent as PanSVG } from 'assets/fried.svg'
 import { Search } from '@styled-icons/bootstrap'
 import { media } from 'theme/media'
+import { wrapperStyles } from 'styles'
 
 /* Wrappers */
 export const SearchWrapper = styled.div`
-  grid-area: children;
-  min-height: calc(100vh - 18rem);
-  width: 100%;
+  ${wrapperStyles}
 `
 
 export const SearchInnerWrapper = styled.div`
