@@ -25,30 +25,30 @@ type Ingredient = {
   food: Food
 }
 
-enum DietLabel {
-  'balanced',
-  'high-protein',
-  'high-fiber',
-  'low-fat',
-  'low-carb',
-  'low-sodium',
+export enum DietLabel {
+  balanced = 'balanced',
+  'high-protein' = 'high-protein',
+  'high-fiber' = 'high-fiber',
+  'low-fat' = 'low-fat',
+  'low-carb' = 'low-carb',
+  'low-sodium' = 'low-sodium',
 }
 
-enum HealthLabel {
-  'vegan',
-  'vegetarian',
-  'paleo',
-  'dairy-free',
-  'gluten-free',
-  'wheat-free',
-  'fat-free',
-  'low-sugar',
-  'egg-free',
-  'peanut-free',
-  'tree-nut-free',
-  'soy-free',
-  'fish-free',
-  'shellfish-free',
+export enum HealthLabel {
+  vegan = 'vegan',
+  vegetarian = 'vegetarian',
+  paleo = 'paleo',
+  'dairy-free' = 'dairy-free',
+  'gluten-free' = 'gluten-free',
+  'wheat-free' = 'wheat-free',
+  'fat-free' = 'fat-free',
+  'low-sugar' = 'low-sugar',
+  'egg-free' = 'egg-free',
+  'peanut-free' = 'peanut-free',
+  'tree-nut-free' = 'tree-nut-free',
+  'soy-free' = 'soy-free',
+  'fish-free' = 'fish-free',
+  'shellfish-free' = 'shellfish-free',
 }
 
 /* Recipe Type */

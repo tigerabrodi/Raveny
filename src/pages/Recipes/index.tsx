@@ -1,25 +1,14 @@
 import React, { FC, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { useRavenyContext } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { Spinner } from 'components/Spinner'
-import { Strong, Check, Warn } from 'styles'
+import { Recipe } from 'components/Recipe'
 import {
   RecipesWrapper,
-  Recipe,
   NoRecipesWrapper,
-  Title,
-  Image,
-  Serving,
-  DietLabel,
   NoRecipesTitle,
   SadFace,
   NoRecipesButton,
-  Calories,
-  HealthLabel,
-  CautionWrapper,
-  CautionLabel,
-  LabelWrapper,
 } from './styles'
 
 // API Key & ID
@@ -88,41 +77,7 @@ export const Recipes: FC = () => {
   return 'recipes' in state && state.recipes.length > 0 ? (
     <RecipesWrapper>
       {state.recipes.map((recipe) => (
-        <Recipe key={recipe.uri} to={`/recipe/${recipe.uri}`}>
-          <Title> {recipe.label} </Title>
-          <Image src={recipe.image} alt={recipe.label} />
-          <Calories>
-            <Strong>Calories:</Strong> {Math.round(recipe.calories)}
-          </Calories>
-          <Serving>
-            <Strong>Servings:</Strong> {recipe.yield}
-          </Serving>
-          {recipe.cautions.length > 0 && (
-            <CautionWrapper>
-              {recipe.cautions.map((caution) => (
-                <CautionLabel>
-                  {caution} <Warn />
-                </CautionLabel>
-              ))}
-            </CautionWrapper>
-          )}
-          {(recipe.dietLabels.length > 0 || recipe.healthLabels.length > 0) && (
-            <LabelWrapper>
-              {recipe.dietLabels.length > 0 &&
-                recipe.dietLabels.map((diet) => (
-                  <DietLabel key={uuidv4()}>
-                    {diet} <Check />
-                  </DietLabel>
-                ))}
-              {recipe.healthLabels.length > 0 &&
-                recipe.healthLabels.map((health) => (
-                  <HealthLabel key={uuidv4()}>
-                    {health} <Check />
-                  </HealthLabel>
-                ))}
-            </LabelWrapper>
-          )}
-        </Recipe>
+        <Recipe recipe={recipe} key={recipe.uri} />
       ))}
     </RecipesWrapper>
   ) : (
