@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
+import { EmojiFrown } from '@styled-icons/bootstrap'
 import {
-  Check2Square,
-  EmojiFrown,
-  ExclamationTriangleFill,
-} from '@styled-icons/bootstrap'
+  infoLabelStyles,
+  labelStyles,
+  labelWrapperStyles,
+  wrapperStyles,
+} from 'styles'
 
 // Recipes
 export const RecipesWrapper = styled.div`
-  min-height: calc(100vh - 18rem);
-  width: 100%;
-  grid-area: children;
+  ${wrapperStyles}
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -41,15 +41,15 @@ export const Recipe = styled(Link)`
     background-color: rgba(221, 114, 48, 0.1);
   }
   ${media.phone} {
-    height: 60rem;
-    flex-basis: 45%;
+    height: 50rem;
+    flex-basis: 50%;
   }
   ${media.tablet} {
     flex-basis: 35%;
   }
   ${media.desktop} {
     flex-basis: 30%;
-    max-width: 40%;
+    max-width: 35%;
   }
 `
 
@@ -66,88 +66,52 @@ export const Image = styled.img`
   box-shadow: 0 2px 5px black;
   border: 2px solid ${({ theme }) => theme.colors.Brown};
   border-radius: 2px;
-  height: 50%;
+  height: 40%;
   max-width: 100%;
   ${media.phone} {
-    height: 50%;
     max-width: 98%;
+    height: 55%;
   }
   ${media.tablet} {
-    height: 55%;
     max-width: 100%;
+    height: 45%;
   }
   ${media.desktop} {
-    height: 60%;
+    height: 50%;
     max-width: 100%;
   }
 `
 
-export const Price = styled.span`
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.Orange};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-`
-
+// Info labels
 export const Serving = styled.span`
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.Orange};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  ${infoLabelStyles}
 `
 
 export const Calories = styled.span`
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.Orange};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  ${infoLabelStyles}
 `
 
-export const DietWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+// Label Wrapper
+export const LabelWrapper = styled.div`
+  ${labelWrapperStyles}
 `
 
 export const DietLabel = styled.span`
-  text-transform: capitalize;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.Green};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  margin-top: 0.5rem;
-`
-
-export const HealthWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  ${labelStyles}
 `
 
 export const HealthLabel = styled.span`
-  text-transform: capitalize;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.Green};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  margin-top: 0.5rem;
+  ${labelStyles}
 `
 
-export const Check = styled(Check2Square)`
-  color: ${({ theme }) => theme.colors.Green};
-  height: 2rem;
+// Caution
+export const CautionWrapper = styled.div`
+  ${labelWrapperStyles}
 `
 
-export const Strong = styled.span`
-  filter: drop-shadow(0 2px 2px black);
-  font-weight: bold;
-`
-
-export const Warn = styled(ExclamationTriangleFill)`
-  height: 2rem;
-  color: ${({ theme }) => theme.colors.DarkRed};
+export const CautionLabel = styled.span`
+  ${labelStyles}
+  color: ${({ theme }) => theme.colors.Red};
 `
 
 /*  No recipes found page */
