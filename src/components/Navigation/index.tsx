@@ -27,22 +27,29 @@ export const Navigation: FC = () => {
           <Link to="/search" onClick={() => setToggleState(false)}>
             Search
           </Link>
-          <Link to="/keto" onClick={() => setToggleState(false)}>
+          <Link to="/recipes/keto" onClick={() => setToggleState(false)}>
             Ketogenic
           </Link>
-          <Link to="/vegan" onClick={() => setToggleState(false)}>
+          <Link to="/recipes/vegan" onClick={() => setToggleState(false)}>
             Vegan
           </Link>
-          <Link to="/desserts" onClick={() => setToggleState(false)}>
-            Desserts
+          <Link
+            to="/recipes/high-protein"
+            onClick={() => setToggleState(false)}
+          >
+            High Protein
           </Link>
-          <Link to="/wine" onClick={() => setToggleState(false)}>
-            Wine
+          <Link to="/recipes/low-carb" onClick={() => setToggleState(false)}>
+            Low Carb
           </Link>
         </LinksWrapper>
         <HamburgerMenuWrapper
           isToggled={toggleState}
           onClick={() => setToggleState(!toggleState)}
+          type="button"
+          aria-label={
+            toggleState ? 'Close Hamburger Menu' : 'Open Hamburger Menu'
+          }
         >
           <HamburgerMenuLine topToggled={toggleState} />
           <HamburgerMenuLine hideMiddle={toggleState} />

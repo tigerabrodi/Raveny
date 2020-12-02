@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
-import { Link as RouterLink } from 'react-router-dom'
+import { NavLink as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
 /* Navigation Bar */
@@ -90,7 +90,8 @@ export const LinksWrapper = styled.div<{ isToggled: boolean }>`
   }
 `
 
-export const Link = styled(RouterLink)`
+const activeClassName = 'nav-link-active'
+export const Link = styled(RouterLink).attrs({ activeClassName })`
   font-size: 3rem;
   margin-top: 5rem;
   position: relative;
@@ -101,6 +102,10 @@ export const Link = styled(RouterLink)`
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   text-align: center;
+  &${`.${activeClassName}`}::after {
+    color: ${({ theme }) => theme.colors.White};
+    opacity: 1;
+  }
   &:hover {
     color: ${({ theme }) => theme.colors.White};
     transform: scale(1.05);
@@ -162,7 +167,9 @@ export const HamburgerMenuLine = styled.span<HamburgerMenuLineProps>`
       transform: rotate(-40deg) translateY(-1rem);
     `};
 `
-export const HamburgerMenuWrapper = styled.div<{ isToggled: boolean }>`
+export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
+  border: none;
+  background-color: transparent;
   cursor: pointer;
   position: relative;
   z-index: 10;
@@ -173,6 +180,12 @@ export const HamburgerMenuWrapper = styled.div<{ isToggled: boolean }>`
   align-items: center;
   justify-content: space-around;
   margin-right: 1rem;
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
   &:hover span {
     ${({ isToggled }) =>
       !isToggled &&
