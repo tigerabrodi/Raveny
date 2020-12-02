@@ -13,6 +13,7 @@ import {
   CautionWrapper,
   Serving,
   CautionLabel,
+  InfoWrapper,
 } from './styles'
 
 type RecipeProps = {
@@ -42,31 +43,33 @@ export const Recipe = ({
       <Serving>
         <Strong>Servings:</Strong> {recipeYield}
       </Serving>
-      {cautions.length > 0 && (
-        <CautionWrapper>
-          {cautions.map((caution) => (
-            <CautionLabel>
-              {caution} <Warn />
-            </CautionLabel>
-          ))}
-        </CautionWrapper>
-      )}
-      {(dietLabels.length > 0 || healthLabels.length > 0) && (
-        <LabelWrapper>
-          {dietLabels.length > 0 &&
-            dietLabels.map((diet) => (
-              <DietLabel key={uuidv4()}>
-                {diet} <Check />
-              </DietLabel>
+      <InfoWrapper>
+        {cautions.length > 0 && (
+          <CautionWrapper>
+            {cautions.map((caution) => (
+              <CautionLabel>
+                <Strong>{caution}</Strong> <Warn />
+              </CautionLabel>
             ))}
-          {healthLabels.length > 0 &&
-            healthLabels.map((health) => (
-              <HealthLabel key={uuidv4()}>
-                {health} <Check />
-              </HealthLabel>
-            ))}
-        </LabelWrapper>
-      )}
+          </CautionWrapper>
+        )}
+        {(dietLabels.length > 0 || healthLabels.length > 0) && (
+          <LabelWrapper>
+            {dietLabels.length > 0 &&
+              dietLabels.map((diet) => (
+                <DietLabel key={uuidv4()}>
+                  <Strong>{diet}</Strong> <Check />
+                </DietLabel>
+              ))}
+            {healthLabels.length > 0 &&
+              healthLabels.map((health) => (
+                <HealthLabel key={uuidv4()}>
+                  <Strong>{health}</Strong> <Check />
+                </HealthLabel>
+              ))}
+          </LabelWrapper>
+        )}
+      </InfoWrapper>
     </RecipeWrapper>
   )
 }
