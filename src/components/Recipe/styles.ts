@@ -5,7 +5,7 @@ import { infoLabelStyles, labelStyles, labelWrapperStyles } from 'styles'
 
 export const RecipeWrapper = styled(Link)`
   text-decoration: none;
-  height: 40rem;
+  height: 45rem;
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
@@ -33,16 +33,23 @@ export const RecipeWrapper = styled(Link)`
   ${media.desktop} {
     flex-basis: 30%;
     max-width: 35%;
+    height: 55rem;
   }
 `
 
 export const Title = styled.h1`
   filter: drop-shadow(2px 4px 6px black);
-  font-size: 3rem;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Red};
   text-align: center;
+  font-size: 2.2rem;
+  ${media.phone} {
+    font-size: 3rem;
+  }
+  ${media.tablet} {
+    font-size: max(2rem, 1.8vw);
+  }
 `
 
 export const Image = styled.img`
@@ -63,6 +70,14 @@ export const Image = styled.img`
     height: 50%;
     max-width: 100%;
   }
+`
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 20%;
 `
 
 // Info labels
