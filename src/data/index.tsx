@@ -1,6 +1,6 @@
 import faker from 'faker'
-import { Recipe as TRecipe } from 'types'
-import { getRandomDietLabel, getRandomHealthLabel } from 'utils/functions'
+import { Recipe as TRecipe, DietLabel, HealthLabel } from 'types'
+import { getRandomLabel } from 'utils/functions'
 
 export const recipesData: TRecipe[] = [
   {
@@ -13,11 +13,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -33,11 +33,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -53,11 +53,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -73,11 +73,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -93,11 +93,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -113,11 +113,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -133,11 +133,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
@@ -153,11 +153,11 @@ export const recipesData: TRecipe[] = [
     }),
     cautions: [faker.random.word(), faker.random.word()],
     healthLabels: [
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
-      getRandomHealthLabel(),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
+      getRandomLabel(HealthLabel),
     ],
-    dietLabels: [getRandomDietLabel(), getRandomDietLabel()],
+    dietLabels: [getRandomLabel(DietLabel), getRandomLabel(DietLabel)],
     yield: faker.random.number({
       min: 3,
       max: 15,
