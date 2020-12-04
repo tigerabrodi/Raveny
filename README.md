@@ -14,7 +14,7 @@ This project will also include tests. My goal is not to write tests for every si
 
 After cloning the project, you need to run `npm install`.
 
-This project uses two environment variables, one for URL and one for the API key that I am using to retrieve the recipes information.
+This project uses three environment variables, one for URL and one for the API key that I am using to retrieve the recipes information.
 <br>
 Create a `.env.development.local` file in the root folder.
 It should have two environment variables:
@@ -32,7 +32,7 @@ The second key is the API key from https://developer.edamam.com/edamam-docs-reci
 - Building: React, TypeScript & Styled-Components
 - Integration Tests: Jest and React Testing Library
 - E2E Tests: Cypress
-- Developing component in isolation: StoryBook
+- Developing components in isolation: StoryBook
 - Mocking requests in StoryBook and Tests: Mock Service worker (MSW)
 
 ## License
