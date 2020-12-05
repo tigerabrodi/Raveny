@@ -74,7 +74,7 @@ export const Recipes: FC = () => {
     return <Spinner />
   }
 
-  return 'recipes' in state && state.recipes.length > 0 ? (
+  return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesWrapper>
       {state.recipes.map((recipe) => (
         <Recipe recipe={recipe} key={recipe.uri} />
