@@ -12,35 +12,40 @@ import { Recipe } from 'types'
 /** Initial State */
 interface InitialState {
   status: 'idle'
+  stateType: 'initialState'
 }
 
-/** Loading State */
-interface LoadingState {
+/** Pending State */
+interface PendingState {
   status: 'pending'
+  stateType: 'pendingState'
 }
 
 /** Single Recipes State */
 interface SingleRecipeState {
   recipe: Recipe
   status: 'resolved'
+  stateType: 'singleRecipeState'
 }
 
 /** Recipes State */
 interface RecipesState {
   status: 'resolved'
   recipes: Recipe[]
+  stateType: 'recipesState'
 }
 
 /** Error State */
 interface ErrorState {
   status: 'rejected'
   error: string
+  stateType: 'errorState'
 }
 
 /** Raveny State */
 type RavenyState =
   | InitialState
-  | LoadingState
+  | PendingState
   | SingleRecipeState
   | RecipesState
   | ErrorState
@@ -54,6 +59,7 @@ type Action =
 
 const initialState: RavenyState = {
   status: 'idle',
+  stateType: 'initialState',
 }
 
 function ravenyReducer(state: RavenyState, action: Action): RavenyState {
@@ -61,21 +67,25 @@ function ravenyReducer(state: RavenyState, action: Action): RavenyState {
     case 'pending':
       return {
         status: 'pending',
+        stateType: 'pendingState',
       }
     case 'singleRecipeResolved':
       return {
         status: 'resolved',
         recipe: action.payload,
+        stateType: 'singleRecipeState',
       }
     case 'recipesResolved':
       return {
         status: 'resolved',
         recipes: action.payload,
+        stateType: 'recipesState',
       }
     case 'rejected':
       return {
         status: 'rejected',
         error: action.payload,
+        stateType: 'errorState',
       }
     default:
       throw new Error('This should not happen :D')
