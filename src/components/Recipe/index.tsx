@@ -47,7 +47,7 @@ export const Recipe = ({
         {cautions.length > 0 && (
           <CautionWrapper>
             {cautions.map((caution) => (
-              <CautionLabel>
+              <CautionLabel key={uuidv4()}>
                 <Strong>{caution}</Strong> <Warn />
               </CautionLabel>
             ))}
