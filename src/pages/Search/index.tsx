@@ -41,7 +41,7 @@ export const Search: FC = () => {
 
   const { state, dispatch } = useRavenyContext()
 
-  // So we can append query params to the URL and also access them. Here we are using non null assertion, because typescript thinks environment variables could be undefined
+  // Non-null assertion because TypeScript thinks this could be undefined
   const urlToQuery = new URL(apiURL!)
 
   // Number of input length (validation)
@@ -75,6 +75,7 @@ export const Search: FC = () => {
     urlToQuery.searchParams.append('from', '0')
     urlToQuery.searchParams.append('to', '8')
 
+    // URL to be persisted in sessionStorage
     const urlToSessionStorage = new URL(urlToQuery.href)
     urlToSessionStorage.searchParams.delete('app_key')
     urlToSessionStorage.searchParams.delete('app_id')
@@ -99,7 +100,7 @@ export const Search: FC = () => {
 
         history.push(`/recipes`)
       } else {
-        // The response.body could be different depending on the failed response data, therefore Edamam suggest checking if response.ok is false, then  we just throw an error, sometimes the failed response will contain useful data, but not everytime.
+        // Failure Response
         const failureData = await response.json()
 
         dispatch({ type: 'rejected', payload: failureData.message })
