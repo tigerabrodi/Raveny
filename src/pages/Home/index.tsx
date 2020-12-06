@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import { useState } from 'react'
 import {
   InfoWrapper,
   HomeWrapper,
@@ -9,7 +9,7 @@ import {
   SearchIcon,
 } from './styles'
 
-export const Home = (): ReactElement => {
+export const Home = () => {
   const [buttonHoverState, setButtonHoverState] = useState(false)
   return (
     <HomeWrapper>

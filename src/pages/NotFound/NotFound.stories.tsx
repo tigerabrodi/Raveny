@@ -1,4 +1,3 @@
-import React, { ReactElement } from 'react'
 import { NotFound } from '.'
 
 export default {
@@ -6,6 +5,4 @@ export default {
   title: 'pages/NotFound',
 }
 
-export const NotFoundPage = (): ReactElement => {
-  return <NotFound />
-}
+export const NotFoundPage = () => <NotFound />

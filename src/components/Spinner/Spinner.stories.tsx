@@ -1,4 +1,3 @@
-import React, { ReactElement } from 'react'
 import { Spinner } from '.'
 
 export default {
@@ -6,6 +5,4 @@ export default {
   title: 'components/Spinner',
 }
 
-export const SpinnerComponent = (): ReactElement => {
-  return <Spinner />
-}
+export const SpinnerComponent = () => <Spinner />

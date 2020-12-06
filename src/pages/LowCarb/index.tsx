@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRavenyContext } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { Spinner } from 'components/Spinner'
@@ -10,7 +10,7 @@ const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
 
-export const LowCarb = (): ReactNode => {
+export const LowCarb = () => {
   const { state, dispatch } = useRavenyContext()
 
   const urlToQuery = new URL(apiURL!)
@@ -56,14 +56,11 @@ export const LowCarb = (): ReactNode => {
     return <Spinner />
   }
 
-  return (
-    state.stateType === 'recipesState' &&
-    state.recipes.length > 0 && (
-      <RecipesWrapper>
-        {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={recipe.uri} />
-        ))}
-      </RecipesWrapper>
-    )
-  )
+  return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
+    <RecipesWrapper>
+      {state.recipes.map((recipe) => (
+        <Recipe recipe={recipe} key={recipe.uri} />
+      ))}
+    </RecipesWrapper>
+  ) : null
 }

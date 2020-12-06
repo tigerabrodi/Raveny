@@ -1,8 +1,7 @@
-import React, {
+import {
   createContext,
   Dispatch,
   PropsWithChildren,
-  ReactElement,
   Reducer,
   useContext,
   useReducer,
@@ -62,7 +61,7 @@ const initialState: RavenyState = {
   stateType: 'initialState',
 }
 
-function ravenyReducer(state: RavenyState, action: Action): RavenyState {
+const ravenyReducer = (state: RavenyState, action: Action): RavenyState => {
   switch (action.type) {
     case 'pending':
       return {
@@ -106,7 +105,7 @@ const RavenyContext = createContext<RavenyContextType>({
 RavenyContext.displayName = 'RavenyContext'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function RavenyProvider(props: PropsWithChildren<{}>): ReactElement {
+const RavenyProvider = (props: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer<Reducer<RavenyState, Action>>(
     ravenyReducer,
     initialState
@@ -115,7 +114,7 @@ function RavenyProvider(props: PropsWithChildren<{}>): ReactElement {
   return <RavenyContext.Provider value={value} {...props} />
 }
 
-function useRavenyContext(): RavenyContextType {
+const useRavenyContext = (): RavenyContextType => {
   const context = useContext(RavenyContext)
   if (!context) {
     throw new Error(`No provider for RavenyContext given`)

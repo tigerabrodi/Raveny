@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRavenyContext } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { Spinner } from 'components/Spinner'
@@ -15,7 +15,7 @@ import {
 const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
 
-export const Recipes = (): ReactNode => {
+export const Recipes = () => {
   const { state, dispatch } = useRavenyContext()
 
   const numbersOfMount = JSON.parse(

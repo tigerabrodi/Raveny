@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  ReactElement,
-  useEffect,
-  useState,
-} from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRavenyContext } from 'context/RavenyContext'
 import { Spinner } from 'components/Spinner'
@@ -33,7 +27,7 @@ type SearchState = {
   searchValue: string
 }
 
-export const Search = (): ReactElement => {
+export const Search = () => {
   const [focusState, setFocusState] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [isErrorCharacters, setIsErrorCharacters] = useState(false)
@@ -67,9 +61,7 @@ export const Search = (): ReactElement => {
     // Input validation
     if (searchValue.length < 3) {
       setIsErrorCharacters(true)
-      return setTimeout(() => {
-        return setIsErrorCharacters(false)
-      }, 3000)
+      return setTimeout(() => setIsErrorCharacters(false), 3000)
     }
 
     dispatch({ type: 'pending' })

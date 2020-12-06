@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import { useState } from 'react'
 import { CookingSVG } from 'components/SVG/CookingSVG'
 import {
   HamburgerMenuLine,
@@ -12,7 +12,7 @@ import {
   Nav,
 } from './styles'
 
-export const Navigation = (): ReactElement => {
+export const Navigation = () => {
   const [toggleState, setToggleState] = useState(false)
   return (
     <>
