@@ -6,7 +6,7 @@ A website where people can search for recipes :raised_hands:.
 
 I love food and I like cooking :yum:. My goal with this side-project is to maximize my learning when it comes to the field of frontend :smiley:.
 
-The goal is to not create an awesome website where people can search for recipes, but also implement things I have learned and am learning from EpicReact, TestingJavaScript, Frontend Masters (Workshops in CSS/JS/TS) and Effective TypeScript :tada:.
+The goal is to not create an awesome website where people can search for recipes and stuffs :wink:, but also implement things I have learned and am learning from EpicReact, TestingJavaScript, Frontend Masters (Workshops in CSS/JS/TS) and Effective TypeScript :tada:.
 
 This project will also include tests. My goal is not to write tests for every single function, rather writing the tests resembling the user, in order to get the most confidence that my software does what it is suppose to be doing, when the user interacts with it :fire:.
 
