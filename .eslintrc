@@ -36,7 +36,9 @@
       }
     ],
     "@typescript-eslint/no-non-null-assertion": 0,
-    "consistent-return": 0,
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "consistent-return": "warn",
     "react/jsx-props-no-spreading": 0,
     "linebreak-style": "off",
     "import/prefer-default-export": 0,

@@ -1,14 +1,9 @@
-import React, { ReactElement } from 'react'
-
 type TCookingSVG = {
   height: string
   width: string
 }
 
-export const CookingSVG = ({
-  height = '40',
-  width = '40',
-}: TCookingSVG): ReactElement => (
+export const CookingSVG = ({ height = '40', width = '40' }: TCookingSVG) => (
   <svg
     height={height}
     viewBox="0 -14 512 512"

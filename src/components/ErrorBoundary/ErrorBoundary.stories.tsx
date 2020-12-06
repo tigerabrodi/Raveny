@@ -1,4 +1,3 @@
-import React, { ReactElement } from 'react'
 import { ErrorBoundaryProvider } from '.'
 
 const DummyError = () => {
@@ -7,13 +6,11 @@ const DummyError = () => {
   )
 }
 
-export const ErrorBoundaryWithComponent = (): ReactElement => {
-  return (
-    <ErrorBoundaryProvider>
-      <DummyError />
-    </ErrorBoundaryProvider>
-  )
-}
+export const ErrorBoundaryWithComponent = () => (
+  <ErrorBoundaryProvider>
+    <DummyError />
+  </ErrorBoundaryProvider>
+)
 
 export default {
   component: ErrorBoundaryWithComponent,
