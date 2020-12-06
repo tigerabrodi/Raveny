@@ -1,6 +1,6 @@
 # Raveny
 
-A website where people can search for recipes :raised_hands:.
+A website where people can find recipes, search based on different criterias, and create an account to manage their recipes. :pizza:
 
 ## Background and Goal
 
