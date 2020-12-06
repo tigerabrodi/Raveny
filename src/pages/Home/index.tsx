@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 import {
   InfoWrapper,
   HomeWrapper,
@@ -9,7 +9,7 @@ import {
   SearchIcon,
 } from './styles'
 
-export const Home: FC = () => {
+export const Home = (): ReactElement => {
   const [buttonHoverState, setButtonHoverState] = useState(false)
   return (
     <HomeWrapper>

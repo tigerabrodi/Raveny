@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import { DocLink, FileSpan, NoEnvVarWrapper, Text, TextWrapper } from './styles'
 
-export const NoEnvironmentVariables: FC = () => {
+export const NoEnvironmentVariables = (): ReactElement => {
   return (
     <NoEnvVarWrapper>
       <TextWrapper>

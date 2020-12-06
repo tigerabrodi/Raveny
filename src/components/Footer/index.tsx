@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import { HeartIcon, Text, TextLink, FooterWrapper } from './styles'
 
-export const Footer: FC = () => {
+export const Footer = (): ReactElement => {
   return (
     <FooterWrapper>
       <Text>

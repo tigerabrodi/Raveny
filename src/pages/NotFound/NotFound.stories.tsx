@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import { NotFound } from '.'
 
 export default {
@@ -6,6 +6,6 @@ export default {
   title: 'pages/NotFound',
 }
 
-export const NotFoundPage: FC = () => {
+export const NotFoundPage = (): ReactElement => {
   return <NotFound />
 }

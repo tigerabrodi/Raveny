@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { CookingSVG } from 'components/SVG/CookingSVG'
 import {
   HamburgerMenuLine,
@@ -12,7 +12,7 @@ import {
   Nav,
 } from './styles'
 
-export const Navigation: FC = () => {
+export const Navigation = (): ReactElement => {
   const [toggleState, setToggleState] = useState(false)
   return (
     <>
@@ -26,9 +26,6 @@ export const Navigation: FC = () => {
         <LinksWrapper isToggled={toggleState}>
           <Link to="/search" onClick={() => setToggleState(false)}>
             Search
-          </Link>
-          <Link to="/recipes/keto" onClick={() => setToggleState(false)}>
-            Ketogenic
           </Link>
           <Link to="/recipes/vegan" onClick={() => setToggleState(false)}>
             Vegan

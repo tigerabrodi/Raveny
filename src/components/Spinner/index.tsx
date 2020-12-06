@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { ReactComponent as LoadingSpinner } from 'assets/spinner.svg'
 
@@ -27,7 +27,7 @@ const StyledSpinner = styled(LoadingSpinner)`
   animation: ${spin} 0.5s linear infinite;
 `
 
-export const Spinner: FC = () => {
+export const Spinner = (): ReactElement => {
   return (
     <Div>
       <StyledSpinner />
