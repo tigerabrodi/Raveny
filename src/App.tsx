@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import { AppProviders } from 'context'
 import { Route, Switch } from 'react-router-dom'
 import { Footer } from 'components/Footer'
@@ -8,11 +8,14 @@ import { Search } from 'pages/Search'
 import { Recipes } from 'pages/Recipes'
 import { NotFound } from 'pages/NotFound'
 import { NoEnvironmentVariables } from 'pages/NoEnvironmentVariables'
+import { Vegan } from 'pages/Vegan'
+import { HighProtein } from 'pages/HighProtein'
+import { LowCarb } from 'pages/LowCarb'
 
 const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
 
-const App: FC = () => (
+const App = (): ReactElement => (
   <AppProviders>
     <Navigation />
     {!apiURL && !apiKEY ? (
@@ -21,7 +24,14 @@ const App: FC = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/search" component={Search} />
-        <Route exact path="/recipes" component={Recipes} />
+        <Route exact path="/recipes" component={Recipes as FC} />
+        <Route exact path="/recipes/vegan" component={Vegan as FC} />
+        <Route exact path="/recipes/low-carb" component={LowCarb as FC} />
+        <Route
+          exact
+          path="/recipes/high-protein"
+          component={HighProtein as FC}
+        />
         <Route exact path="*" component={NotFound} />
       </Switch>
     )}

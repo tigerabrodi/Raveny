@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import { NoEnvironmentVariables } from '.'
 
 export default {
@@ -6,6 +6,6 @@ export default {
   title: 'pages/NoEnvironmentVariables',
 }
 
-export const NoEnvironmentVariablesPage: FC = () => {
+export const NoEnvironmentVariablesPage = (): ReactElement => {
   return <NoEnvironmentVariables />
 }

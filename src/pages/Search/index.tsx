@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
+import React, {
+  ChangeEvent,
+  FormEvent,
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRavenyContext } from 'context/RavenyContext'
 import { Spinner } from 'components/Spinner'
@@ -27,7 +33,7 @@ type SearchState = {
   searchValue: string
 }
 
-export const Search: FC = () => {
+export const Search = (): ReactElement => {
   const [focusState, setFocusState] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [isErrorCharacters, setIsErrorCharacters] = useState(false)
@@ -94,7 +100,6 @@ export const Search: FC = () => {
 
         dispatch({
           type: 'recipesResolved',
-          // payload should be an array of recipes
           payload: successData.hits.map((hit) => hit.recipe),
         })
 

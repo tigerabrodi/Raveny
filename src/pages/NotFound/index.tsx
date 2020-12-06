@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import { NotFoundWrapper, NotFoundSVG } from './styles'
 
-export const NotFound: FC = () => {
+export const NotFound = (): ReactElement => {
   return (
     <NotFoundWrapper>
       <NotFoundSVG />

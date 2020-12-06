@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactElement } from 'react'
 import { Spinner } from '.'
 
 export default {
@@ -6,6 +6,6 @@ export default {
   title: 'components/Spinner',
 }
 
-export const SpinnerComponent: FC = () => {
+export const SpinnerComponent = (): ReactElement => {
   return <Spinner />
 }
