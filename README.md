@@ -14,7 +14,7 @@ This project will also include tests. My goal is not to write tests for every si
 
 After cloning the project, you need to run `npm install`.
 
-This project uses three environment variables, one for URL and one for the API key that I am using to retrieve the recipes information.
+This project uses three environment variables, one for URL, one for the API id and key :sparkling_heart:.
 <br>
 Create a `.env.development.local` file in the root folder.
 It should have two environment variables:
@@ -25,7 +25,7 @@ It should have two environment variables:
 <br>
 `REACT_APP_API_ID=YourApiIdFromEdamam`
 <br>
-The second key is the API key from https://developer.edamam.com/edamam-docs-recipe-api, there you need to create an account in order to get your API key.
+The key and id come from https://developer.edamam.com/edamam-docs-recipe-api, there you need to create an account in order to get your API key and id :stuck_out_tongue_closed_eyes:.
 
 ## Tools
 
