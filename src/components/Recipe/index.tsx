@@ -38,10 +38,12 @@ export const Recipe = ({
       <Title> {label} </Title>
       <Image src={image} alt={label} />
       <Calories>
-        <Strong>Calories:</Strong> {Math.round(calories)}
+        <Strong>Calories: </Strong>
+        {Math.round(calories)}
       </Calories>
       <Serving>
-        <Strong>Servings:</Strong> {recipeYield}
+        <Strong>Servings: </Strong>
+        {recipeYield}
       </Serving>
       <InfoWrapper>
         {cautions.length > 0 && (
@@ -53,22 +55,22 @@ export const Recipe = ({
             ))}
           </CautionWrapper>
         )}
-        {(dietLabels.length > 0 || healthLabels.length > 0) && (
-          <LabelWrapper>
-            {dietLabels.length > 0 &&
-              dietLabels.map((diet) => (
-                <DietLabel key={uuidv4()}>
-                  <Strong>{diet}</Strong> <Check />
-                </DietLabel>
-              ))}
-            {healthLabels.length > 0 &&
-              healthLabels.map((health) => (
-                <HealthLabel key={uuidv4()}>
-                  <Strong>{health}</Strong> <Check />
-                </HealthLabel>
-              ))}
-          </LabelWrapper>
-        )}
+        <LabelWrapper>
+          {dietLabels.length > 0 &&
+            dietLabels.map((diet) => (
+              <DietLabel key={uuidv4()}>
+                <Strong>{diet}</Strong> <Check />
+              </DietLabel>
+            ))}
+        </LabelWrapper>
+        <LabelWrapper>
+          {healthLabels.length > 0 &&
+            healthLabels.map((health) => (
+              <HealthLabel key={uuidv4()}>
+                <Strong>{health}</Strong> <Check />
+              </HealthLabel>
+            ))}
+        </LabelWrapper>
       </InfoWrapper>
     </RecipeWrapper>
   )

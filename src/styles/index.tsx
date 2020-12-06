@@ -5,21 +5,28 @@ import { media } from 'theme/media'
 /* Common Styles */
 export const labelWrapperStyles = css`
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
+  flex-direction: column;
   align-items: center;
   height: 100%;
 `
 
 export const labelStyles = css`
   text-transform: capitalize;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Green};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   display: flex;
+  align-items: center;
+  ${media.phone} {
+    font-size: 1.2rem;
+  }
+  ${media.tablet} {
+    font-size: 1.4rem;
+  }
   ${media.desktop} {
-    font-size: max(1.5rem, 0.8vw);
+    font-size: max(1.2rem, 0.8vw);
   }
 `
 
@@ -44,7 +51,7 @@ export const wrapperStyles = css`
 export const Strong = styled.span`
   filter: drop-shadow(0 2px 2px black);
   font-weight: bold;
-  margin-right: 0.5rem;
+  white-space: pre-wrap;
 `
 
 /* Icons */
