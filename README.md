@@ -29,11 +29,12 @@ The second key is the API key from https://developer.edamam.com/edamam-docs-reci
 
 ## Tools
 
-- Building: React, TypeScript & Styled-Components
-- Integration Tests: Jest and React Testing Library
-- E2E Tests: Cypress
-- Developing components in isolation: StoryBook
-- Mocking requests in StoryBook and Tests: Mock Service worker (MSW)
+- Building: React, TypeScript & Styled-Components :metal:
+- Integration Tests: Jest and React Testing Library :blue_heart:
+- E2E Tests: Cypress :metal:
+- Developing components in isolation: StoryBook :fire:
+- Mocking requests in StoryBook and Tests: Mock Service worker (MSW) :smile:
+- Backend service: Firebase :metal:
 
 ## License
 
