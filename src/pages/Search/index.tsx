@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRavenyContext } from 'context/RavenyContext'
 import { Spinner } from 'components/Spinner'
-import { SuccessResponse } from 'types'
+import { client } from 'utils/client'
 import {
   Pan,
   SearchInnerWrapper,
@@ -64,8 +64,6 @@ export const Search = () => {
       return setTimeout(() => setIsErrorCharacters(false), 3000)
     }
 
-    dispatch({ type: 'pending' })
-
     // Set query params
     urlToQuery.searchParams.append('app_key', apiKEY!)
     urlToQuery.searchParams.append('app_id', apiID!)
@@ -73,44 +71,18 @@ export const Search = () => {
     urlToQuery.searchParams.append('from', '0')
     urlToQuery.searchParams.append('to', '8')
 
-    // URL to be persisted in sessionStorage
-    const urlToSessionStorage = new URL(urlToQuery.href)
-    urlToSessionStorage.searchParams.delete('app_key')
-    urlToSessionStorage.searchParams.delete('app_id')
-
-    // fetch recipes
-    try {
-      const response = await window.fetch(urlToQuery.href)
-      if (response.ok) {
-        // Successful response
-        const successData: SuccessResponse = await response.json()
-        window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
-        window.sessionStorage.setItem(
-          'recipesQueryUrl',
-          JSON.stringify(urlToSessionStorage.href)
-        )
-
-        dispatch({
-          type: 'recipesResolved',
-          payload: successData.hits.map((hit) => hit.recipe),
-        })
-
-        history.push(`/recipes`)
-      } else {
-        // Failure Response
-        const failureData = await response.json()
-
-        dispatch({ type: 'rejected', payload: failureData.message })
-
-        throw new Error(
-          `Something went wrong with the request, message: ${failureData.message}`
-        )
-      }
-    } catch (error) {
-      throw new Error(
-        `Something went terribly wrong! Message: ${error.message}`
-      )
-    }
+    // Fetch Recipes
+    client(
+      dispatch,
+      urlToQuery.href,
+      {
+        shouldUseSessionStorage: true,
+        shouldFetchMultipleRecipes: true,
+        shouldRedirect: true,
+      },
+      history,
+      '/recipes'
+    )
   }
 
   useEffect(() => {
