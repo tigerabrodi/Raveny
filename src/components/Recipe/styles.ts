@@ -1,7 +1,23 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
-import { infoLabelStyles, labelStyles, labelWrapperStyles } from 'styles'
+import {
+  infoLabelStyles,
+  labelStyles,
+  labelWrapperStyles,
+  wrapperStyles,
+} from 'styles'
+
+// Recipes Wrapper (Exported)
+export const RecipesWrapper = styled.div`
+  ${wrapperStyles}
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+`
 
 export const RecipeWrapper = styled(Link)`
   text-decoration: none;

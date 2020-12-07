@@ -3,7 +3,7 @@ import { useRavenyContext } from 'context/RavenyContext'
 import { client } from 'utils/client'
 import { Spinner } from 'components/Spinner'
 import { Recipe } from 'components/Recipe'
-import { RecipesWrapper } from './styles'
+import { RecipesWrapper } from 'components/Recipe/styles'
 
 // API Key, ID and URL
 const apiURL = process.env.REACT_APP_API_URL

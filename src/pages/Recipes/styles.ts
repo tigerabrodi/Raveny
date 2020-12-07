@@ -2,18 +2,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import { EmojiFrown } from '@styled-icons/bootstrap'
-import { wrapperStyles } from 'styles'
-
-// Recipes
-export const RecipesWrapper = styled.div`
-  ${wrapperStyles}
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  padding: 1rem;
-  gap: 1rem;
-`
 
 /*  No recipes found page */
 export const NoRecipesWrapper = styled.div`

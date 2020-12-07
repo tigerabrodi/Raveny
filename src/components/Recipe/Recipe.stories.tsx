@@ -1,5 +1,5 @@
-import { RecipesWrapper } from 'pages/Recipes/styles'
 import { recipesData } from 'data'
+import { RecipesWrapper } from './styles'
 import { Recipe as RecipeComponent } from '.'
 
 export default {

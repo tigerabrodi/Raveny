@@ -3,8 +3,8 @@ import { useRavenyContext } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { Spinner } from 'components/Spinner'
 import { Recipe } from 'components/Recipe'
+import { RecipesWrapper } from 'components/Recipe/styles'
 import {
-  RecipesWrapper,
   NoRecipesWrapper,
   NoRecipesTitle,
   SadFace,
