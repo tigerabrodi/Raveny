@@ -50,7 +50,7 @@ type RavenyState =
   | ErrorState
 
 /** Raveny action union type for the reducer */
-type Action =
+export type Action =
   | { type: 'pending' }
   | { type: 'singleRecipeResolved'; payload: Recipe }
   | { type: 'recipesResolved'; payload: Recipe[] }

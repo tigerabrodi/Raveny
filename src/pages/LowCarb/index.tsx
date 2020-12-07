@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRavenyContext } from 'context/RavenyContext'
-import { SuccessResponse } from 'types'
+import { client } from 'utils/client'
 import { Spinner } from 'components/Spinner'
 import { Recipe } from 'components/Recipe'
 import { RecipesWrapper } from './styles'
@@ -14,6 +14,7 @@ export const LowCarb = () => {
   const { state, dispatch } = useRavenyContext()
 
   const urlToQuery = new URL(apiURL!)
+
   // Set query params
   urlToQuery.searchParams.append('app_key', apiKEY!)
   urlToQuery.searchParams.append('app_id', apiID!)
@@ -23,33 +24,9 @@ export const LowCarb = () => {
   urlToQuery.searchParams.append('to', '8')
 
   useEffect(() => {
-    const fetchRecipes = async () => {
-      dispatch({ type: 'pending' })
-
-      try {
-        const response = await window.fetch(urlToQuery.href)
-        if (response.ok) {
-          // Successful response
-          const successData: SuccessResponse = await response.json()
-          dispatch({
-            type: 'recipesResolved',
-            payload: successData.hits.map((hit) => hit.recipe),
-          })
-        } else {
-          // Failed response
-          const failureData = await response.json()
-          dispatch({ type: 'rejected', payload: failureData.message })
-          throw new Error(
-            `Something went wrong with the request, message: ${failureData.message}`
-          )
-        }
-      } catch (error) {
-        throw new Error(
-          `Something went terribly wrong! Message: ${error.message}`
-        )
-      }
-    }
-    fetchRecipes()
+    client(dispatch, urlToQuery.href, {
+      shouldFetchMultipleRecipes: true,
+    })
   }, [dispatch, urlToQuery.href])
 
   if (state.status === 'pending') {
