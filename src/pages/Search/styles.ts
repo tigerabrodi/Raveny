@@ -13,14 +13,15 @@ export const SearchInnerWrapper = styled.div`
   display: grid;
   grid-template-areas:
     'title'
+    'search'
     'search';
   justify-items: center;
   align-items: center;
   position: relative;
-  top: 35%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 70%;
+  height: 90%;
   width: 98%;
 `
 
@@ -78,26 +79,32 @@ export const Pan = styled(PanSVG)`
 
 /* Search */
 export const SearchForm = styled.form`
-  height: 50%;
-  bottom: 0;
+  height: 100%;
+  width: 100%;
+  grid-area: search;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+`
+
+export const SearchFormWrapper = styled.div`
+  height: 35%;
   width: 95%;
 
-  grid-area: search;
   position: relative;
-  align-self: flex-start;
   display: flex;
   align-items: center;
   justify-content: space-around;
   ${media.custom(370)} {
-    height: 40%;
+    height: 21%;
   }
   ${media.phone} {
-    height: 32%;
+    height: 22%;
   }
   ${media.tablet} {
-    height: 25%;
+    height: 15%;
     width: 98%;
-    bottom: 10%;
   }
   ${media.desktop} {
     width: 90%;
@@ -177,6 +184,7 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
   }
   ${media.tablet} {
     width: 10%;
+    max-width: 13rem;
     border: 2px solid ${({ theme }) => theme.colors.Brown};
     margin-left: 3px;
     display: flex;

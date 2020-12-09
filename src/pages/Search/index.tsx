@@ -16,6 +16,7 @@ import {
   ErrorToast,
   ErrorText,
   Title,
+  SearchFormWrapper,
 } from './styles'
 
 // API Key, ID and URL
@@ -41,7 +42,7 @@ export const Search = () => {
 
   const { state, dispatch } = useRavenyContext()
 
-  // Non-null assertion because TypeScript thinks this could be undefined
+  // Non-null assertion because environment variables could be undefined
   const urlToQuery = new URL(apiURL!)
 
   // Number of input length (validation)
@@ -111,27 +112,29 @@ export const Search = () => {
           <Pan />
         </TitleWrapper>
         <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">
-          <SearchInput
-            value={searchValue}
-            type="text"
-            placeholder="Search For Recipes..."
-            id="search"
-            name="searchValue"
-            onChange={(event) => onChange(event)}
-            onFocus={() => setFocusState(!focusState)}
-            onBlur={() => setFocusState(!focusState)}
-          />
-          <SearchInputValidLength searchNumberLength={searchValue.length}>
-            {searchLengthValidation}
-          </SearchInputValidLength>
-          <SearchButton isFocus={focusState} type="submit">
-            <SearchIcon />
-          </SearchButton>
-          {isErrorCharacters && (
-            <ErrorToast isError={isErrorCharacters}>
-              <ErrorText>Please enter at least 3 characters.</ErrorText>
-            </ErrorToast>
-          )}
+          <SearchFormWrapper>
+            <SearchInput
+              value={searchValue}
+              type="text"
+              placeholder="Search For Recipes..."
+              id="search"
+              name="searchValue"
+              onChange={(event) => onChange(event)}
+              onFocus={() => setFocusState(!focusState)}
+              onBlur={() => setFocusState(!focusState)}
+            />
+            <SearchInputValidLength searchNumberLength={searchValue.length}>
+              {searchLengthValidation}
+            </SearchInputValidLength>
+            <SearchButton isFocus={focusState} type="submit">
+              <SearchIcon />
+            </SearchButton>
+            {isErrorCharacters && (
+              <ErrorToast isError={isErrorCharacters}>
+                <ErrorText>Please enter at least 3 characters.</ErrorText>
+              </ErrorToast>
+            )}
+          </SearchFormWrapper>
         </SearchForm>
       </SearchInnerWrapper>
     </SearchWrapper>
