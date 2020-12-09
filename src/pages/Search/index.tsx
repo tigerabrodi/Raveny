@@ -73,17 +73,15 @@ export const Search = () => {
     urlToQuery.searchParams.append('to', '8')
 
     // Fetch Recipes
-    client(
+    client({
       dispatch,
-      urlToQuery.href,
-      {
-        shouldUseSessionStorage: true,
-        shouldFetchMultipleRecipes: true,
-        shouldRedirect: true,
-      },
+      url: urlToQuery.href,
+      shouldUseSessionStorage: true,
+      shouldFetchMultipleRecipes: true,
+      shouldRedirect: true,
       history,
-      '/recipes'
-    )
+      redirectUrl: '/recipes',
+    })
   }
 
   useEffect(() => {

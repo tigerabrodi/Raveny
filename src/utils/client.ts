@@ -3,17 +3,15 @@ import { Action } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { History } from 'history'
 
-export const client = async (
-  dispatch: Dispatch<Action>,
-  url: string,
-  {
-    shouldUseSessionStorage = false,
-    shouldRedirect = false,
-    shouldFetchMultipleRecipes = false,
-  } = {},
-  history?: History,
-  redirectUrl?: string
-) => {
+export const client = async ({
+  dispatch = {} as Dispatch<Action>,
+  url = '',
+  shouldUseSessionStorage = false,
+  shouldRedirect = false,
+  shouldFetchMultipleRecipes = false,
+  history = {} as History,
+  redirectUrl = '',
+} = {}) => {
   try {
     dispatch({ type: 'pending' })
     const response = await window.fetch(url)
@@ -40,7 +38,7 @@ export const client = async (
         })
       }
 
-      //   Redirect if
+      //   Redirect
       if (
         shouldRedirect === true &&
         history !== undefined &&
