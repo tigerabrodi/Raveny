@@ -24,7 +24,9 @@ export const LowCarb = () => {
   urlToQuery.searchParams.append('to', '8')
 
   useEffect(() => {
-    client(dispatch, urlToQuery.href, {
+    client({
+      dispatch,
+      url: urlToQuery.href,
       shouldFetchMultipleRecipes: true,
     })
   }, [dispatch, urlToQuery.href])
