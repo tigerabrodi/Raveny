@@ -1,4 +1,4 @@
-# Raveny
+# Raveny :smiling_face_with_three_hearts:
 
 A website where people can find recipes, search based on different criterias, and create an account to manage their recipes. :pizza:
 
@@ -34,7 +34,7 @@ The key and id come from https://developer.edamam.com/edamam-docs-recipe-api, th
 - E2E Tests: Cypress :metal:
 - Developing components in isolation: StoryBook :fire:
 - Mocking requests in StoryBook and Tests: Mock Service worker (MSW) :smile:
-- Backend service: Firebase :metal:
+- Backend service: Firebase :cowboy_hat_face:
 
 ## License
 
