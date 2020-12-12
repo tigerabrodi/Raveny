@@ -56,17 +56,21 @@ export const Search = () => {
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
 
   /* Change Events */
-  const handleCaloriesChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setSearchState({
-      ...searchState,
-      [e.target.name]: e.target.value,
-    })
+  const handleCaloriesChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (event.target.validity.valid) {
+      setSearchState({
+        ...searchState,
+        [event.target.name]: event.target.value,
+      })
+    }
   }
 
-  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleSearchValueChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
     setSearchState({
       ...searchState,
-      searchValue: e.target.value,
+      searchValue: event.target.value,
     })
   }
 
@@ -77,26 +81,31 @@ export const Search = () => {
     if (searchValue.length < 3) {
       setIsErrorCharacters(true)
       return setTimeout(() => setIsErrorCharacters(false), 3000)
+    } else if (minCalories > maxCalories) {
+      return 5
+    } else {
+      // Set query params
+      urlToQuery.searchParams.append('app_key', apiKEY!)
+      urlToQuery.searchParams.append('app_id', apiID!)
+      urlToQuery.searchParams.append('q', searchValue.toLowerCase())
+      urlToQuery.searchParams.append('from', '0')
+      urlToQuery.searchParams.append('to', '8')
+      urlToQuery.searchParams.append(
+        'calories',
+        `${minCalories}-${maxCalories}`
+      )
+
+      // Fetch Recipes
+      client({
+        dispatch,
+        url: urlToQuery.href,
+        shouldUseSessionStorage: true,
+        shouldFetchMultipleRecipes: true,
+        shouldRedirect: true,
+        history,
+        redirectUrl: '/recipes',
+      })
     }
-
-    // Set query params
-    urlToQuery.searchParams.append('app_key', apiKEY!)
-    urlToQuery.searchParams.append('app_id', apiID!)
-    urlToQuery.searchParams.append('q', searchValue.toLowerCase())
-    urlToQuery.searchParams.append('from', '0')
-    urlToQuery.searchParams.append('to', '8')
-    urlToQuery.searchParams.append('calories', `${minCalories}-${maxCalories}`)
-
-    // Fetch Recipes
-    client({
-      dispatch,
-      url: urlToQuery.href,
-      shouldUseSessionStorage: true,
-      shouldFetchMultipleRecipes: true,
-      shouldRedirect: true,
-      history,
-      redirectUrl: '/recipes',
-    })
   }
 
   useEffect(() => {
@@ -151,14 +160,18 @@ export const Search = () => {
           </SearchFormWrapper>
           <CaloriesWrapper>
             <CaloriesInput
-              type="number"
+              type="text"
+              pattern="[0-9]*"
               name="minCalories"
+              min="0"
               value={minCalories}
               onChange={(event) => handleCaloriesChange(event)}
             />
             <CaloriesInput
-              type="number"
+              type="text"
+              pattern="[0-9]*"
               name="maxCalories"
+              min="0"
               value={maxCalories}
               onChange={(event) => handleCaloriesChange(event)}
             />
