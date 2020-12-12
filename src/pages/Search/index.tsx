@@ -17,6 +17,8 @@ import {
   ErrorText,
   Title,
   SearchFormWrapper,
+  CaloriesInput,
+  CaloriesWrapper,
 } from './styles'
 
 // API Key, ID and URL
@@ -26,6 +28,8 @@ const apiID = process.env.REACT_APP_API_ID
 
 type SearchState = {
   searchValue: string
+  minCalories: number
+  maxCalories: number
 }
 
 export const Search = () => {
@@ -34,9 +38,11 @@ export const Search = () => {
   const [isErrorCharacters, setIsErrorCharacters] = useState(false)
   const [searchState, setSearchState] = useState<SearchState>({
     searchValue: '',
+    minCalories: 0,
+    maxCalories: 3000,
   })
 
-  const { searchValue } = searchState
+  const { searchValue, minCalories, maxCalories } = searchState
 
   const history = useHistory()
 
@@ -49,14 +55,22 @@ export const Search = () => {
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  /* Change Events */
+  const handleCaloriesChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchState({
       ...searchState,
       [e.target.name]: e.target.value,
     })
   }
 
-  const onSubmit = async (event: FormEvent): Promise<number | void> => {
+  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setSearchState({
+      ...searchState,
+      searchValue: e.target.value,
+    })
+  }
+
+  const onSubmit = (event: FormEvent): void | number => {
     event.preventDefault()
 
     // Input validation
@@ -71,6 +85,7 @@ export const Search = () => {
     urlToQuery.searchParams.append('q', searchValue.toLowerCase())
     urlToQuery.searchParams.append('from', '0')
     urlToQuery.searchParams.append('to', '8')
+    urlToQuery.searchParams.append('calories', `${minCalories}-${maxCalories}`)
 
     // Fetch Recipes
     client({
@@ -85,6 +100,7 @@ export const Search = () => {
   }
 
   useEffect(() => {
+    window.sessionStorage.clear()
     // Mobile view to show shorter title
     const setIsMobileView = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches)
@@ -117,7 +133,7 @@ export const Search = () => {
               placeholder="Search For Recipes..."
               id="search"
               name="searchValue"
-              onChange={(event) => onChange(event)}
+              onChange={(event) => handleSearchValueChange(event)}
               onFocus={() => setFocusState(!focusState)}
               onBlur={() => setFocusState(!focusState)}
             />
@@ -133,6 +149,20 @@ export const Search = () => {
               </ErrorToast>
             )}
           </SearchFormWrapper>
+          <CaloriesWrapper>
+            <CaloriesInput
+              type="number"
+              name="minCalories"
+              value={minCalories}
+              onChange={(event) => handleCaloriesChange(event)}
+            />
+            <CaloriesInput
+              type="number"
+              name="maxCalories"
+              value={maxCalories}
+              onChange={(event) => handleCaloriesChange(event)}
+            />
+          </CaloriesWrapper>
         </SearchForm>
       </SearchInnerWrapper>
     </SearchWrapper>

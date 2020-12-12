@@ -253,6 +253,34 @@ export const SearchIcon = styled(Search)`
   transition: all 0.5s;
 `
 
+/* Calories */
+export const CaloriesWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  ${media.tablet} {
+    height: 20%;
+  }
+`
+export const CaloriesInput = styled.input`
+  font-size: 1.7rem;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.Gray};
+  background-color: ${({ theme }) => theme.colors.Black};
+  border: 2px solid ${({ theme }) => theme.colors.Brown};
+  transition: all 0.3s;
+  ${media.tablet} {
+    height: 50%;
+    width: 10%;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 5px 5px black;
+  }
+`
+
+/*  Error */
 const showError = keyframes`
     100% {
         visibility: visible;
@@ -261,7 +289,6 @@ const showError = keyframes`
     }
 `
 
-/*  Error Messages */
 export const ErrorToast = styled.div<{ isError: boolean }>`
   position: absolute;
   display: none;

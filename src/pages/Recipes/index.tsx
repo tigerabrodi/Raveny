@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRavenyContext } from 'context/RavenyContext'
-import { SuccessResponse } from 'types'
+import { client } from 'utils/client'
 import { Spinner } from 'components/Spinner'
 import { Recipe } from 'components/Recipe'
 import { RecipesWrapper } from 'components/Recipe/styles'
@@ -35,38 +35,12 @@ export const Recipes = () => {
     // 'recipesMount' in sessionStorage will be 2 after the first render, therefore fetchRecipes will not be fired on the first render
     window.sessionStorage.setItem('recipesMount', JSON.stringify(2))
 
-    const fetchRecipes = async () => {
-      dispatch({ type: 'pending' })
-
-      // fetch recipes
-      try {
-        const response = await window.fetch(urlToQuery.href)
-        if (response.ok) {
-          // Successful response
-          const successData: SuccessResponse = await response.json()
-          window.sessionStorage.setItem('recipesMount', JSON.stringify(1))
-          dispatch({
-            type: 'recipesResolved',
-            // payload should be an array of recipes
-            payload: successData.hits.map((hit) => hit.recipe),
-          })
-        } else {
-          // Failed response
-          const failureData = await response.json()
-          dispatch({ type: 'rejected', payload: failureData.message })
-          throw new Error(
-            `Something went wrong with the request, message: ${failureData.message}`
-          )
-        }
-      } catch (error) {
-        throw new Error(
-          `Something went terribly wrong! Message: ${error.message}`
-        )
-      }
-    }
-
     if (numbersOfMount === 2) {
-      fetchRecipes()
+      client({
+        dispatch,
+        url: urlToQuery.href,
+        shouldFetchMultipleRecipes: true,
+      })
     }
   }, [dispatch, numbersOfMount, urlToQuery.href])
 

@@ -37,7 +37,7 @@ export const Recipe = ({
     <Image src={image} alt={label} />
     <Calories>
       <Strong>Calories: </Strong>
-      {Math.round(calories)}
+      {Math.round(calories / recipeYield)}
     </Calories>
     <Serving>
       <Strong>Servings: </Strong>
