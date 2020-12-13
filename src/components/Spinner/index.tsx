@@ -27,7 +27,7 @@ const StyledSpinner = styled(LoadingSpinner)`
 `
 
 export const Spinner = () => (
-  <Div>
+  <Div aria-label="pending">
     <StyledSpinner />
   </Div>
 )
