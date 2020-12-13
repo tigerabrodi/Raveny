@@ -144,7 +144,7 @@ export const SearchInput = styled.input`
 export const SearchInputValidLength = styled.span<{
   searchNumberLength: number
 }>`
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   letter-spacing: 3px;
   font-weight: 700;
   position: absolute;
@@ -157,6 +157,7 @@ export const SearchInputValidLength = styled.span<{
   left: 64%;
   ${media.phone} {
     left: 76%;
+    font-size: 1.4rem;
   }
   ${media.tablet} {
     left: 87%;
@@ -350,7 +351,46 @@ export const MaxCaloriesLabel = styled.label`
   ${caloriesLabelStyles}
 `
 
-export const CaloriesErrorMessage = styled.span`
+/*  Error Messages */
+export const ErrorCharacterMessage = styled.span<{
+  shouldShowErrorCharacters: boolean
+}>`
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.LightRed};
+  filter: drop-shadow(0 2px 2px black);
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  top: 110%;
+  position: absolute;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition: 0.3s;
+  ${media.custom(400)} {
+    font-size: 1.5rem;
+  }
+  ${media.phone} {
+    font-size: 2rem;
+  }
+  ${media.tablet} {
+    font-size: 2.2rem;
+    top: 120%;
+  }
+  ${media.desktop} {
+    font-size: 2.5rem;
+    top: 130%;
+  }
+  ${(props) =>
+    props.shouldShowErrorCharacters &&
+    css`
+      visibility: visible;
+      transform: translateY(0);
+    `};
+`
+
+export const CaloriesErrorMessage = styled.span<{
+  shouldShowCaloriesError: boolean
+}>`
   font-size: 1rem;
   text-align: center;
   color: ${({ theme }) => theme.colors.LightRed};
@@ -358,7 +398,10 @@ export const CaloriesErrorMessage = styled.span`
   filter: drop-shadow(0 2px 2px black);
   font-weight: bold;
   letter-spacing: 0.2rem;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
   grid-area: caloriesErrorMessage;
+  transition: 0.3s;
   ${media.custom(400)} {
     font-size: 1.3rem;
   }
@@ -371,93 +414,10 @@ export const CaloriesErrorMessage = styled.span`
   ${media.desktop} {
     font-size: 2.5rem;
   }
-`
-
-/*  Error */
-//  Animation
-const showError = keyframes`
-    100% {
-        visibility: visible;
-        opacity: 1;
-        transform: translate(-50%, -50%); 
-    }
-`
-
-// Toast
-export const ErrorToast = styled.div<{ isError: boolean }>`
-  position: absolute;
-  display: none;
-  visibility: hidden;
-  opacity: 0;
-  align-items: center;
-  justify-content: space-around;
-  width: 70%;
-  height: 60%;
-  background-color: ${({ theme }) => theme.colors.DarkRed};
-  top: 165%;
-  left: 45%;
-  transform: translate(-50%, -80%);
-  z-index: 3;
-  border-radius: 5px;
-  box-shadow: 0 0 3px black;
-  ${media.tablet} {
-    height: 90%;
-    top: 195%;
-  }
   ${(props) =>
-    props.isError &&
+    props.shouldShowCaloriesError &&
     css`
-      display: flex;
-      animation: ${showError} 0.3s forwards;
+      visibility: visible;
+      transform: translateY(0);
     `};
-  &::after {
-    content: '';
-    left: 40.2%;
-    width: 20%;
-    height: 50%;
-    background-color: ${({ theme }) => theme.colors.DarkRed};
-    position: absolute;
-    transform: translate(-50%, -50%) skewY(-25deg);
-    top: 26%;
-    z-index: -1;
-    ${media.tablet} {
-      left: 43.2%;
-      width: 15%;
-    }
-    ${media.desktop} {
-      left: 46.2%;
-      width: 10%;
-    }
-  }
-  &::before {
-    content: '';
-    width: 20%;
-    height: 50%;
-    right: 20%;
-    background-color: ${({ theme }) => theme.colors.DarkRed};
-    position: absolute;
-    transform: translate(-50%, -50%) skewY(25deg);
-    top: 26%;
-    z-index: -1;
-    ${media.tablet} {
-      width: 15%;
-      right: 27%;
-    }
-    ${media.desktop} {
-      width: 10%;
-      right: 34%;
-    }
-  }
-`
-
-export const ErrorText = styled.span`
-  font-size: min(2rem, 3.7vw);
-  color: ${({ theme }) => theme.colors.White};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  ${media.tablet} {
-    font-size: 2rem;
-  }
-  ${media.desktop} {
-    font-size: max(2rem, 1.5vw);
-  }
 `
