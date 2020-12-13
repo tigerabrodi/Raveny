@@ -25,7 +25,7 @@ The key and id come from https://developer.edamam.com/edamam-docs-recipe-api, th
 
 ## Tools
 
-- Building: React, TypeScript & Styled-Components :metal:
+- Building: React, TypeScript & Styled-Components :sunglasses:
 - Integration Tests: Jest and React Testing Library :blue_heart:
 - E2E Tests: Cypress :metal:
 - Developing components in isolation: StoryBook :fire:
