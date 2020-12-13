@@ -4,7 +4,7 @@ A website where people can find recipes, search based on different criterias, an
 
 ## Background and Goal
 
-I love food and I like cooking :yum:. My goal with this side-project is to learn very much :smiley:. After releasing the initial version, I plan on collecting feedback for a week or two, then maintain/update this project for about 1-2 months, I will probably even add new features, aside from fixing bugs and improving the UX/UI :tada:
+I love food and I like cooking :yum:. My goal with this side-project is to learn very much :smiley:. After releasing the initial version, I plan on collecting feedback for a week or two, then maintain/update this project for about 1-2 months, aside from fixing bugs and improving the UX/UI, I will probably even add new features :tada:
 
 ## Installation
 
