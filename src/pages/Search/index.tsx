@@ -193,8 +193,7 @@ export const Search = () => {
               aria-describedby="caloriesError"
             />
             <CaloriesErrorMessage id="caloriesError" role="alert">
-              Please enter a less value for the minimum calories. It should be
-              less than the maximum calories.
+              Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           </CaloriesWrapper>
         </SearchForm>

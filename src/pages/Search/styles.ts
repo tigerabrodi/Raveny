@@ -89,7 +89,7 @@ export const SearchForm = styled.form`
 `
 
 export const QueryWrapper = styled.div`
-  height: 35%;
+  height: 25%;
   width: 95%;
 
   position: relative;
@@ -135,6 +135,9 @@ export const SearchInput = styled.input`
   }
   ${media.tablet} {
     width: 90%;
+  }
+  ${media.tablet} {
+    font-size: 2.5rem;
   }
 `
 
@@ -260,11 +263,23 @@ export const CaloriesWrapper = styled.div`
     'minCaloriesLabel maxCaloriesLabel'
     'minCaloriesInput maxCaloriesInput'
     'caloriesErrorMessage caloriesErrorMessage';
+  grid-template-rows: auto 1fr;
   width: 100%;
   align-items: center;
   justify-items: center;
+  align-content: space-between;
+  height: 40%;
+  ${media.custom(400)} {
+    height: 35%;
+  }
+  ${media.phone} {
+    height: 30%;
+  }
   ${media.tablet} {
-    height: 20%;
+    height: 30%;
+  }
+  ${media.desktop} {
+    height: 35%;
   }
 `
 
@@ -276,9 +291,23 @@ const caloriesInputStyles = css`
   background-color: ${({ theme }) => theme.colors.Black};
   border: 2px solid ${({ theme }) => theme.colors.Brown};
   transition: all 0.3s;
+  height: 100%;
+  width: 40%;
+  max-height: 4rem;
+  ${media.phone} {
+    height: 80%;
+    width: 35%;
+    max-height: 4rem;
+  }
   ${media.tablet} {
-    height: 90%;
+    height: 70%;
     width: 20%;
+    max-height: 4rem;
+  }
+  ${media.desktop} {
+    max-width: 12rem;
+    max-height: 5rem;
+    font-size: 2.3rem;
   }
   &:focus {
     outline: none;
@@ -299,8 +328,16 @@ export const MaxCaloriesInput = styled.input`
 // Labels
 export const caloriesLabelStyles = css`
   font-size: 1.8rem;
-  color: ${({ theme }) => theme.colors.White};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  color: ${({ theme }) => theme.colors.Orange};
+  font-family: ${({ theme }) => theme.fonts.Lora};
+  filter: drop-shadow(0 2px 2px black);
+  font-weight: bold;
+  ${media.phone} {
+    font-size: 2.2rem;
+  }
+  ${media.desktop} {
+    font-size: 2.5rem;
+  }
 `
 
 export const MinCaloriesLabel = styled.label`
@@ -314,12 +351,26 @@ export const MaxCaloriesLabel = styled.label`
 `
 
 export const CaloriesErrorMessage = styled.span`
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.Red};
+  font-size: 1rem;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.LightRed};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
+  filter: drop-shadow(0 2px 2px black);
+  font-weight: bold;
+  letter-spacing: 0.2rem;
   grid-area: caloriesErrorMessage;
-  position: relative;
-  bottom: -1rem;
+  ${media.custom(400)} {
+    font-size: 1.3rem;
+  }
+  ${media.phone} {
+    font-size: 1.7rem;
+  }
+  ${media.tablet} {
+    font-size: 2.2rem;
+  }
+  ${media.desktop} {
+    font-size: 2.5rem;
+  }
 `
 
 /*  Error */
