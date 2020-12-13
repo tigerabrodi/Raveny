@@ -28,8 +28,7 @@ export const Recipe = ({
     cautions,
     healthLabels,
     dietLabels,
-    // Needed because yield is a reserved word
-    yield: recipeYield,
+    yield: servings,
   },
 }: RecipeProps) => (
   <RecipeWrapper key={uri} to={`/recipe/${uri}`}>
@@ -37,11 +36,11 @@ export const Recipe = ({
     <Image src={image} alt={label} />
     <Calories>
       <Strong>Calories: </Strong>
-      {Math.round(calories / recipeYield)}
+      {Math.round(calories / servings)}
     </Calories>
     <Serving>
       <Strong>Servings: </Strong>
-      {recipeYield}
+      {servings}
     </Serving>
     <InfoWrapper>
       {cautions.length > 0 && (
