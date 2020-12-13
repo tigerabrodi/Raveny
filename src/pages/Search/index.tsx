@@ -15,10 +15,14 @@ import {
   SearchInputValidLength,
   ErrorToast,
   ErrorText,
-  Title,
-  SearchFormWrapper,
-  CaloriesInput,
+  SearchLabel,
+  QueryWrapper,
   CaloriesWrapper,
+  CaloriesErrorMessage,
+  MaxCaloriesInput,
+  MaxCaloriesLabel,
+  MinCaloriesInput,
+  MinCaloriesLabel,
 } from './styles'
 
 // API Key, ID and URL
@@ -127,15 +131,15 @@ export const Search = () => {
     <SearchWrapper>
       <SearchInnerWrapper>
         <TitleWrapper>
-          <Title htmlFor="search">
+          <SearchLabel htmlFor="search">
             {isMobile
               ? 'Start Cooking Today!'
               : 'Search Now and Start Cooking Today!'}
-          </Title>
+          </SearchLabel>
           <Pan />
         </TitleWrapper>
         <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">
-          <SearchFormWrapper>
+          <QueryWrapper>
             <SearchInput
               value={searchValue}
               type="text"
@@ -145,6 +149,7 @@ export const Search = () => {
               onChange={(event) => handleSearchValueChange(event)}
               onFocus={() => setFocusState(!focusState)}
               onBlur={() => setFocusState(!focusState)}
+              aria-describedby="searchInputError"
             />
             <SearchInputValidLength searchNumberLength={searchValue.length}>
               {searchLengthValidation}
@@ -153,28 +158,44 @@ export const Search = () => {
               <SearchIcon />
             </SearchButton>
             {isErrorCharacters && (
-              <ErrorToast isError={isErrorCharacters}>
-                <ErrorText>Please enter at least 3 characters.</ErrorText>
+              <ErrorToast isError={isErrorCharacters} role="alert">
+                <ErrorText id="searchInputError">
+                  Please enter at least 3 characters.
+                </ErrorText>
               </ErrorToast>
             )}
-          </SearchFormWrapper>
+          </QueryWrapper>
           <CaloriesWrapper>
-            <CaloriesInput
+            <MinCaloriesLabel htmlFor="minCalories">
+              Min Calories
+            </MinCaloriesLabel>
+            <MinCaloriesInput
               type="text"
+              id="minCalories"
               pattern="[0-9]*"
               name="minCalories"
               min="0"
               value={minCalories}
               onChange={(event) => handleCaloriesChange(event)}
+              aria-describedby="caloriesError"
             />
-            <CaloriesInput
+            <MaxCaloriesLabel htmlFor="maxCalories">
+              Max Calories
+            </MaxCaloriesLabel>
+            <MaxCaloriesInput
               type="text"
               pattern="[0-9]*"
+              id="maxCalories"
               name="maxCalories"
               min="0"
               value={maxCalories}
               onChange={(event) => handleCaloriesChange(event)}
+              aria-describedby="caloriesError"
             />
+            <CaloriesErrorMessage id="caloriesError" role="alert">
+              Please enter a less value for the minimum calories. It should be
+              less than the maximum calories.
+            </CaloriesErrorMessage>
           </CaloriesWrapper>
         </SearchForm>
       </SearchInnerWrapper>
