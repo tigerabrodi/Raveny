@@ -13,10 +13,9 @@ import {
   SearchIcon,
   TitleWrapper,
   SearchInputValidLength,
-  ErrorToast,
-  ErrorText,
   SearchLabel,
   QueryWrapper,
+  ErrorCharacterMessage,
   CaloriesWrapper,
   CaloriesErrorMessage,
   MaxCaloriesInput,
@@ -39,7 +38,10 @@ type SearchState = {
 export const Search = () => {
   const [focusState, setFocusState] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [isErrorCharacters, setIsErrorCharacters] = useState(false)
+  const [shouldShowErrorCharacters, setShouldShowErrorCharacters] = useState(
+    false
+  )
+  const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(false)
   const [searchState, setSearchState] = useState<SearchState>({
     searchValue: '',
     minCalories: 0,
@@ -83,10 +85,11 @@ export const Search = () => {
 
     // Input validation
     if (searchValue.length < 3) {
-      setIsErrorCharacters(true)
-      return setTimeout(() => setIsErrorCharacters(false), 3000)
+      setShouldShowErrorCharacters(true)
+      return setTimeout(() => setShouldShowErrorCharacters(false), 3000)
     } else if (minCalories > maxCalories) {
-      return 5
+      setShouldShowErrorCalories(true)
+      return setTimeout(() => setShouldShowErrorCalories(false), 3000)
     } else {
       // Set query params
       urlToQuery.searchParams.append('app_key', apiKEY!)
@@ -157,13 +160,13 @@ export const Search = () => {
             <SearchButton isFocus={focusState} type="submit">
               <SearchIcon />
             </SearchButton>
-            {isErrorCharacters && (
-              <ErrorToast isError={isErrorCharacters} role="alert">
-                <ErrorText id="searchInputError">
-                  Please enter at least 3 characters.
-                </ErrorText>
-              </ErrorToast>
-            )}
+            <ErrorCharacterMessage
+              role="alert"
+              id="searchInputError"
+              shouldShowErrorCharacters={shouldShowErrorCharacters}
+            >
+              Please enter at least three characters.
+            </ErrorCharacterMessage>
           </QueryWrapper>
           <CaloriesWrapper>
             <MinCaloriesLabel htmlFor="minCalories">
@@ -192,7 +195,11 @@ export const Search = () => {
               onChange={(event) => handleCaloriesChange(event)}
               aria-describedby="caloriesError"
             />
-            <CaloriesErrorMessage id="caloriesError" role="alert">
+            <CaloriesErrorMessage
+              id="caloriesError"
+              role="alert"
+              shouldShowCaloriesError={shouldShowErrorCalories}
+            >
               Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           </CaloriesWrapper>
