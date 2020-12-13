@@ -26,7 +26,7 @@ export const SearchInnerWrapper = styled.div`
 `
 
 /* Title Area */
-export const Title = styled.label`
+export const SearchLabel = styled.label`
   font-size: min(6rem, 9vw);
   font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
@@ -88,7 +88,7 @@ export const SearchForm = styled.form`
   justify-content: space-evenly;
 `
 
-export const SearchFormWrapper = styled.div`
+export const QueryWrapper = styled.div`
   height: 35%;
   width: 95%;
 
@@ -255,15 +255,21 @@ export const SearchIcon = styled(Search)`
 
 /* Calories */
 export const CaloriesWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-areas:
+    'minCaloriesLabel maxCaloriesLabel'
+    'minCaloriesInput maxCaloriesInput'
+    'caloriesErrorMessage caloriesErrorMessage';
   width: 100%;
+  align-items: center;
+  justify-items: center;
   ${media.tablet} {
     height: 20%;
   }
 `
-export const CaloriesInput = styled.input`
+
+// Calorie Inputs
+const caloriesInputStyles = css`
   font-size: 1.7rem;
   text-align: center;
   color: ${({ theme }) => theme.colors.Gray};
@@ -271,8 +277,8 @@ export const CaloriesInput = styled.input`
   border: 2px solid ${({ theme }) => theme.colors.Brown};
   transition: all 0.3s;
   ${media.tablet} {
-    height: 50%;
-    width: 10%;
+    height: 90%;
+    width: 20%;
   }
   &:focus {
     outline: none;
@@ -280,7 +286,44 @@ export const CaloriesInput = styled.input`
   }
 `
 
+export const MinCaloriesInput = styled.input`
+  ${caloriesInputStyles}
+  grid-area: minCaloriesInput;
+`
+
+export const MaxCaloriesInput = styled.input`
+  ${caloriesInputStyles}
+  grid-area: maxCaloriesInput;
+`
+
+// Labels
+export const caloriesLabelStyles = css`
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.colors.White};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+`
+
+export const MinCaloriesLabel = styled.label`
+  ${caloriesLabelStyles}
+  grid-area: minCaloriesLabel;
+`
+
+export const MaxCaloriesLabel = styled.label`
+  grid-area: maxCaloriesLabel;
+  ${caloriesLabelStyles}
+`
+
+export const CaloriesErrorMessage = styled.span`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.Red};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  grid-area: caloriesErrorMessage;
+  position: relative;
+  bottom: -1rem;
+`
+
 /*  Error */
+//  Animation
 const showError = keyframes`
     100% {
         visibility: visible;
@@ -289,6 +332,7 @@ const showError = keyframes`
     }
 `
 
+// Toast
 export const ErrorToast = styled.div<{ isError: boolean }>`
   position: absolute;
   display: none;
