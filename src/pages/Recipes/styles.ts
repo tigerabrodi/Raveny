@@ -75,6 +75,9 @@ export const NoRecipesButton = styled(Link)`
   &:focus {
     outline: none;
   }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
   &:active {
     box-shadow: none;
     ${media.tablet} {
