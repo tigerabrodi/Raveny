@@ -22,6 +22,14 @@ import {
   MaxCaloriesLabel,
   MinCaloriesInput,
   MinCaloriesLabel,
+  ExcludeAddButton,
+  ExcludeIngredientsWrapper,
+  ExcludeInput,
+  ExcludeInputWrapper,
+  ExcludeWrapper,
+  Ingredient,
+  IngredientRemoveButton,
+  IngredientWrapper,
 } from './styles'
 
 // API Key, ID and URL
@@ -33,6 +41,7 @@ type SearchState = {
   searchValue: string
   minCalories: number
   maxCalories: number
+  excludedIngredients: string[]
 }
 
 export const Search = () => {
@@ -46,9 +55,22 @@ export const Search = () => {
     searchValue: '',
     minCalories: 0,
     maxCalories: 3000,
+    excludedIngredients: [
+      'chicken',
+      'alcohol',
+      'meat',
+      'milk',
+      'nuts',
+      'cucumber',
+    ],
   })
 
-  const { searchValue, minCalories, maxCalories } = searchState
+  const {
+    searchValue,
+    minCalories,
+    maxCalories,
+    excludedIngredients,
+  } = searchState
 
   const history = useHistory()
 
@@ -203,6 +225,25 @@ export const Search = () => {
               Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           </CaloriesWrapper>
+          <ExcludeWrapper>
+            <ExcludeInputWrapper>
+              <ExcludeInput />
+              <ExcludeAddButton aria-label="Add ingredient to be excluded">
+                +
+              </ExcludeAddButton>
+            </ExcludeInputWrapper>
+            <ExcludeIngredientsWrapper>
+              {excludedIngredients.length > 0 &&
+                excludedIngredients.map((ingredient) => (
+                  <IngredientWrapper>
+                    <Ingredient> {ingredient} </Ingredient>
+                    <IngredientRemoveButton aria-label="Remove ingredient from being excluded">
+                      x
+                    </IngredientRemoveButton>
+                  </IngredientWrapper>
+                ))}
+            </ExcludeIngredientsWrapper>
+          </ExcludeWrapper>
         </SearchForm>
       </SearchInnerWrapper>
     </SearchWrapper>

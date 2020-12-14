@@ -133,6 +133,9 @@ export const SearchInput = styled.input`
     outline: none;
     box-shadow: 0 5px 5px black;
   }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
   ${media.tablet} {
     width: 90%;
   }
@@ -232,6 +235,9 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
   &:focus {
     outline: none;
   }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
   &:active svg {
     transform: scale(0.9);
   }
@@ -308,6 +314,9 @@ const caloriesInputStyles = css`
     outline: none;
     box-shadow: 0 5px 5px black;
   }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
 `
 
 export const MinCaloriesInput = styled.input`
@@ -343,6 +352,80 @@ export const MinCaloriesLabel = styled.label`
 export const MaxCaloriesLabel = styled.label`
   grid-area: maxCaloriesLabel;
   ${caloriesLabelStyles}
+`
+
+/* Exclude Ingredients */
+export const ExcludeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50%;
+  width: 100%;
+`
+
+export const ExcludeInputWrapper = styled.div`
+  height: 25%;
+  width: 100%;
+  position: relative;
+`
+
+export const ExcludeInput = styled.input`
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+`
+
+export const ExcludeAddButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
+`
+
+export const ExcludeIngredientsWrapper = styled.div`
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+`
+
+export const IngredientWrapper = styled.div`
+  height: 1.5rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 0.5rem;
+  border: 0.1rem solid ${({ theme }) => theme.colors.Orange};
+  box-shadow: 0 0 0.5rem black;
+`
+
+export const Ingredient = styled.span`
+  font-size: 1.5rem;
+  font-family: ${({ theme }) => theme.fonts.Lora};
+  color: ${({ theme }) => theme.colors.Orange};
+  font-weight: bold;
+`
+
+export const IngredientRemoveButton = styled.button`
+  font-size: 1.5rem;
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.White};
+  }
 `
 
 /*  Error Messages */
