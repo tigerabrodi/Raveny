@@ -264,7 +264,7 @@ export const CaloriesWrapper = styled.div`
     'minCaloriesLabel maxCaloriesLabel'
     'minCaloriesInput maxCaloriesInput'
     'caloriesErrorMessage caloriesErrorMessage';
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   width: 100%;
   align-items: center;
   justify-items: center;
@@ -294,20 +294,14 @@ const caloriesInputStyles = css`
   transition: all 0.3s;
   height: 100%;
   width: 40%;
-  max-height: 4rem;
   ${media.phone} {
-    height: 80%;
     width: 35%;
-    max-height: 4rem;
   }
   ${media.tablet} {
-    height: 70%;
     width: 20%;
-    max-height: 4rem;
   }
   ${media.desktop} {
     max-width: 12rem;
-    max-height: 5rem;
     font-size: 2.3rem;
   }
   &:focus {
