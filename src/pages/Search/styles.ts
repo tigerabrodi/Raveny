@@ -18,10 +18,10 @@ export const SearchInnerWrapper = styled.div`
   justify-items: center;
   align-items: center;
   position: relative;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 90%;
+  height: 100%;
   width: 98%;
 `
 
@@ -85,7 +85,7 @@ export const SearchForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `
 
 export const QueryWrapper = styled.div`
@@ -132,9 +132,6 @@ export const SearchInput = styled.input`
   &:focus {
     outline: none;
     box-shadow: 0 5px 5px black;
-  }
-  &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
   }
   ${media.tablet} {
     width: 90%;
@@ -235,9 +232,6 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
   &:focus {
     outline: none;
   }
-  &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
-  }
   &:active svg {
     transform: scale(0.9);
   }
@@ -314,9 +308,6 @@ const caloriesInputStyles = css`
     outline: none;
     box-shadow: 0 5px 5px black;
   }
-  &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
-  }
 `
 
 export const MinCaloriesInput = styled.input`
@@ -365,7 +356,7 @@ export const ExcludeWrapper = styled.div`
 `
 
 export const ExcludeInputWrapper = styled.div`
-  height: 25%;
+  height: 23%;
   width: 100%;
   position: relative;
 `
@@ -373,25 +364,54 @@ export const ExcludeInputWrapper = styled.div`
 export const ExcludeInput = styled.input`
   width: 100%;
   height: 100%;
-  font-size: 2rem;
-`
-
-export const ExcludeAddButton = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1.7rem;
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  color: ${({ theme }) => theme.colors.Gray};
+  background-color: ${({ theme }) => theme.colors.Black};
+  border: 2px solid ${({ theme }) => theme.colors.Brown};
+  transition: all 0.3s;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  ${media.phone} {
+    padding-left: 2rem;
+    font-size: 2rem;
+  }
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.Gray};
+  }
   &:focus {
     outline: none;
+    box-shadow: 0 5px 5px black;
   }
-  &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
+`
+
+export const IngredientAddButton = styled.button`
+  ${media.tablet} {
+    top: 50%;
+    left: 94%;
+    height: 98%;
+    width: 10rem;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    border: none;
+    border-left: 2px solid ${({ theme }) => theme.colors.Brown};
+    transition: all 0.3s;
+    position: absolute;
+    font-size: 5rem;
+    color: ${({ theme }) => theme.colors.Orange};
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(221, 114, 48, 0.1);
+      filter: drop-shadow(0 2px 2px black);
+    }
+    &:focus {
+      outline: none;
+    }
   }
 `
 
 export const ExcludeIngredientsWrapper = styled.div`
-  height: 20%;
+  height: 40%;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -401,30 +421,35 @@ export const ExcludeIngredientsWrapper = styled.div`
 `
 
 export const IngredientWrapper = styled.div`
-  height: 1.5rem;
-  width: 2rem;
+  height: 40%;
+  min-width: 10%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 0.5rem;
-  border: 0.1rem solid ${({ theme }) => theme.colors.Orange};
-  box-shadow: 0 0 0.5rem black;
+  border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
+  box-shadow: 0 0.3rem 0.4rem black;
 `
 
 export const Ingredient = styled.span`
-  font-size: 1.5rem;
-  font-family: ${({ theme }) => theme.fonts.Lora};
+  margin: 0 0.2rem;
+  font-size: 1.8rem;
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
-  font-weight: bold;
+  text-transform: capitalize;
 `
 
 export const IngredientRemoveButton = styled.button`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px;
+  color: ${({ theme }) => theme.colors.White};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
   &:focus {
     outline: none;
-  }
-  &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
   }
 `
 

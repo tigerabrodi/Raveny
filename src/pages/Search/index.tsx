@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 import { useRavenyContext } from 'context/RavenyContext'
 import { Spinner } from 'components/Spinner'
 import { client } from 'utils/client'
@@ -22,7 +23,7 @@ import {
   MaxCaloriesLabel,
   MinCaloriesInput,
   MinCaloriesLabel,
-  ExcludeAddButton,
+  IngredientAddButton,
   ExcludeIngredientsWrapper,
   ExcludeInput,
   ExcludeInputWrapper,
@@ -38,10 +39,11 @@ const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
 
 type SearchState = {
-  searchValue: string
+  searchInputValue: string
   minCalories: number
   maxCalories: number
-  excludedIngredients: string[]
+  excludeInputValue: string
+  excludedIngredients: Array<{ id: string; name: string }>
 }
 
 export const Search = () => {
@@ -52,23 +54,25 @@ export const Search = () => {
   )
   const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(false)
   const [searchState, setSearchState] = useState<SearchState>({
-    searchValue: '',
+    searchInputValue: '',
     minCalories: 0,
     maxCalories: 3000,
     excludedIngredients: [
-      'chicken',
-      'alcohol',
-      'meat',
-      'milk',
-      'nuts',
-      'cucumber',
+      { id: uuidv4(), name: 'chicken' },
+      { id: uuidv4(), name: 'alcohol' },
+      { id: uuidv4(), name: 'cucumber' },
+      { id: uuidv4(), name: 'pork' },
+      { id: uuidv4(), name: 'meat' },
+      { id: uuidv4(), name: 'nails' },
     ],
+    excludeInputValue: '',
   })
 
   const {
-    searchValue,
+    searchInputValue: searchValue,
     minCalories,
     maxCalories,
+    excludeInputValue,
     excludedIngredients,
   } = searchState
 
@@ -93,13 +97,36 @@ export const Search = () => {
     }
   }
 
-  const handleSearchValueChange = (
-    event: ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchState({
       ...searchState,
-      searchValue: event.target.value,
+      searchInputValue: event.target.value,
     })
+  }
+
+  const handleExcludeChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setSearchState({
+      ...searchState,
+      excludeInputValue: event.target.value,
+    })
+  }
+
+  const removeIngredient = (id: string) => {
+    setSearchState({
+      ...searchState,
+      excludedIngredients: excludedIngredients.filter(
+        (ingredient) => ingredient.id !== id
+      ),
+    })
+  }
+
+  const addIngredient = (name: string) => {
+    if (name) {
+      setSearchState({
+        ...searchState,
+        excludedIngredients: [{ id: uuidv4(), name }, ...excludedIngredients],
+      })
+    }
   }
 
   const onSubmit = (event: FormEvent): void | number => {
@@ -171,7 +198,7 @@ export const Search = () => {
               placeholder="Search For Recipes..."
               id="search"
               name="searchValue"
-              onChange={(event) => handleSearchValueChange(event)}
+              onChange={(event) => handleSearchChange(event)}
               onFocus={() => setFocusState(!focusState)}
               onBlur={() => setFocusState(!focusState)}
               aria-describedby="searchInputError"
@@ -227,17 +254,30 @@ export const Search = () => {
           </CaloriesWrapper>
           <ExcludeWrapper>
             <ExcludeInputWrapper>
-              <ExcludeInput />
-              <ExcludeAddButton aria-label="Add ingredient to be excluded">
+              <ExcludeInput
+                placeholder="Exclude calories..."
+                value={excludeInputValue}
+                onChange={(event) => handleExcludeChange(event)}
+                type="text"
+              />
+              <IngredientAddButton
+                aria-label="Add ingredient to be excluded"
+                type="button"
+                onClick={() => addIngredient(excludeInputValue)}
+              >
                 +
-              </ExcludeAddButton>
+              </IngredientAddButton>
             </ExcludeInputWrapper>
             <ExcludeIngredientsWrapper>
               {excludedIngredients.length > 0 &&
                 excludedIngredients.map((ingredient) => (
-                  <IngredientWrapper>
-                    <Ingredient> {ingredient} </Ingredient>
-                    <IngredientRemoveButton aria-label="Remove ingredient from being excluded">
+                  <IngredientWrapper key={ingredient.id}>
+                    <Ingredient> {ingredient.name} </Ingredient>
+                    <IngredientRemoveButton
+                      aria-label="Remove ingredient from being excluded"
+                      type="button"
+                      onClick={() => removeIngredient(ingredient.id)}
+                    >
                       x
                     </IngredientRemoveButton>
                   </IngredientWrapper>
