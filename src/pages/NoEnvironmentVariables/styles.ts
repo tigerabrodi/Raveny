@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { media } from 'theme/media'
 
-export const NoEnvVarWrapper = styled.div`
+export const NoEnvVarWrapper = styled.main`
   width: 100vw;
   height: calc(100vh - 18rem);
   position: relative;
