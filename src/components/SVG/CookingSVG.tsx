@@ -1,15 +1,22 @@
-type TCookingSVG = {
+type CookingSVGProps = {
   height: string
   width: string
 }
 
-export const CookingSVG = ({ height = '40', width = '40' }: TCookingSVG) => (
+export const CookingSVG = ({
+  height = '40',
+  width = '40',
+}: CookingSVGProps) => (
   <svg
     height={height}
     viewBox="0 -14 512 512"
     width={width}
+    role="img"
+    aria-labelledby="title  desc"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <title id="title">Chef</title>
+    <desc id="desc">cooking while holding a spade</desc>
     <g fillRule="evenodd">
       <path
         d="m431.988281 339.78125c-7.019531-29.851562-30.390625-43.847656-59.710937-49.011719-6.738282-1.1875-13.757813-1.921875-20.972656-2.257812-5.328126-.167969-9.753907-1.269531-13.503907-3.050781-21.0625 39.929687-117.335937 37.109374-133.40625 0v-.28125c-3.890625 1.949218-8.515625 3.160156-14.097656 3.332031-7.019531.339843-13.839844 1.015625-20.382813 2.144531-28.5 4.882812-51.449218 18.03125-59.457031 45.824219 12.378907 11.882812 112.855469 102.488281 113.644531 107.457031h210.960938v-50.792969c0-5.417969 2.453125-10.300781 6.316406-13.574219zm0 0"

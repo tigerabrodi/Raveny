@@ -7,7 +7,6 @@ import {
   Link,
   LinksWrapper,
   LogoLink,
-  LogoText,
   LogoWrapper,
   Nav,
 } from './styles'
@@ -19,7 +18,7 @@ export const Navigation = () => {
       <Nav>
         <LogoWrapper>
           <LogoLink to="/" onClick={() => setToggleState(false)}>
-            <LogoText>Raveny</LogoText>
+            Raveny
           </LogoLink>
           <CookingSVG height="60" width="60" />
         </LogoWrapper>
