@@ -13,8 +13,8 @@ export const SearchInnerWrapper = styled.div`
   display: grid;
   grid-template-areas:
     'title'
-    'search'
     'search';
+  grid-template-rows: 1fr 3fr;
   justify-items: center;
   align-items: center;
   position: relative;
@@ -277,7 +277,7 @@ export const CaloriesWrapper = styled.div`
     height: 30%;
   }
   ${media.tablet} {
-    height: 30%;
+    height: 25%;
   }
   ${media.desktop} {
     height: 35%;
@@ -347,16 +347,31 @@ export const MaxCaloriesLabel = styled.label`
 
 /* Exclude Ingredients */
 export const ExcludeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    'excludeLabel'
+    'excludeInput'
+    'excludeError'
+    'excludeIngredients';
+  grid-template-rows: 1fr 2fr 1fr 2fr;
+  justify-items: center;
   align-items: center;
-  justify-content: space-evenly;
   height: 50%;
   width: 100%;
 `
 
+export const ExcludeLabel = styled.label`
+  grid-area: excludeLabel;
+  color: ${({ theme }) => theme.colors.Orange};
+  font-family: ${({ theme }) => theme.fonts.Lora};
+  filter: drop-shadow(0 2px 2px black);
+  font-size: 4rem;
+  font-weight: bold;
+`
+
 export const ExcludeInputWrapper = styled.div`
-  height: 23%;
+  grid-area: excludeInput;
+  height: 70%;
   width: 100%;
   position: relative;
 `
@@ -410,9 +425,10 @@ export const IngredientAddButton = styled.button`
   }
 `
 
-export const ExcludeIngredientsWrapper = styled.div`
-  height: 40%;
+export const ExcludeIngredientsWrapper = styled.ul`
+  height: 100%;
   width: 100%;
+  grid-area: excludeIngredients;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -420,8 +436,8 @@ export const ExcludeIngredientsWrapper = styled.div`
   align-items: center;
 `
 
-export const IngredientWrapper = styled.div`
-  height: 40%;
+export const IngredientWrapper = styled.li`
+  height: 35%;
   min-width: 10%;
   display: flex;
   align-items: center;
@@ -431,11 +447,13 @@ export const IngredientWrapper = styled.div`
   box-shadow: 0 0.3rem 0.4rem black;
 `
 
-export const Ingredient = styled.span`
+export const Ingredient = styled.h2`
   margin: 0 0.2rem;
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
+  filter: drop-shadow(0 2px 2px black);
+  font-weight: bold;
   text-transform: capitalize;
 `
 
@@ -518,6 +536,40 @@ export const CaloriesErrorMessage = styled.span<{
   }
   ${(props) =>
     props.shouldShowCaloriesError &&
+    css`
+      visibility: visible;
+      transform: translateY(0);
+    `};
+`
+
+export const ExcludeErrorMessage = styled.span<{
+  shouldShowIngredientsError: boolean
+}>`
+  font-size: 1rem;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.LightRed};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  filter: drop-shadow(0 2px 2px black);
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  grid-area: excludeError;
+  transition: 0.3s;
+  ${media.custom(400)} {
+    font-size: 1.3rem;
+  }
+  ${media.phone} {
+    font-size: 1.7rem;
+  }
+  ${media.tablet} {
+    font-size: 2.2rem;
+  }
+  ${media.desktop} {
+    font-size: 2.5rem;
+  }
+  ${(props) =>
+    props.shouldShowIngredientsError &&
     css`
       visibility: visible;
       transform: translateY(0);
