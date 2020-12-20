@@ -5,11 +5,8 @@ import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
 
 /* Wrappers */
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.main`
   ${wrapperStyles}
-`
-
-export const SearchInnerWrapper = styled.div`
   display: grid;
   grid-template-areas:
     'title'
@@ -38,7 +35,7 @@ export const SearchLabel = styled.label`
   }
 `
 
-export const TitleWrapper = styled.div`
+export const TitleWrapper = styled.section`
   grid-area: title;
   display: flex;
   align-items: center;
@@ -88,7 +85,7 @@ export const SearchForm = styled.form`
   justify-content: space-between;
 `
 
-export const QueryWrapper = styled.div`
+export const QueryWrapper = styled.section`
   height: 25%;
   width: 95%;
 
@@ -258,7 +255,7 @@ export const SearchIcon = styled(Search)`
 `
 
 /* Calories */
-export const CaloriesWrapper = styled.div`
+export const CaloriesWrapper = styled.section`
   display: grid;
   grid-template-areas:
     'minCaloriesLabel maxCaloriesLabel'
@@ -346,7 +343,7 @@ export const MaxCaloriesLabel = styled.label`
 `
 
 /* Exclude Ingredients */
-export const ExcludeWrapper = styled.div`
+export const ExcludeWrapper = styled.section`
   display: grid;
   grid-template-areas:
     'excludeLabel'
@@ -425,7 +422,7 @@ export const IngredientAddButton = styled.button`
   }
 `
 
-export const ExcludeIngredientsWrapper = styled.ul`
+export const ExcludeIngredientsWrapper = styled.section`
   height: 100%;
   width: 100%;
   grid-area: excludeIngredients;
@@ -436,7 +433,7 @@ export const ExcludeIngredientsWrapper = styled.ul`
   align-items: center;
 `
 
-export const IngredientWrapper = styled.li`
+export const IngredientWrapper = styled.article`
   height: 35%;
   min-width: 10%;
   display: flex;
