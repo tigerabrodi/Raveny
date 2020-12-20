@@ -6,7 +6,7 @@ import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
 
 /* Home Header Wrapper */
-export const HomeWrapper = styled.div`
+export const HomeWrapper = styled.main`
   ${wrapperStyles}
   display: grid;
   grid-template-areas:
@@ -27,7 +27,7 @@ export const HomeWrapper = styled.div`
 `
 
 /* Text Area */
-export const InfoWrapper = styled.div`
+export const InfoWrapper = styled.section`
   grid-area: info;
   height: 80%;
   width: 100%;
@@ -36,6 +36,7 @@ export const InfoWrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
 `
+
 export const InfoText = styled.h1`
   font-family: ${({ theme }) => theme.fonts.Lora};
   text-align: center;
@@ -51,7 +52,7 @@ export const InfoText = styled.h1`
     font-size: min(5.5vw, 11rem);
   }
 `
-export const InfoButton = styled(Link)`
+export const InfoLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.Orange};
   letter-spacing: 2px;
@@ -126,7 +127,7 @@ export const SearchIcon = styled(Search)<{ isButtonHover: boolean }>`
 `
 
 /* Image Area */
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.section`
   grid-area: image;
   position: relative;
   height: 100%;

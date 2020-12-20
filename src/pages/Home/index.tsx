@@ -5,7 +5,7 @@ import {
   ImageWrapper,
   RecipeBook,
   InfoText,
-  InfoButton,
+  InfoLink,
   SearchIcon,
 } from './styles'
 
@@ -15,14 +15,14 @@ export const Home = () => {
     <HomeWrapper>
       <InfoWrapper>
         <InfoText>Find Your Dream Recipes and Enjoy.</InfoText>
-        <InfoButton
+        <InfoLink
           to="/search"
           onMouseEnter={() => setButtonHoverState(!buttonHoverState)}
           onMouseLeave={() => setButtonHoverState(false)}
         >
           Search
           <SearchIcon isButtonHover={buttonHoverState} />
-        </InfoButton>
+        </InfoLink>
       </InfoWrapper>
       <ImageWrapper>
         <RecipeBook />
