@@ -22,7 +22,7 @@ export const Navigation = () => {
           </LogoLink>
           <CookingSVG height="60" width="60" />
         </LogoWrapper>
-        <LinksWrapper isToggled={toggleState}>
+        <LinksWrapper isToggled={toggleState} role="group">
           <Link to="/search" onClick={() => setToggleState(false)}>
             Search
           </Link>

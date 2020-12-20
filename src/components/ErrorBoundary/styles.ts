@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { media } from 'theme/media'
 
 // Wrapper
-export const ErrorFallbackWrapper = styled.div`
+export const ErrorFallbackWrapper = styled.main`
   height: calc(100vh - 18rem);
   width: 80vw;
   display: flex;

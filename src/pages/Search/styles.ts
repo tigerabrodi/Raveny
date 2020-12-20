@@ -366,7 +366,7 @@ export const ExcludeLabel = styled.label`
   font-weight: bold;
 `
 
-export const ExcludeInputWrapper = styled.div`
+export const ExcludeInputWrapper = styled.section`
   grid-area: excludeInput;
   height: 70%;
   width: 100%;
