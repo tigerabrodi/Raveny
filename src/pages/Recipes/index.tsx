@@ -57,7 +57,7 @@ export const Recipes = () => {
   ) : (
     <NoRecipesWrapper>
       <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
-      <SadFace />
+      <SadFace role="img" aria-label="A sad face" />
       <NoRecipesButton to="/search">Back To Search</NoRecipesButton>
     </NoRecipesWrapper>
   )

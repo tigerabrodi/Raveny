@@ -2,12 +2,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import { EmojiFrown } from '@styled-icons/bootstrap'
+import { wrapperStyles } from 'styles'
 
 /*  No recipes found page */
-export const NoRecipesWrapper = styled.div`
-  grid-area: children;
-  width: 100vw;
-  min-height: calc(100vh - 18rem);
+export const NoRecipesWrapper = styled.main`
+  ${wrapperStyles}
   display: flex;
   flex-direction: column;
   align-items: center;

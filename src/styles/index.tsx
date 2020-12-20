@@ -48,7 +48,7 @@ export const wrapperStyles = css`
 `
 
 /* Strong Tag */
-export const Strong = styled.span`
+export const Strong = styled.strong`
   filter: drop-shadow(0 2px 2px black);
   font-weight: bold;
   white-space: pre-wrap;

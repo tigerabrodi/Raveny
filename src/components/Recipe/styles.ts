@@ -9,7 +9,7 @@ import {
 } from 'styles'
 
 // Recipes Wrapper (Exported)
-export const RecipesWrapper = styled.div`
+export const RecipesWrapper = styled.main`
   ${wrapperStyles}
   display: flex;
   align-items: center;
@@ -88,7 +88,8 @@ export const Image = styled.img`
   }
 `
 
-export const InfoWrapper = styled.div`
+/* Info */
+export const InfoWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -96,34 +97,33 @@ export const InfoWrapper = styled.div`
   height: 20%;
 `
 
-// Info labels
-export const Serving = styled.span`
+export const Serving = styled.h2`
   ${infoLabelStyles}
 `
 
-export const Calories = styled.span`
+export const Calories = styled.h2`
   ${infoLabelStyles}
 `
 
-// Label Wrapper
-export const LabelWrapper = styled.div`
+/* Labels */
+export const LabelWrapper = styled.article`
   ${labelWrapperStyles}
 `
 
-export const DietLabel = styled.span`
+export const DietLabel = styled.h3`
   ${labelStyles}
 `
 
-export const HealthLabel = styled.span`
+export const HealthLabel = styled.h3`
   ${labelStyles}
 `
 
-// Caution
-export const CautionWrapper = styled.div`
+/* Caution */
+export const CautionWrapper = styled.article`
   ${labelWrapperStyles}
 `
 
-export const CautionLabel = styled.span`
+export const CautionLabel = styled.h3`
   ${labelStyles}
   color: ${({ theme }) => theme.colors.Red};
 `

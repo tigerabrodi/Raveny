@@ -31,7 +31,7 @@ export const Recipe = ({
     yield: servings,
   },
 }: RecipeProps) => (
-  <RecipeWrapper key={uri} to={`/recipe/${uri}`}>
+  <RecipeWrapper to={`/recipe/${uri}`}>
     <Title> {label} </Title>
     <Image src={image} alt={label} />
     <Calories>
