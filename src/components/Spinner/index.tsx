@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import { ReactComponent as LoadingSpinner } from 'assets/spinner.svg'
 
-const Div = styled.div`
+const Div = styled.main`
   position: relative;
   height: calc(100vh - 18rem);
 `
@@ -27,7 +27,7 @@ const StyledSpinner = styled(LoadingSpinner)`
 `
 
 export const Spinner = () => (
-  <Div aria-label="pending">
-    <StyledSpinner />
+  <Div>
+    <StyledSpinner aria-label="loading" />
   </Div>
 )

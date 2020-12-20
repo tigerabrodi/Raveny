@@ -199,7 +199,7 @@ export const Search = () => {
             ? 'Start Cooking Today!'
             : 'Search Now and Start Cooking Today!'}
         </SearchLabel>
-        <Pan />
+        <Pan role="img" title="A cooking pan." />
       </TitleWrapper>
 
       <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { ReactComponent as NotFoundSVG404 } from 'assets/404.svg'
 import { media } from 'theme/media'
 
-export const NotFoundWrapper = styled.div`
+export const NotFoundWrapper = styled.main`
   height: calc(100vh - 18rem);
   width: 100vw;
   position: relative;
