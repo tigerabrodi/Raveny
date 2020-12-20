@@ -16,7 +16,7 @@ export const Nav = styled.nav`
   grid-area: nav;
 `
 /* Logo */
-export const LogoWrapper = styled.div`
+export const LogoWrapper = styled.section`
   position: relative;
   z-index: 10;
   display: flex;
@@ -30,9 +30,6 @@ export const LogoWrapper = styled.div`
 
 export const LogoLink = styled(RouterLink)`
   text-decoration: none;
-`
-
-export const LogoText = styled.p`
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: max(3rem, 2vw);
   font-weight: 700;
@@ -57,7 +54,7 @@ const mobileNavVisible = keyframes`
             z-index: 10;
     }
 `
-export const LinksWrapper = styled.div<{ isToggled: boolean }>`
+export const LinksWrapper = styled.section<{ isToggled: boolean }>`
   position: fixed;
   z-index: -10;
   top: 50%;
