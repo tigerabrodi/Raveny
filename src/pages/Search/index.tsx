@@ -6,7 +6,6 @@ import { Spinner } from 'components/Spinner'
 import { client } from 'utils/client'
 import {
   Pan,
-  SearchInnerWrapper,
   SearchInput,
   SearchButton,
   SearchForm,
@@ -194,137 +193,139 @@ export const Search = () => {
 
   return (
     <SearchWrapper>
-      <SearchInnerWrapper>
-        <TitleWrapper>
-          <SearchLabel htmlFor="search">
-            {isMobile
-              ? 'Start Cooking Today!'
-              : 'Search Now and Start Cooking Today!'}
-          </SearchLabel>
-          <Pan />
-        </TitleWrapper>
+      <TitleWrapper>
+        <SearchLabel htmlFor="search">
+          {isMobile
+            ? 'Start Cooking Today!'
+            : 'Search Now and Start Cooking Today!'}
+        </SearchLabel>
+        <Pan />
+      </TitleWrapper>
 
-        <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">
-          <QueryWrapper>
-            <SearchInput
-              value={searchValue}
+      <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">
+        <QueryWrapper>
+          <SearchInput
+            value={searchValue}
+            type="text"
+            placeholder="Search For Recipes..."
+            id="search"
+            name="searchValue"
+            onChange={(event) => handleSearchChange(event)}
+            onFocus={() => setFocusState(!focusState)}
+            onBlur={() => setFocusState(!focusState)}
+            aria-describedby="searchInputError"
+          />
+
+          <SearchInputValidLength searchNumberLength={searchValue.length}>
+            {searchLengthValidation}
+          </SearchInputValidLength>
+
+          <SearchButton
+            isFocus={focusState}
+            type="submit"
+            aria-label="Search for recipes"
+          >
+            <SearchIcon />
+          </SearchButton>
+
+          <ErrorCharacterMessage
+            role="alert"
+            id="searchInputError"
+            shouldShowErrorCharacters={shouldShowErrorCharacters}
+          >
+            Please enter at least three characters.
+          </ErrorCharacterMessage>
+        </QueryWrapper>
+
+        <CaloriesWrapper>
+          <MinCaloriesLabel htmlFor="minCalories">
+            Min Calories
+          </MinCaloriesLabel>
+
+          <MinCaloriesInput
+            type="text"
+            id="minCalories"
+            pattern="[0-9]*"
+            name="minCalories"
+            min="0"
+            value={minCalories}
+            onChange={(event) => handleCaloriesChange(event)}
+            aria-describedby="caloriesError"
+          />
+
+          <MaxCaloriesLabel htmlFor="maxCalories">
+            Max Calories
+          </MaxCaloriesLabel>
+
+          <MaxCaloriesInput
+            type="text"
+            pattern="[0-9]*"
+            id="maxCalories"
+            name="maxCalories"
+            min="0"
+            value={maxCalories}
+            onChange={(event) => handleCaloriesChange(event)}
+            aria-describedby="caloriesError"
+          />
+
+          <CaloriesErrorMessage
+            id="caloriesError"
+            role="alert"
+            shouldShowCaloriesError={shouldShowErrorCalories}
+          >
+            Minimum Calories must be less than Maximum Calories.
+          </CaloriesErrorMessage>
+        </CaloriesWrapper>
+
+        <ExcludeWrapper>
+          <ExcludeLabel htmlFor="Exclude Ingredients">
+            Exclude Ingredients
+          </ExcludeLabel>
+
+          <ExcludeInputWrapper>
+            <ExcludeInput
+              id="Exclude Ingredients"
+              aria-describedby="excludeError"
+              placeholder="Exclude calories..."
+              value={excludeInputValue}
+              onChange={(event) => handleExcludeChange(event)}
               type="text"
-              placeholder="Search For Recipes..."
-              id="search"
-              name="searchValue"
-              onChange={(event) => handleSearchChange(event)}
-              onFocus={() => setFocusState(!focusState)}
-              onBlur={() => setFocusState(!focusState)}
-              aria-describedby="searchInputError"
             />
-
-            <SearchInputValidLength searchNumberLength={searchValue.length}>
-              {searchLengthValidation}
-            </SearchInputValidLength>
-
-            <SearchButton isFocus={focusState} type="submit">
-              <SearchIcon />
-            </SearchButton>
-
-            <ErrorCharacterMessage
-              role="alert"
-              id="searchInputError"
-              shouldShowErrorCharacters={shouldShowErrorCharacters}
+            <IngredientAddButton
+              aria-label="Add ingredient to be excluded"
+              type="button"
+              onClick={() => addIngredient(excludeInputValue)}
             >
-              Please enter at least three characters.
-            </ErrorCharacterMessage>
-          </QueryWrapper>
+              +
+            </IngredientAddButton>
+          </ExcludeInputWrapper>
 
-          <CaloriesWrapper>
-            <MinCaloriesLabel htmlFor="minCalories">
-              Min Calories
-            </MinCaloriesLabel>
+          <ExcludeErrorMessage
+            role="alert"
+            id="excludeError"
+            shouldShowIngredientsError={shouldShowErrorIngredients}
+          >
+            Please enter at least 2 characters for the ingredient to be
+            excluded.
+          </ExcludeErrorMessage>
 
-            <MinCaloriesInput
-              type="text"
-              id="minCalories"
-              pattern="[0-9]*"
-              name="minCalories"
-              min="0"
-              value={minCalories}
-              onChange={(event) => handleCaloriesChange(event)}
-              aria-describedby="caloriesError"
-            />
-
-            <MaxCaloriesLabel htmlFor="maxCalories">
-              Max Calories
-            </MaxCaloriesLabel>
-
-            <MaxCaloriesInput
-              type="text"
-              pattern="[0-9]*"
-              id="maxCalories"
-              name="maxCalories"
-              min="0"
-              value={maxCalories}
-              onChange={(event) => handleCaloriesChange(event)}
-              aria-describedby="caloriesError"
-            />
-
-            <CaloriesErrorMessage
-              id="caloriesError"
-              role="alert"
-              shouldShowCaloriesError={shouldShowErrorCalories}
-            >
-              Minimum Calories must be less than Maximum Calories.
-            </CaloriesErrorMessage>
-          </CaloriesWrapper>
-
-          <ExcludeWrapper>
-            <ExcludeLabel htmlFor="Exclude Ingredients">
-              Exclude Ingredients
-            </ExcludeLabel>
-
-            <ExcludeInputWrapper>
-              <ExcludeInput
-                id="Exclude Ingredients"
-                aria-describedby="excludeError"
-                placeholder="Exclude calories..."
-                value={excludeInputValue}
-                onChange={(event) => handleExcludeChange(event)}
-                type="text"
-              />
-              <IngredientAddButton
-                aria-label="Add ingredient to be excluded"
-                type="button"
-                onClick={() => addIngredient(excludeInputValue)}
-              >
-                +
-              </IngredientAddButton>
-            </ExcludeInputWrapper>
-
-            <ExcludeErrorMessage
-              role="alert"
-              id="excludeError"
-              shouldShowIngredientsError={shouldShowErrorIngredients}
-            >
-              Please enter at least 2 characters for the ingredient to be
-              excluded.
-            </ExcludeErrorMessage>
-
-            <ExcludeIngredientsWrapper>
-              {excludedIngredients.length > 0 &&
-                excludedIngredients.map(({ name, id }) => (
-                  <IngredientWrapper key={id}>
-                    <Ingredient>{name}</Ingredient>
-                    <IngredientRemoveButton
-                      aria-label="Remove ingredient from being excluded"
-                      type="button"
-                      onClick={() => removeIngredient(id)}
-                    >
-                      x
-                    </IngredientRemoveButton>
-                  </IngredientWrapper>
-                ))}
-            </ExcludeIngredientsWrapper>
-          </ExcludeWrapper>
-        </SearchForm>
-      </SearchInnerWrapper>
+          <ExcludeIngredientsWrapper role="group">
+            {excludedIngredients.length > 0 &&
+              excludedIngredients.map(({ name, id }) => (
+                <IngredientWrapper key={id} role="listitem">
+                  <Ingredient>{name}</Ingredient>
+                  <IngredientRemoveButton
+                    aria-label="Remove ingredient from being excluded"
+                    type="button"
+                    onClick={() => removeIngredient(id)}
+                  >
+                    x
+                  </IngredientRemoveButton>
+                </IngredientWrapper>
+              ))}
+          </ExcludeIngredientsWrapper>
+        </ExcludeWrapper>
+      </SearchForm>
     </SearchWrapper>
   )
 }
