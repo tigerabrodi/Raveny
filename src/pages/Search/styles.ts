@@ -422,7 +422,7 @@ export const IngredientAddButton = styled.button`
   }
 `
 
-export const ExcludeIngredientsWrapper = styled.section`
+export const ExcludeIngredientsWrapper = styled.ul`
   height: 100%;
   width: 100%;
   grid-area: excludeIngredients;
@@ -433,7 +433,7 @@ export const ExcludeIngredientsWrapper = styled.section`
   align-items: center;
 `
 
-export const IngredientWrapper = styled.article`
+export const IngredientWrapper = styled.li`
   height: 35%;
   min-width: 10%;
   display: flex;
