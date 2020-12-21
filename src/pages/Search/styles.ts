@@ -100,10 +100,11 @@ export const QueryWrapper = styled.section`
     height: 22%;
   }
   ${media.tablet} {
-    height: 15%;
+    height: 10%;
     width: 98%;
   }
   ${media.desktop} {
+    height: 15%;
     width: 90%;
   }
 `
@@ -274,7 +275,7 @@ export const CaloriesWrapper = styled.section`
     height: 30%;
   }
   ${media.tablet} {
-    height: 25%;
+    height: 23%;
   }
   ${media.desktop} {
     height: 35%;
@@ -368,9 +369,11 @@ export const ExcludeLabel = styled.label`
 
 export const ExcludeInputWrapper = styled.section`
   grid-area: excludeInput;
-  height: 70%;
-  width: 100%;
   position: relative;
+  ${media.tablet} {
+    height: 60%;
+    width: 100%;
+  }
 `
 
 export const ExcludeInput = styled.input`
@@ -560,7 +563,7 @@ export const ExcludeErrorMessage = styled.span<{
     font-size: 1.7rem;
   }
   ${media.tablet} {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   ${media.desktop} {
     font-size: 2.5rem;
