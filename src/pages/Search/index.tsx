@@ -309,10 +309,10 @@ export const Search = () => {
             excluded.
           </ExcludeErrorMessage>
 
-          <ExcludeIngredientsWrapper role="group">
+          <ExcludeIngredientsWrapper>
             {excludedIngredients.length > 0 &&
               excludedIngredients.map(({ name, id }) => (
-                <IngredientWrapper key={id} role="listitem">
+                <IngredientWrapper key={id}>
                   <Ingredient>{name}</Ingredient>
                   <IngredientRemoveButton
                     aria-label="Remove ingredient from being excluded"
