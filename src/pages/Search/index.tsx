@@ -15,7 +15,7 @@ import {
   SearchInputValidLength,
   SearchLabel,
   QueryWrapper,
-  ErrorCharacterMessage,
+  CharacterErrorMessage,
   CaloriesWrapper,
   CaloriesErrorMessage,
   MaxCaloriesInput,
@@ -51,12 +51,12 @@ export const Search = () => {
   const [focusState, setFocusState] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [shouldShowErrorCharacters, setShouldShowErrorCharacters] = useState(
-    false
+    true
   )
 
-  const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(false)
+  const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(true)
   const [shouldShowErrorIngredients, setShouldShowErrorIngredients] = useState(
-    false
+    true
   )
 
   const [searchState, setSearchState] = useState<SearchState>({
@@ -228,13 +228,13 @@ export const Search = () => {
             <SearchIcon />
           </SearchButton>
 
-          <ErrorCharacterMessage
+          <CharacterErrorMessage
             role="alert"
             id="searchInputError"
             shouldShowErrorCharacters={shouldShowErrorCharacters}
           >
             Please enter at least three characters.
-          </ErrorCharacterMessage>
+          </CharacterErrorMessage>
         </QueryWrapper>
 
         <CaloriesWrapper>
