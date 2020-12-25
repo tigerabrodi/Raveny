@@ -35,10 +35,10 @@ export const LogoLink = styled(RouterLink)`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Orange};
   margin: 0 1rem 0 2rem;
-  filter: drop-shadow(2px 4px 6px black);
+  filter: drop-shadow(0.2rem 0.4rem 0.6rem black);
   transition: all 0.2s;
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-0.2rem);
   }
   ${media.phone} {
     margin: 0 1rem 0 4rem;
@@ -89,13 +89,13 @@ export const LinksWrapper = styled.section<{ isToggled: boolean }>`
 
 const activeClassName = 'nav-link-active'
 export const Link = styled(RouterLink).attrs({ activeClassName })`
-  font-size: 3rem;
+  font-size: 2rem;
   margin-top: 5rem;
   position: relative;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.Gray};
   transition: all 0.2s;
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   text-align: center;
@@ -110,13 +110,16 @@ export const Link = styled(RouterLink).attrs({ activeClassName })`
   &::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -0.8rem;
     left: 0;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.Orange};
-    height: 7px;
     opacity: 0;
     transition: all 0.2s;
+    height: 0.3rem;
+    ${media.tablet} {
+      height: 0.7rem;
+    }
   }
   &:hover::after {
     opacity: 1;
@@ -125,8 +128,8 @@ export const Link = styled(RouterLink).attrs({ activeClassName })`
     font-size: max(1.7rem, 1.5vw);
     margin-top: 0;
     &::after {
-      height: 3px;
-      bottom: -4px;
+      height: 0.3rem;
+      bottom: -0.4rem;
     }
   }
 `
@@ -181,18 +184,18 @@ export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
     outline: none;
   }
   &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
-  }
-  &:hover span {
-    ${({ isToggled }) =>
-      !isToggled &&
-      css`
-        transform: translateY(-1px);
-      `};
-    background-color: ${({ theme }) => theme.colors.Orange};
+    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
   }
   ${media.tablet} {
     display: none;
+    &:hover span {
+      ${({ isToggled }) =>
+        !isToggled &&
+        css`
+          transform: translateY(-0.1rem);
+        `};
+      background-color: ${({ theme }) => theme.colors.Orange};
+    }
   }
 `
 export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
