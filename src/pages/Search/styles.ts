@@ -104,7 +104,7 @@ export const QueryWrapper = styled.section`
     width: 98%;
   }
   ${media.desktop} {
-    height: 15%;
+    height: 11%;
     width: 90%;
   }
 `
@@ -158,12 +158,16 @@ export const SearchInputValidLength = styled.span<{
     font-size: 1.4rem;
   }
   ${media.tablet} {
+    top: 80%;
     left: 87%;
   }
   ${media.desktop} {
     left: 88%;
-    top: 75%;
+    top: 80%;
     font-size: max(1.5rem, 1vw);
+  }
+  ${media.custom(1600)} {
+    left: 89%;
   }
 `
 
@@ -186,7 +190,7 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
   }
   ${media.tablet} {
     width: 10%;
-    max-width: 13rem;
+    max-width: 11rem;
     border: 2px solid ${({ theme }) => theme.colors.Brown};
     margin-left: 3px;
     display: flex;
@@ -278,7 +282,7 @@ export const CaloriesWrapper = styled.section`
     height: 23%;
   }
   ${media.desktop} {
-    height: 35%;
+    height: 25%;
   }
 `
 
@@ -370,9 +374,13 @@ export const ExcludeLabel = styled.label`
 export const ExcludeInputWrapper = styled.section`
   grid-area: excludeInput;
   position: relative;
+  overflow: hidden;
   ${media.tablet} {
     height: 60%;
     width: 100%;
+  }
+  ${media.desktop} {
+    width: 90%;
   }
 `
 
@@ -391,6 +399,9 @@ export const ExcludeInput = styled.input`
     padding-left: 2rem;
     font-size: 2rem;
   }
+  ${media.desktop} {
+    border-radius: 0;
+  }
   &::placeholder {
     color: ${({ theme }) => theme.colors.Gray};
   }
@@ -403,9 +414,9 @@ export const ExcludeInput = styled.input`
 export const IngredientAddButton = styled.button`
   ${media.tablet} {
     top: 50%;
-    left: 94%;
+    left: 93.5%;
     height: 98%;
-    width: 10rem;
+    width: 13%;
     transform: translate(-50%, -50%);
     background-color: transparent;
     border: none;
@@ -422,6 +433,15 @@ export const IngredientAddButton = styled.button`
     &:focus {
       outline: none;
     }
+  }
+  ${media.desktop} {
+    left: 95.5%;
+    height: 98%;
+    width: 9%;
+  }
+  ${media.custom(1600)} {
+    left: 96.5%;
+    width: 7%;
   }
 `
 
@@ -445,6 +465,12 @@ export const IngredientWrapper = styled.li`
   border-radius: 0.5rem;
   border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   box-shadow: 0 0.3rem 0.4rem black;
+  ${media.desktop} {
+    min-width: 8%;
+  }
+  ${media.custom(1600)} {
+    min-width: 7%;
+  }
 `
 
 export const Ingredient = styled.h2`
@@ -472,7 +498,7 @@ export const IngredientRemoveButton = styled.button`
 `
 
 /*  Error Messages */
-export const ErrorCharacterMessage = styled.span<{
+export const CharacterErrorMessage = styled.span<{
   shouldShowErrorCharacters: boolean
 }>`
   font-family: ${({ theme }) => theme.fonts.Montserrat};
@@ -493,12 +519,12 @@ export const ErrorCharacterMessage = styled.span<{
     font-size: 2rem;
   }
   ${media.tablet} {
-    font-size: 2.2rem;
+    font-size: 2rem;
     top: 120%;
   }
   ${media.desktop} {
-    font-size: 2.5rem;
     top: 130%;
+    font-size: 2.5rem;
   }
   ${(props) =>
     props.shouldShowErrorCharacters &&
@@ -529,10 +555,16 @@ export const CaloriesErrorMessage = styled.span<{
     font-size: 1.7rem;
   }
   ${media.tablet} {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    align-self: end;
   }
   ${media.desktop} {
+    font-size: 2.2rem;
+    align-self: auto;
+  }
+  ${media.custom(1600)} {
     font-size: 2.5rem;
+    align-self: auto;
   }
   ${(props) =>
     props.shouldShowCaloriesError &&
@@ -566,6 +598,9 @@ export const ExcludeErrorMessage = styled.span<{
     font-size: 2rem;
   }
   ${media.desktop} {
+    font-size: 2.2rem;
+  }
+  ${media.custom(1600)} {
     font-size: 2.5rem;
   }
   ${(props) =>
