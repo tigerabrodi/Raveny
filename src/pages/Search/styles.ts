@@ -1,212 +1,67 @@
 import styled, { css, keyframes } from 'styled-components'
 import { ReactComponent as PanSVG } from 'assets/fried.svg'
-import { Search } from '@styled-icons/bootstrap'
+import { Plus, Search } from '@styled-icons/bootstrap'
 import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
 
-/* Wrappers */
-export const SearchWrapper = styled.main`
-  ${wrapperStyles}
-  display: grid;
-  grid-template-areas:
-    'title'
-    'search';
-  grid-template-rows: 1fr 3fr;
-  justify-items: center;
-  align-items: center;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100%;
-  width: 98%;
-`
-
-/* Title Area */
-export const SearchLabel = styled.label`
-  font-size: min(6rem, 9vw);
-  font-family: ${({ theme }) => theme.fonts.Lora};
-  color: ${({ theme }) => theme.colors.Orange};
-  font-weight: 700;
-  filter: drop-shadow(2px 4px 6px black);
-  letter-spacing: 1px;
-  ${media.tablet} {
-    font-size: max(3.5rem, 4vw);
-  }
-`
-
-export const TitleWrapper = styled.section`
-  grid-area: title;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  ${media.tablet} {
-    border-bottom: 3px solid ${({ theme }) => theme.colors.Orange};
-  }
-  ${media.desktop} {
-    width: 90%;
-  }
-`
-
-const cook = keyframes`
-    from {
-    transform: translateY(-3px) translateX(-2px) rotate(8deg) scale(-1, 1);
-    }
-
-    to {
-    transform: translate(0) scale(-1, 1);
-    }
-`
-
-export const Pan = styled(PanSVG)`
-  display: none;
-  ${media.tablet} {
-    position: relative;
-    width: 8rem;
-    height: 10rem;
-    transform: scale(-1, 1);
-    animation: ${cook} 1s infinite alternate;
-    display: block;
-    margin-right: 2rem;
-    width: max(7rem, 7.5vw);
-    height: max(9rem, 9.5vw);
-  }
-`
-
-/* Search */
-export const SearchForm = styled.form`
-  height: 100%;
-  width: 100%;
-  grid-area: search;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const QueryWrapper = styled.section`
-  height: 25%;
-  width: 95%;
-
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  ${media.custom(370)} {
-    height: 21%;
-  }
-  ${media.phone} {
-    height: 22%;
-  }
-  ${media.tablet} {
-    height: 10%;
-    width: 98%;
-  }
-  ${media.desktop} {
-    height: 11%;
-    width: 90%;
-  }
-`
-
-export const SearchInput = styled.input`
+/* Common Styles */
+const caloriesInputStyles = css`
   font-size: 1.7rem;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  text-align: center;
   color: ${({ theme }) => theme.colors.Gray};
   background-color: ${({ theme }) => theme.colors.Black};
   border: 2px solid ${({ theme }) => theme.colors.Brown};
-  transition: all 0.3s;
-  padding-left: 1rem;
+  transition: 0.3s;
+  height: 100%;
+  width: 40%;
   ${media.phone} {
-    padding-left: 2rem;
-    font-size: 2rem;
+    width: 25%;
+    height: 80%;
   }
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.Gray};
+  ${media.tablet} {
+    width: 20%;
+  }
+  ${media.desktop} {
+    max-width: 11rem;
+    font-size: 2.3rem;
   }
   &:focus {
     outline: none;
-    box-shadow: 0 5px 5px black;
-  }
-  ${media.tablet} {
-    width: 90%;
-  }
-  ${media.tablet} {
-    font-size: 2.5rem;
+    box-shadow: 0 3px 5px black;
   }
 `
 
-export const SearchInputValidLength = styled.span<{
-  searchNumberLength: number
-}>`
-  font-size: 1.1rem;
-  letter-spacing: 3px;
-  font-weight: 700;
-  position: absolute;
+const buttonStyles = css`
+  top: 50%;
+  left: 89.5%;
+  height: 98%;
+  width: 21%;
   transform: translate(-50%, -50%);
-  color: ${({ searchNumberLength, theme }) => {
-    return searchNumberLength < 3 ? theme.colors.Red : theme.colors.Green
-  }};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  top: 78%;
-  left: 64%;
+  background-color: transparent;
+  border: none;
+  border-left: 2px solid ${({ theme }) => theme.colors.Brown};
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: all 0.3s;
+  position: absolute;
+  cursor: pointer;
   ${media.phone} {
-    left: 76%;
-    font-size: 1.4rem;
+    left: 92.5%;
+    width: 15%;
   }
   ${media.tablet} {
-    top: 80%;
-    left: 87%;
+    left: 93.5%;
+    width: 13%;
   }
   ${media.desktop} {
-    left: 88%;
-    top: 80%;
-    font-size: max(1.5rem, 1vw);
+    left: 95.5%;
+    height: 98%;
+    width: 9%;
   }
   ${media.custom(1600)} {
-    left: 89%;
-  }
-`
-
-export const SearchButton = styled.button<{ isFocus: boolean }>`
-  left: 85%;
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: none;
-  margin-left: 0;
-  border-left: 2px solid #854d27;
-  cursor: pointer;
-  background-color: transparent;
-  height: 98%;
-  transition: all 0.2s;
-  ${media.phone} {
-    left: 90%;
-    width: 20%;
-  }
-  ${media.tablet} {
-    width: 10%;
-    max-width: 11rem;
-    border: 2px solid ${({ theme }) => theme.colors.Brown};
-    margin-left: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-    top: 0;
-    left: 0;
-    transition: all 0.8s;
-    transform: translate(0, 0);
-    height: 100%;
-  }
-  &:hover {
-    ${media.tablet} {
-      box-shadow: 0 5px 5px black;
-    }
+    left: 96.5%;
+    width: 7%;
   }
   &:hover svg {
     ${media.tablet} {
@@ -240,27 +95,176 @@ export const SearchButton = styled.button<{ isFocus: boolean }>`
   &:active {
     box-shadow: none;
     ${media.tablet} {
-      transform: scale(0.9);
+      transform: translate(-50%, -50%) scale(0.95);
     }
   }
-  ${(props) =>
-    props.isFocus &&
-    css`
-      box-shadow: 0 5px 5px black;
-      transition: all 0.3s;
-    `};
 `
 
-export const SearchIcon = styled(Search)`
-  height: 3rem;
+const inputStyles = css`
+  width: 100%;
+  height: 100%;
+  font-size: 1.7rem;
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  color: ${({ theme }) => theme.colors.Gray};
+  background-color: ${({ theme }) => theme.colors.Black};
+  border: 2px solid ${({ theme }) => theme.colors.Brown};
+  transition: all 0.3s;
+  padding-left: 1rem;
+  ${media.phone} {
+    padding-left: 2rem;
+    font-size: 2rem;
+  }
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.Gray};
+  }
+  &:focus {
+    outline: none;
+  }
+`
+
+const inputSectionStyles = css`
+  transition: 0.3s;
+  width: 100%;
   position: relative;
-  z-index: 5;
+  ${media.tablet} {
+    width: 100%;
+  }
+  ${media.desktop} {
+    width: 90%;
+  }
+  ${media.custom(1600)} {
+    width: 80%;
+  }
+  &:focus-within {
+    box-shadow: 0 0.3rem 0.5rem black;
+  }
+`
+
+/* Main */
+export const SearchMain = styled.main`
+  ${wrapperStyles}
+  display: grid;
+  grid-template-areas:
+    'title'
+    'search';
+  grid-template-rows: 1fr 6fr;
+  justify-items: center;
+  align-items: center;
+  width: 98%;
+  justify-self: center;
+  ${media.phone} {
+    grid-template-rows: 1fr 3fr;
+  }
+`
+
+/* Title Area */
+export const Title = styled.label`
+  font-size: min(6rem, 9vw);
+  font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
-  transition: all 0.5s;
+  font-weight: 700;
+  filter: drop-shadow(2px 4px 6px black);
+  letter-spacing: 1px;
+  ${media.tablet} {
+    font-size: max(3.5rem, 4vw);
+  }
+`
+
+export const TitleSection = styled.section`
+  grid-area: title;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  ${media.tablet} {
+    border-bottom: 3px solid ${({ theme }) => theme.colors.Orange};
+  }
+  ${media.desktop} {
+    width: 90%;
+  }
+`
+
+/* Search Query */
+export const SearchForm = styled.form`
+  height: 100%;
+  width: 100%;
+  grid-area: search;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const QuerySection = styled.section`
+  display: grid;
+  grid-template-areas:
+    'query'
+    'characterErrorMessage';
+  grid-template-rows: 4fr 1fr;
+  width: 100%;
+  height: 20%;
+  align-items: center;
+  justify-items: center;
+  align-content: space-around;
+  row-gap: 0.5rem;
+  ${media.phone} {
+    row-gap: 0;
+  }
+`
+
+export const QueryInputSection = styled.section`
+  ${inputSectionStyles}
+  grid-area: query;
+  height: 100%;
+  ${media.phone} {
+    height: 65%;
+  }
+`
+
+export const QueryInputValidLength = styled.span<{
+  searchNumberLength: number
+}>`
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: ${({ searchNumberLength, theme }) => {
+    return searchNumberLength < 3 ? theme.colors.Red : theme.colors.Green
+  }};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  top: 82%;
+  left: 73.5%;
+  ${media.phone} {
+    font-size: 1.5rem;
+    left: 82%;
+  }
+  ${media.tablet} {
+    top: 80%;
+    left: 85%;
+  }
+  ${media.desktop} {
+    left: 89%;
+    font-size: 1.6rem;
+  }
+  ${media.custom(1500)} {
+    left: 89.5%;
+  }
+  ${media.custom(1600)} {
+    left: 91.5%;
+  }
+`
+
+export const QueryInput = styled.input`
+  ${inputStyles}
+`
+
+export const QueryButton = styled.button`
+  ${buttonStyles}
 `
 
 /* Calories */
-export const CaloriesWrapper = styled.section`
+export const CaloriesSection = styled.section`
   display: grid;
   grid-template-areas:
     'minCaloriesLabel maxCaloriesLabel'
@@ -271,44 +275,23 @@ export const CaloriesWrapper = styled.section`
   align-items: center;
   justify-items: center;
   align-content: space-between;
-  height: 40%;
+  height: 25%;
+  row-gap: 0.5rem;
+  ${media.custom(360)} {
+    height: 30%;
+  }
   ${media.custom(400)} {
     height: 35%;
   }
   ${media.phone} {
-    height: 30%;
+    height: 25%;
+    row-gap: 0;
   }
   ${media.tablet} {
     height: 23%;
   }
   ${media.desktop} {
     height: 25%;
-  }
-`
-
-// Calorie Inputs
-const caloriesInputStyles = css`
-  font-size: 1.7rem;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.Gray};
-  background-color: ${({ theme }) => theme.colors.Black};
-  border: 2px solid ${({ theme }) => theme.colors.Brown};
-  transition: all 0.3s;
-  height: 100%;
-  width: 40%;
-  ${media.phone} {
-    width: 35%;
-  }
-  ${media.tablet} {
-    width: 20%;
-  }
-  ${media.desktop} {
-    max-width: 12rem;
-    font-size: 2.3rem;
-  }
-  &:focus {
-    outline: none;
-    box-shadow: 0 5px 5px black;
   }
 `
 
@@ -322,7 +305,6 @@ export const MaxCaloriesInput = styled.input`
   grid-area: maxCaloriesInput;
 `
 
-// Labels
 export const caloriesLabelStyles = css`
   font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.Orange};
@@ -347,8 +329,8 @@ export const MaxCaloriesLabel = styled.label`
   ${caloriesLabelStyles}
 `
 
-/* Exclude Ingredients */
-export const ExcludeWrapper = styled.section`
+/* Exclude */
+export const ExcludeSection = styled.section`
   display: grid;
   grid-template-areas:
     'excludeLabel'
@@ -358,8 +340,12 @@ export const ExcludeWrapper = styled.section`
   grid-template-rows: 1fr 2fr 1fr 2fr;
   justify-items: center;
   align-items: center;
-  height: 50%;
+  height: 47%;
   width: 100%;
+  row-gap: 0.5rem;
+  ${media.phone} {
+    row-gap: 0;
+  }
 `
 
 export const ExcludeLabel = styled.label`
@@ -367,85 +353,40 @@ export const ExcludeLabel = styled.label`
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Lora};
   filter: drop-shadow(0 2px 2px black);
-  font-size: 4rem;
   font-weight: bold;
+  font-size: 2.5rem;
+  ${media.phone} {
+    font-size: 4rem;
+  }
 `
 
-export const ExcludeInputWrapper = styled.section`
+export const ExcludeInputSection = styled.section`
   grid-area: excludeInput;
-  position: relative;
-  overflow: hidden;
-  ${media.tablet} {
+  height: 75%;
+  ${media.custom(360)} {
+    height: 100%;
+  }
+  ${media.custom(400)} {
+    height: 90%;
+  }
+  ${media.phone} {
     height: 60%;
+  }
+  ${media.tablet} {
     width: 100%;
   }
-  ${media.desktop} {
-    width: 90%;
-  }
+  ${inputSectionStyles}
 `
 
 export const ExcludeInput = styled.input`
-  width: 100%;
-  height: 100%;
-  font-size: 1.7rem;
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  color: ${({ theme }) => theme.colors.Gray};
-  background-color: ${({ theme }) => theme.colors.Black};
-  border: 2px solid ${({ theme }) => theme.colors.Brown};
-  transition: all 0.3s;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  ${media.phone} {
-    padding-left: 2rem;
-    font-size: 2rem;
-  }
-  ${media.desktop} {
-    border-radius: 0;
-  }
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.Gray};
-  }
-  &:focus {
-    outline: none;
-    box-shadow: 0 5px 5px black;
-  }
+  ${inputStyles}
 `
 
 export const IngredientAddButton = styled.button`
-  ${media.tablet} {
-    top: 50%;
-    left: 93.5%;
-    height: 98%;
-    width: 13%;
-    transform: translate(-50%, -50%);
-    background-color: transparent;
-    border: none;
-    border-left: 2px solid ${({ theme }) => theme.colors.Brown};
-    transition: all 0.3s;
-    position: absolute;
-    font-size: 5rem;
-    color: ${({ theme }) => theme.colors.Orange};
-    cursor: pointer;
-    &:hover {
-      background-color: rgba(221, 114, 48, 0.1);
-      filter: drop-shadow(0 2px 2px black);
-    }
-    &:focus {
-      outline: none;
-    }
-  }
-  ${media.desktop} {
-    left: 95.5%;
-    height: 98%;
-    width: 9%;
-  }
-  ${media.custom(1600)} {
-    left: 96.5%;
-    width: 7%;
-  }
+  ${buttonStyles}
 `
 
-export const ExcludeIngredientsWrapper = styled.ul`
+export const ExcludeIngredientsList = styled.ul`
   height: 100%;
   width: 100%;
   grid-area: excludeIngredients;
@@ -457,7 +398,7 @@ export const ExcludeIngredientsWrapper = styled.ul`
 `
 
 export const IngredientWrapper = styled.li`
-  height: 35%;
+  height: 55%;
   min-width: 10%;
   display: flex;
   align-items: center;
@@ -465,22 +406,28 @@ export const IngredientWrapper = styled.li`
   border-radius: 0.5rem;
   border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   box-shadow: 0 0.3rem 0.4rem black;
+  ${media.phone} {
+    height: 40%;
+  }
   ${media.desktop} {
     min-width: 8%;
   }
   ${media.custom(1600)} {
-    min-width: 7%;
+    min-width: 5%;
   }
 `
 
-export const Ingredient = styled.h2`
+export const IngredientName = styled.h2`
   margin: 0 0.2rem;
-  font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
   filter: drop-shadow(0 2px 2px black);
   font-weight: bold;
   text-transform: capitalize;
+  font-size: 1.5rem;
+  ${media.tablet} {
+    font-size: 1.8rem;
+  }
 `
 
 export const IngredientRemoveButton = styled.button`
@@ -498,17 +445,14 @@ export const IngredientRemoveButton = styled.button`
 `
 
 /*  Error Messages */
-export const CharacterErrorMessage = styled.span<{
-  shouldShowErrorCharacters: boolean
-}>`
+const ErrorMessage = styled.span<{ shouldShowErrorMessage: boolean }>`
+  text-align: center;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.LightRed};
   filter: drop-shadow(0 2px 2px black);
   font-weight: bold;
   letter-spacing: 0.2rem;
-  top: 110%;
-  position: absolute;
   visibility: hidden;
   transform: translateY(-0.5rem);
   transition: 0.3s;
@@ -516,97 +460,76 @@ export const CharacterErrorMessage = styled.span<{
     font-size: 1.5rem;
   }
   ${media.phone} {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
   ${media.tablet} {
     font-size: 2rem;
-    top: 120%;
   }
   ${media.desktop} {
-    top: 130%;
+    font-size: 2.2rem;
+  }
+  ${media.custom(1600)} {
     font-size: 2.5rem;
   }
   ${(props) =>
-    props.shouldShowErrorCharacters &&
+    props.shouldShowErrorMessage &&
     css`
       visibility: visible;
       transform: translateY(0);
     `};
 `
 
-export const CaloriesErrorMessage = styled.span<{
-  shouldShowCaloriesError: boolean
-}>`
-  font-size: 1rem;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.LightRed};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  filter: drop-shadow(0 2px 2px black);
-  font-weight: bold;
-  letter-spacing: 0.2rem;
-  visibility: hidden;
-  transform: translateY(-0.5rem);
+export const CharacterErrorMessage = styled(ErrorMessage)`
+  grid-area: characterErrorMessage;
+`
+
+export const CaloriesErrorMessage = styled(ErrorMessage)`
   grid-area: caloriesErrorMessage;
-  transition: 0.3s;
-  ${media.custom(400)} {
-    font-size: 1.3rem;
-  }
-  ${media.phone} {
-    font-size: 1.7rem;
-  }
-  ${media.tablet} {
-    font-size: 2rem;
-    align-self: end;
-  }
-  ${media.desktop} {
-    font-size: 2.2rem;
-    align-self: auto;
-  }
-  ${media.custom(1600)} {
-    font-size: 2.5rem;
-    align-self: auto;
-  }
-  ${(props) =>
-    props.shouldShowCaloriesError &&
-    css`
-      visibility: visible;
-      transform: translateY(0);
-    `};
 `
 
-export const ExcludeErrorMessage = styled.span<{
-  shouldShowIngredientsError: boolean
-}>`
-  font-size: 1rem;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.LightRed};
-  font-family: ${({ theme }) => theme.fonts.Montserrat};
-  filter: drop-shadow(0 2px 2px black);
-  font-weight: bold;
-  letter-spacing: 0.2rem;
-  visibility: hidden;
-  transform: translateY(-0.5rem);
+export const ExcludeErrorMessage = styled(ErrorMessage)`
   grid-area: excludeError;
-  transition: 0.3s;
-  ${media.custom(400)} {
-    font-size: 1.3rem;
-  }
-  ${media.phone} {
-    font-size: 1.7rem;
-  }
+`
+
+/* Animations */
+const cook = keyframes`
+    from {
+    transform: translateY(-3px) translateX(-2px) rotate(8deg) scale(-1, 1);
+    }
+
+    to {
+    transform: translate(0) scale(-1, 1);
+    }
+`
+
+/* Icons */
+export const Pan = styled(PanSVG)`
+  display: none;
   ${media.tablet} {
-    font-size: 2rem;
+    position: relative;
+    width: 8rem;
+    height: 10rem;
+    transform: scale(-1, 1);
+    animation: ${cook} 1s infinite alternate;
+    display: block;
+    margin-right: 2rem;
+    width: max(7rem, 7.5vw);
+    height: max(9rem, 9.5vw);
   }
-  ${media.desktop} {
-    font-size: 2.2rem;
-  }
-  ${media.custom(1600)} {
-    font-size: 2.5rem;
-  }
-  ${(props) =>
-    props.shouldShowIngredientsError &&
-    css`
-      visibility: visible;
-      transform: translateY(0);
-    `};
+`
+
+export const SearchIcon = styled(Search)`
+  height: 3rem;
+  position: relative;
+  z-index: 5;
+  color: ${({ theme }) => theme.colors.Orange};
+  transition: all 0.5s;
+`
+
+export const AddIcon = styled(Plus)`
+  height: 5rem;
+  position: relative;
+  z-index: 5;
+  color: ${({ theme }) => theme.colors.Orange};
+  transition: all 0.5s;
 `

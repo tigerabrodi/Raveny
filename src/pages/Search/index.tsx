@@ -6,79 +6,72 @@ import { Spinner } from 'components/Spinner'
 import { client } from 'utils/client'
 import {
   Pan,
-  SearchInput,
-  SearchButton,
+  QueryInput,
+  QueryButton,
   SearchForm,
-  SearchWrapper,
+  SearchMain,
   SearchIcon,
-  TitleWrapper,
-  SearchInputValidLength,
-  SearchLabel,
-  QueryWrapper,
+  TitleSection,
+  QueryInputValidLength,
+  Title,
+  QuerySection,
+  QueryInputSection,
   CharacterErrorMessage,
-  CaloriesWrapper,
+  CaloriesSection,
   CaloriesErrorMessage,
   MaxCaloriesInput,
   MaxCaloriesLabel,
   MinCaloriesInput,
   MinCaloriesLabel,
   IngredientAddButton,
-  ExcludeIngredientsWrapper,
+  ExcludeIngredientsList,
   ExcludeInput,
-  ExcludeInputWrapper,
-  ExcludeWrapper,
-  Ingredient,
+  ExcludeInputSection,
+  ExcludeSection,
+  IngredientName,
   IngredientRemoveButton,
   IngredientWrapper,
   ExcludeErrorMessage,
   ExcludeLabel,
+  AddIcon,
 } from './styles'
 
-// API Key, ID and URL
+/* Environment Variables */
 const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
 
 type SearchState = {
-  searchInputValue: string
+  searchValue: string
   minCalories: number
   maxCalories: number
-  excludeInputValue: string
+  excludeValue: string
   excludedIngredients: Array<{ id: string; name: string }>
 }
 
 export const Search = () => {
-  const [focusState, setFocusState] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [shouldShowErrorCharacters, setShouldShowErrorCharacters] = useState(
-    true
+    false
   )
-
-  const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(true)
+  const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(false)
   const [shouldShowErrorIngredients, setShouldShowErrorIngredients] = useState(
-    true
+    false
   )
 
   const [searchState, setSearchState] = useState<SearchState>({
-    searchInputValue: '',
+    searchValue: '',
     minCalories: 0,
     maxCalories: 3000,
-    excludedIngredients: [
-      { id: uuidv4(), name: 'chicken' },
-      { id: uuidv4(), name: 'alcohol' },
-      { id: uuidv4(), name: 'cucumber' },
-      { id: uuidv4(), name: 'pork' },
-      { id: uuidv4(), name: 'meat' },
-      { id: uuidv4(), name: 'nails' },
-    ],
-    excludeInputValue: '',
+    excludedIngredients: [],
+    excludeValue: '',
   })
 
   const {
-    searchInputValue: searchValue,
+    searchValue,
     minCalories,
     maxCalories,
-    excludeInputValue,
+    excludeValue,
     excludedIngredients,
   } = searchState
 
@@ -86,10 +79,8 @@ export const Search = () => {
 
   const { state, dispatch } = useRavenyContext()
 
-  // Non-null assertion because environment variables could be undefined
   const urlToQuery = new URL(apiURL!)
 
-  // Number of input length (validation)
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
 
@@ -103,20 +94,14 @@ export const Search = () => {
     }
   }
 
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchState({
       ...searchState,
-      searchInputValue: event.target.value,
+      [event.target.name]: event.target.value,
     })
   }
 
-  const handleExcludeChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSearchState({
-      ...searchState,
-      excludeInputValue: event.target.value,
-    })
-  }
-
+  /* Ingredient Operations */
   const removeIngredient = (id: string) => {
     setSearchState({
       ...searchState,
@@ -127,13 +112,14 @@ export const Search = () => {
   }
 
   const addIngredient = (name: string) => {
-    if (name.length < 2) {
+    if (name.length < 3) {
       setShouldShowErrorIngredients(true)
       return setTimeout(() => setShouldShowErrorIngredients(false), 3000)
     } else {
       setSearchState({
         ...searchState,
         excludedIngredients: [{ id: uuidv4(), name }, ...excludedIngredients],
+        excludeValue: '',
       })
     }
   }
@@ -141,7 +127,7 @@ export const Search = () => {
   const onSubmit = (event: FormEvent): void | number => {
     event.preventDefault()
 
-    // Input validation
+    /* Input Validation */
     if (searchValue.length < 3) {
       setShouldShowErrorCharacters(true)
       return setTimeout(() => setShouldShowErrorCharacters(false), 3000)
@@ -149,7 +135,7 @@ export const Search = () => {
       setShouldShowErrorCalories(true)
       return setTimeout(() => setShouldShowErrorCalories(false), 3000)
     } else {
-      // Set query params
+      /* Query Params */
       urlToQuery.searchParams.append('app_key', apiKEY!)
       urlToQuery.searchParams.append('app_id', apiID!)
       urlToQuery.searchParams.append('q', searchValue.toLowerCase())
@@ -159,11 +145,11 @@ export const Search = () => {
         'calories',
         `${minCalories}-${maxCalories}`
       )
-      excludedIngredients.forEach((ingredient) => {
-        urlToQuery.searchParams.append('exclude', ingredient.name)
+      excludedIngredients.forEach(({ name }) => {
+        urlToQuery.searchParams.append('exclude', name.toLowerCase())
       })
 
-      // Fetch Recipes
+      /* Fetch Recipes */
       client({
         dispatch,
         url: urlToQuery.href,
@@ -178,7 +164,7 @@ export const Search = () => {
 
   useEffect(() => {
     window.sessionStorage.clear()
-    // Mobile view to show shorter title
+    /* Short Title in Mobile View */
     const setIsMobileView = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches)
     }
@@ -192,52 +178,48 @@ export const Search = () => {
   }
 
   return (
-    <SearchWrapper>
-      <TitleWrapper>
-        <SearchLabel htmlFor="search">
+    <SearchMain>
+      <TitleSection>
+        <Title htmlFor="search">
           {isMobile
             ? 'Start Cooking Today!'
             : 'Search Now and Start Cooking Today!'}
-        </SearchLabel>
+        </Title>
         <Pan role="img" title="A cooking pan." />
-      </TitleWrapper>
+      </TitleSection>
 
       <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">
-        <QueryWrapper>
-          <SearchInput
-            value={searchValue}
-            type="text"
-            placeholder="Search For Recipes..."
-            id="search"
-            name="searchValue"
-            onChange={(event) => handleSearchChange(event)}
-            onFocus={() => setFocusState(!focusState)}
-            onBlur={() => setFocusState(!focusState)}
-            aria-describedby="searchInputError"
-          />
+        <QuerySection>
+          <QueryInputSection>
+            <QueryInput
+              value={searchValue}
+              type="text"
+              placeholder="Search For Recipes..."
+              id="search"
+              name="searchValue"
+              onChange={(event) => handleChange(event)}
+              aria-describedby="searchInputError"
+            />
 
-          <SearchInputValidLength searchNumberLength={searchValue.length}>
-            {searchLengthValidation}
-          </SearchInputValidLength>
+            <QueryInputValidLength searchNumberLength={searchValue.length}>
+              {searchLengthValidation}
+            </QueryInputValidLength>
 
-          <SearchButton
-            isFocus={focusState}
-            type="submit"
-            aria-label="Search for recipes"
-          >
-            <SearchIcon />
-          </SearchButton>
+            <QueryButton type="submit" aria-label="Search for recipes">
+              <SearchIcon title="Search Icon" />
+            </QueryButton>
+          </QueryInputSection>
 
           <CharacterErrorMessage
             role="alert"
             id="searchInputError"
-            shouldShowErrorCharacters={shouldShowErrorCharacters}
+            shouldShowErrorMessage={shouldShowErrorCharacters}
           >
             Please enter at least three characters.
           </CharacterErrorMessage>
-        </QueryWrapper>
+        </QuerySection>
 
-        <CaloriesWrapper>
+        <CaloriesSection>
           <MinCaloriesLabel htmlFor="minCalories">
             Min Calories
           </MinCaloriesLabel>
@@ -271,49 +253,50 @@ export const Search = () => {
           <CaloriesErrorMessage
             id="caloriesError"
             role="alert"
-            shouldShowCaloriesError={shouldShowErrorCalories}
+            shouldShowErrorMessage={shouldShowErrorCalories}
           >
             Minimum Calories must be less than Maximum Calories.
           </CaloriesErrorMessage>
-        </CaloriesWrapper>
+        </CaloriesSection>
 
-        <ExcludeWrapper>
+        <ExcludeSection>
           <ExcludeLabel htmlFor="Exclude Ingredients">
             Exclude Ingredients
           </ExcludeLabel>
 
-          <ExcludeInputWrapper>
+          <ExcludeInputSection>
             <ExcludeInput
               id="Exclude Ingredients"
               aria-describedby="excludeError"
               placeholder="Exclude calories..."
-              value={excludeInputValue}
-              onChange={(event) => handleExcludeChange(event)}
+              name="excludeValue"
+              value={excludeValue}
+              onChange={(event) => handleChange(event)}
               type="text"
             />
             <IngredientAddButton
               aria-label="Add ingredient to be excluded"
               type="button"
-              onClick={() => addIngredient(excludeInputValue)}
+              onClick={() => addIngredient(excludeValue)}
             >
-              +
+              <AddIcon title="Add Icon" />
             </IngredientAddButton>
-          </ExcludeInputWrapper>
+          </ExcludeInputSection>
 
           <ExcludeErrorMessage
             role="alert"
             id="excludeError"
-            shouldShowIngredientsError={shouldShowErrorIngredients}
+            shouldShowErrorMessage={shouldShowErrorIngredients}
           >
-            Please enter at least 2 characters for the ingredient to be
+            Please enter at least 3 characters for the ingredient to be
             excluded.
           </ExcludeErrorMessage>
 
-          <ExcludeIngredientsWrapper>
+          <ExcludeIngredientsList>
             {excludedIngredients.length > 0 &&
               excludedIngredients.map(({ name, id }) => (
                 <IngredientWrapper key={id}>
-                  <Ingredient>{name}</Ingredient>
+                  <IngredientName>{name}</IngredientName>
                   <IngredientRemoveButton
                     aria-label="Remove ingredient from being excluded"
                     type="button"
@@ -323,9 +306,9 @@ export const Search = () => {
                   </IngredientRemoveButton>
                 </IngredientWrapper>
               ))}
-          </ExcludeIngredientsWrapper>
-        </ExcludeWrapper>
+          </ExcludeIngredientsList>
+        </ExcludeSection>
       </SearchForm>
-    </SearchWrapper>
+    </SearchMain>
   )
 }
