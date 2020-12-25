@@ -19,7 +19,7 @@ export const RecipesWrapper = styled.main`
   gap: 1rem;
 `
 
-export const RecipeWrapper = styled(Link)`
+export const RecipeWrapperLink = styled(Link)`
   text-decoration: none;
   height: 45rem;
   display: flex;
@@ -27,8 +27,8 @@ export const RecipeWrapper = styled(Link)`
   flex-shrink: 1;
   flex-basis: 100%;
   flex-direction: column;
-  border: 2px solid ${({ theme }) => theme.colors.Brown};
-  border-radius: 2px;
+  border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
+  border-radius: 0.2rem;
   align-items: center;
   justify-content: space-around;
   transition: all 0.3s;
@@ -36,7 +36,7 @@ export const RecipeWrapper = styled(Link)`
   background-color: transparent;
   &:hover {
     transform: translateY(-0.5rem) scale(1.01);
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.Orange};
+    box-shadow: 0 0 1rem ${({ theme }) => theme.colors.Orange};
     background-color: rgba(221, 114, 48, 0.1);
   }
   ${media.phone} {
@@ -54,7 +54,7 @@ export const RecipeWrapper = styled(Link)`
 `
 
 export const Title = styled.h1`
-  filter: drop-shadow(2px 4px 6px black);
+  filter: drop-shadow(0.2rem 0.4rem 0.6rem black);
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Red};
@@ -69,9 +69,9 @@ export const Title = styled.h1`
 `
 
 export const Image = styled.img`
-  box-shadow: 0 2px 5px black;
-  border: 2px solid ${({ theme }) => theme.colors.Brown};
-  border-radius: 2px;
+  box-shadow: 0 0.2rem 0.5rem black;
+  border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
+  border-radius: 0.2rem;
   height: 40%;
   max-width: 100%;
   ${media.phone} {
@@ -89,12 +89,12 @@ export const Image = styled.img`
 `
 
 /* Info */
-export const InfoWrapper = styled.section`
+export const InfoSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 20%;
+  height: 25%;
 `
 
 export const Serving = styled.h2`
@@ -106,24 +106,28 @@ export const Calories = styled.h2`
 `
 
 /* Labels */
-export const LabelWrapper = styled.article`
+export const HealthSection = styled.section`
   ${labelWrapperStyles}
 `
 
-export const DietLabel = styled.h3`
+export const DietSection = styled.section`
+  ${labelWrapperStyles}
+`
+
+export const Diet = styled.h3`
   ${labelStyles}
 `
 
-export const HealthLabel = styled.h3`
+export const Health = styled.h3`
   ${labelStyles}
 `
 
 /* Caution */
-export const CautionWrapper = styled.article`
+export const CautionSection = styled.section`
   ${labelWrapperStyles}
 `
 
-export const CautionLabel = styled.h3`
+export const Caution = styled.h3`
   ${labelStyles}
   color: ${({ theme }) => theme.colors.Red};
 `
