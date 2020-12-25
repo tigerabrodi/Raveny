@@ -2,17 +2,18 @@ import { Recipe as TRecipe } from 'types'
 import { Strong, Check, Warn } from 'styles'
 import { v4 as uuidv4 } from 'uuid'
 import {
-  RecipeWrapper,
+  RecipeWrapperLink,
   Title,
   Image,
   Calories,
-  DietLabel,
-  HealthLabel,
-  LabelWrapper,
-  CautionWrapper,
+  Diet,
+  Health,
+  DietSection,
+  HealthSection,
+  CautionSection,
   Serving,
-  CautionLabel,
-  InfoWrapper,
+  Caution,
+  InfoSection,
 } from './styles'
 
 type RecipeProps = {
@@ -31,7 +32,7 @@ export const Recipe = ({
     yield: servings,
   },
 }: RecipeProps) => (
-  <RecipeWrapper to={`/recipe/${uri}`}>
+  <RecipeWrapperLink to={`/recipe/${uri}`}>
     <Title> {label} </Title>
     <Image src={image} alt={label} />
     <Calories>
@@ -42,32 +43,32 @@ export const Recipe = ({
       <Strong>Servings: </Strong>
       {servings}
     </Serving>
-    <InfoWrapper>
+    <InfoSection>
       {cautions.length > 0 && (
-        <CautionWrapper>
+        <CautionSection>
           {cautions.map((caution) => (
-            <CautionLabel key={uuidv4()}>
+            <Caution key={uuidv4()}>
               <Strong>{caution}</Strong> <Warn />
-            </CautionLabel>
+            </Caution>
           ))}
-        </CautionWrapper>
+        </CautionSection>
       )}
-      <LabelWrapper>
+      <DietSection>
         {dietLabels.length > 0 &&
           dietLabels.map((diet) => (
-            <DietLabel key={uuidv4()}>
+            <Diet key={uuidv4()}>
               <Strong>{diet}</Strong> <Check />
-            </DietLabel>
+            </Diet>
           ))}
-      </LabelWrapper>
-      <LabelWrapper>
+      </DietSection>
+      <HealthSection>
         {healthLabels.length > 0 &&
           healthLabels.map((health) => (
-            <HealthLabel key={uuidv4()}>
+            <Health key={uuidv4()}>
               <Strong>{health}</Strong> <Check />
-            </HealthLabel>
+            </Health>
           ))}
-      </LabelWrapper>
-    </InfoWrapper>
-  </RecipeWrapper>
+      </HealthSection>
+    </InfoSection>
+  </RecipeWrapperLink>
 )
