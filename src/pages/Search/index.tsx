@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useState,
+  KeyboardEvent,
+} from 'react'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { useRavenyContext } from 'context/RavenyContext'
@@ -51,13 +57,24 @@ type SearchState = {
 
 export const Search = () => {
   const [isMobile, setIsMobile] = useState(false)
+  /* Error States */
   const [shouldShowErrorCharacters, setShouldShowErrorCharacters] = useState(
     false
   )
   const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(false)
-  const [shouldShowErrorIngredients, setShouldShowErrorIngredients] = useState(
-    false
-  )
+  const [
+    shouldShowErrorExcludedIngredients,
+    setShouldShowErrorExcludedIngredients,
+  ] = useState(false)
+  const [
+    shouldShowErrorCharacterIngredients,
+    setShouldShowErrorCharacterIngredients,
+  ] = useState(false)
+
+  const [
+    alreadyExcludedIngredientName,
+    setAlreadyExcludedIngredientName,
+  ] = useState('')
 
   const [searchState, setSearchState] = useState<SearchState>({
     searchValue: '',
@@ -101,6 +118,11 @@ export const Search = () => {
     })
   }
 
+  /* Capitalize */
+  const capitalizeName = (name: string) => {
+    return `${name[0].toUpperCase()}${name.slice(1).toLowerCase()}`
+  }
+
   /* Ingredient Operations */
   const removeIngredient = (id: string) => {
     setSearchState({
@@ -111,10 +133,30 @@ export const Search = () => {
     })
   }
 
-  const addIngredient = (name: string) => {
+  const addIngredient = (name: string, event?: KeyboardEvent) => {
+    const alreadyExcludedIngredient = excludedIngredients.find(
+      (ingredient) => ingredient.name.toLowerCase() === name.toLowerCase()
+    )
+
+    if (event && event.key === 'Enter') {
+      event.preventDefault()
+    }
+
     if (name.length < 3) {
-      setShouldShowErrorIngredients(true)
-      return setTimeout(() => setShouldShowErrorIngredients(false), 3000)
+      setShouldShowErrorCharacterIngredients(true)
+      return setTimeout(
+        () => setShouldShowErrorCharacterIngredients(false),
+        2500
+      )
+    } else if (alreadyExcludedIngredient) {
+      setAlreadyExcludedIngredientName(
+        capitalizeName(alreadyExcludedIngredient.name)
+      )
+      setShouldShowErrorExcludedIngredients(true)
+      return setTimeout(
+        () => setShouldShowErrorExcludedIngredients(false),
+        2500
+      )
     } else {
       setSearchState({
         ...searchState,
@@ -188,7 +230,7 @@ export const Search = () => {
         <Pan role="img" title="A cooking pan." />
       </TitleSection>
 
-      <SearchForm onSubmit={(e) => onSubmit(e)} autoComplete="off">
+      <SearchForm onSubmit={(event) => onSubmit(event)} autoComplete="off">
         <QuerySection>
           <QueryInputSection>
             <QueryInput
@@ -271,6 +313,9 @@ export const Search = () => {
               placeholder="Exclude calories..."
               name="excludeValue"
               value={excludeValue}
+              onKeyPress={(event) =>
+                event.key === 'Enter' && addIngredient(excludeValue, event)
+              }
               onChange={(event) => handleChange(event)}
               type="text"
             />
@@ -286,10 +331,16 @@ export const Search = () => {
           <ExcludeErrorMessage
             role="alert"
             id="excludeError"
-            shouldShowErrorMessage={shouldShowErrorIngredients}
+            shouldShowErrorMessage={
+              shouldShowErrorExcludedIngredients ||
+              shouldShowErrorCharacterIngredients
+            }
           >
-            Please enter at least 3 characters for the ingredient to be
-            excluded.
+            {shouldShowErrorCharacterIngredients
+              ? 'Please enter at least 3 characters for the ingredient to be excluded.'
+              : shouldShowErrorExcludedIngredients
+              ? `Ingredient "${alreadyExcludedIngredientName}" is already being included.`
+              : null}
           </ExcludeErrorMessage>
 
           <ExcludeIngredientsList>
