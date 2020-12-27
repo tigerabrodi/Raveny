@@ -2,7 +2,11 @@ import { useEffect } from 'react'
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { client } from 'utils/client'
 import { Recipe } from 'components/Recipe'
-import { RecipesWrapper } from 'components/Recipe/styles'
+import {
+  RecipesHeading,
+  RecipesMain,
+  RecipesSection,
+} from 'components/Recipe/styles'
 import { Spinner } from 'components/Spinner'
 import {
   NoRecipesWrapper,
@@ -50,11 +54,14 @@ export const Recipes = () => {
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
-    <RecipesWrapper>
-      {state.recipes.map((recipe) => (
-        <Recipe recipe={recipe} key={recipe.uri} />
-      ))}
-    </RecipesWrapper>
+    <RecipesMain>
+      <RecipesHeading>{state.results} Results</RecipesHeading>
+      <RecipesSection>
+        {state.recipes.map((recipe) => (
+          <Recipe recipe={recipe} key={recipe.uri} />
+        ))}
+      </RecipesSection>
+    </RecipesMain>
   ) : (
     <NoRecipesWrapper>
       <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>

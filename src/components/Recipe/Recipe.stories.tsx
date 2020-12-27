@@ -1,16 +1,19 @@
 import { recipesData } from 'data'
-import { RecipesWrapper } from './styles'
+import { RecipesMain, RecipesSection, RecipesHeading } from './styles'
 import { Recipe as RecipeComponent } from '.'
 
 export default {
   component: RecipeComponent,
-  title: 'components/Recipe',
+  title: 'pages/Recipe',
 }
 
 export const Recipe = () => (
-  <RecipesWrapper>
-    {recipesData.map((recipe) => (
-      <RecipeComponent recipe={recipe} key={recipe.uri} />
-    ))}
-  </RecipesWrapper>
+  <RecipesMain>
+    <RecipesHeading>456 Results</RecipesHeading>
+    <RecipesSection>
+      {recipesData.map((recipe) => (
+        <RecipeComponent recipe={recipe} key={recipe.uri} />
+      ))}
+    </RecipesSection>
+  </RecipesMain>
 )

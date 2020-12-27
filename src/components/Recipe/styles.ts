@@ -8,9 +8,21 @@ import {
   wrapperStyles,
 } from 'styles'
 
-// Recipes Wrapper (Exported)
-export const RecipesWrapper = styled.main`
+/* Exported Styles for Pages with Recipes */
+export const RecipesMain = styled.main`
   ${wrapperStyles}
+  display: grid;
+  grid-template-areas:
+    'title'
+    'recipes';
+  align-items: center;
+  justify-items: center;
+`
+
+export const RecipesSection = styled.section`
+  grid-area: recipes;
+  height: auto;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -19,6 +31,15 @@ export const RecipesWrapper = styled.main`
   gap: 1rem;
 `
 
+export const RecipesHeading = styled.h1`
+  grid-area: title;
+  font-family: ${({ theme }) => theme.fonts.Lora};
+  font-size: 5rem;
+  color: ${({ theme }) => theme.colors.Orange};
+  filter: drop-shadow(0.2rem 0.4rem 0.6rem black);
+`
+
+/* Styles for Recipe Component */
 export const RecipeWrapperLink = styled(Link)`
   text-decoration: none;
   height: 45rem;
