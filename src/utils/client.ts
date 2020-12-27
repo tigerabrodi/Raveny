@@ -34,7 +34,10 @@ export const client = async ({
       if (shouldFetchMultipleRecipes === true) {
         dispatch({
           type: 'recipesResolved',
-          payload: successData.hits.map((hit) => hit.recipe),
+          payload: {
+            results: successData.count,
+            recipes: successData.hits.map((hit) => hit.recipe),
+          },
         })
       }
 
