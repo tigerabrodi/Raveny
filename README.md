@@ -4,7 +4,7 @@ A website where people can find recipes, search based on different criterias, an
 
 ## Background and Goal :confetti_ball:
 
-I love food and I like cooking :yum:. My main goal with this project is to try building a production-ready & accessible app and along the way implement things I have learned from various workshops :blush:. After releasing the initial version, I plan on collecting feedback for a week or two, then maintain/update this project for about 1-2 months, aside from fixing bugs and improving the UX/UI, I will probably even add new features :tada:
+I love food and I like cooking :yum:. My main goal with this project is to build a production-ready & accessible app and along the way implement things I have learned from various workshops :blush:. After releasing the initial version, I plan on collecting feedback for a week or two, then maintain/update this project for about 1-2 months, aside from fixing bugs and improving the UX/UI, I will probably even add new features :tada:
 
 ## Installation :page_with_curl:
 
