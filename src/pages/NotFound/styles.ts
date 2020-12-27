@@ -12,7 +12,7 @@ export const NotFoundSVG = styled(NotFoundSVG404)`
   height: 100%;
   width: 95%;
   grid-area: svg;
-  filter: drop-shadow(0 0 3px ${({ theme }) => theme.colors.Orange});
+  filter: drop-shadow(0 0 0.3rem ${({ theme }) => theme.colors.Orange});
   position: absolute;
   top: 35%;
   left: 50%;

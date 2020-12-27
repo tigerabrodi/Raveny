@@ -47,8 +47,8 @@ export const Button = styled.button`
   height: 4rem;
   font-size: 1.6rem;
   width: 15rem;
-  border: 2px solid ${({ theme }) => theme.colors.Orange};
-  border-radius: 5px;
+  border: 0.2rem solid ${({ theme }) => theme.colors.Orange};
+  border-radius: 0.5rem;
   background-color: transparent;
   color: ${({ theme }) => theme.colors.Orange};
   transition: all 0.3s;

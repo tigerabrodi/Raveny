@@ -40,11 +40,11 @@ export const InfoWrapper = styled.section`
 export const InfoText = styled.h1`
   font-family: ${({ theme }) => theme.fonts.Lora};
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
   color: ${({ theme }) => theme.colors.White};
   font-weight: 600;
   font-size: clamp(4rem, 10vw, 6rem);
-  filter: drop-shadow(2px 4px 6px black);
+  text-shadow: 0.2rem 0.4rem 0.6rem black;
   ${media.tablet} {
     font-size: 7rem;
   }
@@ -55,11 +55,11 @@ export const InfoText = styled.h1`
 export const InfoLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.Orange};
-  letter-spacing: 2px;
+  letter-spacing: 0.2rem;
   width: 17rem;
   height: 5rem;
   font-size: 2.5rem;
-  border: 2px solid ${({ theme }) => theme.colors.Orange};
+  border: 0.2rem solid ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-weight: 600;
   display: flex;
@@ -75,7 +75,7 @@ export const InfoLink = styled(Link)`
   }
   &:hover {
     color: ${({ theme }) => theme.colors.White};
-    box-shadow: 0 5px 10px black;
+    box-shadow: 0 0.5rem 1rem black;
   }
   &::after {
     content: '';
@@ -149,7 +149,7 @@ const pulse = keyframes`
 
 export const RecipeBook = styled(RecipeBookSVG)`
   animation: ${pulse} 1s alternate infinite;
-  filter: drop-shadow(0 0 3px ${({ theme }) => theme.colors.Brown});
+  filter: drop-shadow(0 0 0.3rem ${({ theme }) => theme.colors.Brown});
   position: absolute;
   top: 50%;
   left: 50%;

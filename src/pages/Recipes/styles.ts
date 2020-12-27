@@ -14,7 +14,7 @@ export const NoRecipesWrapper = styled.main`
 `
 
 export const NoRecipesTitle = styled.h1`
-  filter: drop-shadow(2px 4px 6px black);
+  text-shadow: 0.2rem 0.4rem 0.6rem black;
   text-align: center;
   color: ${({ theme }) => theme.colors.Orange};
   font-weight: bold;
@@ -27,7 +27,7 @@ export const NoRecipesTitle = styled.h1`
 
 export const SadFace = styled(EmojiFrown)`
   fill: ${({ theme }) => theme.colors.Orange};
-  filter: drop-shadow(0 0 10px ${({ theme }) => theme.colors.Brown});
+  filter: drop-shadow(0 0 1rem ${({ theme }) => theme.colors.Brown});
   height: 40%;
 `
 
@@ -43,7 +43,7 @@ export const NoRecipesButton = styled(Link)`
   cursor: pointer;
   background-color: transparent;
   transition: all 0.2s;
-  border: 2px solid ${({ theme }) => theme.colors.Orange};
+  border: 0.2rem solid ${({ theme }) => theme.colors.Orange};
   height: 5rem;
   width: 13rem;
   z-index: 10;
@@ -75,7 +75,7 @@ export const NoRecipesButton = styled(Link)`
     outline: none;
   }
   &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.colors.White};
+    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
   }
   &:active {
     box-shadow: none;

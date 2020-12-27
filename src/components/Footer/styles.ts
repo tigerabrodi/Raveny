@@ -8,7 +8,7 @@ export const FooterWrapper = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 1px solid ${({ theme }) => theme.colors.Orange};
+  border-top: 0.1rem solid ${({ theme }) => theme.colors.Orange};
 `
 
 export const Text = styled.p`
@@ -16,7 +16,7 @@ export const Text = styled.p`
   font-size: 1.5rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Brown};
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
 `
 
 const pulse = keyframes`
@@ -38,7 +38,7 @@ export const HeartIcon = styled(HeartFill)`
 export const TextLink = styled.a`
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: 1.8rem;
-  text-shadow: 0 0 5px black;
+  text-shadow: 0 0 0.5rem black;
   color: ${({ theme }) => theme.colors.Orange};
   text-decoration: none;
 `

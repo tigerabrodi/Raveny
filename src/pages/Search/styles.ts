@@ -10,7 +10,7 @@ const caloriesInputStyles = css`
   text-align: center;
   color: ${({ theme }) => theme.colors.Gray};
   background-color: ${({ theme }) => theme.colors.Black};
-  border: 2px solid ${({ theme }) => theme.colors.Brown};
+  border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   transition: 0.3s;
   height: 100%;
   width: 40%;
@@ -27,7 +27,7 @@ const caloriesInputStyles = css`
   }
   &:focus {
     outline: none;
-    box-shadow: 0 3px 5px black;
+    box-shadow: 0 0.3rem 0.5rem black;
   }
 `
 
@@ -39,7 +39,7 @@ const buttonStyles = css`
   transform: translate(-50%, -50%);
   background-color: transparent;
   border: none;
-  border-left: 2px solid ${({ theme }) => theme.colors.Brown};
+  border-left: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -107,7 +107,7 @@ const inputStyles = css`
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Gray};
   background-color: ${({ theme }) => theme.colors.Black};
-  border: 2px solid ${({ theme }) => theme.colors.Brown};
+  border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   transition: all 0.3s;
   padding-left: 1rem;
   ${media.phone} {
@@ -163,8 +163,8 @@ export const Title = styled.label`
   font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
   font-weight: 700;
-  filter: drop-shadow(2px 4px 6px black);
-  letter-spacing: 1px;
+  text-shadow: 0.2rem 0.4rem 0.6rem black;
+  letter-spacing: 0.1rem;
   ${media.tablet} {
     font-size: max(3.5rem, 4vw);
   }
@@ -177,7 +177,7 @@ export const TitleSection = styled.section`
   justify-content: space-around;
   width: 100%;
   ${media.tablet} {
-    border-bottom: 3px solid ${({ theme }) => theme.colors.Orange};
+    border-bottom: 0.3rem solid ${({ theme }) => theme.colors.Orange};
   }
   ${media.desktop} {
     width: 90%;
@@ -225,7 +225,7 @@ export const QueryInputValidLength = styled.span<{
   searchNumberLength: number
 }>`
   font-size: 1.3rem;
-  letter-spacing: 3px;
+  letter-spacing: 0.3rem;
   font-weight: 700;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -309,7 +309,7 @@ export const caloriesLabelStyles = css`
   font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Lora};
-  filter: drop-shadow(0 2px 2px black);
+  text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   ${media.phone} {
     font-size: 2.2rem;
@@ -352,7 +352,7 @@ export const ExcludeLabel = styled.label`
   grid-area: excludeLabel;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Lora};
-  filter: drop-shadow(0 2px 2px black);
+  text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   font-size: 2.5rem;
   ${media.phone} {
@@ -421,7 +421,7 @@ export const IngredientName = styled.h2`
   margin: 0 0.2rem;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
-  filter: drop-shadow(0 2px 2px black);
+  text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   text-transform: capitalize;
   font-size: 1.5rem;
@@ -436,7 +436,7 @@ export const IngredientRemoveButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  padding: 5px;
+  padding: 0.5rem;
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   &:focus {
@@ -450,7 +450,7 @@ const ErrorMessage = styled.span<{ shouldShowErrorMessage: boolean }>`
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.LightRed};
-  filter: drop-shadow(0 2px 2px black);
+  text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   letter-spacing: 0.2rem;
   visibility: hidden;
@@ -494,7 +494,7 @@ export const ExcludeErrorMessage = styled(ErrorMessage)`
 /* Animations */
 const cook = keyframes`
     from {
-    transform: translateY(-3px) translateX(-2px) rotate(8deg) scale(-1, 1);
+    transform: translateY(-.3rem) translateX(-.2rem) rotate(8deg) scale(-1, 1);
     }
 
     to {
