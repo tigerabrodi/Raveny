@@ -36,7 +36,7 @@ export const RecipesHeading = styled.h1`
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: 5rem;
   color: ${({ theme }) => theme.colors.Orange};
-  filter: drop-shadow(0.2rem 0.4rem 0.6rem black);
+  text-shadow: 0.2rem 0.4rem 0.6rem black;
 `
 
 /* Styles for Recipe Component */
@@ -75,7 +75,7 @@ export const RecipeWrapperLink = styled(Link)`
 `
 
 export const Title = styled.h1`
-  filter: drop-shadow(0.2rem 0.4rem 0.6rem black);
+  text-shadow: 0.2rem 0.4rem 0.6rem black;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Red};

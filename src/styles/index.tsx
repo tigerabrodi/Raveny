@@ -49,21 +49,21 @@ export const wrapperStyles = css`
 
 /* Strong Tag */
 export const Strong = styled.strong`
-  filter: drop-shadow(0 2px 2px black);
+  text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   white-space: pre-wrap;
 `
 
 /* Icons */
 export const Check = styled(Check2Square)`
-  filter: drop-shadow(0 2px 2px black);
+  filter: drop-shadow(0 0.2rem 0.2rem black);
   color: ${({ theme }) => theme.colors.Green};
   height: 2rem;
   margin-left: 0.5rem;
 `
 
 export const Warn = styled(ExclamationTriangleFill)`
-  filter: drop-shadow(0 2px 2px black);
+  filter: drop-shadow(0 0.2rem 0.2rem black);
   height: 2rem;
   color: ${({ theme }) => theme.colors.Red};
   margin-left: 0.5rem;

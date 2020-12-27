@@ -35,7 +35,7 @@ export const LogoLink = styled(RouterLink)`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Orange};
   margin: 0 1rem 0 2rem;
-  filter: drop-shadow(0.2rem 0.4rem 0.6rem black);
+  text-shadow: 0.2rem 0.4rem 0.6rem black;
   transition: all 0.2s;
   &:hover {
     transform: translateY(-0.2rem);
