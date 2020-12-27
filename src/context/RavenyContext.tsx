@@ -1,7 +1,7 @@
 import {
   createContext,
   Dispatch,
-  PropsWithChildren,
+  ReactElement,
   Reducer,
   useContext,
   useReducer,
@@ -14,10 +14,10 @@ interface InitialState {
   stateType: 'initialState'
 }
 
-/** Pending State */
-interface PendingState {
-  status: 'pending'
-  stateType: 'pendingState'
+/** Loading State */
+interface LoadingState {
+  status: 'loading'
+  stateType: 'loadingState'
 }
 
 /** Single Recipes State */
@@ -41,17 +41,17 @@ interface ErrorState {
   stateType: 'errorState'
 }
 
-/** Raveny State */
+/** State Type */
 type RavenyState =
   | InitialState
-  | PendingState
+  | LoadingState
   | SingleRecipeState
   | RecipesState
   | ErrorState
 
-/** Raveny action union type for the reducer */
+/** Action Type */
 export type Action =
-  | { type: 'pending' }
+  | { type: 'loading' }
   | { type: 'singleRecipeResolved'; payload: Recipe }
   | { type: 'recipesResolved'; payload: Recipe[] }
   | { type: 'rejected'; payload: string }
@@ -61,12 +61,13 @@ const initialState: RavenyState = {
   stateType: 'initialState',
 }
 
+/* Reducer */
 const ravenyReducer = (state: RavenyState, action: Action): RavenyState => {
   switch (action.type) {
-    case 'pending':
+    case 'loading':
       return {
-        status: 'pending',
-        stateType: 'pendingState',
+        status: 'loading',
+        stateType: 'loadingState',
       }
     case 'singleRecipeResolved':
       return {
@@ -91,35 +92,59 @@ const ravenyReducer = (state: RavenyState, action: Action): RavenyState => {
   }
 }
 
-/** The Raveny context's type */
-type RavenyContextType = {
+/* Context State */
+type RavenyContextStateType = {
   state: RavenyState
+}
+
+const RavenyStateContext = createContext<RavenyContextStateType>({
+  state: initialState,
+})
+
+/* Context Dispatch */
+type RavenyContextDispatchType = {
   dispatch: Dispatch<Action>
 }
 
-const RavenyContext = createContext<RavenyContextType>({
-  state: initialState,
+const RavenyDispatchContext = createContext<RavenyContextDispatchType>({
   dispatch: () => {},
 })
 
-RavenyContext.displayName = 'RavenyContext'
+/* Context Names */
+RavenyDispatchContext.displayName = 'RavenyContextDispatch'
+RavenyStateContext.displayName = 'RavenyContextState'
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-const RavenyProvider = (props: PropsWithChildren<{}>) => {
+/* Provider */
+const RavenyProvider = ({ children }: { children: ReactElement }) => {
   const [state, dispatch] = useReducer<Reducer<RavenyState, Action>>(
     ravenyReducer,
     initialState
   )
-  const value = { state, dispatch }
-  return <RavenyContext.Provider value={value} {...props} />
+
+  return (
+    <RavenyStateContext.Provider value={{ state }}>
+      <RavenyDispatchContext.Provider value={{ dispatch }}>
+        {children}
+      </RavenyDispatchContext.Provider>
+    </RavenyStateContext.Provider>
+  )
 }
 
-const useRavenyContext = (): RavenyContextType => {
-  const context = useContext(RavenyContext)
+/* Consumer Hooks */
+const useRavenyState = () => {
+  const context = useContext(RavenyStateContext)
   if (!context) {
-    throw new Error(`No provider for RavenyContext given`)
+    throw new Error(`No provider for RavenyStateContext given`)
   }
   return context
 }
 
-export { RavenyProvider, useRavenyContext }
+const useRavenyDispatch = () => {
+  const context = useContext(RavenyDispatchContext)
+  if (!context) {
+    throw new Error(`No provider for RavenyDispatchContext given`)
+  }
+  return context
+}
+
+export { RavenyProvider, useRavenyDispatch, useRavenyState }

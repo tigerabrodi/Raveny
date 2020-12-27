@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { useRavenyContext } from 'context/RavenyContext'
+import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { client } from 'utils/client'
-import { Spinner } from 'components/Spinner'
 import { Recipe } from 'components/Recipe'
 import { RecipesWrapper } from 'components/Recipe/styles'
+import { Spinner } from 'components/Spinner'
 
 // API Key, ID and URL
 const apiURL = process.env.REACT_APP_API_URL
@@ -11,7 +11,8 @@ const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
 
 export const Vegan = () => {
-  const { state, dispatch } = useRavenyContext()
+  const { state } = useRavenyState()
+  const { dispatch } = useRavenyDispatch()
 
   const urlToQuery = new URL(apiURL!)
 
@@ -31,7 +32,7 @@ export const Vegan = () => {
     })
   }, [dispatch, urlToQuery.href])
 
-  if (state.status === 'pending') {
+  if (state.status === 'loading') {
     return <Spinner />
   }
 

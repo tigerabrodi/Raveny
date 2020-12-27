@@ -5,9 +5,9 @@ import {
   useState,
   KeyboardEvent,
 } from 'react'
+import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import { useRavenyContext } from 'context/RavenyContext'
 import { Spinner } from 'components/Spinner'
 import { client } from 'utils/client'
 import {
@@ -92,14 +92,14 @@ export const Search = () => {
     excludedIngredients,
   } = searchState
 
-  const history = useHistory()
-
-  const { state, dispatch } = useRavenyContext()
-
   const urlToQuery = new URL(apiURL!)
 
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
+
+  const { dispatch } = useRavenyDispatch()
+  const { state } = useRavenyState()
+  const history = useHistory()
 
   /* Change Events */
   const handleCaloriesChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -168,14 +168,13 @@ export const Search = () => {
 
   const onSubmit = (event: FormEvent): void | number => {
     event.preventDefault()
-
     /* Input Validation */
     if (searchValue.length < 3) {
       setShouldShowErrorCharacters(true)
-      return setTimeout(() => setShouldShowErrorCharacters(false), 3000)
-    } else if (minCalories > maxCalories) {
+      return setTimeout(() => setShouldShowErrorCharacters(false), 2500)
+    } else if (Number(minCalories) > Number(maxCalories)) {
       setShouldShowErrorCalories(true)
-      return setTimeout(() => setShouldShowErrorCalories(false), 3000)
+      return setTimeout(() => setShouldShowErrorCalories(false), 2500)
     } else {
       /* Query Params */
       urlToQuery.searchParams.append('app_key', apiKEY!)
@@ -194,12 +193,12 @@ export const Search = () => {
       /* Fetch Recipes */
       client({
         dispatch,
+        history,
         url: urlToQuery.href,
+        redirectRoute: '/recipes',
         shouldUseSessionStorage: true,
         shouldFetchMultipleRecipes: true,
         shouldRedirect: true,
-        history,
-        redirectUrl: '/recipes',
       })
     }
   }
@@ -215,7 +214,7 @@ export const Search = () => {
     return () => window.removeEventListener('resize', setIsMobileView)
   }, [])
 
-  if (state.status === 'pending') {
+  if (state.status === 'loading') {
     return <Spinner />
   }
 
