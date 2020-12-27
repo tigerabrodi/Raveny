@@ -23,8 +23,3 @@ export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   layout: 'fullscreen',
 }
-
-if (typeof global.process === 'undefined') {
-  const { worker } = require('../src/mocks/browser')
-  worker.start()
-}
