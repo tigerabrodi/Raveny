@@ -171,10 +171,10 @@ export const Search = () => {
     /* Input Validation */
     if (searchValue.length < 3) {
       setShouldShowErrorCharacters(true)
-      return setTimeout(() => setShouldShowErrorCharacters(false), 2500)
+      return window.setTimeout(() => setShouldShowErrorCharacters(false), 2500)
     } else if (Number(minCalories) > Number(maxCalories)) {
       setShouldShowErrorCalories(true)
-      return setTimeout(() => setShouldShowErrorCalories(false), 2500)
+      return window.setTimeout(() => setShouldShowErrorCalories(false), 2500)
     } else {
       /* Query Params */
       urlToQuery.searchParams.append('app_key', apiKEY!)
