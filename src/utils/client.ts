@@ -5,22 +5,22 @@ import { History } from 'history'
 
 export const client = async ({
   dispatch = {} as Dispatch<Action>,
+  history = {} as History,
   url = '',
+  redirectRoute = '',
   shouldUseSessionStorage = false,
   shouldRedirect = false,
   shouldFetchMultipleRecipes = false,
-  history = {} as History,
-  redirectUrl = '',
 } = {}) => {
+  dispatch({ type: 'loading' })
+
   try {
-    dispatch({ type: 'pending' })
     const response = await window.fetch(url)
     if (response.ok) {
-      // Successful response
       const successData: SuccessResponse = await response.json()
 
+      /* Persist URL in Session Storage */
       if (shouldUseSessionStorage === true) {
-        // URL to be persisted in sessionStorage
         const urlToSessionStorage = new URL(url)
         urlToSessionStorage.searchParams.delete('app_key')
         urlToSessionStorage.searchParams.delete('app_id')
@@ -30,7 +30,7 @@ export const client = async ({
         )
       }
 
-      //   Fetch multiple recipes
+      /* Multiple Recipes */
       if (shouldFetchMultipleRecipes === true) {
         dispatch({
           type: 'recipesResolved',
@@ -38,20 +38,13 @@ export const client = async ({
         })
       }
 
-      //   Redirect
-      if (
-        shouldRedirect === true &&
-        history !== undefined &&
-        redirectUrl !== undefined
-      ) {
-        history.push(redirectUrl)
+      /* Should Redirect to Route */
+      if (shouldRedirect === true && redirectRoute !== undefined) {
+        history.push(redirectRoute)
       }
     } else {
-      // Failure Response
       const failureData = await response.json()
-
       dispatch({ type: 'rejected', payload: failureData.message })
-
       throw new Error(
         `Something went wrong with the request, message: ${failureData.message}`
       )

@@ -1,21 +1,22 @@
 import { useEffect } from 'react'
-import { useRavenyContext } from 'context/RavenyContext'
+import { useRavenyState, useRavenyDispatch } from 'context/RavenyContext'
 import { client } from 'utils/client'
-import { Spinner } from 'components/Spinner'
 import { Recipe } from 'components/Recipe'
 import { RecipesWrapper } from 'components/Recipe/styles'
+import { Spinner } from 'components/Spinner'
 
-// API Key, ID and URL
+/* Environment Variables */
 const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
 
 export const HighProtein = () => {
-  const { state, dispatch } = useRavenyContext()
+  const { state } = useRavenyState()
+  const { dispatch } = useRavenyDispatch()
 
   const urlToQuery = new URL(apiURL!)
 
-  // Set query params
+  /* Query Params */
   urlToQuery.searchParams.append('app_key', apiKEY!)
   urlToQuery.searchParams.append('app_id', apiID!)
   urlToQuery.searchParams.append('q', 'chicken')
@@ -31,7 +32,7 @@ export const HighProtein = () => {
     })
   }, [dispatch, urlToQuery.href])
 
-  if (state.status === 'pending') {
+  if (state.status === 'loading') {
     return <Spinner />
   }
 
