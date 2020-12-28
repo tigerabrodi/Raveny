@@ -16,15 +16,12 @@ import {
 export const Navigation = () => {
   const [toggleState, setToggleState] = useState(false)
 
-  const {
-    isIntersecting: isNotScrolledDown,
-    intersectingElementRef,
-  } = useOnScreen()
+  const { isVisible, setIntersectingElement } = useOnScreen()
 
   return (
     <>
-      <IntersectingDiv ref={intersectingElementRef} />
-      <Nav shouldShowShadow={!isNotScrolledDown}>
+      <IntersectingDiv ref={setIntersectingElement} />
+      <Nav shouldShowShadow={!isVisible}>
         <LogoWrapper>
           <LogoLink to="/" onClick={() => setToggleState(false)}>
             Raveny
