@@ -86,7 +86,10 @@ const buttonStyles = css`
     top: 0;
     left: 0;
   }
-  &:focus {
+  &:focus-visible {
+    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
+  }
+  &:focus:not(:focus-visible) {
     outline: none;
   }
   &:active svg {
@@ -439,7 +442,10 @@ export const IngredientRemoveButton = styled.button`
   padding: 0.5rem;
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
-  &:focus {
+  &:focus-visible {
+    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
+  }
+  &:focus:not(:focus-visible) {
     outline: none;
   }
 `
