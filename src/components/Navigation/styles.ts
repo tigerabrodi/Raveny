@@ -2,8 +2,20 @@ import styled, { css, keyframes } from 'styled-components'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
+/* Intersected Element */
+export const IntersectingDiv = styled.div`
+  height: 0.1rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  visibility: hidden;
+  z-index: -1000;
+`
+
 /* Navigation Bar */
-export const Nav = styled.nav`
+export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
   position: sticky;
   z-index: 10;
   top: 0;
@@ -14,6 +26,13 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   grid-area: nav;
+  transition: 0.2s;
+  background-color: ${({ theme }) => theme.colors.Black};
+  ${(props) =>
+    props.shouldShowShadow &&
+    css`
+      box-shadow: 0 0.5rem 0.5rem black;
+    `}
 `
 /* Logo */
 export const LogoWrapper = styled.section`
