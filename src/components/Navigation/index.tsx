@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useOnScreen } from 'hooks/useOnScreen'
 import { CookingSVG } from 'components/SVG/CookingSVG'
 import {
   HamburgerMenuLine,
   HamburgerMenuOverlay,
   HamburgerMenuWrapper,
+  IntersectingDiv,
   Link,
   LinksWrapper,
   LogoLink,
@@ -13,9 +15,16 @@ import {
 
 export const Navigation = () => {
   const [toggleState, setToggleState] = useState(false)
+
+  const {
+    isIntersecting: isNotScrolledDown,
+    intersectingElementRef,
+  } = useOnScreen()
+
   return (
     <>
-      <Nav>
+      <IntersectingDiv ref={intersectingElementRef} />
+      <Nav shouldShowShadow={!isNotScrolledDown}>
         <LogoWrapper>
           <LogoLink to="/" onClick={() => setToggleState(false)}>
             Raveny
