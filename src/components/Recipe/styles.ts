@@ -12,6 +12,7 @@ import {
 export const RecipesMain = styled.main`
   ${wrapperStyles}
   display: grid;
+  row-gap: 1rem;
   grid-template-areas:
     'title'
     'recipes'
