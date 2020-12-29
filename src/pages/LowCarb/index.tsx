@@ -9,32 +9,28 @@ import {
 } from 'components/Recipe/styles'
 import { FullPageSpinner } from 'components/Spinner'
 
-// API Key, ID and URL
+/* URL */
 const apiURL = process.env.REACT_APP_API_URL
-const apiKEY = process.env.REACT_APP_API_KEY
-const apiID = process.env.REACT_APP_API_ID
 
 export const LowCarb = () => {
   const { state } = useRavenyState()
   const { dispatch } = useRavenyDispatch()
 
-  const urlToQuery = new URL(apiURL!)
+  const urlObject = new URL(apiURL!)
 
-  // Set query params
-  urlToQuery.searchParams.append('app_key', apiKEY!)
-  urlToQuery.searchParams.append('app_id', apiID!)
-  urlToQuery.searchParams.append('q', 'meat')
-  urlToQuery.searchParams.append('diet', 'low-carb')
-  urlToQuery.searchParams.append('from', '0')
-  urlToQuery.searchParams.append('to', '8')
+  /* Query Params */
+  urlObject.searchParams.append('q', 'meat')
+  urlObject.searchParams.append('diet', 'low-carb')
+
+  const { href } = urlObject
 
   useEffect(() => {
     client({
       dispatch,
-      url: urlToQuery.href,
+      href,
       shouldFetchMultipleRecipes: true,
     })
-  }, [dispatch, urlToQuery.href])
+  }, [dispatch, href])
 
   if (state.status === 'loading') {
     return <FullPageSpinner />

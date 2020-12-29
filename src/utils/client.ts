@@ -3,10 +3,14 @@ import { Action } from 'context/RavenyContext'
 import { SuccessResponse } from 'types'
 import { History } from 'history'
 
+/* KEY & ID */
+const apiKEY = process.env.REACT_APP_API_KEY
+const apiID = process.env.REACT_APP_API_ID
+
 export const client = async ({
   dispatch = {} as Dispatch<Action>,
   history = {} as History,
-  url = '',
+  href = '',
   redirectRoute = '',
   shouldUseSessionStorage = false,
   shouldRedirect = false,
@@ -15,15 +19,21 @@ export const client = async ({
   dispatch({ type: 'loading' })
 
   try {
+    const urlObject = new URL(href)
+    urlObject.searchParams.append('app_key', apiKEY!)
+    urlObject.searchParams.append('app_id', apiID!)
+    urlObject.searchParams.append('from', '0')
+    urlObject.searchParams.append('to', '8')
+
+    const { href: url } = urlObject
+
     const response = await window.fetch(url)
     if (response.ok) {
       const successData: SuccessResponse = await response.json()
 
       /* Persist URL in Session Storage */
-      if (shouldUseSessionStorage === true) {
-        const urlToSessionStorage = new URL(url)
-        urlToSessionStorage.searchParams.delete('app_key')
-        urlToSessionStorage.searchParams.delete('app_id')
+      if (shouldUseSessionStorage) {
+        const urlToSessionStorage = new URL(href)
         window.sessionStorage.setItem(
           'recipesQueryUrl',
           JSON.stringify(urlToSessionStorage.href)
@@ -31,7 +41,7 @@ export const client = async ({
       }
 
       /* Multiple Recipes */
-      if (shouldFetchMultipleRecipes === true) {
+      if (shouldFetchMultipleRecipes) {
         dispatch({
           type: 'recipesResolved',
           payload: {
@@ -42,7 +52,7 @@ export const client = async ({
       }
 
       /* Should Redirect to Route */
-      if (shouldRedirect === true && redirectRoute !== undefined) {
+      if (shouldRedirect && redirectRoute !== undefined) {
         history.push(redirectRoute)
       }
     } else {

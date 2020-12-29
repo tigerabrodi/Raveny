@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
 type Options = {
-  root: HTMLElement | null
-  rootMargin: string
-  threshold: number
+  root?: HTMLElement | null
+  rootMargin?: string
+  threshold?: number
 }
 
 export const useOnScreen = (
@@ -13,7 +13,7 @@ export const useOnScreen = (
   const [
     intersectingElement,
     setIntersectingElement,
-  ] = useState<HTMLDivElement | null>(null)
+  ] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(

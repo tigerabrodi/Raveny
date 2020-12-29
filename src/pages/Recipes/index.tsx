@@ -15,10 +15,6 @@ import {
   NoRecipesButton,
 } from './styles'
 
-/* Environment Variables */
-const apiKEY = process.env.REACT_APP_API_KEY
-const apiID = process.env.REACT_APP_API_ID
-
 export const Recipes = () => {
   const { state } = useRavenyState()
   const { dispatch } = useRavenyDispatch()
@@ -28,13 +24,11 @@ export const Recipes = () => {
   )
 
   /* URL */
-  const urlToQuery = new URL(
+  const urlObject = new URL(
     JSON.parse(window.sessionStorage.getItem('recipesQueryUrl') as string)
   )
 
-  /* Query Params */
-  urlToQuery.searchParams.append('app_key', apiKEY!)
-  urlToQuery.searchParams.append('app_id', apiID!)
+  const { href } = urlObject
 
   useEffect(() => {
     // 'recipesMount' in sessionStorage will be 2 after the first render, therefore fetchRecipes will not be fired on the first render
@@ -43,11 +37,11 @@ export const Recipes = () => {
     if (numbersOfMount === 2) {
       client({
         dispatch,
-        url: urlToQuery.href,
+        href,
         shouldFetchMultipleRecipes: true,
       })
     }
-  }, [dispatch, numbersOfMount, urlToQuery.href])
+  }, [href, dispatch, numbersOfMount])
 
   if (state.status === 'loading') {
     return <FullPageSpinner />
