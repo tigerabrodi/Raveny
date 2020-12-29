@@ -7,7 +7,7 @@ import {
   RecipesMain,
   RecipesSection,
 } from 'components/Recipe/styles'
-import { Spinner } from 'components/Spinner'
+import { FullPageSpinner } from 'components/Spinner'
 import {
   NoRecipesWrapper,
   NoRecipesTitle,
@@ -50,7 +50,7 @@ export const Recipes = () => {
   }, [dispatch, numbersOfMount, urlToQuery.href])
 
   if (state.status === 'loading') {
-    return <Spinner />
+    return <FullPageSpinner />
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (

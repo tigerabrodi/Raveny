@@ -26,7 +26,7 @@ const StyledSpinner = styled(LoadingSpinner)`
   animation: ${spin} 0.5s linear infinite;
 `
 
-export const Spinner = () => (
+export const FullPageSpinner = () => (
   <Main>
     <StyledSpinner aria-label="loading" />
   </Main>
