@@ -42,10 +42,8 @@ import {
   AddIcon,
 } from './styles'
 
-/* Environment Variables */
+/* URL */
 const apiURL = process.env.REACT_APP_API_URL
-const apiKEY = process.env.REACT_APP_API_KEY
-const apiID = process.env.REACT_APP_API_ID
 
 type SearchState = {
   searchValue: string
@@ -70,12 +68,12 @@ export const Search = () => {
     shouldShowErrorCharacterIngredients,
     setShouldShowErrorCharacterIngredients,
   ] = useState(false)
-
   const [
     alreadyExcludedIngredientName,
     setAlreadyExcludedIngredientName,
   ] = useState('')
 
+  /* Search State */
   const [searchState, setSearchState] = useState<SearchState>({
     searchValue: '',
     minCalories: 0,
@@ -177,11 +175,7 @@ export const Search = () => {
       return window.setTimeout(() => setShouldShowErrorCalories(false), 2500)
     } else {
       /* Query Params */
-      urlToQuery.searchParams.append('app_key', apiKEY!)
-      urlToQuery.searchParams.append('app_id', apiID!)
       urlToQuery.searchParams.append('q', searchValue.toLowerCase())
-      urlToQuery.searchParams.append('from', '0')
-      urlToQuery.searchParams.append('to', '8')
       urlToQuery.searchParams.append(
         'calories',
         `${minCalories}-${maxCalories}`
@@ -190,11 +184,13 @@ export const Search = () => {
         urlToQuery.searchParams.append('exclude', name.toLowerCase())
       })
 
+      const { href } = urlToQuery
+
       /* Fetch Recipes */
       client({
         dispatch,
         history,
-        url: urlToQuery.href,
+        href,
         redirectRoute: '/recipes',
         shouldUseSessionStorage: true,
         shouldFetchMultipleRecipes: true,
