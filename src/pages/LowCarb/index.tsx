@@ -7,7 +7,7 @@ import {
   RecipesHeading,
   RecipesSection,
 } from 'components/Recipe/styles'
-import { Spinner } from 'components/Spinner'
+import { FullPageSpinner } from 'components/Spinner'
 
 // API Key, ID and URL
 const apiURL = process.env.REACT_APP_API_URL
@@ -37,7 +37,7 @@ export const LowCarb = () => {
   }, [dispatch, urlToQuery.href])
 
   if (state.status === 'loading') {
-    return <Spinner />
+    return <FullPageSpinner />
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (

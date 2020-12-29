@@ -4,10 +4,10 @@ import { Recipe as RecipeComponent } from '.'
 
 export default {
   component: RecipeComponent,
-  title: 'pages/Recipe',
+  title: 'pages/Recipes',
 }
 
-export const Recipe = () => (
+export const RecipesPage = () => (
   <RecipesMain>
     <RecipesHeading>456 Results</RecipesHeading>
     <RecipesSection>

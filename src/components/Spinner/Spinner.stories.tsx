@@ -1,8 +1,8 @@
-import { Spinner } from '.'
+import { FullPageSpinner } from '.'
 
 export default {
-  component: Spinner,
-  title: 'components/Spinner',
+  component: FullPageSpinner,
+  title: 'components/FullPageSpinner',
 }
 
-export const SpinnerComponent = () => <Spinner />
+export const Spinner = () => <FullPageSpinner />

@@ -8,7 +8,7 @@ import {
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import { Spinner } from 'components/Spinner'
+import { FullPageSpinner } from 'components/Spinner'
 import { client } from 'utils/client'
 import {
   Pan,
@@ -215,7 +215,7 @@ export const Search = () => {
   }, [])
 
   if (state.status === 'loading') {
-    return <Spinner />
+    return <FullPageSpinner />
   }
 
   return (
