@@ -14,7 +14,8 @@ export const RecipesMain = styled.main`
   display: grid;
   grid-template-areas:
     'title'
-    'recipes';
+    'recipes'
+    'spinner';
   align-items: center;
   justify-items: center;
 `
@@ -37,6 +38,13 @@ export const RecipesHeading = styled.h1`
   font-size: 5rem;
   color: ${({ theme }) => theme.colors.Orange};
   text-shadow: 0.2rem 0.4rem 0.6rem black;
+`
+
+export const LoadMoreSpinnerSection = styled.section`
+  grid-area: spinner;
+  position: relative;
+  width: 100%;
+  height: 10rem;
 `
 
 /* Styles for Recipe Component */

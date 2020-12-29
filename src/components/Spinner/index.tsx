@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { ReactComponent as LoadingSpinner } from 'assets/spinner.svg'
 
 const Main = styled.main`
@@ -16,7 +16,7 @@ const spin = keyframes`
     }
 `
 
-const StyledSpinner = styled(LoadingSpinner)`
+export const Spinner = styled(LoadingSpinner)<{ isLoadMoreSpinner?: boolean }>`
   position: absolute;
   transform: translate(-50%, -50%);
   top: 30%;
@@ -24,10 +24,16 @@ const StyledSpinner = styled(LoadingSpinner)`
   fill: ${({ theme }) => theme.colors.Orange};
   height: 20%;
   animation: ${spin} 0.5s linear infinite;
+  ${(props) =>
+    props.isLoadMoreSpinner &&
+    css`
+      top: 50%;
+      height: 50%;
+    `}
 `
 
 export const FullPageSpinner = () => (
   <Main>
-    <StyledSpinner aria-label="loading" />
+    <Spinner aria-label="loading" />
   </Main>
 )
