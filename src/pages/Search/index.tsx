@@ -308,7 +308,7 @@ export const Search = () => {
               placeholder="Exclude calories..."
               name="excludeValue"
               value={excludeValue}
-              onKeyPress={(event) =>
+              onKeyDown={(event) =>
                 event.key === 'Enter' && addIngredient(excludeValue, event)
               }
               onChange={(event) => handleChange(event)}
