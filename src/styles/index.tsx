@@ -65,6 +65,6 @@ export const Check = styled(Check2Square)`
 export const Warn = styled(ExclamationTriangleFill)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
   height: 2rem;
-  color: ${({ theme }) => theme.colors.Red};
+  color: ${({ theme }) => theme.colors.LightRed};
   margin-left: 0.5rem;
 `

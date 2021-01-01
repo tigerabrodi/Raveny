@@ -14,6 +14,5 @@ export const theme: DefaultTheme = {
     Green: '#597C2B',
     Red: '#a50000',
     LightRed: '#ff0f0f',
-    DarkRed: '#580000',
   },
 }

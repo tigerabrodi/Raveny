@@ -84,12 +84,13 @@ export const RecipeWrapperLink = styled(Link)`
 `
 
 export const Title = styled.h1`
-  text-shadow: 0.2rem 0.4rem 0.6rem black;
+  text-shadow: 0 0.2rem 0.5rem black;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
-  color: ${({ theme }) => theme.colors.Red};
+  color: ${({ theme }) => theme.colors.Orange};
   text-align: center;
   font-size: 2.2rem;
+  text-decoration: underline;
   ${media.phone} {
     font-size: 3rem;
   }
@@ -159,5 +160,5 @@ export const CautionSection = styled.section`
 
 export const Caution = styled.h3`
   ${labelStyles}
-  color: ${({ theme }) => theme.colors.Red};
+  color: ${({ theme }) => theme.colors.LightRed};
 `
