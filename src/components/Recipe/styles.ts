@@ -84,7 +84,7 @@ export const RecipeWrapperLink = styled(Link)`
 `
 
 export const Title = styled.h1`
-  text-shadow: 0.2rem 0.4rem 0.6rem black;
+  text-shadow: 0 0.2rem 0.5rem black;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
