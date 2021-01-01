@@ -2,6 +2,16 @@ import styled, { css, keyframes } from 'styled-components'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
+/* Animations */
+const mobileNavVisible = keyframes`
+    to {
+            visibility: visible;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+    }
+`
+
 /* Intersected Element */
 export const IntersectingDiv = styled.div`
   height: 0.1rem;
@@ -59,24 +69,22 @@ export const LogoLink = styled(RouterLink)`
   &:hover {
     transform: translateY(-0.2rem);
   }
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
+  }
   ${media.phone} {
     margin: 0 1rem 0 4rem;
   }
 `
 
 /* Navigation Links */
-const mobileNavVisible = keyframes`
-    to {
-            visibility: visible;
-            opacity: 1;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-    }
-`
 export const LinksWrapper = styled.section<{ isToggled: boolean }>`
   position: fixed;
   z-index: -10;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -30%);
   opacity: 0;
@@ -118,6 +126,12 @@ export const Link = styled(RouterLink).attrs({ activeClassName })`
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
+  }
   &${`.${activeClassName}`}::after {
     color: ${({ theme }) => theme.colors.White};
     opacity: 1;
@@ -162,14 +176,15 @@ type HamburgerMenuLineProps = {
 
 export const HamburgerMenuLine = styled.span<HamburgerMenuLineProps>`
   width: 55%;
-  ${media.phone} {
-    width: 44%;
-  }
   background-color: ${({ theme }) => theme.colors.White};
   height: 15%;
+  margin-left: 0;
   border-radius: 0.5rem;
   position: relative;
   transition: all 0.3s;
+  ${media.phone} {
+    width: 44%;
+  }
   ${({ hideMiddle }) =>
     hideMiddle &&
     css`
@@ -179,13 +194,16 @@ export const HamburgerMenuLine = styled.span<HamburgerMenuLineProps>`
     topToggled &&
     css`
       transform: rotate(40deg) translateY(1rem);
+      margin-left: 1.5rem;
     `};
   ${({ bottomToggled }) =>
     bottomToggled &&
     css`
       transform: rotate(-40deg) translateY(-1rem);
+      margin-left: 1.5rem;
     `};
 `
+
 export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
   border: none;
   background-color: transparent;
