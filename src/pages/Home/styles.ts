@@ -45,7 +45,17 @@ export const InfoText = styled.h1`
   font-weight: 600;
   font-size: clamp(4rem, 10vw, 6rem);
   text-shadow: 0.2rem 0.4rem 0.6rem black;
+  ${media.custom(360)} {
+    padding: 0 2rem;
+  }
+  ${media.custom(375)} {
+    padding: 0 3rem;
+  }
+  ${media.custom(400)} {
+    padding: 0 4rem;
+  }
   ${media.tablet} {
+    padding: 0;
     font-size: 7rem;
   }
   ${media.desktop} {
@@ -69,7 +79,7 @@ export const InfoLink = styled(Link)`
   transition: all 0.2s;
   z-index: 5;
   padding: 1rem 0;
-  margin: 1rem 0;
+  margin: 2rem 0;
   &:active {
     transform: scale(0.95);
   }
@@ -94,6 +104,7 @@ export const InfoLink = styled(Link)`
     transform: scaleX(1);
   }
   ${media.phone} {
+    margin: 1rem 0;
     width: 19rem;
     height: 6rem;
     font-size: 3rem;
@@ -151,10 +162,9 @@ export const RecipeBook = styled(RecipeBookSVG)`
   animation: ${pulse} 1s alternate infinite;
   filter: drop-shadow(0 0 0.3rem ${({ theme }) => theme.colors.Brown});
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   top: 40%;
+  transform: translate(-50%, -50%);
   height: 70%;
   ${media.phone} {
     height: 90%;
