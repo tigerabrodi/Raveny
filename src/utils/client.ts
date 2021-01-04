@@ -55,7 +55,7 @@ export const client = async ({
         })
 
         /* Should Redirect to Route */
-        if (shouldRedirect && redirectRoute !== undefined) {
+        if (shouldRedirect) {
           history.push(redirectRoute)
         }
       } else {
