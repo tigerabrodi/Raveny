@@ -1,13 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { client } from 'utils/client'
 import { Recipe } from 'components/Recipe'
 import {
+  IntersectingElementToLoadMore,
+  LoadMoreSpinnerSection,
   RecipesHeading,
   RecipesMain,
   RecipesSection,
 } from 'components/Recipe/styles'
-import { FullPageSpinner } from 'components/Spinner'
+import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
+import { useOnScreen } from 'hooks/useOnScreen'
 import {
   NoRecipesWrapper,
   NoRecipesTitle,
@@ -18,8 +22,10 @@ import {
 export const Recipes = () => {
   const { state } = useRavenyState()
   const { dispatch } = useRavenyDispatch()
+  const moreRecipesFetchedTimesRef = useRef(1)
+  const mountRef = useRef(1)
 
-  const numbersOfMount = JSON.parse(
+  const isNotFirstRender = JSON.parse(
     window.sessionStorage.getItem('recipesMount') as string
   )
 
@@ -30,18 +36,35 @@ export const Recipes = () => {
 
   const { href } = urlObject
 
-  useEffect(() => {
-    // 'recipesMount' in sessionStorage will be 2 after the first render, therefore fetchRecipes will not be fired on the first render
-    window.sessionStorage.setItem('recipesMount', JSON.stringify(2))
+  const { isVisible, setIntersectingElement } = useOnScreen({
+    threshold: 1,
+  })
 
-    if (numbersOfMount === 2) {
+  useEffect(() => {
+    if (isNotFirstRender === 2 && mountRef.current === 1) {
+      // Should not be called during first render
       client({
         dispatch,
         href,
         shouldFetchMultipleRecipes: true,
       })
+    } else {
+      mountRef.current++
+      window.sessionStorage.setItem('recipesMount', JSON.stringify(2))
     }
-  }, [href, dispatch, numbersOfMount])
+  }, [href, dispatch, isNotFirstRender])
+
+  useEffect(() => {
+    if (isVisible) {
+      client({
+        dispatch,
+        href,
+        moreRecipesFetchedTimes: moreRecipesFetchedTimesRef.current,
+        shouldFetchMoreRecipes: true,
+      })
+      moreRecipesFetchedTimesRef.current++
+    }
+  }, [dispatch, href, isVisible])
 
   if (state.status === 'loading') {
     return <FullPageSpinner />
@@ -52,9 +75,16 @@ export const Recipes = () => {
       <RecipesHeading>{state.results} Results</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={recipe.uri} />
+          <Recipe recipe={recipe} key={uuidv4()} />
         ))}
       </RecipesSection>
+      {state.status === 'loadingMore' ? (
+        <LoadMoreSpinnerSection>
+          <LoadMoreSpinner />
+        </LoadMoreSpinnerSection>
+      ) : state.hasMoreRecipes ? (
+        <IntersectingElementToLoadMore ref={setIntersectingElement} />
+      ) : null}
     </RecipesMain>
   ) : (
     <NoRecipesWrapper>

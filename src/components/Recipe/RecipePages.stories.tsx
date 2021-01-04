@@ -1,5 +1,5 @@
 import { recipesData } from 'data'
-import { Spinner } from 'components/Spinner/index'
+import { LoadMoreSpinner } from 'components/Spinner'
 import {
   RecipesMain,
   RecipesSection,
@@ -33,7 +33,7 @@ export const RecipesPageWithLoadMoreSpinner = () => (
       ))}
     </RecipesSection>
     <LoadMoreSpinnerSection>
-      <Spinner isLoadMoreSpinner />
+      <LoadMoreSpinner />
     </LoadMoreSpinnerSection>
   </RecipesMain>
 )

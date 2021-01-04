@@ -1,20 +1,22 @@
-import { useEffect } from 'react'
-import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
-import { client } from 'utils/client'
+import { v4 as uuidv4 } from 'uuid'
+import { useRavenyState } from 'context/RavenyContext'
 import { Recipe } from 'components/Recipe'
 import {
   RecipesMain,
   RecipesHeading,
   RecipesSection,
+  LoadMoreSpinnerSection,
+  IntersectingElementToLoadMore,
 } from 'components/Recipe/styles'
-import { FullPageSpinner } from 'components/Spinner'
+import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
+import { useOnScreen } from 'hooks/useOnScreen'
+import { useOnInfinite } from 'hooks/useOnInfinite'
 
 /* URL */
 const apiURL = process.env.REACT_APP_API_URL
 
 export const LowCarb = () => {
   const { state } = useRavenyState()
-  const { dispatch } = useRavenyDispatch()
 
   const urlObject = new URL(apiURL!)
 
@@ -24,13 +26,11 @@ export const LowCarb = () => {
 
   const { href } = urlObject
 
-  useEffect(() => {
-    client({
-      dispatch,
-      href,
-      shouldFetchMultipleRecipes: true,
-    })
-  }, [dispatch, href])
+  const { isVisible, setIntersectingElement } = useOnScreen({
+    threshold: 1,
+  })
+
+  useOnInfinite(href, isVisible)
 
   if (state.status === 'loading') {
     return <FullPageSpinner />
@@ -38,12 +38,19 @@ export const LowCarb = () => {
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain>
-      <RecipesHeading>Low Carb</RecipesHeading>
+      <RecipesHeading>Vegan</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={recipe.uri} />
+          <Recipe recipe={recipe} key={uuidv4()} />
         ))}
       </RecipesSection>
+      {state.status === 'loadingMore' ? (
+        <LoadMoreSpinnerSection>
+          <LoadMoreSpinner />
+        </LoadMoreSpinnerSection>
+      ) : state.hasMoreRecipes ? (
+        <IntersectingElementToLoadMore ref={setIntersectingElement} />
+      ) : null}
     </RecipesMain>
   ) : null
 }
