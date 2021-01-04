@@ -16,24 +16,30 @@ const spin = keyframes`
     }
 `
 
-export const Spinner = styled(LoadingSpinner)<{ isLoadMoreSpinner?: boolean }>`
+const spinnerStyles = css`
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 30%;
   left: 50%;
+  transform: translate(-50%, -50%);
   fill: ${({ theme }) => theme.colors.Orange};
   height: 20%;
   animation: ${spin} 0.5s linear infinite;
-  ${(props) =>
-    props.isLoadMoreSpinner &&
-    css`
-      top: 50%;
-      height: 50%;
-    `}
+`
+
+export const FullPage = styled(LoadingSpinner)`
+  ${spinnerStyles}
+  top: 30%;
+`
+
+export const LoadMore = styled(LoadingSpinner)`
+  ${spinnerStyles}
+  top: 50%;
+  height: 70%;
 `
 
 export const FullPageSpinner = () => (
   <Main>
-    <Spinner aria-label="loading" />
+    <FullPage aria-label="loading" />
   </Main>
 )
+
+export const LoadMoreSpinner = () => <LoadMore aria-label="loading" />

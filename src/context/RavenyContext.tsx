@@ -29,8 +29,9 @@ interface SingleRecipeState {
 
 /** Recipes State */
 interface RecipesState {
-  status: 'resolved'
+  status: 'resolved' | 'loadingMore'
   recipes: Recipe[]
+  hasMoreRecipes: boolean
   results: number
   stateType: 'recipesState'
 }
@@ -50,11 +51,19 @@ type RavenyState =
   | RecipesState
   | ErrorState
 
-/** Action Type */
+/* Action Type */
 export type Action =
   | { type: 'loading' }
   | { type: 'singleRecipeResolved'; payload: Recipe }
-  | { type: 'recipesResolved'; payload: { results: number; recipes: Recipe[] } }
+  | {
+      type: 'recipesResolved'
+      payload: { results: number; recipes: Recipe[]; more: boolean }
+    }
+  | {
+      type: 'moreRecipesResolved'
+      payload: { recipes: Recipe[]; more: boolean }
+    }
+  | { type: 'loadingMoreRecipes' }
   | { type: 'rejected'; payload: string }
 
 const initialState: RavenyState = {
@@ -79,10 +88,25 @@ const ravenyReducer = (state: RavenyState, action: Action): RavenyState => {
     case 'recipesResolved':
       return {
         status: 'resolved',
-        recipes: action.payload.recipes,
         results: action.payload.results,
+        recipes: action.payload.recipes,
+        hasMoreRecipes: action.payload.more,
         stateType: 'recipesState',
       }
+    case 'loadingMoreRecipes':
+      return {
+        ...state,
+        status: 'loadingMore',
+        stateType: 'recipesState',
+      } as RecipesState
+    case 'moreRecipesResolved':
+      return {
+        ...state,
+        status: 'resolved',
+        recipes: [...action.payload.recipes],
+        stateType: 'recipesState',
+        hasMoreRecipes: action.payload.more,
+      } as RecipesState
     case 'rejected':
       return {
         status: 'rejected',

@@ -48,6 +48,14 @@ export const LoadMoreSpinnerSection = styled.section`
   height: 10rem;
 `
 
+export const IntersectingElementToLoadMore = styled.div`
+  grid-area: spinner;
+  background-color: transparent;
+  visibility: hidden;
+  width: 100%;
+  height: 3.5rem;
+`
+
 /* Styles for Recipe Component */
 export const RecipeWrapperLink = styled(Link)`
   text-decoration: none;

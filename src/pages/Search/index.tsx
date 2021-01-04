@@ -200,7 +200,6 @@ export const Search = () => {
   }
 
   useEffect(() => {
-    window.sessionStorage.clear()
     /* Short Title in Mobile View */
     const setIsMobileView = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches)
