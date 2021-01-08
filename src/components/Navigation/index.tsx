@@ -20,7 +20,6 @@ export const Navigation = () => {
   const { isVisible, setIntersectingElement } = useOnScreen()
 
   useEffect(() => {
-    /* Focus when toggled, relates to Keyboard Accessibility */
     if (focusRef.current !== null && isToggled) {
       focusRef.current.focus()
     }

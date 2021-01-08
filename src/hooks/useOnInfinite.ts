@@ -1,24 +1,20 @@
 import { useRavenyDispatch } from 'context/RavenyContext'
 import { useEffect, useRef } from 'react'
-import { client } from 'utils/client'
+import { fetchMoreRecipes } from 'utils/fetchMoreRecipes'
+import { fetchRecipes } from 'utils/fetchRecipes'
 
 export const useOnInfinite = (href: string, isVisible: boolean) => {
   const { dispatch } = useRavenyDispatch()
   const moreRecipesFetchedTimesRef = useRef(1)
   useEffect(() => {
-    client({
-      dispatch,
-      href,
-      shouldFetchMultipleRecipes: true,
-    })
+    fetchRecipes(dispatch, href)
   }, [dispatch, href])
 
   useEffect(() => {
     if (isVisible) {
-      client({
+      fetchMoreRecipes({
         dispatch,
         href,
-        shouldFetchMoreRecipes: true,
         moreRecipesFetchedTimes: moreRecipesFetchedTimesRef.current,
       })
       moreRecipesFetchedTimesRef.current++

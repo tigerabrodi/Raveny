@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
-import { client } from 'utils/client'
+import { fetchRecipes } from 'utils/fetchRecipes'
+import { fetchMoreRecipes } from 'utils/fetchMoreRecipes'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
@@ -29,7 +30,6 @@ export const Recipes = () => {
     window.sessionStorage.getItem('recipesMount') as string
   )
 
-  /* URL */
   const urlObject = new URL(
     JSON.parse(window.sessionStorage.getItem('recipesQueryUrl') as string)
   )
@@ -42,12 +42,7 @@ export const Recipes = () => {
 
   useEffect(() => {
     if (isNotFirstRender === 2 && mountRef.current === 1) {
-      // Should not be called during first render
-      client({
-        dispatch,
-        href,
-        shouldFetchMultipleRecipes: true,
-      })
+      fetchRecipes(dispatch, href)
     } else {
       mountRef.current++
       window.sessionStorage.setItem('recipesMount', JSON.stringify(2))
@@ -56,11 +51,10 @@ export const Recipes = () => {
 
   useEffect(() => {
     if (isVisible) {
-      client({
+      fetchMoreRecipes({
         dispatch,
         href,
         moreRecipesFetchedTimes: moreRecipesFetchedTimesRef.current,
-        shouldFetchMoreRecipes: true,
       })
       moreRecipesFetchedTimesRef.current++
     }

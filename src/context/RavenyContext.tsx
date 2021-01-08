@@ -7,43 +7,14 @@ import {
   useReducer,
 } from 'react'
 import { Recipe } from 'types'
+import {
+  ErrorState,
+  InitialState,
+  LoadingState,
+  RecipesState,
+  SingleRecipeState,
+} from './interfaces'
 
-/** Initial State */
-interface InitialState {
-  status: 'idle'
-  stateType: 'initialState'
-}
-
-/** Loading State */
-interface LoadingState {
-  status: 'loading'
-  stateType: 'loadingState'
-}
-
-/** Single Recipes State */
-interface SingleRecipeState {
-  recipe: Recipe
-  status: 'resolved'
-  stateType: 'singleRecipeState'
-}
-
-/** Recipes State */
-interface RecipesState {
-  status: 'resolved' | 'loadingMore'
-  recipes: Recipe[]
-  hasMoreRecipes: boolean
-  results: number
-  stateType: 'recipesState'
-}
-
-/** Error State */
-interface ErrorState {
-  status: 'rejected'
-  error: string
-  stateType: 'errorState'
-}
-
-/** State Type */
 type RavenyState =
   | InitialState
   | LoadingState
@@ -51,7 +22,6 @@ type RavenyState =
   | RecipesState
   | ErrorState
 
-/* Action Type */
 export type Action =
   | { type: 'loading' }
   | { type: 'singleRecipeResolved'; payload: Recipe }
@@ -66,12 +36,19 @@ export type Action =
   | { type: 'loadingMoreRecipes' }
   | { type: 'rejected'; payload: string }
 
+type RavenyContextDispatchType = {
+  dispatch: Dispatch<Action>
+}
+
+type RavenyContextStateType = {
+  state: RavenyState
+}
+
 const initialState: RavenyState = {
   status: 'idle',
   stateType: 'initialState',
 }
 
-/* Reducer */
 const ravenyReducer = (state: RavenyState, action: Action): RavenyState => {
   switch (action.type) {
     case 'loading':
@@ -118,29 +95,17 @@ const ravenyReducer = (state: RavenyState, action: Action): RavenyState => {
   }
 }
 
-/* Context State */
-type RavenyContextStateType = {
-  state: RavenyState
-}
-
 const RavenyStateContext = createContext<RavenyContextStateType>({
   state: initialState,
 })
-
-/* Context Dispatch */
-type RavenyContextDispatchType = {
-  dispatch: Dispatch<Action>
-}
 
 const RavenyDispatchContext = createContext<RavenyContextDispatchType>({
   dispatch: () => {},
 })
 
-/* Context Names */
 RavenyDispatchContext.displayName = 'RavenyContextDispatch'
 RavenyStateContext.displayName = 'RavenyContextState'
 
-/* Provider */
 const RavenyProvider = ({ children }: { children: ReactElement }) => {
   const [state, dispatch] = useReducer<Reducer<RavenyState, Action>>(
     ravenyReducer,
@@ -156,7 +121,6 @@ const RavenyProvider = ({ children }: { children: ReactElement }) => {
   )
 }
 
-/* Consumer Hooks */
 const useRavenyState = () => {
   const context = useContext(RavenyStateContext)
   if (!context) {
