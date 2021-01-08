@@ -7,13 +7,36 @@ import {
   useReducer,
 } from 'react'
 import { Recipe } from 'types'
-import {
-  ErrorState,
-  InitialState,
-  LoadingState,
-  RecipesState,
-  SingleRecipeState,
-} from './interfaces'
+
+interface InitialState {
+  status: 'idle'
+  stateType: 'initialState'
+}
+
+interface LoadingState {
+  status: 'loading'
+  stateType: 'loadingState'
+}
+
+interface SingleRecipeState {
+  recipe: Recipe
+  status: 'resolved'
+  stateType: 'singleRecipeState'
+}
+
+interface RecipesState {
+  status: 'resolved' | 'loadingMore'
+  recipes: Recipe[]
+  hasMoreRecipes: boolean
+  results: number
+  stateType: 'recipesState'
+}
+
+interface ErrorState {
+  status: 'rejected'
+  error: string
+  stateType: 'errorState'
+}
 
 type RavenyState =
   | InitialState
