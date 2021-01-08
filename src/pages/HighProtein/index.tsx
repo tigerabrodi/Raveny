@@ -12,7 +12,6 @@ import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
 import { useOnScreen } from 'hooks/useOnScreen'
 import { useOnInfinite } from 'hooks/useOnInfinite'
 
-/* URL */
 const apiURL = process.env.REACT_APP_API_URL
 
 export const HighProtein = () => {
@@ -20,7 +19,6 @@ export const HighProtein = () => {
 
   const urlObject = new URL(apiURL!)
 
-  /* Query Params */
   urlObject.searchParams.append('q', 'chicken')
   urlObject.searchParams.append('diet', 'high-protein')
 

@@ -9,7 +9,8 @@ import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { FullPageSpinner } from 'components/Spinner'
-import { client } from 'utils/client'
+import { searchRecipes } from 'utils/searchRecipes'
+import { capitalizeName } from 'utils/functions'
 import {
   Pan,
   QueryInput,
@@ -42,7 +43,6 @@ import {
   AddIcon,
 } from './styles'
 
-/* URL */
 const apiURL = process.env.REACT_APP_API_URL
 
 type SearchState = {
@@ -55,25 +55,21 @@ type SearchState = {
 
 export const Search = () => {
   const [isMobile, setIsMobile] = useState(false)
-  /* Error States */
-  const [shouldShowErrorCharacters, setShouldShowErrorCharacters] = useState(
-    false
-  )
-  const [shouldShowErrorCalories, setShouldShowErrorCalories] = useState(false)
+  const [showErrorCharacters, setShowErrorCharacters] = useState(false)
+  const [showErrorCalories, setShowErrorCalories] = useState(false)
   const [
-    shouldShowErrorExcludedIngredients,
-    setShouldShowErrorExcludedIngredients,
+    showErrorExcludedIngredients,
+    setShowErrorExcludedIngredients,
   ] = useState(false)
   const [
-    shouldShowErrorCharacterIngredients,
-    setShouldShowErrorCharacterIngredients,
+    showErrorCharacterIngredients,
+    setShowErrorCharacterIngredients,
   ] = useState(false)
   const [
-    alreadyExcludedIngredientName,
-    setAlreadyExcludedIngredientName,
+    isIngredientAlreadyExcluded,
+    setIsIngredientAlreadyExcluded,
   ] = useState('')
 
-  /* Search State */
   const [searchState, setSearchState] = useState<SearchState>({
     searchValue: '',
     minCalories: 0,
@@ -90,16 +86,15 @@ export const Search = () => {
     excludedIngredients,
   } = searchState
 
-  const urlToQuery = new URL(apiURL!)
-
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
+
+  const urlToQuery = new URL(apiURL!)
 
   const { dispatch } = useRavenyDispatch()
   const { state } = useRavenyState()
   const history = useHistory()
 
-  /* Change Events */
   const handleCaloriesChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.validity.valid) {
       setSearchState({
@@ -116,13 +111,7 @@ export const Search = () => {
     })
   }
 
-  /* Capitalize */
-  const capitalizeName = (name: string) => {
-    return `${name[0].toUpperCase()}${name.slice(1).toLowerCase()}`
-  }
-
-  /* Ingredient Operations */
-  const removeIngredient = (id: string) => {
+  const onRemoveIngredient = (id: string) => {
     setSearchState({
       ...searchState,
       excludedIngredients: excludedIngredients.filter(
@@ -131,7 +120,7 @@ export const Search = () => {
     })
   }
 
-  const addIngredient = (name: string, event?: KeyboardEvent) => {
+  const onAddIngredient = (name: string, event?: KeyboardEvent) => {
     const alreadyExcludedIngredient = excludedIngredients.find(
       (ingredient) => ingredient.name.toLowerCase() === name.toLowerCase()
     )
@@ -140,22 +129,22 @@ export const Search = () => {
       event.preventDefault()
     }
 
-    if (name.length < 3) {
-      setShouldShowErrorCharacterIngredients(true)
-      return setTimeout(
-        () => setShouldShowErrorCharacterIngredients(false),
-        2500
-      )
-    } else if (alreadyExcludedIngredient) {
-      setAlreadyExcludedIngredientName(
-        capitalizeName(alreadyExcludedIngredient.name)
-      )
-      setShouldShowErrorExcludedIngredients(true)
-      return setTimeout(
-        () => setShouldShowErrorExcludedIngredients(false),
-        2500
-      )
-    } else {
+    const validateInputAddIngredient = () => {
+      if (name.length < 3) {
+        setShowErrorCharacterIngredients(true)
+        return setTimeout(() => setShowErrorCharacterIngredients(false), 2500)
+      } else if (alreadyExcludedIngredient) {
+        setIsIngredientAlreadyExcluded(
+          capitalizeName(alreadyExcludedIngredient.name)
+        )
+        setShowErrorExcludedIngredients(true)
+        return setTimeout(() => setShowErrorExcludedIngredients(false), 2500)
+      } else {
+        return true
+      }
+    }
+
+    if (validateInputAddIngredient() === true) {
       setSearchState({
         ...searchState,
         excludedIngredients: [{ id: uuidv4(), name }, ...excludedIngredients],
@@ -164,46 +153,46 @@ export const Search = () => {
     }
   }
 
+  const validateInputOnSubmit = () => {
+    if (searchValue.length < 3) {
+      setShowErrorCharacters(true)
+      return window.setTimeout(() => setShowErrorCharacters(false), 2500)
+    } else if (Number(minCalories) > Number(maxCalories)) {
+      setShowErrorCalories(true)
+      return window.setTimeout(() => setShowErrorCalories(false), 2500)
+    } else {
+      return true
+    }
+  }
+
   const onSubmit = (event: FormEvent): void | number => {
     event.preventDefault()
-    /* Input Validation */
-    if (searchValue.length < 3) {
-      setShouldShowErrorCharacters(true)
-      return window.setTimeout(() => setShouldShowErrorCharacters(false), 2500)
-    } else if (Number(minCalories) > Number(maxCalories)) {
-      setShouldShowErrorCalories(true)
-      return window.setTimeout(() => setShouldShowErrorCalories(false), 2500)
-    } else {
-      /* Query Params */
+    if (validateInputOnSubmit() === true) {
       urlToQuery.searchParams.append('q', searchValue.toLowerCase())
       urlToQuery.searchParams.append(
         'calories',
         `${minCalories}-${maxCalories}`
       )
+
       excludedIngredients.forEach(({ name }) => {
         urlToQuery.searchParams.append('exclude', name.toLowerCase())
       })
 
       const { href } = urlToQuery
 
-      /* Fetch Recipes */
-      client({
+      searchRecipes({
         dispatch,
         history,
         href,
-        redirectRoute: '/recipes',
-        shouldUseSessionStorage: true,
-        shouldFetchMultipleRecipes: true,
-        shouldRedirect: true,
       })
     }
   }
 
   useEffect(() => {
-    /* Short Title in Mobile View */
     const setIsMobileView = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches)
     }
+
     setIsMobileView()
     window.addEventListener('resize', setIsMobileView)
     return () => window.removeEventListener('resize', setIsMobileView)
@@ -249,7 +238,7 @@ export const Search = () => {
           <CharacterErrorMessage
             role="alert"
             id="searchInputError"
-            shouldShowErrorMessage={shouldShowErrorCharacters}
+            shouldShowErrorMessage={showErrorCharacters}
           >
             Please enter at least three characters.
           </CharacterErrorMessage>
@@ -289,7 +278,7 @@ export const Search = () => {
           <CaloriesErrorMessage
             id="caloriesError"
             role="alert"
-            shouldShowErrorMessage={shouldShowErrorCalories}
+            shouldShowErrorMessage={showErrorCalories}
           >
             Minimum Calories must be less than Maximum Calories.
           </CaloriesErrorMessage>
@@ -308,7 +297,7 @@ export const Search = () => {
               name="excludeValue"
               value={excludeValue}
               onKeyDown={(event) =>
-                event.key === 'Enter' && addIngredient(excludeValue, event)
+                event.key === 'Enter' && onAddIngredient(excludeValue, event)
               }
               onChange={(event) => handleChange(event)}
               type="text"
@@ -316,7 +305,7 @@ export const Search = () => {
             <IngredientAddButton
               aria-label="Add ingredient to be excluded"
               type="button"
-              onClick={() => addIngredient(excludeValue)}
+              onClick={() => onAddIngredient(excludeValue)}
             >
               <AddIcon title="Add Icon" />
             </IngredientAddButton>
@@ -326,14 +315,13 @@ export const Search = () => {
             role="alert"
             id="excludeError"
             shouldShowErrorMessage={
-              shouldShowErrorExcludedIngredients ||
-              shouldShowErrorCharacterIngredients
+              showErrorExcludedIngredients || showErrorCharacterIngredients
             }
           >
-            {shouldShowErrorCharacterIngredients
+            {showErrorCharacterIngredients
               ? 'Please enter at least 3 characters for the ingredient to be excluded.'
-              : shouldShowErrorExcludedIngredients
-              ? `Ingredient "${alreadyExcludedIngredientName}" is already being included.`
+              : showErrorExcludedIngredients
+              ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
               : null}
           </ExcludeErrorMessage>
 
@@ -345,7 +333,7 @@ export const Search = () => {
                   <IngredientRemoveButton
                     aria-label="Remove ingredient from being excluded"
                     type="button"
-                    onClick={() => removeIngredient(id)}
+                    onClick={() => onRemoveIngredient(id)}
                   >
                     x
                   </IngredientRemoveButton>
