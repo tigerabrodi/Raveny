@@ -95,7 +95,7 @@ export const Search = () => {
   const { state } = useRavenyState()
   const history = useHistory()
 
-  const handleCaloriesChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleCaloriesChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.validity.valid) {
       setSearchState({
         ...searchState,
@@ -104,7 +104,7 @@ export const Search = () => {
     }
   }
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchState({
       ...searchState,
       [event.target.name]: event.target.value,
@@ -165,7 +165,7 @@ export const Search = () => {
     }
   }
 
-  const onSubmit = (event: FormEvent): void | number => {
+  const onSubmit = (event: FormEvent) => {
     event.preventDefault()
     if (validateInputOnSubmit() === true) {
       urlToQuery.searchParams.append('q', searchValue.toLowerCase())

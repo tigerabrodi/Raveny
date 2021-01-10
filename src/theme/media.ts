@@ -1,4 +1,4 @@
-const customMediaQuery = (maxWidth: number): string =>
+const customMediaQuery = (maxWidth: number) =>
   `@media (min-width: ${maxWidth}px)`
 
 export const media = {

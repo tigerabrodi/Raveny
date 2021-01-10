@@ -1,4 +1,3 @@
-/* Types */
 type Measure = {
   uri: string
   label: string
@@ -51,7 +50,6 @@ export enum HealthLabel {
   'shellfish-free' = 'shellfish-free',
 }
 
-/* Recipe Type */
 export type Recipe = {
   uri: string
   label: string
@@ -70,7 +68,6 @@ export type Recipe = {
   healthLabels: HealthLabel[]
 }
 
-/* Response Types */
 type Hit = {
   recipe: Recipe
   bookmarked: boolean
