@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { fetchRecipes } from 'utils/fetchRecipes'
 import { fetchMoreRecipes } from 'utils/fetchMoreRecipes'
@@ -27,11 +26,11 @@ export const Recipes = () => {
   const mountRef = useRef(1)
 
   const isNotFirstRender = JSON.parse(
-    window.sessionStorage.getItem('recipesMount') as string
+    sessionStorage.getItem('recipesMount') as string
   )
 
   const urlObject = new URL(
-    JSON.parse(window.sessionStorage.getItem('recipesQueryUrl') as string)
+    JSON.parse(sessionStorage.getItem('queryRecipesURL') as string)
   )
 
   const { href } = urlObject
@@ -45,7 +44,7 @@ export const Recipes = () => {
       fetchRecipes(dispatch, href)
     } else {
       mountRef.current++
-      window.sessionStorage.setItem('recipesMount', JSON.stringify(2))
+      sessionStorage.setItem('recipesMount', JSON.stringify(2))
     }
   }, [href, dispatch, isNotFirstRender])
 
@@ -69,7 +68,7 @@ export const Recipes = () => {
       <RecipesHeading>{state.results} Results</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={uuidv4()} />
+          <Recipe recipe={recipe} key={recipe.id} />
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (

@@ -1,6 +1,7 @@
 import { Action } from 'context/RavenyContext'
 import { Dispatch } from 'react'
-import { SuccessResponse } from 'types'
+import { v4 as uuidv4 } from 'uuid'
+import { MultipleRecipesResponse } from 'types'
 
 const apiKEY = process.env.REACT_APP_API_KEY
 const apiID = process.env.REACT_APP_API_ID
@@ -27,10 +28,13 @@ export const fetchMoreRecipes = async ({
 
     const response = await fetch(url)
     if (response.ok) {
-      const { hits, more }: SuccessResponse = await response.json()
+      const { hits, more }: MultipleRecipesResponse = await response.json()
       dispatch({
         type: 'moreRecipesResolved',
-        payload: { recipes: hits.map(({ recipe }) => recipe), more },
+        payload: {
+          recipes: hits.map(({ recipe }) => ({ ...recipe, id: uuidv4() })),
+          more,
+        },
       })
     } else {
       const failureData = await response.json()

@@ -39,7 +39,7 @@ export const Vegan = () => {
       <RecipesHeading>Vegan</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={uuidv4()} />
+          <Recipe recipe={recipe} key={recipe.id} />
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (

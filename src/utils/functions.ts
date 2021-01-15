@@ -8,10 +8,10 @@ export const getRandomLabel = <
 ): Label[keyof Label] => faker.random.arrayElement(Object.values(enumLabel))
 
 export const persistUrlInSessionStorage = (url: string) => {
-  window.sessionStorage.clear()
+  sessionStorage.clear()
   const urlToSessionStorage = new URL(url)
   sessionStorage.setItem(
-    'recipesQueryUrl',
+    'queryRecipesURL',
     JSON.stringify(urlToSessionStorage.href)
   )
 }

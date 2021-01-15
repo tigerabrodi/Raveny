@@ -10,6 +10,7 @@ import { NoEnvironmentVariables } from 'pages/NoEnvironmentVariables'
 import { Vegan } from 'pages/Vegan'
 import { HighProtein } from 'pages/HighProtein'
 import { LowCarb } from 'pages/LowCarb'
+import { RecipeDetail } from 'pages/RecipeDetail'
 
 const apiURL = process.env.REACT_APP_API_URL
 const apiKEY = process.env.REACT_APP_API_KEY
@@ -28,6 +29,7 @@ const App = () => (
           <Route exact path="/recipes/vegan" component={Vegan} />
           <Route exact path="/recipes/low-carb" component={LowCarb} />
           <Route exact path="/recipes/high-protein" component={HighProtein} />
+          <Route exact path="/recipe/:recipeId" component={RecipeDetail} />
           <Route exact path="*" component={NotFound} />
         </Switch>
       )}
