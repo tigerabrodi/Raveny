@@ -1,5 +1,4 @@
 import { useRavenyState } from 'context/RavenyContext'
-import { v4 as uuidv4 } from 'uuid'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
@@ -39,7 +38,7 @@ export const Vegan = () => {
       <RecipesHeading>Vegan</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={uuidv4()} />
+          <Recipe recipe={recipe} key={recipe.id} />
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (

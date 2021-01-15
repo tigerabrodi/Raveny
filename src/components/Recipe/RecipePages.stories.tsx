@@ -1,4 +1,4 @@
-import { recipesData } from 'data'
+import { recipesData } from 'mocks/data/recipes-data'
 import { LoadMoreSpinner } from 'components/Spinner'
 import {
   RecipesMain,

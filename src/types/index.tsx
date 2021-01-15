@@ -1,29 +1,3 @@
-type Measure = {
-  uri: string
-  label: string
-}
-
-type Food = {
-  foodId: string
-  label: string
-}
-
-type NutrientInfo = {
-  uri: string
-  label: string
-  quantity: number
-  unit: string
-}
-
-type Ingredient = {
-  text: string
-  foodId: string
-  quantity: number
-  measure: Measure
-  weight: number
-  food: Food
-}
-
 export enum DietLabel {
   balanced = 'balanced',
   'high-protein' = 'high-protein',
@@ -51,19 +25,13 @@ export enum HealthLabel {
 }
 
 export type Recipe = {
+  id: string
   uri: string
   label: string
   image: string
-  source: string
-  url: string
   yield: number
   calories: number
-  totalWeight: number
-  totalTime: number
   cautions: string[]
-  ingredients: Ingredient[]
-  totalNutrients: NutrientInfo[]
-  totalDaily: NutrientInfo[]
   dietLabels: DietLabel[]
   healthLabels: HealthLabel[]
 }
@@ -74,7 +42,7 @@ type Hit = {
   bought: boolean
 }
 
-export type SuccessResponse = {
+export type MultipleRecipesResponse = {
   q: string
   from: number
   to: number
@@ -82,3 +50,13 @@ export type SuccessResponse = {
   more: boolean
   hits: Hit[]
 }
+
+export type SingleRecipe = Recipe & {
+  ingredientLines: string[]
+  ingredients: { image: string; text: string; weight: number }[]
+  totalTime: number
+  totalWeight: number
+  url: string
+}
+
+export type SingleRecipeResponse = [SingleRecipe]

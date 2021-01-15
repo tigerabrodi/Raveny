@@ -31,44 +31,48 @@ export const Recipe = ({
     dietLabels,
     yield: servings,
   },
-}: RecipeProps) => (
-  <RecipeWrapperLink to={`/recipe/${uri}`}>
-    <Title> {label} </Title>
-    <Image src={image} alt={label} />
-    <Calories>
-      <Strong>Calories: </Strong>
-      {Math.round(calories / servings)}
-    </Calories>
-    <Serving>
-      <Strong>Servings: </Strong>
-      {servings}
-    </Serving>
-    <InfoSection>
-      {cautions.length > 0 && (
-        <CautionSection>
-          {cautions.map((caution) => (
-            <Caution key={uuidv4()}>
-              <Strong>{caution}</Strong> <Warn />
-            </Caution>
-          ))}
-        </CautionSection>
-      )}
-      <DietSection>
-        {dietLabels.length > 0 &&
-          dietLabels.map((diet) => (
-            <Diet key={uuidv4()}>
-              <Strong>{diet}</Strong> <Check />
-            </Diet>
-          ))}
-      </DietSection>
-      <HealthSection>
-        {healthLabels.length > 0 &&
-          healthLabels.map((health) => (
-            <Health key={uuidv4()}>
-              <Strong>{health}</Strong> <Check />
-            </Health>
-          ))}
-      </HealthSection>
-    </InfoSection>
-  </RecipeWrapperLink>
-)
+}: RecipeProps) => {
+  const recipeId = new URL(uri).hash.split('_')[1]
+
+  return (
+    <RecipeWrapperLink to={`/recipe/${recipeId}`}>
+      <Title> {label} </Title>
+      <Image src={image} alt={label} />
+      <Calories>
+        <Strong>Calories: </Strong>
+        {Math.round(calories / servings)}
+      </Calories>
+      <Serving>
+        <Strong>Servings: </Strong>
+        {servings}
+      </Serving>
+      <InfoSection>
+        {cautions.length > 0 && (
+          <CautionSection>
+            {cautions.map((caution) => (
+              <Caution key={uuidv4()}>
+                <Strong>{caution}</Strong> <Warn />
+              </Caution>
+            ))}
+          </CautionSection>
+        )}
+        <DietSection>
+          {dietLabels.length > 0 &&
+            dietLabels.map((diet) => (
+              <Diet key={uuidv4()}>
+                <Strong>{diet}</Strong> <Check />
+              </Diet>
+            ))}
+        </DietSection>
+        <HealthSection>
+          {healthLabels.length > 0 &&
+            healthLabels.map((health) => (
+              <Health key={uuidv4()}>
+                <Strong>{health}</Strong> <Check />
+              </Health>
+            ))}
+        </HealthSection>
+      </InfoSection>
+    </RecipeWrapperLink>
+  )
+}
