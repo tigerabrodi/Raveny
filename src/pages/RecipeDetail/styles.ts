@@ -4,7 +4,6 @@ import { wrapperStyles } from 'styles'
 export const RecipeMain = styled.main`
   ${wrapperStyles}
   display: grid;
-  grid-template-rows: 0fr 0.5fr 3fr 2fr;
   grid-template-areas:
     'title'
     'info'
@@ -12,7 +11,6 @@ export const RecipeMain = styled.main`
     'ingredients';
   align-items: center;
   justify-items: center;
-  row-gap: 1rem;
 `
 
 export const RecipeName = styled.h1`
