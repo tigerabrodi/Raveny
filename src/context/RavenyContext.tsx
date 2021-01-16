@@ -6,7 +6,7 @@ import {
   useContext,
   useReducer,
 } from 'react'
-import { Recipe } from 'types'
+import { Recipe, SingleRecipe } from 'types'
 
 interface InitialState {
   status: 'idle'
@@ -19,7 +19,7 @@ interface LoadingState {
 }
 
 interface SingleRecipeState {
-  recipe: Recipe
+  recipe: SingleRecipe
   status: 'resolved'
   stateType: 'singleRecipeState'
 }
@@ -47,7 +47,7 @@ type RavenyState =
 
 export type Action =
   | { type: 'loading' }
-  | { type: 'singleRecipeResolved'; payload: Recipe }
+  | { type: 'singleRecipeResolved'; payload: SingleRecipe }
   | {
       type: 'recipesResolved'
       payload: { results: number; recipes: Recipe[]; more: boolean }

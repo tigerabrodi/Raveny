@@ -37,6 +37,8 @@ export const fetchRecipes = async (
           more,
         },
       })
+
+      return { href }
     } else {
       const failureData = await response.json()
       dispatch({ type: 'rejected', payload: failureData.message })

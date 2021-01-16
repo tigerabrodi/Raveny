@@ -7,10 +7,10 @@ import {
 } from 'react'
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { useHistory } from 'react-router-dom'
-import { fetchRecipes } from 'utils/fetchRecipes'
+import { searchRecipes } from 'utils/searchRecipes'
+import { capitalizeName } from 'utils/functions'
 import { v4 as uuidv4 } from 'uuid'
 import { FullPageSpinner } from 'components/Spinner'
-import { capitalizeName, persistUrlInSessionStorage } from 'utils/functions'
 import {
   Pan,
   QueryInput,
@@ -55,7 +55,6 @@ type SearchState = {
 
 export const Search = () => {
   const [isMobile, setIsMobile] = useState(false)
-  const [sessionStorageUrl, setSessionStorageUrl] = useState('')
   const [showErrorCharacters, setShowErrorCharacters] = useState(false)
   const [showErrorCalories, setShowErrorCalories] = useState(false)
   const [
@@ -180,9 +179,12 @@ export const Search = () => {
       })
 
       const { href } = urlToQuery
-      setSessionStorageUrl(href)
 
-      fetchRecipes(dispatch, href)
+      searchRecipes({
+        dispatch,
+        history,
+        href,
+      })
     }
   }
 
@@ -198,9 +200,6 @@ export const Search = () => {
 
   if (state.status === 'loading') {
     return <FullPageSpinner />
-  } else if (state.status === 'resolved') {
-    persistUrlInSessionStorage(sessionStorageUrl)
-    history.push('/recipes')
   }
 
   return (
