@@ -1,4 +1,5 @@
 import { singleRecipeData } from 'mocks/data/single-recipe-data'
+import { v4 as uuidv4 } from 'uuid'
 import {
   RecipeImage,
   RecipeInfoSection,
@@ -48,7 +49,7 @@ export const RecipeDetailPage = () => (
     <IngredientsList>
       <IngredientsHeading>Ingredients</IngredientsHeading>
       {recipe.ingredients.map(({ image, text }) => (
-        <IngredientItem>
+        <IngredientItem key={uuidv4()}>
           <IngredientImage src={image} alt={text} />
           <IngredientText>{text}</IngredientText>
         </IngredientItem>
