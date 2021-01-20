@@ -53,6 +53,19 @@ const buttonStyles = css`
   ${media.tablet} {
     left: 93.5%;
     width: 13%;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.Orange};
+    }
+    &:hover svg {
+      color: ${({ theme }) => theme.colors.White};
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: translate(-50%, -50%) scale(0.98);
+    }
+    &:active svg {
+      transform: scale(0.95);
+    }
   }
   ${media.desktop} {
     left: 95.5%;
@@ -63,43 +76,11 @@ const buttonStyles = css`
     left: 96.5%;
     width: 7%;
   }
-  &:hover svg {
-    ${media.tablet} {
-      color: ${({ theme }) => theme.colors.White};
-      transform: scale(1.1);
-    }
-  }
-  &:hover::after {
-    ${media.tablet} {
-      transform: scaleY(1);
-    }
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    background-color: ${({ theme }) => theme.colors.Orange};
-    height: 100%;
-    width: 100%;
-    transform-origin: top;
-    transform: scaleY(0);
-    transition: all 0.5s;
-    top: 0;
-    left: 0;
+  &:focus {
+    outline: none;
   }
   &:focus-visible {
     outline: 0.1rem solid ${({ theme }) => theme.colors.White};
-  }
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-  &:active svg {
-    transform: scale(0.9);
-  }
-  &:active {
-    box-shadow: none;
-    ${media.tablet} {
-      transform: translate(-50%, -50%) scale(0.95);
-    }
   }
 `
 
@@ -224,7 +205,7 @@ export const QueryInputSection = styled.section`
   }
 `
 
-export const QueryInputValidLength = styled.span<{
+export const InputValidLengthText = styled.span<{
   searchNumberLength: number
 }>`
   font-size: 1.3rem;
@@ -233,7 +214,7 @@ export const QueryInputValidLength = styled.span<{
   position: absolute;
   transform: translate(-50%, -50%);
   color: ${({ searchNumberLength, theme }) => {
-    return searchNumberLength < 3 ? theme.colors.Red : theme.colors.Green
+    return searchNumberLength < 3 ? theme.colors.LightRed : theme.colors.Green
   }};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   top: 82%;
@@ -400,7 +381,7 @@ export const ExcludeIngredientsList = styled.ul`
   align-items: center;
 `
 
-export const IngredientWrapper = styled.li`
+export const IngredientItem = styled.li`
   height: 55%;
   min-width: 10%;
   display: flex;
