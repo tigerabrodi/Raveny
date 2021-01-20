@@ -11,11 +11,13 @@
     "react-error-boundary": "^3.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "source-map-explorer": "^2.5.2",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
