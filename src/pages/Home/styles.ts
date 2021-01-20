@@ -122,7 +122,7 @@ export const InfoLink = styled(Link)`
 
 export const SearchIcon = styled(Search)`
   height: 2.1rem;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   position: relative;
   top: 2%;
   transition: all 0.4s;
