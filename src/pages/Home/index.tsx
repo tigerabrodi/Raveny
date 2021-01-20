@@ -1,32 +1,26 @@
-import { useState } from 'react'
 import {
-  InfoWrapper,
-  HomeWrapper,
-  ImageWrapper,
+  InfoSection,
+  HomeMain,
+  RecipeBookSection,
   RecipeBook,
-  InfoText,
+  InfoHeading,
   InfoLink,
   SearchIcon,
 } from './styles'
 
 export const Home = () => {
-  const [buttonHoverState, setButtonHoverState] = useState(false)
   return (
-    <HomeWrapper>
-      <InfoWrapper>
-        <InfoText>Find Your Dream Recipes and Enjoy.</InfoText>
-        <InfoLink
-          to="/search"
-          onMouseEnter={() => setButtonHoverState(!buttonHoverState)}
-          onMouseLeave={() => setButtonHoverState(false)}
-        >
+    <HomeMain>
+      <InfoSection>
+        <InfoHeading>Find Your Dream Recipes and Enjoy.</InfoHeading>
+        <InfoLink to="/search">
           Search
-          <SearchIcon isButtonHover={buttonHoverState} />
+          <SearchIcon />
         </InfoLink>
-      </InfoWrapper>
-      <ImageWrapper>
+      </InfoSection>
+      <RecipeBookSection>
         <RecipeBook />
-      </ImageWrapper>
-    </HomeWrapper>
+      </RecipeBookSection>
+    </HomeMain>
   )
 }
