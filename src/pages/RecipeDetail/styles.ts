@@ -116,7 +116,7 @@ export const ServingsHeading = styled.h2`
   }
 `
 
-export const TotalTime = styled.h3`
+export const Time = styled.h3`
   text-shadow: 0 0.2rem 0.5rem black;
   font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
@@ -223,7 +223,7 @@ export const IngredientImage = styled.img`
   ${media.desktop} {
     display: block;
     grid-area: image;
-    height: 100%;
+    height: 90%;
     box-shadow: 0 0.2rem 0.5rem black;
     border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   }
@@ -243,6 +243,6 @@ export const IngredientText = styled.h3`
     text-align: left;
   }
   ${media.desktop} {
-    width: 30ch;
+    width: 40ch;
   }
 `

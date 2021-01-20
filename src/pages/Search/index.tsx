@@ -19,7 +19,7 @@ import {
   SearchMain,
   SearchIcon,
   TitleSection,
-  QueryInputValidLength,
+  InputValidLengthText,
   Title,
   QuerySection,
   QueryInputSection,
@@ -37,7 +37,7 @@ import {
   ExcludeSection,
   IngredientName,
   IngredientRemoveButton,
-  IngredientWrapper,
+  IngredientItem,
   ExcludeErrorMessage,
   ExcludeLabel,
   AddIcon,
@@ -89,20 +89,11 @@ export const Search = () => {
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
 
-  const urlToQuery = new URL(apiURL!)
+  const url = new URL(apiURL!)
 
   const { dispatch } = useRavenyDispatch()
   const { state } = useRavenyState()
   const history = useHistory()
-
-  const handleCaloriesChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.validity.valid) {
-      setSearchState({
-        ...searchState,
-        [event.target.name]: event.target.value,
-      })
-    }
-  }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchState({
@@ -129,7 +120,7 @@ export const Search = () => {
       event.preventDefault()
     }
 
-    const validateInputAddIngredient = () => {
+    const validateAddIngredientInput = () => {
       if (name.length < 3) {
         setShowErrorCharacterIngredients(true)
         return setTimeout(() => setShowErrorCharacterIngredients(false), 2500)
@@ -144,7 +135,7 @@ export const Search = () => {
       }
     }
 
-    if (validateInputAddIngredient() === true) {
+    if (validateAddIngredientInput() === true) {
       setSearchState({
         ...searchState,
         excludedIngredients: [{ id: uuidv4(), name }, ...excludedIngredients],
@@ -153,11 +144,11 @@ export const Search = () => {
     }
   }
 
-  const validateInputOnSubmit = () => {
+  const validateOnSubmitInput = () => {
     if (searchValue.length < 3) {
       setShowErrorCharacters(true)
       return window.setTimeout(() => setShowErrorCharacters(false), 2500)
-    } else if (Number(minCalories) > Number(maxCalories)) {
+    } else if (Number(minCalories) >= Number(maxCalories)) {
       setShowErrorCalories(true)
       return window.setTimeout(() => setShowErrorCalories(false), 2500)
     } else {
@@ -167,18 +158,15 @@ export const Search = () => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    if (validateInputOnSubmit() === true) {
-      urlToQuery.searchParams.append('q', searchValue.toLowerCase())
-      urlToQuery.searchParams.append(
-        'calories',
-        `${minCalories}-${maxCalories}`
-      )
+    if (validateOnSubmitInput() === true) {
+      url.searchParams.append('q', searchValue.toLowerCase())
+      url.searchParams.append('calories', `${minCalories}-${maxCalories}`)
 
       excludedIngredients.forEach(({ name }) => {
-        urlToQuery.searchParams.append('exclude', name.toLowerCase())
+        url.searchParams.append('exclude', name.toLowerCase())
       })
 
-      const { href } = urlToQuery
+      const { href } = url
 
       searchRecipes({
         dispatch,
@@ -226,9 +214,17 @@ export const Search = () => {
               aria-describedby="searchInputError"
             />
 
-            <QueryInputValidLength searchNumberLength={searchValue.length}>
+            <InputValidLengthText
+              searchNumberLength={searchValue.length}
+              role="alert"
+              aria-label={
+                searchValue.length > 2
+                  ? 'Length of search value is valid'
+                  : 'Length of search value is invalid'
+              }
+            >
               {searchLengthValidation}
-            </QueryInputValidLength>
+            </InputValidLengthText>
 
             <QueryButton type="submit" aria-label="Search for recipes">
               <SearchIcon title="Search Icon" />
@@ -256,7 +252,9 @@ export const Search = () => {
             name="minCalories"
             min="0"
             value={minCalories}
-            onChange={(event) => handleCaloriesChange(event)}
+            onChange={(event) =>
+              event.target.validity.valid && handleChange(event)
+            }
             aria-describedby="caloriesError"
           />
 
@@ -271,7 +269,9 @@ export const Search = () => {
             name="maxCalories"
             min="0"
             value={maxCalories}
-            onChange={(event) => handleCaloriesChange(event)}
+            onChange={(event) =>
+              event.target.validity.valid && handleChange(event)
+            }
             aria-describedby="caloriesError"
           />
 
@@ -324,11 +324,10 @@ export const Search = () => {
               ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
               : null}
           </ExcludeErrorMessage>
-
-          <ExcludeIngredientsList>
-            {excludedIngredients.length > 0 &&
-              excludedIngredients.map(({ name, id }) => (
-                <IngredientWrapper key={id}>
+          {excludedIngredients.length > 0 && (
+            <ExcludeIngredientsList>
+              {excludedIngredients.map(({ name, id }) => (
+                <IngredientItem key={id}>
                   <IngredientName>{name}</IngredientName>
                   <IngredientRemoveButton
                     aria-label="Remove ingredient from being excluded"
@@ -337,9 +336,10 @@ export const Search = () => {
                   >
                     x
                   </IngredientRemoveButton>
-                </IngredientWrapper>
+                </IngredientItem>
               ))}
-          </ExcludeIngredientsList>
+            </ExcludeIngredientsList>
+          )}
         </ExcludeSection>
       </SearchForm>
     </SearchMain>

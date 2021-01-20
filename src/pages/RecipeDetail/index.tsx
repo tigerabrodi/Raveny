@@ -16,7 +16,7 @@ import {
   ServingsSection,
   TimeHeading,
   TimeSection,
-  TotalTime,
+  Time,
   IngredientsList,
   IngredientsHeading,
   IngredientItem,
@@ -47,7 +47,7 @@ export const RecipeDetail = () => {
       <RecipeInfoSection>
         <TimeSection>
           <TimeHeading>Cooking Time</TimeHeading>
-          <TotalTime>{Math.round(state.recipe.totalTime)} mins</TotalTime>
+          <Time>{Math.round(state.recipe.totalTime)} mins</Time>
         </TimeSection>
 
         <ServingsSection>

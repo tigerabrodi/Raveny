@@ -1,12 +1,11 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
 import { Search } from '@styled-icons/bootstrap'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
 
-/* Home Header Wrapper */
-export const HomeWrapper = styled.main`
+export const HomeMain = styled.main`
   ${wrapperStyles}
   display: grid;
   grid-template-areas:
@@ -26,8 +25,7 @@ export const HomeWrapper = styled.main`
   }
 `
 
-/* Text Area */
-export const InfoWrapper = styled.section`
+export const InfoSection = styled.section`
   grid-area: info;
   height: 80%;
   width: 100%;
@@ -37,7 +35,7 @@ export const InfoWrapper = styled.section`
   justify-content: space-evenly;
 `
 
-export const InfoText = styled.h1`
+export const InfoHeading = styled.h1`
   font-family: ${({ theme }) => theme.fonts.Lora};
   text-align: center;
   letter-spacing: 0.1rem;
@@ -76,7 +74,7 @@ export const InfoLink = styled(Link)`
   align-items: center;
   position: relative;
   justify-content: center;
-  transition: all 0.2s;
+  transition: all 0.4s;
   z-index: 5;
   padding: 1rem 0;
   margin: 2rem 0;
@@ -85,23 +83,7 @@ export const InfoLink = styled(Link)`
   }
   &:hover {
     color: ${({ theme }) => theme.colors.White};
-    box-shadow: 0 0.5rem 1rem black;
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    transform-origin: left;
-    transform: scaleX(0);
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.Orange};
-    transition: all 0.2s ease-out;
-  }
-  &:hover::after {
-    transform: scaleX(1);
+    box-shadow: 0 0.2rem 1rem black;
   }
   ${media.phone} {
     margin: 1rem 0;
@@ -110,6 +92,27 @@ export const InfoLink = styled(Link)`
     font-size: 3rem;
     padding: 0;
   }
+  ${media.tablet} {
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+      left: 0;
+      transform-origin: left;
+      transform: scaleX(0);
+      width: 100%;
+      height: 100%;
+      background-color: ${({ theme }) => theme.colors.Orange};
+      transition: all 0.4s;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+    }
+    &:hover svg {
+      color: ${({ theme }) => theme.colors.White};
+    }
+  }
   ${media.desktop} {
     width: max(19rem, 15vw);
     height: max(6rem, 5vw);
@@ -117,18 +120,13 @@ export const InfoLink = styled(Link)`
   }
 `
 
-export const SearchIcon = styled(Search)<{ isButtonHover: boolean }>`
+export const SearchIcon = styled(Search)`
   height: 2.1rem;
   margin-left: 0.5rem;
   position: relative;
   top: 2%;
-  transition: all 0.2s;
+  transition: all 0.4s;
   color: ${({ theme }) => theme.colors.Orange};
-  ${(props) =>
-    props.isButtonHover &&
-    css`
-      color: ${({ theme }) => theme.colors.White};
-    `};
   ${media.phone} {
     height: 2.5rem;
   }
@@ -137,8 +135,7 @@ export const SearchIcon = styled(Search)<{ isButtonHover: boolean }>`
   }
 `
 
-/* Image Area */
-export const ImageWrapper = styled.section`
+export const RecipeBookSection = styled.section`
   grid-area: image;
   position: relative;
   height: 100%;

@@ -1,7 +1,7 @@
-import { NotFoundWrapper, NotFoundSVG } from './styles'
+import { NotFoundMain, NotFoundSVG } from './styles'
 
 export const NotFound = () => (
-  <NotFoundWrapper>
-    <NotFoundSVG role="img" title="Not found image." />
-  </NotFoundWrapper>
+  <NotFoundMain>
+    <NotFoundSVG role="img" aria-label="Page could not be found." />
+  </NotFoundMain>
 )

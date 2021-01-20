@@ -4,7 +4,7 @@ export const NoEnvironmentVariables = () => (
   <NoEnvVarWrapper>
     <TextWrapper>
       <Text>
-        Please, if you wanna further develop this app, create a{' '}
+        Please, if you want to continue developing this application, create a{' '}
         <FileSpan>.env.development.local</FileSpan> file in root, with the keys
         documented here:{' '}
         <DocLink

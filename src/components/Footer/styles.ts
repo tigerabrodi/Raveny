@@ -15,7 +15,7 @@ export const Text = styled.p`
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.Brown};
+  color: ${({ theme }) => theme.colors.Orange};
   letter-spacing: 0.1rem;
 `
 
