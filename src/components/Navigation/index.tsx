@@ -5,9 +5,9 @@ import {
   HamburgerMenuLine,
   HamburgerMenuOverlay,
   HamburgerMenuWrapper,
-  IntersectingDiv,
+  IntersectingElement,
   Link,
-  LinksWrapper,
+  LinkSection,
   LogoLink,
   LogoWrapper,
   Nav,
@@ -28,7 +28,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <IntersectingDiv ref={setIntersectingElement} />
+      <IntersectingElement ref={setIntersectingElement} />
       <Nav shouldShowShadow={!isVisible}>
         <LogoWrapper>
           <LogoLink to="/" onClick={() => setIsToggled(false)} ref={focusRef}>
@@ -36,7 +36,7 @@ export const Navigation = () => {
           </LogoLink>
           <CookingSVG height="60" width="60" />
         </LogoWrapper>
-        <LinksWrapper isToggled={isToggled} role="group">
+        <LinkSection isToggled={isToggled} role="group">
           <Link to="/search" onClick={() => setIsToggled(false)}>
             Search
           </Link>
@@ -49,7 +49,7 @@ export const Navigation = () => {
           <Link to="/recipes/low-carb" onClick={() => setIsToggled(false)}>
             Low Carb
           </Link>
-        </LinksWrapper>
+        </LinkSection>
         <HamburgerMenuWrapper
           isToggled={isToggled}
           onClick={() => setIsToggled(!isToggled)}

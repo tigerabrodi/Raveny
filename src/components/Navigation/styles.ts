@@ -2,8 +2,7 @@ import styled, { css, keyframes } from 'styled-components'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
-/* Animations */
-const mobileNavVisible = keyframes`
+const animTopVisible = keyframes`
     to {
             visibility: visible;
             opacity: 1;
@@ -12,8 +11,7 @@ const mobileNavVisible = keyframes`
     }
 `
 
-/* Intersected Element */
-export const IntersectingDiv = styled.div`
+export const IntersectingElement = styled.div`
   height: 0.1rem;
   width: 100%;
   position: absolute;
@@ -24,7 +22,6 @@ export const IntersectingDiv = styled.div`
   z-index: -1000;
 `
 
-/* Navigation Bar */
 export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
   position: sticky;
   z-index: 10;
@@ -44,7 +41,7 @@ export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
       box-shadow: 0 0.5rem 0.5rem black;
     `}
 `
-/* Logo */
+
 export const LogoWrapper = styled.section`
   position: relative;
   z-index: 10;
@@ -80,8 +77,7 @@ export const LogoLink = styled(RouterLink)`
   }
 `
 
-/* Navigation Links */
-export const LinksWrapper = styled.section<{ isToggled: boolean }>`
+export const LinkSection = styled.section<{ isToggled: boolean }>`
   position: fixed;
   z-index: -10;
   top: 45%;
@@ -95,7 +91,7 @@ export const LinksWrapper = styled.section<{ isToggled: boolean }>`
     isToggled &&
     css`
       display: flex;
-      animation: ${mobileNavVisible} 0.3s forwards;
+      animation: ${animTopVisible} 0.3s forwards;
     `};
   ${media.tablet} {
     position: relative;
@@ -167,7 +163,6 @@ export const Link = styled(RouterLink).attrs({ activeClassName })`
   }
 `
 
-/* Hamburger Menu */
 type HamburgerMenuLineProps = {
   topToggled?: boolean
   hideMiddle?: boolean
@@ -235,6 +230,7 @@ export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
     }
   }
 `
+
 export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
   visibility: hidden;
   background-color: black;

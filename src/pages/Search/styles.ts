@@ -479,7 +479,7 @@ export const ExcludeErrorMessage = styled(ErrorMessage)`
 `
 
 /* Animations */
-const cook = keyframes`
+const animCook = keyframes`
     from {
     transform: translateY(-.3rem) translateX(-.2rem) rotate(8deg) scale(-1, 1);
     }
@@ -497,7 +497,7 @@ export const Pan = styled(PanSVG)`
     width: 8rem;
     height: 10rem;
     transform: scale(-1, 1);
-    animation: ${cook} 1s infinite alternate;
+    animation: ${animCook} 1s infinite alternate;
     display: block;
     margin-right: 2rem;
     width: max(7rem, 7.5vw);

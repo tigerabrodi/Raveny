@@ -127,7 +127,6 @@ export const Image = styled.img`
   }
 `
 
-/* Info */
 export const InfoSection = styled.section`
   display: flex;
   align-items: center;
@@ -144,7 +143,6 @@ export const Calories = styled.h2`
   ${infoLabelStyles}
 `
 
-/* Labels */
 export const HealthSection = styled.section`
   ${labelWrapperStyles}
 `
@@ -161,7 +159,6 @@ export const Health = styled.h3`
   ${labelStyles}
 `
 
-/* Caution */
 export const CautionSection = styled.section`
   ${labelWrapperStyles}
 `
