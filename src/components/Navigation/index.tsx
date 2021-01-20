@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
 import { useOnScreen } from 'hooks/useOnScreen'
-import { CookingSVG } from 'components/SVG/CookingSVG'
 import {
   HamburgerMenuLine,
   HamburgerMenuOverlay,
@@ -34,7 +33,6 @@ export const Navigation = () => {
           <LogoLink to="/" onClick={() => setIsToggled(false)} ref={focusRef}>
             Raveny
           </LogoLink>
-          <CookingSVG height="60" width="60" />
         </LogoWrapper>
         <LinkSection isToggled={isToggled} role="group">
           <Link to="/search" onClick={() => setIsToggled(false)}>
