@@ -1,13 +1,12 @@
 import { ReactElement } from 'react'
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary'
-import { useHistory } from 'react-router-dom'
-import { Button, ErrorFallbackWrapper, Title, Pre } from './styles'
+import { Link, ErrorFallbackWrapper, Text, Pre } from './styles'
 
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
+const ErrorFallback = ({ error }: FallbackProps) => (
   <ErrorFallbackWrapper role="alert">
-    <Title>Something went wrong:</Title>
+    <Text>Something went wrong:</Text>
     <Pre>{error?.message}</Pre>
-    <Button onClick={resetErrorBoundary}>Go To Home</Button>
+    <Link to="/">Go To Home</Link>
   </ErrorFallbackWrapper>
 )
 
@@ -16,15 +15,7 @@ export const ErrorBoundaryProvider = ({
 }: {
   children: ReactElement
 }) => {
-  const history = useHistory()
   return (
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onReset={() => {
-        history.push('/')
-      }}
-    >
-      {children}
-    </ErrorBoundary>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>
   )
 }
