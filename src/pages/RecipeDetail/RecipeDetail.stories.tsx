@@ -6,7 +6,7 @@ import {
   RecipeMain,
   RecipeName,
   Servings,
-  TotalTime,
+  Time,
   Calories,
   RecipeImageSection,
   IngredientsList,
@@ -34,7 +34,7 @@ export const RecipeDetailPage = () => (
     <RecipeInfoSection>
       <TimeSection>
         <TimeHeading>Cooking Time</TimeHeading>
-        <TotalTime>{Math.round(recipe.totalTime)} mins</TotalTime>
+        <Time>{Math.round(recipe.totalTime)} mins</Time>
       </TimeSection>
 
       <ServingsSection>
