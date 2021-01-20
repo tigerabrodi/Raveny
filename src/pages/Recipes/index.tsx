@@ -13,7 +13,7 @@ import {
 import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
 import { useOnScreen } from 'hooks/useOnScreen'
 import {
-  NoRecipesWrapper,
+  NoRecipesFoundMain,
   NoRecipesTitle,
   SadFace,
   NoRecipesButton,
@@ -80,10 +80,10 @@ export const Recipes = () => {
       ) : null}
     </RecipesMain>
   ) : (
-    <NoRecipesWrapper>
+    <NoRecipesFoundMain>
       <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
-      <SadFace role="img" title="A sad emoji." />
+      <SadFace role="img" title="A sad looking emoji." />
       <NoRecipesButton to="/search">Back To Search</NoRecipesButton>
-    </NoRecipesWrapper>
+    </NoRecipesFoundMain>
   )
 }

@@ -4,8 +4,7 @@ import { media } from 'theme/media'
 import { EmojiFrown } from '@styled-icons/bootstrap'
 import { wrapperStyles } from 'styles'
 
-/*  No recipes found page */
-export const NoRecipesWrapper = styled.main`
+export const NoRecipesFoundMain = styled.main`
   ${wrapperStyles}
   display: flex;
   flex-direction: column;

@@ -1,7 +1,7 @@
 import {
   NoRecipesButton,
   NoRecipesTitle,
-  NoRecipesWrapper,
+  NoRecipesFoundMain,
   SadFace,
 } from './styles'
 import { Recipes as RecipesPage } from '.'
@@ -12,9 +12,9 @@ export default {
 }
 
 export const NoRecipesFound = () => (
-  <NoRecipesWrapper>
+  <NoRecipesFoundMain>
     <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
     <SadFace role="img" title="A sad emoji." />
     <NoRecipesButton to="/search">Back To Search</NoRecipesButton>
-  </NoRecipesWrapper>
+  </NoRecipesFoundMain>
 )
