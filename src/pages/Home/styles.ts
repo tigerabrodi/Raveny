@@ -1,11 +1,10 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
 import { Search } from '@styled-icons/bootstrap'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
 
-/* Home Header Wrapper */
 export const HomeMain = styled.main`
   ${wrapperStyles}
   display: grid;
@@ -26,7 +25,6 @@ export const HomeMain = styled.main`
   }
 `
 
-/* Text Area */
 export const InfoSection = styled.section`
   grid-area: info;
   height: 80%;
@@ -137,7 +135,6 @@ export const SearchIcon = styled(Search)`
   }
 `
 
-/* Image Area */
 export const RecipeBookSection = styled.section`
   grid-area: image;
   position: relative;
