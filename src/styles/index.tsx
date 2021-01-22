@@ -58,7 +58,6 @@ export const Strong = styled.strong`
 /* Icons */
 export const Check = styled(CheckIcon)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
-  color: ${({ theme }) => theme.colors.Green};
   height: 3rem;
   width: 2.3rem;
   margin-left: 0.5rem;
