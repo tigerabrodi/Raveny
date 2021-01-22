@@ -8,7 +8,7 @@ export const FooterWrapper = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 0.1rem solid ${({ theme }) => theme.colors.Orange};
+  border-top: 0.2rem solid ${({ theme }) => theme.colors.Orange};
 `
 
 export const Text = styled.p`
