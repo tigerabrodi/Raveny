@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components'
-import { HeartFill } from '@styled-icons/bootstrap'
+import styled from 'styled-components'
+import { ReactComponent as HeartIcon } from 'assets/heart.svg'
 
 export const FooterWrapper = styled.footer`
   height: 8rem;
@@ -19,20 +19,11 @@ export const Text = styled.p`
   letter-spacing: 0.1rem;
 `
 
-const pulse = keyframes`
-    from {
-        transform: scale(1)
-    } 
-
-    to {
-        transform: scale(1.2)
-    }
-`
-
-export const HeartIcon = styled(HeartFill)`
-  animation: ${pulse} 1s infinite alternate;
-  height: 1.5rem;
-  color: red;
+export const Heart = styled(HeartIcon)`
+  height: 2.2rem;
+  width: 2.2rem;
+  position: relative;
+  top: 0.3rem;
 `
 
 export const TextLink = styled.a`
