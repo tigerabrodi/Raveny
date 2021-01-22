@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
 import { NavLink as RouterLink } from 'react-router-dom'
+import { ReactComponent as Logo } from 'assets/cooking-pan-food.svg'
 import { media } from 'theme/media'
 
 const animTopVisible = keyframes`
@@ -40,6 +41,14 @@ export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
     css`
       box-shadow: 0 0.5rem 0.5rem black;
     `}
+`
+
+export const LogoIcon = styled(Logo)`
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-left: 0.5rem;
+  position: relative;
+  top: 0.3rem;
 `
 
 export const LogoWrapper = styled.section`

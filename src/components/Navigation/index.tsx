@@ -7,6 +7,7 @@ import {
   IntersectingElement,
   Link,
   LinkSection,
+  LogoIcon,
   LogoLink,
   LogoWrapper,
   Nav,
@@ -33,6 +34,7 @@ export const Navigation = () => {
           <LogoLink to="/" onClick={() => setIsToggled(false)} ref={focusRef}>
             Raveny
           </LogoLink>
+          <LogoIcon role="img" title="Cooking pan." />
         </LogoWrapper>
         <LinkSection isToggled={isToggled} role="group">
           <Link to="/search" onClick={() => setIsToggled(false)}>
