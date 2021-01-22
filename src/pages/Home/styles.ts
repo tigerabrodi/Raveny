@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
-import { Search } from '@styled-icons/bootstrap'
+import { ReactComponent as Search } from 'assets/search.svg'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
@@ -110,7 +110,7 @@ export const InfoLink = styled(Link)`
       transform: scaleX(1);
     }
     &:hover svg {
-      color: ${({ theme }) => theme.colors.White};
+      fill: ${({ theme }) => theme.colors.White};
     }
   }
   ${media.desktop} {
@@ -121,17 +121,21 @@ export const InfoLink = styled(Link)`
 `
 
 export const SearchIcon = styled(Search)`
-  height: 2.1rem;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   position: relative;
   top: 2%;
   transition: all 0.4s;
-  color: ${({ theme }) => theme.colors.Orange};
+  fill: ${({ theme }) => theme.colors.Orange};
+  width: 2.5rem;
+  height: 2.5rem;
   ${media.phone} {
-    height: 2.5rem;
+    width: 2.8rem;
+    height: 2.8rem;
   }
   ${media.desktop} {
-    height: max(2.5rem, 1.7vw);
+    margin-left: 1rem;
+    width: min(2.4vw, 3.5rem);
+    height: min(2.4vw, 3.5rem);
   }
 `
 
