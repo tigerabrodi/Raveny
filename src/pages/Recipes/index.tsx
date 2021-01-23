@@ -12,12 +12,7 @@ import {
 } from 'components/Recipe/styles'
 import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
 import { useOnScreen } from 'hooks/useOnScreen'
-import {
-  NoRecipesFoundMain,
-  NoRecipesTitle,
-  SadFace,
-  NoRecipesButton,
-} from './styles'
+import { NoRecipesFoundMain, NoRecipesTitle, SadFace, Link } from './styles'
 
 export const Recipes = () => {
   const { state } = useRavenyState()
@@ -83,7 +78,7 @@ export const Recipes = () => {
     <NoRecipesFoundMain>
       <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
       <SadFace role="img" title="A sad looking emoji." />
-      <NoRecipesButton to="/search">Back To Search</NoRecipesButton>
+      <Link to="/search">Back To Search</Link>
     </NoRecipesFoundMain>
   )
 }
