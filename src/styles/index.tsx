@@ -1,4 +1,5 @@
-import { Check2Square, ExclamationTriangleFill } from '@styled-icons/bootstrap'
+import { ReactComponent as CheckIcon } from 'assets/check.svg'
+import { ReactComponent as WarnIcon } from 'assets/warn.svg'
 import styled, { css } from 'styled-components'
 import { media } from 'theme/media'
 
@@ -55,16 +56,17 @@ export const Strong = styled.strong`
 `
 
 /* Icons */
-export const Check = styled(Check2Square)`
+export const Check = styled(CheckIcon)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
-  color: ${({ theme }) => theme.colors.Green};
-  height: 2rem;
+  height: 3rem;
+  width: 2.3rem;
   margin-left: 0.5rem;
 `
 
-export const Warn = styled(ExclamationTriangleFill)`
+export const Warn = styled(WarnIcon)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
-  height: 2rem;
+  height: 3rem;
+  width: 2.3rem;
   color: ${({ theme }) => theme.colors.LightRed};
   margin-left: 0.5rem;
 `

@@ -2,6 +2,6 @@ import { NotFoundMain, NotFoundSVG } from './styles'
 
 export const NotFound = () => (
   <NotFoundMain>
-    <NotFoundSVG role="img" aria-label="Page could not be found." />
+    <NotFoundSVG role="img" title="A sad emoji." />
   </NotFoundMain>
 )

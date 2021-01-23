@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
-import { EmojiFrown } from '@styled-icons/bootstrap'
+import { ReactComponent as SadIcon } from 'assets/sad.svg'
 import { wrapperStyles } from 'styles'
 
 export const NoRecipesFoundMain = styled.main`
@@ -10,6 +10,7 @@ export const NoRecipesFoundMain = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  height: calc(100vh - 18rem);
 `
 
 export const NoRecipesTitle = styled.h1`
@@ -24,28 +25,30 @@ export const NoRecipesTitle = styled.h1`
   }
 `
 
-export const SadFace = styled(EmojiFrown)`
+export const SadFace = styled(SadIcon)`
   fill: ${({ theme }) => theme.colors.Orange};
   filter: drop-shadow(0 0 1rem ${({ theme }) => theme.colors.Brown});
-  height: 40%;
+  height: 45%;
+  width: 60%;
+  ${media.tablet} {
+    height: 60%;
+  }
 `
 
-export const NoRecipesButton = styled(Link)`
+export const Link = styled(RouterLink)`
   display: flex;
   align-items: center;
   justify-content: space-around;
   text-decoration: none;
   font-size: 1.5rem;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
-  position: relative;
   color: ${({ theme }) => theme.colors.Orange};
   cursor: pointer;
   background-color: transparent;
-  transition: all 0.2s;
+  transition: all 0.3s;
   border: 0.2rem solid ${({ theme }) => theme.colors.Orange};
   height: 5rem;
   width: 13rem;
-  z-index: 10;
   ${media.phone} {
     font-size: 2rem;
     height: 8rem;
@@ -53,22 +56,8 @@ export const NoRecipesButton = styled(Link)`
   }
   &:hover {
     color: ${({ theme }) => theme.colors.White};
-  }
-  &:hover::after {
-    transform: scaleX(1);
-    width: 100%;
-  }
-  &::after {
-    content: '';
-    position: absolute;
+    box-shadow: 0 0.3rem 0.5rem black;
     background-color: ${({ theme }) => theme.colors.Orange};
-    height: 100%;
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: all 0.5s;
-    top: 0;
-    left: 0;
-    z-index: -1;
   }
   &:focus {
     outline: none;
@@ -77,9 +66,8 @@ export const NoRecipesButton = styled(Link)`
     outline: 0.1rem solid ${({ theme }) => theme.colors.White};
   }
   &:active {
-    box-shadow: none;
     ${media.tablet} {
-      transform: scale(0.9);
+      transform: scale(0.95);
     }
   }
 `

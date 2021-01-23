@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 import { ReactComponent as PanSVG } from 'assets/fried.svg'
-import { Plus, Search } from '@styled-icons/bootstrap'
+import { ReactComponent as Plus } from 'assets/plus.svg'
+import { ReactComponent as Search } from 'assets/search.svg'
 import { media } from 'theme/media'
 import { wrapperStyles } from 'styles'
 
@@ -13,7 +14,7 @@ const caloriesInputStyles = css`
   border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   transition: 0.3s;
   height: 100%;
-  width: 40%;
+  width: 45%;
   ${media.phone} {
     width: 25%;
     height: 80%;
@@ -43,7 +44,7 @@ const buttonStyles = css`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  transition: all 0.3s;
+  transition: all 0.3s, border-left 0.1s;
   position: absolute;
   cursor: pointer;
   ${media.phone} {
@@ -55,10 +56,11 @@ const buttonStyles = css`
     width: 13%;
     &:hover {
       background-color: ${({ theme }) => theme.colors.Orange};
+      border-left: 0.1rem solid ${({ theme }) => theme.colors.Brown};
     }
     &:hover svg {
-      color: ${({ theme }) => theme.colors.White};
-      transform: scale(1.05);
+      fill: ${({ theme }) => theme.colors.White};
+      transform: scale(1.02);
     }
     &:active {
       transform: translate(-50%, -50%) scale(0.98);
@@ -134,16 +136,17 @@ export const SearchMain = styled.main`
   grid-template-rows: 1fr 6fr;
   justify-items: center;
   align-items: center;
-  width: 98%;
+  width: 95%;
   justify-self: center;
   ${media.phone} {
+    width: 98%;
     grid-template-rows: 1fr 3fr;
   }
 `
 
 /* Title Area */
 export const Title = styled.label`
-  font-size: min(6rem, 9vw);
+  font-size: min(6rem, 8.9vw);
   font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
   font-weight: 700;
@@ -217,7 +220,7 @@ export const InputValidLengthText = styled.span<{
     return searchNumberLength < 3 ? theme.colors.LightRed : theme.colors.Green
   }};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
-  top: 82%;
+  top: 80%;
   left: 73.5%;
   ${media.phone} {
     font-size: 1.5rem;
@@ -506,17 +509,27 @@ export const Pan = styled(PanSVG)`
 `
 
 export const SearchIcon = styled(Search)`
-  height: 3rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  ${media.phone} {
+    height: 3rem;
+    width: 3rem;
+  }
   position: relative;
   z-index: 5;
-  color: ${({ theme }) => theme.colors.Orange};
-  transition: all 0.5s;
+  fill: ${({ theme }) => theme.colors.Orange};
+  transition: all 0.3s;
 `
 
 export const AddIcon = styled(Plus)`
-  height: 5rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  ${media.phone} {
+    height: 3rem;
+    width: 3rem;
+  }
   position: relative;
   z-index: 5;
-  color: ${({ theme }) => theme.colors.Orange};
-  transition: all 0.5s;
+  fill: ${({ theme }) => theme.colors.Orange};
+  transition: all 0.3s;
 `
