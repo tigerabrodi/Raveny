@@ -18,6 +18,7 @@ import {
   IngredientImage,
   IngredientText,
   IngredientsHeading,
+  IngredientsSection,
 } from './styles'
 import { RecipeDetail as RecipeComponent } from '.'
 
@@ -46,14 +47,16 @@ export const RecipeDetailPage = () => (
       <RecipeImage src={recipe.image} alt={recipe.label} />
       <Calories>{recipe.calories} Calories</Calories>
     </RecipeImageSection>
-    <IngredientsList>
+    <IngredientsSection>
       <IngredientsHeading>Ingredients</IngredientsHeading>
-      {recipe.ingredients.map(({ image, text }) => (
-        <IngredientItem key={uuidv4()}>
-          <IngredientImage src={image} alt={text} />
-          <IngredientText>{text}</IngredientText>
-        </IngredientItem>
-      ))}
-    </IngredientsList>
+      <IngredientsList>
+        {recipe.ingredients.map(({ image, text }) => (
+          <IngredientItem key={uuidv4()}>
+            <IngredientImage src={image} alt={text} />
+            <IngredientText>{text}</IngredientText>
+          </IngredientItem>
+        ))}
+      </IngredientsList>
+    </IngredientsSection>
   </RecipeMain>
 )

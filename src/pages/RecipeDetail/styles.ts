@@ -26,7 +26,7 @@ export const RecipeName = styled.h1`
   color: ${({ theme }) => theme.colors.Orange};
   grid-area: title;
   color: ${({ theme }) => theme.colors.Orange};
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: center;
   ${media.phone} {
     font-size: 5rem;
@@ -172,10 +172,19 @@ export const Calories = styled.h1`
   }
 `
 
-export const IngredientsList = styled.ul`
+export const IngredientsSection = styled.section`
   grid-area: ingredients;
   min-height: 100%;
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  row-gap: 1rem;
+`
+
+export const IngredientsList = styled.ul`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

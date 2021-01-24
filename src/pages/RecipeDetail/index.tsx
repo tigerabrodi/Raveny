@@ -22,6 +22,7 @@ import {
   IngredientItem,
   IngredientText,
   IngredientImage,
+  IngredientsSection,
 } from './styles'
 
 type RouteParams = {
@@ -59,15 +60,17 @@ export const RecipeDetail = () => {
         <RecipeImage src={state.recipe.image} alt={state.recipe.label} />
         <Calories>{Math.round(state.recipe.calories)} Calories</Calories>
       </RecipeImageSection>
-      <IngredientsList>
+      <IngredientsSection>
         <IngredientsHeading>Ingredients</IngredientsHeading>
-        {state.recipe.ingredients.map(({ image, text }) => (
-          <IngredientItem key={uuidv4()}>
-            <IngredientImage src={image} alt={text} />
-            <IngredientText>{text}</IngredientText>
-          </IngredientItem>
-        ))}
-      </IngredientsList>
+        <IngredientsList>
+          {state.recipe.ingredients.map(({ image, text }) => (
+            <IngredientItem key={uuidv4()}>
+              <IngredientImage src={image} alt={text} />
+              <IngredientText>{text}</IngredientText>
+            </IngredientItem>
+          ))}
+        </IngredientsList>
+      </IngredientsSection>
     </RecipeMain>
   ) : null
 }
