@@ -17,10 +17,11 @@ const caloriesInputStyles = css`
   width: 45%;
   ${media.phone} {
     width: 25%;
-    height: 80%;
+    height: 70%;
   }
   ${media.tablet} {
     width: 20%;
+    height: 80%;
   }
   ${media.desktop} {
     max-width: 11rem;
@@ -126,6 +127,17 @@ const inputSectionStyles = css`
   }
 `
 
+const labelStyles = css`
+  color: ${({ theme }) => theme.colors.Orange};
+  font-family: ${({ theme }) => theme.fonts.Lora};
+  text-shadow: 0 0.2rem 0.2rem black;
+  font-weight: bold;
+  font-size: 2.8rem;
+  ${media.phone} {
+    font-size: 4.5rem;
+  }
+`
+
 /* Main */
 export const SearchMain = styled.main`
   ${wrapperStyles}
@@ -133,27 +145,29 @@ export const SearchMain = styled.main`
   grid-template-areas:
     'title'
     'search';
-  grid-template-rows: 1fr 6fr;
+  grid-template-rows: 1fr 10fr;
   justify-items: center;
   align-items: center;
   width: 95%;
   justify-self: center;
   ${media.phone} {
     width: 98%;
-    grid-template-rows: 1fr 3fr;
+  }
+  ${media.tablet} {
+    grid-template-rows: 1fr 4fr;
   }
 `
 
 /* Title Area */
-export const Title = styled.label`
-  font-size: min(6rem, 8.9vw);
-  font-family: ${({ theme }) => theme.fonts.Lora};
+export const Title = styled.h1`
+  font-size: min(5rem, 8vw);
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
   font-weight: 700;
   text-shadow: 0.2rem 0.4rem 0.6rem black;
   letter-spacing: 0.1rem;
   ${media.tablet} {
-    font-size: max(3.5rem, 4vw);
+    font-size: max(4.5rem, 4vw);
   }
 `
 
@@ -164,47 +178,64 @@ export const TitleSection = styled.section`
   justify-content: space-around;
   width: 100%;
   ${media.tablet} {
+    width: 70%;
     border-bottom: 0.3rem solid ${({ theme }) => theme.colors.Orange};
   }
   ${media.desktop} {
-    width: 90%;
+    width: 65%;
   }
 `
 
 /* Search Query */
 export const SearchForm = styled.form`
-  height: 100%;
   width: 100%;
+  height: 90%;
   grid-area: search;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  ${media.phone} {
+    height: 80%;
+  }
 `
 
 export const QuerySection = styled.section`
   display: grid;
   grid-template-areas:
-    'query'
+    'queryLabel'
+    'queryInput'
     'characterErrorMessage';
-  grid-template-rows: 4fr 1fr;
+  grid-template-rows: 1fr 4fr 1fr;
   width: 100%;
-  height: 20%;
+  height: 28%;
   align-items: center;
   justify-items: center;
   align-content: space-around;
   row-gap: 0.5rem;
   ${media.phone} {
-    row-gap: 0;
+    row-gap: 2rem;
   }
+`
+
+export const QueryLabel = styled.label`
+  ${labelStyles};
+  grid-area: queryLabel;
+  align-self: flex-start;
 `
 
 export const QueryInputSection = styled.section`
   ${inputSectionStyles}
-  grid-area: query;
+  grid-area: queryInput;
   height: 100%;
+  ${media.custom(360)} {
+    height: 85%;
+  }
+  ${media.custom(375)} {
+    height: 80%;
+  }
   ${media.phone} {
-    height: 65%;
+    height: 7rem;
   }
 `
 
@@ -267,6 +298,9 @@ export const CaloriesSection = styled.section`
   ${media.custom(360)} {
     height: 30%;
   }
+  ${media.custom(375)} {
+    height: 25%;
+  }
   ${media.custom(400)} {
     height: 35%;
   }
@@ -274,11 +308,8 @@ export const CaloriesSection = styled.section`
     height: 25%;
     row-gap: 0;
   }
-  ${media.tablet} {
-    height: 23%;
-  }
   ${media.desktop} {
-    height: 25%;
+    height: 30%;
   }
 `
 
@@ -327,37 +358,37 @@ export const ExcludeSection = styled.section`
   grid-template-rows: 1fr 2fr 1fr 2fr;
   justify-items: center;
   align-items: center;
-  height: 47%;
+  height: 40%;
   width: 100%;
   row-gap: 0.5rem;
-  ${media.phone} {
-    row-gap: 0;
+  ${media.tablet} {
+    height: 35%;
+  }
+  ${media.tablet} {
+    row-gap: 0.5rem;
+    height: 40%;
+  }
+  ${media.desktop} {
+    height: 45%;
   }
 `
 
 export const ExcludeLabel = styled.label`
+  ${labelStyles}
   grid-area: excludeLabel;
-  color: ${({ theme }) => theme.colors.Orange};
-  font-family: ${({ theme }) => theme.fonts.Lora};
-  text-shadow: 0 0.2rem 0.2rem black;
-  font-weight: bold;
-  font-size: 2.5rem;
-  ${media.phone} {
-    font-size: 4rem;
-  }
 `
 
 export const ExcludeInputSection = styled.section`
   grid-area: excludeInput;
-  height: 75%;
+  height: 90%;
   ${media.custom(360)} {
     height: 100%;
   }
-  ${media.custom(400)} {
-    height: 90%;
+  ${media.custom(375)} {
+    height: 100%;
   }
   ${media.phone} {
-    height: 60%;
+    height: 70%;
   }
   ${media.tablet} {
     width: 100%;
@@ -385,7 +416,7 @@ export const ExcludeIngredientsList = styled.ul`
 `
 
 export const IngredientItem = styled.li`
-  height: 55%;
+  height: 60%;
   min-width: 10%;
   display: flex;
   align-items: center;
@@ -394,7 +425,7 @@ export const IngredientItem = styled.li`
   border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   box-shadow: 0 0.3rem 0.4rem black;
   ${media.phone} {
-    height: 40%;
+    height: 50%;
   }
   ${media.desktop} {
     min-width: 8%;
