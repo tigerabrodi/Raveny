@@ -36,7 +36,7 @@ export const Navigation = () => {
           </LogoLink>
           <LogoIcon role="img" title="Cooking pan." />
         </LogoWrapper>
-        <LinkSection isToggled={isToggled} role="group">
+        <LinkSection isToggled={isToggled}>
           <Link to="/search" onClick={() => setIsToggled(false)}>
             Search
           </Link>
