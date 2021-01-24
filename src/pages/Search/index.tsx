@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useState,
-  KeyboardEvent,
-} from 'react'
+import { ChangeEvent, FormEvent, useState, KeyboardEvent } from 'react'
 import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { useHistory } from 'react-router-dom'
 import { searchRecipes } from 'utils/searchRecipes'
@@ -41,6 +35,7 @@ import {
   ExcludeErrorMessage,
   ExcludeLabel,
   AddIcon,
+  QueryLabel,
 } from './styles'
 
 const apiURL = process.env.REACT_APP_API_URL
@@ -54,7 +49,6 @@ type SearchState = {
 }
 
 export const Search = () => {
-  const [isMobile, setIsMobile] = useState(false)
   const [showErrorCharacters, setShowErrorCharacters] = useState(false)
   const [showErrorCalories, setShowErrorCalories] = useState(false)
   const [
@@ -176,16 +170,6 @@ export const Search = () => {
     }
   }
 
-  useEffect(() => {
-    const setIsMobileView = () => {
-      setIsMobile(window.matchMedia('(max-width: 768px)').matches)
-    }
-
-    setIsMobileView()
-    window.addEventListener('resize', setIsMobileView)
-    return () => window.removeEventListener('resize', setIsMobileView)
-  }, [])
-
   if (state.status === 'loading') {
     return <FullPageSpinner />
   }
@@ -193,16 +177,13 @@ export const Search = () => {
   return (
     <SearchMain>
       <TitleSection>
-        <Title htmlFor="search">
-          {isMobile
-            ? 'Start Cooking Today!'
-            : 'Search Now and Start Cooking Today!'}
-        </Title>
+        <Title>Start Cooking Today!</Title>
         <Pan role="img" title="A cooking pan." />
       </TitleSection>
 
       <SearchForm onSubmit={(event) => onSubmit(event)} autoComplete="off">
         <QuerySection>
+          <QueryLabel htmlFor="search">Search recipes</QueryLabel>
           <QueryInputSection>
             <QueryInput
               value={searchValue}
@@ -285,13 +266,13 @@ export const Search = () => {
         </CaloriesSection>
 
         <ExcludeSection>
-          <ExcludeLabel htmlFor="Exclude Ingredients">
-            Exclude Ingredients
+          <ExcludeLabel htmlFor="excludeIngredients">
+            Exclude ingredients
           </ExcludeLabel>
 
           <ExcludeInputSection>
             <ExcludeInput
-              id="Exclude Ingredients"
+              id="excludeIngredients"
               aria-describedby="excludeError"
               placeholder="Exclude calories..."
               name="excludeValue"

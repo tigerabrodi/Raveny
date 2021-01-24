@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 import { media } from 'theme/media'
 
-export const ErrorFallbackWrapper = styled.main`
+export const ErrorFallbackWrapper = styled.div`
   height: calc(100vh - 18rem);
   width: 80vw;
   display: flex;
