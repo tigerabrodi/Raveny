@@ -20,7 +20,7 @@ export const TextWrapper = styled.div`
 `
 
 export const Text = styled.p`
-  font-family: ${({ theme }) => theme.fonts.Lora};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
   font-size: 3rem;
   color: ${({ theme }) => theme.colors.Orange};
   text-align: center;
@@ -31,14 +31,15 @@ export const Text = styled.p`
 
 export const FileSpan = styled.span`
   font-size: 2.5rem;
-  color: ${({ theme }) => theme.colors.Brown};
+  font-family: ${({ theme }) => theme.fonts.Lora};
+  color: ${({ theme }) => theme.colors.Orange};
 `
 
 export const DocLink = styled.a`
   word-break: break-all;
   font-size: 2rem;
-  color: ${({ theme }) => theme.colors.Brown};
-  text-decoration: none;
+  color: ${({ theme }) => theme.colors.Orange};
+  text-decoration: underline;
   &:hover {
     text-decoration: underline;
   }
