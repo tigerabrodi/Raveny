@@ -254,7 +254,7 @@ export const Search = () => {
             <ExcludeInput
               id="excludeIngredients"
               aria-describedby="excludeError"
-              placeholder="Exclude calories..."
+              placeholder="Exclude ingredients..."
               name="excludeValue"
               value={excludeValue}
               onKeyDown={(event) =>
