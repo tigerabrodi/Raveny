@@ -7,15 +7,6 @@ export const getRandomLabel = <
   enumLabel: Label
 ): Label[keyof Label] => faker.random.arrayElement(Object.values(enumLabel))
 
-export const persistUrlInSessionStorage = (url: string) => {
-  sessionStorage.clear()
-  const urlToSessionStorage = new URL(url)
-  sessionStorage.setItem(
-    'queryRecipesURL',
-    JSON.stringify(urlToSessionStorage.href)
-  )
-}
-
 export const capitalizeName = (name: string) => {
   return `${name[0].toUpperCase()}${name.slice(1).toLowerCase()}`
 }
