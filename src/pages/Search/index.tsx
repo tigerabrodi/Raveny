@@ -35,8 +35,6 @@ import {
   QueryLabel,
 } from './styles'
 
-const apiURL = process.env.REACT_APP_API_URL
-
 type SearchState = {
   searchValue: string
   minCalories: number
@@ -81,8 +79,6 @@ export const Search = () => {
 
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
-
-  const url = new URL(apiURL!)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchState({
