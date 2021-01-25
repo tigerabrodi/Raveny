@@ -1,7 +1,4 @@
-import { useEffect, useRef } from 'react'
-import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
-import { fetchRecipes } from 'utils/fetchRecipes'
-import { fetchMoreRecipes } from 'utils/fetchMoreRecipes'
+import { useRavenyState } from 'context/RavenyContext'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
@@ -10,23 +7,35 @@ import {
   RecipesMain,
   RecipesSection,
 } from 'components/Recipe/styles'
+import { useLocation } from 'react-router-dom'
+import { useOnInfinite } from 'hooks/useOnInfinite'
 import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
 import { useOnScreen } from 'hooks/useOnScreen'
 import { NoRecipesFoundMain, NoRecipesTitle, SadFace, Link } from './styles'
 
+const apiURL = process.env.REACT_APP_API_URL
+
 export const Recipes = () => {
   const { state } = useRavenyState()
-  const { dispatch } = useRavenyDispatch()
-  const moreRecipesFetchedTimesRef = useRef(1)
-  const mountRef = useRef(1)
 
-  const isNotFirstRender = JSON.parse(
-    sessionStorage.getItem('recipesMount') as string
-  )
+  const searchParams = new URLSearchParams(useLocation().search)
 
-  const urlObject = new URL(
-    JSON.parse(sessionStorage.getItem('queryRecipesURL') as string)
-  )
+  const query = searchParams.get('q') as string
+  const calories = searchParams.get('calories') as string
+  const excludedIngredients = searchParams.getAll('exclude') as string[]
+
+  const hasExcludedIngredients = excludedIngredients.length > 0
+
+  const urlObject = new URL(apiURL!)
+
+  urlObject.searchParams.append('q', query)
+  urlObject.searchParams.append('calories', calories)
+
+  if (hasExcludedIngredients) {
+    excludedIngredients.forEach((ingredient) => {
+      urlObject.searchParams.append('exclude', ingredient)
+    })
+  }
 
   const { href } = urlObject
 
@@ -34,25 +43,7 @@ export const Recipes = () => {
     threshold: 1,
   })
 
-  useEffect(() => {
-    if (isNotFirstRender === 2 && mountRef.current === 1) {
-      fetchRecipes(dispatch, href)
-    } else {
-      mountRef.current++
-      sessionStorage.setItem('recipesMount', JSON.stringify(2))
-    }
-  }, [href, dispatch, isNotFirstRender])
-
-  useEffect(() => {
-    if (isVisible) {
-      fetchMoreRecipes({
-        dispatch,
-        href,
-        moreRecipesFetchedTimes: moreRecipesFetchedTimesRef.current,
-      })
-      moreRecipesFetchedTimesRef.current++
-    }
-  }, [dispatch, href, isVisible])
+  useOnInfinite(href, isVisible)
 
   if (state.status === 'loading') {
     return <FullPageSpinner />
