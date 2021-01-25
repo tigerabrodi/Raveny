@@ -28,7 +28,10 @@ export const fetchSingleRecipe = async (
 
       dispatch({
         type: 'singleRecipeResolved',
-        payload: recipe,
+        payload: {
+          ...recipe,
+          caloriesPerServing: Math.round(recipe.calories / recipe.yield),
+        },
       })
     } else {
       const failureData = await response.json()

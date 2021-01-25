@@ -35,6 +35,7 @@ export const fetchRecipes = async (
           recipes: hits.map(({ recipe }) => ({
             ...recipe,
             id: new URL(recipe.uri).hash.split('_')[1],
+            caloriesPerServing: Math.round(recipe.calories / recipe.yield),
           })),
           more,
         },

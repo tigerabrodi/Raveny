@@ -33,6 +33,7 @@ export const fetchMoreRecipes = async ({
         payload: {
           recipes: hits.map(({ recipe }) => ({
             ...recipe,
+            caloriesPerServing: Math.round(recipe.calories / recipe.yield),
             id: new URL(recipe.uri).hash.split('_')[1],
           })),
           more,

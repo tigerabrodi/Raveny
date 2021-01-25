@@ -25,11 +25,11 @@ export const Recipe = ({
     id,
     label,
     image,
-    calories,
     cautions,
     healthLabels,
     dietLabels,
     yield: servings,
+    caloriesPerServing,
   },
 }: RecipeProps) => {
   return (
@@ -38,7 +38,7 @@ export const Recipe = ({
       <Image src={image} alt={label} />
       <Calories>
         <Strong>Calories: </Strong>
-        {Math.round(calories / servings)}
+        {caloriesPerServing}
       </Calories>
       <Serving>
         <Strong>Servings: </Strong>
