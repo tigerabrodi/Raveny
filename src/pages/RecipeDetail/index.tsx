@@ -58,7 +58,7 @@ export const RecipeDetail = () => {
       </RecipeInfoSection>
       <RecipeImageSection>
         <RecipeImage src={state.recipe.image} alt={state.recipe.label} />
-        <Calories>{Math.round(state.recipe.calories)} Calories</Calories>
+        <Calories>{state.recipe.caloriesPerServing} Calories</Calories>
       </RecipeImageSection>
       <IngredientsSection>
         <IngredientsHeading>Ingredients</IngredientsHeading>

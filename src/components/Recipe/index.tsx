@@ -22,25 +22,23 @@ type RecipeProps = {
 
 export const Recipe = ({
   recipe: {
-    uri,
+    id,
     label,
     image,
-    calories,
     cautions,
     healthLabels,
     dietLabels,
     yield: servings,
+    caloriesPerServing,
   },
 }: RecipeProps) => {
-  const recipeId = new URL(uri).hash.split('_')[1]
-
   return (
-    <RecipeWrapperLink to={`/recipe/${recipeId}`}>
+    <RecipeWrapperLink to={`/recipe/${id}`}>
       <Title> {label} </Title>
       <Image src={image} alt={label} />
       <Calories>
         <Strong>Calories: </Strong>
-        {Math.round(calories / servings)}
+        {caloriesPerServing}
       </Calories>
       <Serving>
         <Strong>Servings: </Strong>

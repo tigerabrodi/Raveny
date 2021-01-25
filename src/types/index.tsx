@@ -34,6 +34,7 @@ export type Recipe = {
   cautions: string[]
   dietLabels: DietLabel[]
   healthLabels: HealthLabel[]
+  caloriesPerServing: number
 }
 
 type Hit = {
