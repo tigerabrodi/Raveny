@@ -25,14 +25,14 @@ import {
   IngredientsSection,
 } from './styles'
 
-type RouteParams = {
+type Params = {
   recipeId: string
 }
 
 export const RecipeDetail = () => {
   const { state } = useRavenyState()
   const { dispatch } = useRavenyDispatch()
-  const { recipeId } = useParams<RouteParams>()
+  const { recipeId } = useParams<Params>()
 
   useEffect(() => {
     fetchSingleRecipe(dispatch, recipeId)

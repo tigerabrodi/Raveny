@@ -1,10 +1,7 @@
 import { ChangeEvent, FormEvent, useState, KeyboardEvent } from 'react'
-import { useRavenyDispatch, useRavenyState } from 'context/RavenyContext'
 import { useHistory } from 'react-router-dom'
-import { searchRecipes } from 'utils/searchRecipes'
 import { capitalizeName } from 'utils/functions'
 import { v4 as uuidv4 } from 'uuid'
-import { FullPageSpinner } from 'components/Spinner'
 import {
   Pan,
   QueryInput,
@@ -38,8 +35,6 @@ import {
   QueryLabel,
 } from './styles'
 
-const apiURL = process.env.REACT_APP_API_URL
-
 type SearchState = {
   searchValue: string
   minCalories: number
@@ -72,6 +67,8 @@ export const Search = () => {
     excludeValue: '',
   })
 
+  const history = useHistory()
+
   const {
     searchValue,
     minCalories,
@@ -82,12 +79,6 @@ export const Search = () => {
 
   const searchLengthValidation =
     searchValue.length < 3 ? `${searchValue.length}/3` : '3/3'
-
-  const url = new URL(apiURL!)
-
-  const { dispatch } = useRavenyDispatch()
-  const { state } = useRavenyState()
-  const history = useHistory()
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchState({
@@ -153,25 +144,14 @@ export const Search = () => {
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
     if (validateOnSubmitInput() === true) {
-      url.searchParams.append('q', searchValue.toLowerCase())
-      url.searchParams.append('calories', `${minCalories}-${maxCalories}`)
+      let redirectRoute = `/recipes?q=${searchValue.toLowerCase()}&calories=${minCalories}-${maxCalories}`
 
       excludedIngredients.forEach(({ name }) => {
-        url.searchParams.append('exclude', name.toLowerCase())
+        redirectRoute = `${redirectRoute}&exclude=${name.toLowerCase()}`
       })
 
-      const { href } = url
-
-      searchRecipes({
-        dispatch,
-        history,
-        href,
-      })
+      history.push(redirectRoute)
     }
-  }
-
-  if (state.status === 'loading') {
-    return <FullPageSpinner />
   }
 
   return (
