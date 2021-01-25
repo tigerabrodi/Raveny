@@ -22,7 +22,7 @@ type RecipeProps = {
 
 export const Recipe = ({
   recipe: {
-    uri,
+    id,
     label,
     image,
     calories,
@@ -32,10 +32,8 @@ export const Recipe = ({
     yield: servings,
   },
 }: RecipeProps) => {
-  const recipeId = new URL(uri).hash.split('_')[1]
-
   return (
-    <RecipeWrapperLink to={`/recipe/${recipeId}`}>
+    <RecipeWrapperLink to={`/recipe/${id}`}>
       <Title> {label} </Title>
       <Image src={image} alt={label} />
       <Calories>
