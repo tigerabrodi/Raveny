@@ -6,39 +6,60 @@ import highCaloriesResponse from './data/calories-high-recipes.json'
 import excludeOneIngredientResponse from './data/exclude-ingredients-1-recipes.json'
 import excludeTwoIngredientsResponse from './data/exclude-ingredients-2-recipes.json'
 import singleRecipeResponse from './data/single-recipe.json'
+import lowCarbResponse from './data/low-carb-recipes.json'
+import veganResponse from './data/vegan-recipes.json'
+import highProteinResponse from './data/high-protein-recipes.json'
 
 export const handlers = [
   rest.get('https://api.edamam.com/search', (req, res, ctx) => {
-    const query = req.url.searchParams.get('q')
-    const caloriesRange = req.url.searchParams.get('calories')
-    const excludedIngredients = req.url.searchParams.getAll('exclude')
-    const singleRecipeUri = req.url.searchParams.get('r')
+    const queryParam = req.url.searchParams.get('q')
+    const caloriesRangeParam = req.url.searchParams.get('calories')
+    const excludedIngredientsParam = req.url.searchParams.getAll('exclude')
+    const singleRecipeUriParam = req.url.searchParams.get('r')
+    const healthParam = req.url.searchParams.get('health')
+    const dietParam = req.url.searchParams.get('diet')
 
-    if (query === 'chicken') {
-      return res(ctx.status(200), ctx.json(chickenResponse))
+    /* Labels */
+    if (healthParam === 'vegan') {
+      return res(ctx.status(200), ctx.json(veganResponse))
     }
 
-    if (query === 'meat') {
-      return res(ctx.status(200), ctx.json(meatResponse))
+    if (dietParam === 'high-protein') {
+      return res(ctx.status(200), ctx.json(highProteinResponse))
     }
 
-    if (caloriesRange === '0-1500') {
+    if (dietParam === 'low-carb') {
+      return res(ctx.status(200), ctx.json(lowCarbResponse))
+    }
+
+    /* Calories */
+    if (caloriesRangeParam === '0-1500') {
       return res(ctx.status(200), ctx.json(lowCaloriesResponse))
     }
 
-    if (caloriesRange === '1500-3000') {
+    if (caloriesRangeParam === '1500-3000') {
       return res(ctx.status(200), ctx.json(highCaloriesResponse))
     }
 
-    if (excludedIngredients.length === 1) {
+    /* Ingredients */
+    if (excludedIngredientsParam.length === 1) {
       return res(ctx.status(200), ctx.json(excludeOneIngredientResponse))
     }
 
-    if (excludedIngredients.length === 2) {
+    if (excludedIngredientsParam.length === 2) {
       return res(ctx.status(200), ctx.json(excludeTwoIngredientsResponse))
     }
 
-    if (singleRecipeUri?.startsWith('http://www.edamam.com/ontologies/')) {
+    /* Query */
+    if (queryParam === 'chicken') {
+      return res(ctx.status(200), ctx.json(chickenResponse))
+    }
+
+    if (queryParam === 'meat') {
+      return res(ctx.status(200), ctx.json(meatResponse))
+    }
+
+    if (singleRecipeUriParam?.startsWith('http://www.edamam.com/ontologies/')) {
       return res(ctx.status(200), ctx.json(singleRecipeResponse))
     }
   }),
