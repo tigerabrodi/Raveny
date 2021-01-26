@@ -35,7 +35,7 @@ export const LowCarb = () => {
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain>
-      <RecipesHeading>Vegan</RecipesHeading>
+      <RecipesHeading>Low Carb</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe) => (
           <Recipe recipe={recipe} key={recipe.id} />
