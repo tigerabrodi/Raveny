@@ -64,7 +64,7 @@ export const RecipeInfoSection = styled.section`
   }
 `
 
-export const TimeSection = styled.section`
+export const TimeSection = styled.h2`
   grid-area: time;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ export const TimeSection = styled.section`
   }
 `
 
-export const ServingsSection = styled.section`
+export const ServingsSection = styled.h2`
   grid-area: servings;
   display: flex;
   flex-direction: column;
@@ -96,7 +96,7 @@ export const ServingsSection = styled.section`
   }
 `
 
-export const TimeHeading = styled.h2`
+export const TimeHeading = styled.span`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
@@ -106,7 +106,7 @@ export const TimeHeading = styled.h2`
   }
 `
 
-export const ServingsHeading = styled.h2`
+export const ServingsHeading = styled.span`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
@@ -116,7 +116,7 @@ export const ServingsHeading = styled.h2`
   }
 `
 
-export const Time = styled.h3`
+export const Time = styled.span`
   text-shadow: 0 0.2rem 0.5rem black;
   font-family: ${({ theme }) => theme.fonts.Lora};
   color: ${({ theme }) => theme.colors.Orange};
@@ -126,7 +126,7 @@ export const Time = styled.h3`
   }
 `
 
-export const Servings = styled.h3`
+export const Servings = styled.span`
   text-shadow: 0 0.2rem 0.5rem black;
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: 2.5rem;
