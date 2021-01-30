@@ -192,13 +192,11 @@ export const Search = () => {
             </QueryButton>
           </QueryInputSection>
 
-          <CharacterErrorMessage
-            role="alert"
-            id="searchInputError"
-            shouldShowErrorMessage={showErrorCharacters}
-          >
-            Please enter at least three characters.
-          </CharacterErrorMessage>
+          {showErrorCharacters && (
+            <CharacterErrorMessage role="alert" id="searchInputError">
+              Please enter at least three characters.
+            </CharacterErrorMessage>
+          )}
         </QuerySection>
 
         <CaloriesSection>
@@ -236,13 +234,11 @@ export const Search = () => {
             aria-describedby="caloriesError"
           />
 
-          <CaloriesErrorMessage
-            id="caloriesError"
-            role="alert"
-            shouldShowErrorMessage={showErrorCalories}
-          >
-            Minimum Calories must be less than Maximum Calories.
-          </CaloriesErrorMessage>
+          {showErrorCalories && (
+            <CaloriesErrorMessage id="caloriesError" role="alert">
+              Minimum Calories must be less than Maximum Calories.
+            </CaloriesErrorMessage>
+          )}
         </CaloriesSection>
 
         <ExcludeSection>
@@ -272,19 +268,15 @@ export const Search = () => {
             </IngredientAddButton>
           </ExcludeInputSection>
 
-          <ExcludeErrorMessage
-            role="alert"
-            id="excludeError"
-            shouldShowErrorMessage={
-              showErrorExcludedIngredients || showErrorCharacterIngredients
-            }
-          >
-            {showErrorCharacterIngredients
-              ? 'Please enter at least 3 characters for the ingredient to be excluded.'
-              : showErrorExcludedIngredients
-              ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
-              : null}
-          </ExcludeErrorMessage>
+          {(showErrorExcludedIngredients || showErrorCharacterIngredients) && (
+            <ExcludeErrorMessage role="alert" id="excludeError">
+              {showErrorCharacterIngredients
+                ? 'Please enter at least 3 characters for the ingredient to be excluded.'
+                : showErrorExcludedIngredients
+                ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
+                : null}
+            </ExcludeErrorMessage>
+          )}
           {excludedIngredients.length > 0 && (
             <ExcludeIngredientsList>
               {excludedIngredients.map(({ name, id }) => (

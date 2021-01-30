@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components/macro'
 import { ReactComponent as PanSVG } from 'assets/fried.svg'
 import { ReactComponent as Plus } from 'assets/plus.svg'
 import { ReactComponent as Search } from 'assets/search.svg'
@@ -206,7 +206,7 @@ export const QuerySection = styled.section`
     'queryLabel'
     'queryInput'
     'characterErrorMessage';
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 4fr 2fr;
   width: 100%;
   height: 28%;
   align-items: center;
@@ -214,7 +214,7 @@ export const QuerySection = styled.section`
   align-content: space-around;
   row-gap: 0.5rem;
   ${media.phone} {
-    row-gap: 2rem;
+    row-gap: 1.5rem;
   }
 `
 
@@ -465,8 +465,25 @@ export const IngredientRemoveButton = styled.button`
   }
 `
 
+/* Animations */
+const animCook = keyframes`
+    from {
+    transform: translateY(-.3rem) translateX(-.2rem) rotate(8deg) scale(-1, 1);
+    }
+
+    to {
+    transform: translate(0) scale(-1, 1);
+    }
+`
+
+const errorAnim = keyframes`
+    to {
+    transform: translateY(0.2rem);
+    }
+`
+
 /*  Error Messages */
-const ErrorMessage = styled.span<{ shouldShowErrorMessage: boolean }>`
+const ErrorMessage = styled.span`
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   font-size: 1.2rem;
@@ -474,9 +491,7 @@ const ErrorMessage = styled.span<{ shouldShowErrorMessage: boolean }>`
   text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   letter-spacing: 0.2rem;
-  visibility: hidden;
-  transform: translateY(-0.5rem);
-  transition: 0.3s;
+  animation: ${errorAnim} 0.1s forwards;
   ${media.custom(400)} {
     font-size: 1.5rem;
   }
@@ -492,12 +507,6 @@ const ErrorMessage = styled.span<{ shouldShowErrorMessage: boolean }>`
   ${media.custom(1600)} {
     font-size: 2.5rem;
   }
-  ${(props) =>
-    props.shouldShowErrorMessage &&
-    css`
-      visibility: visible;
-      transform: translateY(0);
-    `};
 `
 
 export const CharacterErrorMessage = styled(ErrorMessage)`
@@ -510,17 +519,6 @@ export const CaloriesErrorMessage = styled(ErrorMessage)`
 
 export const ExcludeErrorMessage = styled(ErrorMessage)`
   grid-area: excludeError;
-`
-
-/* Animations */
-const animCook = keyframes`
-    from {
-    transform: translateY(-.3rem) translateX(-.2rem) rotate(8deg) scale(-1, 1);
-    }
-
-    to {
-    transform: translate(0) scale(-1, 1);
-    }
 `
 
 /* Icons */
