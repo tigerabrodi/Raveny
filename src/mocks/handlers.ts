@@ -10,7 +10,7 @@ import lowCarbResponse from './data/low-carb-recipes.json'
 import veganResponse from './data/vegan-recipes.json'
 import highProteinResponse from './data/high-protein-recipes.json'
 
-export const handlers = [
+export const integrationHandlers = [
   rest.get('https://api.edamam.com/search', (req, res, ctx) => {
     const queryParam = req.url.searchParams.get('q')
     const caloriesRangeParam = req.url.searchParams.get('calories')

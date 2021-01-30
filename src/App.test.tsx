@@ -1,6 +1,5 @@
 import App from 'App'
 import {
-  logRoles,
   render,
   screen,
   userEvent,

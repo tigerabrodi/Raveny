@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom/extend-expect'
 import { setupIntersectionObserverMock } from 'test/intersectionObserverMock'
 import { configure } from '@testing-library/react'
-import { server } from 'mocks/server'
+import { integrationServer } from 'mocks/server'
 
 configure({ defaultHidden: true })
 
 setupIntersectionObserverMock()
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
-afterAll(() => server.close())
-afterEach(() => server.resetHandlers())
+beforeAll(() => integrationServer.listen({ onUnhandledRequest: 'error' }))
+afterAll(() => integrationServer.close())
+afterEach(() => integrationServer.resetHandlers())
