@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components/macro'
 import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
 import { ReactComponent as Search } from 'assets/search.svg'
 import { Link } from 'react-router-dom'
