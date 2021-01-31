@@ -44,5 +44,45 @@ describe('searching recipes', () => {
         level: 3,
       })
     })
+
+    test('should show high calories response', async () => {
+      render(<App />, { route: '/search' })
+      userEvent.clear(screen.getByLabelText(/min calories/i))
+      userEvent.type(screen.getByLabelText(/min calories/i), '1500')
+      userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
+
+      userEvent.click(
+        screen.getByRole('button', { name: /search for recipes/i })
+      )
+
+      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+      const recipe = screen.getByRole('link', { name: /high calories/i })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /high calories/i,
+        level: 1,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /calories: 2331/i,
+        level: 2,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /servings: 1/i,
+        level: 2,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /fat-heavy/i,
+        level: 3,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /Vegetarian/i,
+        level: 3,
+      })
+    })
   })
 })
