@@ -4,11 +4,11 @@ import {
   getWithinElementRoleInDocument,
   queryByRoleNotInDocument,
 } from 'utils/functions'
-import { Search } from '.'
+import App from 'App'
 
 describe('search', () => {
   test('should validate query input', () => {
-    render(<Search />)
+    render(<App />, { route: '/search' })
 
     queryByRoleNotInDocument('alert', {
       name: /Please enter at least three characters./i,
@@ -22,7 +22,7 @@ describe('search', () => {
   })
 
   test('should validate calories', () => {
-    render(<Search />)
+    render(<App />, { route: '/search' })
 
     getByRoleInDocument('alert', { name: /Length of search value is invalid/i })
 
@@ -47,7 +47,7 @@ describe('search', () => {
 
   describe('exclude', () => {
     test('should validate characters', () => {
-      render(<Search />)
+      render(<App />, { route: '/search' })
 
       queryByRoleNotInDocument('alert', {
         name: /Please enter at least 3 characters for the ingredient to be excluded./i,
@@ -82,7 +82,7 @@ describe('search', () => {
     })
 
     test('should validate existing ingredients', () => {
-      render(<Search />)
+      render(<App />, { route: '/search' })
 
       userEvent.type(screen.getByLabelText(/Exclude ingredients/i), 'chicken')
 
