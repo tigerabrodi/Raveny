@@ -24,12 +24,12 @@
     ],
     "ingredients": [
       {
-        "text": "Salt and pepper",
+        "text": "Salt",
         "weight": 8.860119884999392,
         "image": "https://www.edamam.com/food-img/c6e/c6e5c3bd8d3bc15175d9766971a4d1b2.jpg"
       },
       {
-        "text": "1 cup frozen peas, thawed",
+        "text": "frozen peas",
         "weight": 134.0,
         "image": "https://www.edamam.com/food-img/c91/c9130a361d5c5b279bf48c69e2466ec2.jpg"
       }
