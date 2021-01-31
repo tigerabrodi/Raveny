@@ -1,28 +1,15 @@
 import App from 'App'
 import {
-  ByRoleMatcher,
-  ByRoleOptions,
   render,
   screen,
   userEvent,
   waitForElementToBeRemoved,
   within,
 } from 'test/utils'
-
-const getByRoleInDocument = (
-  role: ByRoleMatcher,
-  { name, level }: { name?: string | RegExp; level?: number } = {}
-) => {
-  expect(screen.getByRole(role, { name, level })).toBeInTheDocument()
-}
-
-const getWithinElementRoleInDocument = (
-  element: HTMLElement,
-  role: ByRoleMatcher,
-  { name, level }: ByRoleOptions = {}
-) => {
-  expect(within(element).getByRole(role, { name, level })).toBeInTheDocument()
-}
+import {
+  getByRoleInDocument,
+  getWithinElementRoleInDocument,
+} from 'utils/functions'
 
 test('should allow simple user search flow', async () => {
   render(<App />)
@@ -164,7 +151,7 @@ test('should allow simple user search flow', async () => {
   getWithinElementRoleInDocument(firstListItem, 'img')
 
   getWithinElementRoleInDocument(firstListItem, 'heading', {
-    name: /salt and pepper/i,
+    name: /salt/i,
     level: 3,
   })
 
@@ -175,7 +162,7 @@ test('should allow simple user search flow', async () => {
   getWithinElementRoleInDocument(secondListItem, 'img')
 
   getWithinElementRoleInDocument(secondListItem, 'heading', {
-    name: /1 cup frozen peas, thawed/i,
+    name: /frozen peas/i,
     level: 3,
   })
 })
