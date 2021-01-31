@@ -19,6 +19,10 @@ describe('searching recipes', () => {
 
       const recipe = screen.getByRole('link', { name: /low calories/i })
 
+      getWithinElementRoleInDocument(recipe, 'img', {
+        name: /low calories/i,
+      })
+
       getWithinElementRoleInDocument(recipe, 'heading', {
         name: /low calories/i,
         level: 1,
@@ -58,6 +62,10 @@ describe('searching recipes', () => {
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
       const recipe = screen.getByRole('link', { name: /high calories/i })
+
+      getWithinElementRoleInDocument(recipe, 'img', {
+        name: /high calories/i,
+      })
 
       getWithinElementRoleInDocument(recipe, 'heading', {
         name: /high calories/i,
@@ -103,6 +111,10 @@ describe('searching recipes', () => {
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
       const recipe = screen.getByRole('link', {
+        name: /exclude one ingredient/i,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'img', {
         name: /exclude one ingredient/i,
       })
 
@@ -154,6 +166,10 @@ describe('searching recipes', () => {
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
       const recipe = screen.getByRole('link', {
+        name: /exclude two ingredients/i,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'img', {
         name: /exclude two ingredients/i,
       })
 
