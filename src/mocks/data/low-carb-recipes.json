@@ -8,19 +8,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_763b4b1ced75faae48164b68ee9e3fad",
-        "label": "Spice-Rubbed Grilled Flap Meat (Sirloin Tip) Recipe",
+        "label": "low carb",
         "image": "https://www.edamam.com/web-img/d97/d9786408ecad48bff714e1076ae07f1b.jpg",
         "source": "Serious Eats",
         "url": "http://www.seriouseats.com/recipes/2012/05/spice-rubbed-grilled-flap-meat-sirloin-tip-recipe.html",
         "shareAs": "http://www.edamam.com/recipe/spice-rubbed-grilled-flap-meat-sirloin-tip-recipe-763b4b1ced75faae48164b68ee9e3fad/meat/low-carb",
         "yield": 4.0,
         "dietLabels": ["Low-Carb"],
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Sugar-Conscious"],
         "cautions": ["FODMAP"],
         "ingredientLines": [
           "1 tablespoon whole black peppercorns, toasted",
@@ -689,19 +684,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_9a6b4bdf872c02d4879496fcc659805b",
-        "label": "Favorite Meat Loaf",
+        "label": "Meat Loaf",
         "image": "https://www.edamam.com/web-img/08f/08f750e1535b4e63755bfc3e3d915304.jpg",
         "source": "Cookstr",
         "url": "http://www.cookstr.com/recipes/favorite-meat-loaf",
         "shareAs": "http://www.edamam.com/recipe/favorite-meat-loaf-9a6b4bdf872c02d4879496fcc659805b/meat/low-carb",
         "yield": 12.0,
         "dietLabels": ["Low-Carb"],
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Tree-Nut-Free"],
         "cautions": ["Sulfites"],
         "ingredientLines": [
           "2 pounds ground beef",

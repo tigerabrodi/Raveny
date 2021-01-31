@@ -8,14 +8,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_14ebd7d6d65f761843dba35202de4b37",
-        "label": "Chicken Satay",
+        "label": "high protein",
         "image": "https://www.edamam.com/web-img/ba6/ba6f66d885e4d62a98055b088a5a85a3.jpg",
         "source": "BBC Good Food",
         "url": "http://www.bbcgoodfood.com/recipes/3645/",
         "shareAs": "http://www.edamam.com/recipe/chicken-satay-14ebd7d6d65f761843dba35202de4b37/chicken/high-protein",
         "yield": 4.0,
-        "dietLabels": ["High-Protein", "Low-Carb"],
-        "healthLabels": ["Sugar-Conscious", "Tree-Nut-Free", "Alcohol-Free"],
+        "dietLabels": ["Low-Carb"],
+        "healthLabels": ["Tree-Nut-Free"],
         "cautions": ["Sulfites"],
         "ingredientLines": [
           "100.0ml soy sauce (Kikkoman is good)",
@@ -606,7 +606,7 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_3565107f0288e835899e54fc19296f8a",
-        "label": "Chicken Stoup",
+        "label": "chicken cream",
         "image": "https://www.edamam.com/web-img/fe0/fe02761576e994437a6fb81719093f09.jpg",
         "source": "Food52",
         "url": "http://www.food52.com/recipes/7634_chicken_stoup",

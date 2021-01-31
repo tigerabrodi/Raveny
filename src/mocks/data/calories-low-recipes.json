@@ -15,13 +15,8 @@
         "shareAs": "http://www.edamam.com/recipe/rainbow-ice-cream-pops-recipe-7c5a5ced83523b4dc49adbc78471cc38/ice+cream/0-1500-cal",
         "yield": 4.0,
         "dietLabels": [],
-        "healthLabels": [
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
-        "cautions": ["Sulfites"],
+        "healthLabels": ["Vegetarian"],
+        "cautions": ["FODMAP"],
         "ingredientLines": [
           "3 tablespoons pink-tinted ice cream, softened",
           "3 tablespoons orange-tinted ice cream, softened",
@@ -668,13 +663,8 @@
         "shareAs": "http://www.edamam.com/recipe/ice-cream-bombe-7ec8f5551e74e6050e5ca3290e4654ef/ice+cream/0-1500-cal",
         "yield": 6.0,
         "dietLabels": [],
-        "healthLabels": [
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
-        "cautions": ["Sulfites", "FODMAP"],
+        "healthLabels": ["Alcohol-Free"],
+        "cautions": ["Sulfites"],
         "ingredientLines": [
           "2 pints black currant sorbet",
           "1 raspberry sorbet",

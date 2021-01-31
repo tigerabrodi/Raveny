@@ -15,13 +15,8 @@
         "shareAs": "http://www.edamam.com/recipe/fennel-ice-cream-7cd841dd824271f60793b60e0fe32270/ice+cream/1500-3000-cal",
         "yield": 1.0,
         "dietLabels": [],
-        "healthLabels": [
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
-        "cautions": [],
+        "healthLabels": ["Vegetarian"],
+        "cautions": ["fat-heavy"],
         "ingredientLines": [
           "1 2/3 cups heavy cream",
           "2 teaspoons fennel seeds, crushed",
@@ -646,13 +641,8 @@
         "shareAs": "http://www.edamam.com/recipe/foolproof-ice-cream-ca7d85a734c8cddfcaf6079f47065890/ice+cream/1500-3000-cal",
         "yield": 1.25,
         "dietLabels": [],
-        "healthLabels": [
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
-        "cautions": [],
+        "healthLabels": ["Alcohol-Free"],
+        "cautions": ["FODMAP"],
         "ingredientLines": [
           "4 egg yolks",
           "1.5 cups heavy cream",

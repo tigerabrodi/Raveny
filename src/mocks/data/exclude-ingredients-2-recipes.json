@@ -8,20 +8,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_4abb432a19ed768f8ee69b235bbb6684",
-        "label": "Strawberries With Sour Cream",
+        "label": "exclude two ingredients",
         "image": "https://www.edamam.com/web-img/d1b/d1b5114f15ad9e5ed8545aebc3759eab.jpg",
         "source": "Lottie + Doof",
         "url": "http://www.lottieanddoof.com/2009/07/strawberries-and-sour-cream/",
         "shareAs": "http://www.edamam.com/recipe/strawberries-with-sour-cream-4abb432a19ed768f8ee69b235bbb6684/cream/0-3000-cal",
         "yield": 6.0,
         "dietLabels": ["Low-Carb"],
-        "healthLabels": [
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free",
-          "Immuno-Supportive"
-        ],
+        "healthLabels": ["Vegetarian"],
         "cautions": ["Sulfites"],
         "ingredientLines": [
           "1 pint sliced strawberries",
@@ -620,12 +614,7 @@
         "shareAs": "http://www.edamam.com/recipe/buttermilk-ice-cream-a9ba817f1a51020431510ef5d7cbba50/cream/0-3000-cal",
         "yield": 14.0,
         "dietLabels": [],
-        "healthLabels": [
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Peanut-Free"],
         "cautions": [],
         "ingredientLines": [
           "2 cups heavy cream",

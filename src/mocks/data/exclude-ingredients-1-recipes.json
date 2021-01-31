@@ -8,21 +8,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_cab4107f2d010d4434fbed7e438790ee",
-        "label": "Rustic Italian Bread",
+        "label": "exclude one ingredient",
         "image": "https://www.edamam.com/web-img/36b/36b8a93186055c229e537439a6ff94a2.JPG",
         "source": "Food52",
         "url": "https://food52.com/recipes/14745-rustic-italian-bread",
         "shareAs": "http://www.edamam.com/recipe/rustic-italian-bread-cab4107f2d010d4434fbed7e438790ee/bread/0-3000-cal",
         "yield": 6.0,
         "dietLabels": ["Low-Fat"],
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Vegan",
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Sugar-Conscious"],
         "cautions": [],
         "ingredientLines": [
           "1 and 1/2 teaspoon salt",
@@ -585,13 +578,7 @@
         "shareAs": "http://www.edamam.com/recipe/grilled-bread-recipes-3ba43d870ba5ad5bcaf86907a1ddf7b0/bread/0-3000-cal",
         "yield": 1.0,
         "dietLabels": ["Low-Fat"],
-        "healthLabels": [
-          "Vegan",
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Vegan"],
         "cautions": [],
         "ingredientLines": [
           "1 loaf rustic bread, sliced",

@@ -8,19 +8,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_dddda06161001f2dc1dab9bd36333858",
-        "label": "Meat Loaf With Mushroom Sauce",
+        "label": "meat",
         "image": "https://www.edamam.com/web-img/cd8/cd82746d8a0e5b3ca6e04463c2436eda.jpg",
         "source": "NY Magazine",
         "url": "http://nymag.com/restaurants/articles/recipes/meatloaf.htm",
         "shareAs": "http://www.edamam.com/recipe/meat-loaf-with-mushroom-sauce-dddda06161001f2dc1dab9bd36333858/meat/0-3000-cal",
         "yield": 6.0,
         "dietLabels": ["Low-Carb"],
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Sugar-Conscious"],
         "cautions": ["Sulfites"],
         "ingredientLines": [
           "1 tablespoon olive oil",
@@ -704,20 +699,15 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_75e4ca97121992820cc6e246bd16b866",
-        "label": "Crab-Meat-Stuffed Sole",
+        "label": "Sole",
         "image": "https://www.edamam.com/web-img/600/6005f21c7d9e8b11538bbc2474aa143f.jpg",
         "source": "Epicurious",
         "url": "http://www.epicurious.com/recipes/food/views/Crab-Meat-Stuffed-Sole-103563",
         "shareAs": "http://www.edamam.com/recipe/crab-meat-stuffed-sole-75e4ca97121992820cc6e246bd16b866/meat/0-3000-cal",
         "yield": 4.0,
         "dietLabels": ["Low-Carb"],
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
-        "cautions": ["Soy", "Sulfites"],
+        "healthLabels": ["Tree-Nut-Free"],
+        "cautions": ["Sulfites"],
         "ingredientLines": [
           "4 oz jumbo lump crab meat (1 cup)",
           "1 1/2 tablespoons reduced-fat (not low-fat) mayonnaise",

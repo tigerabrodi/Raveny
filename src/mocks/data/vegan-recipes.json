@@ -8,20 +8,14 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_831501bed910fb207a99f7dbc3d9fa7d",
-        "label": "Chilli Green Salad",
+        "label": "vegan",
         "image": "https://www.edamam.com/web-img/2c4/2c416387a52367920c34f792b8a9eefd.jpg",
         "source": "BBC Good Food",
         "url": "http://www.bbcgoodfood.com/recipes/4954/",
         "shareAs": "http://www.edamam.com/recipe/chilli-green-salad-831501bed910fb207a99f7dbc3d9fa7d/salad/vegan",
         "yield": 2.0,
         "dietLabels": [],
-        "healthLabels": [
-          "Vegan",
-          "Vegetarian",
-          "Peanut-Free",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
+        "healthLabels": ["Peanut-Free"],
         "cautions": ["Sulfites"],
         "ingredientLines": [
           "145.0g bag of spinach watercress and rocket salad",
@@ -626,21 +620,15 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_e12bae27e714d81595c393266df43a98",
-        "label": "Pomelo Noodle Salad",
+        "label": "salad",
         "image": "https://www.edamam.com/web-img/95a/95a02fd8ece7cfb61b7348851262bd03.jpg",
         "source": "101 Cookbooks",
         "url": "http://www.101cookbooks.com/archives/pomelo-noodles-recipe.html",
         "shareAs": "http://www.edamam.com/recipe/pomelo-noodle-salad-e12bae27e714d81595c393266df43a98/salad/vegan",
         "yield": 5.0,
         "dietLabels": [],
-        "healthLabels": [
-          "Sugar-Conscious",
-          "Vegan",
-          "Vegetarian",
-          "Tree-Nut-Free",
-          "Alcohol-Free"
-        ],
-        "cautions": ["Gluten", "Wheat", "Sulfites", "FODMAP"],
+        "healthLabels": ["Sugar-Conscious"],
+        "cautions": ["Gluten"],
         "ingredientLines": [
           "6 ounces dried somen, or soba noodles",
           "8 ounces shelled edamame",
