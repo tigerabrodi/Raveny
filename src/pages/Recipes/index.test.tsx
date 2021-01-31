@@ -130,5 +130,56 @@ describe('searching recipes', () => {
         level: 3,
       })
     })
+
+    test('should show response for two ingredients', async () => {
+      render(<App />, { route: '/search' })
+      userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
+      userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
+
+      userEvent.click(
+        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+      )
+
+      userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'meat')
+
+      userEvent.click(
+        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+      )
+
+      userEvent.click(
+        screen.getByRole('button', { name: /search for recipes/i })
+      )
+
+      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+      const recipe = screen.getByRole('link', {
+        name: /exclude two ingredients/i,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /exclude two ingredients/i,
+        level: 1,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /calories: 149/i,
+        level: 2,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /servings: 6/i,
+        level: 2,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /Low-Carb/i,
+        level: 3,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /Vegetarian/i,
+        level: 3,
+      })
+    })
   })
 })
