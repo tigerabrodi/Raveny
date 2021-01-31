@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { wrapperStyles } from 'styles'
 import { media } from 'theme/media'
 
@@ -232,7 +232,8 @@ export const IngredientImage = styled.img`
   ${media.desktop} {
     display: block;
     grid-area: image;
-    height: 90%;
+    max-width: 16rem;
+    height: 50%;
     box-shadow: 0 0.2rem 0.5rem black;
     border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   }
@@ -248,10 +249,8 @@ export const IngredientText = styled.h3`
   ${media.phone} {
     font-size: 2.5rem;
   }
-  ${media.tablet} {
-    text-align: left;
-  }
   ${media.desktop} {
+    text-align: left;
     width: 40ch;
   }
 `
