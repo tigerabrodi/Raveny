@@ -85,4 +85,50 @@ describe('searching recipes', () => {
       })
     })
   })
+  describe('exclude', () => {
+    test('should show response for one ingredient', async () => {
+      render(<App />, { route: '/search' })
+      userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
+      userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
+
+      userEvent.click(
+        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+      )
+
+      userEvent.click(
+        screen.getByRole('button', { name: /search for recipes/i })
+      )
+
+      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+      const recipe = screen.getByRole('link', {
+        name: /exclude one ingredient/i,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /exclude one ingredient/i,
+        level: 1,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /calories: 271/i,
+        level: 2,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /servings: 6/i,
+        level: 2,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /Low-Fat/i,
+        level: 3,
+      })
+
+      getWithinElementRoleInDocument(recipe, 'heading', {
+        name: /Sugar-Conscious/i,
+        level: 3,
+      })
+    })
+  })
 })
