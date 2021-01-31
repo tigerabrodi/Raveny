@@ -5,7 +5,7 @@ import { getWithinElementRoleInDocument } from 'utils/functions'
 
 describe('searching recipes', () => {
   describe('calories', () => {
-    test('should show low calories response', async () => {
+    test('should return low calories response', async () => {
       render(<App />, { route: '/search' })
       userEvent.clear(screen.getByLabelText(/max calories/i))
       userEvent.type(screen.getByLabelText(/max calories/i), '1500')
@@ -49,7 +49,7 @@ describe('searching recipes', () => {
       })
     })
 
-    test('should show high calories response', async () => {
+    test('should return high calories response', async () => {
       render(<App />, { route: '/search' })
       userEvent.clear(screen.getByLabelText(/min calories/i))
       userEvent.type(screen.getByLabelText(/min calories/i), '1500')
@@ -95,7 +95,7 @@ describe('searching recipes', () => {
   })
 
   describe('exclude', () => {
-    test('should show response for one ingredient', async () => {
+    test('should return response for one ingredient', async () => {
       render(<App />, { route: '/search' })
       userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
@@ -144,7 +144,7 @@ describe('searching recipes', () => {
       })
     })
 
-    test('should show response for two ingredients', async () => {
+    test('should return response for two ingredients', async () => {
       render(<App />, { route: '/search' })
       userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
@@ -200,7 +200,7 @@ describe('searching recipes', () => {
     })
   })
 
-  test('should show meat response', async () => {
+  test('should return meat response', async () => {
     render(<App />, { route: '/search' })
 
     userEvent.type(screen.getByLabelText(/search recipes/i), 'meat')
@@ -244,7 +244,5 @@ describe('searching recipes', () => {
       name: /Sugar-Conscious/i,
       level: 3,
     })
-
-    screen.debug()
   })
 })
