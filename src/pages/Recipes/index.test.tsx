@@ -85,6 +85,7 @@ describe('searching recipes', () => {
       })
     })
   })
+
   describe('exclude', () => {
     test('should show response for one ingredient', async () => {
       render(<App />, { route: '/search' })
@@ -181,5 +182,53 @@ describe('searching recipes', () => {
         level: 3,
       })
     })
+  })
+
+  test('should show meat response', async () => {
+    render(<App />, { route: '/search' })
+
+    userEvent.type(screen.getByLabelText(/search recipes/i), 'meat')
+
+    userEvent.click(screen.getByRole('button', { name: /Search for recipes/i }))
+
+    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+    const recipe = screen.getByRole('link', { name: /meat/i })
+
+    getWithinElementRoleInDocument(recipe, 'img', {
+      name: /meat/i,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /meat/i,
+      level: 1,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /calories: 618/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /servings: 6/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /sulfites/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /low-carb/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /Sugar-Conscious/i,
+      level: 3,
+    })
+
+    screen.debug()
   })
 })
