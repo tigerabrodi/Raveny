@@ -1,7 +1,10 @@
 import { render, screen, userEvent } from 'test-utils'
 import App from 'App'
 import { waitForElementToBeRemoved } from '@testing-library/react'
-import { getWithinElementRoleInDocument } from 'utils/functions'
+import {
+  getByRoleInDocument,
+  getWithinElementRoleInDocument,
+} from 'utils/functions'
 
 describe('searching recipes', () => {
   describe('calories', () => {
@@ -242,6 +245,46 @@ describe('searching recipes', () => {
 
     getWithinElementRoleInDocument(recipe, 'heading', {
       name: /Sugar-Conscious/i,
+      level: 3,
+    })
+  })
+  test('should return vegan response', async () => {
+    render(<App />)
+
+    userEvent.click(screen.getByRole('link', { name: 'Vegan' }))
+
+    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+    getByRoleInDocument('heading', { name: 'Vegan' })
+
+    const recipe = screen.getByRole('link', { name: 'vegan' })
+
+    getWithinElementRoleInDocument(recipe, 'img', {
+      name: /vegan/i,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /vegan/i,
+      level: 1,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /calories: 11/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /servings: 2/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /sulfites/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /Peanut-Free/i,
       level: 3,
     })
   })
