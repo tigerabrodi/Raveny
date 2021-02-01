@@ -260,7 +260,7 @@ describe('searching recipes', () => {
     const recipe = screen.getByRole('link', { name: 'vegan' })
 
     getWithinElementRoleInDocument(recipe, 'img', {
-      name: /vegan/i,
+      name: 'vegan',
     })
 
     getWithinElementRoleInDocument(recipe, 'heading', {
@@ -285,6 +285,52 @@ describe('searching recipes', () => {
 
     getWithinElementRoleInDocument(recipe, 'heading', {
       name: /Peanut-Free/i,
+      level: 3,
+    })
+  })
+
+  test('should return low carb response', async () => {
+    render(<App />)
+
+    userEvent.click(screen.getByRole('link', { name: 'Low Carb' }))
+
+    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+    getByRoleInDocument('heading', { name: 'Low Carb' })
+
+    const recipe = screen.getByRole('link', { name: 'low carb' })
+
+    getWithinElementRoleInDocument(recipe, 'img', {
+      name: 'low carb',
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: 'low carb',
+      level: 1,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /calories: 572/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /servings: 4/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /fodmap/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /low-carb/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /Sugar-Conscious/i,
       level: 3,
     })
   })
