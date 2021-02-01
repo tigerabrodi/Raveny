@@ -33,7 +33,7 @@ export const Recipe = ({
   },
 }: RecipeProps) => {
   return (
-    <RecipeWrapperLink to={`/recipe/${id}`}>
+    <RecipeWrapperLink to={`/recipe/${id}`} aria-label={label}>
       <Title> {label} </Title>
       <Image src={image} alt={label} />
       <Calories>

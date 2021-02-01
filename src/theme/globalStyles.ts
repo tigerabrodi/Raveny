@@ -1,6 +1,6 @@
-import * as styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components/macro'
 
-export const GlobalStyle = styled.createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   *,
   *::after,
   *::before {

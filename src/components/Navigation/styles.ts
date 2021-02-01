@@ -48,7 +48,9 @@ export const LogoIcon = styled(Logo)`
   height: 4.5rem;
   margin-left: 0.5rem;
   position: relative;
-  top: 0.3rem;
+  ${media.tablet} {
+    top: 0.3rem;
+  }
 `
 
 export const LogoWrapper = styled.section`

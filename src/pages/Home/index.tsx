@@ -8,19 +8,17 @@ import {
   SearchIcon,
 } from './styles'
 
-export const Home = () => {
-  return (
-    <HomeMain>
-      <InfoSection>
-        <InfoHeading>Find Your Dream Recipes and Enjoy.</InfoHeading>
-        <InfoLink to="/search">
-          Search
-          <SearchIcon />
-        </InfoLink>
-      </InfoSection>
-      <RecipeBookSection>
-        <RecipeBook />
-      </RecipeBookSection>
-    </HomeMain>
-  )
-}
+export const Home = () => (
+  <HomeMain>
+    <InfoSection>
+      <InfoHeading>Find Your Dream Recipes and Enjoy.</InfoHeading>
+      <InfoLink to="/search">
+        Search
+        <SearchIcon />
+      </InfoLink>
+    </InfoSection>
+    <RecipeBookSection>
+      <RecipeBook />
+    </RecipeBookSection>
+  </HomeMain>
+)
