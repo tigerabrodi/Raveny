@@ -334,4 +334,50 @@ describe('searching recipes', () => {
       level: 3,
     })
   })
+
+  test('should return high protein response', async () => {
+    render(<App />)
+
+    userEvent.click(screen.getByRole('link', { name: 'High Protein' }))
+
+    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+    getByRoleInDocument('heading', { name: 'High Protein' })
+
+    const recipe = screen.getByRole('link', { name: 'high protein' })
+
+    getWithinElementRoleInDocument(recipe, 'img', {
+      name: 'high protein',
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: 'high protein',
+      level: 1,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /calories: 436/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /servings: 4/i,
+      level: 2,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /sulfites/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /low-carb/i,
+      level: 3,
+    })
+
+    getWithinElementRoleInDocument(recipe, 'heading', {
+      name: /Tree-Nut-Free/i,
+      level: 3,
+    })
+  })
 })
