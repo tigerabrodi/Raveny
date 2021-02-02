@@ -8,7 +8,7 @@ After cloning the project, you need to run `npm install`.
 
 This project uses three environment variables, one for URL, one for the API id and key :sparkling_heart:.
 <br>
-Create a `.env.development.local` file in the root folder.
+Create a `.env.development.local` and a `.env.test.local` file in the root folder.
 It should have two environment variables:
 <br>
 `REACT_APP_API_URL=https://api.edamam.com/search`
