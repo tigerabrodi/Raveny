@@ -140,7 +140,7 @@ test('should allow simple user search flow', async () => {
 
   getByRoleInDocument('img', { name: /Chicken Vesuvio/i })
 
-  getByRoleInDocument('heading', { name: /1057 calories/i, level: 1 })
+  getByRoleInDocument('heading', { name: /1057 calories/i, level: 2 })
 
   getByRoleInDocument('heading', { name: /ingredients/i, level: 2 })
 
