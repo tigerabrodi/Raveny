@@ -26,6 +26,7 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm run test
+      - run: npm run cy:run
       - run: npm run build
         env:
           CI: true
