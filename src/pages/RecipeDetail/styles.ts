@@ -160,7 +160,7 @@ export const RecipeImage = styled.img`
   height: 80%;
 `
 
-export const Calories = styled.h1`
+export const Calories = styled.h2`
   text-shadow: 0 0.2rem 0.5rem black;
   font-weight: 600;
   letter-spacing: 0.2rem;

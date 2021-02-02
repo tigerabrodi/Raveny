@@ -25,7 +25,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run lint
-      - run: npm run test
-      - run: npm run build
+      - name: Run Integration Tests
+        run: npm test
         env:
-          CI: true
+          REACT_APP_API_ID: ${{ secrets.REACT_APP_API_ID }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+      - name: Run E2E Tests
+        uses: cypress-io/github-action@v2
+        env:
+          REACT_APP_API_ID: ${{ secrets.REACT_APP_API_ID }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
