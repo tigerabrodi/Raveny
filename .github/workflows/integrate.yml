@@ -33,10 +33,13 @@ jobs:
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
       - name: Cypress run with env
         uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
         env:
-          REACT_APP_API_ID: ${{ secrets.REACT_APP_API_ID }}
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+          CYPRESS_REACT_APP_API_ID: ${{ secrets.REACT_APP_API_ID }}
+          CYPRESS_REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          CYPRESS_REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
       # - name: Run E2E Tests
       #   run: npm run test:e2e
       #   env:
