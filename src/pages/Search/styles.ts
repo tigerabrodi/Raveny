@@ -109,7 +109,7 @@ const inputStyles = css`
   }
 `
 
-const inputSectionStyles = css`
+const inputContainerStyles = css`
   transition: 0.3s;
   width: 100%;
   position: relative;
@@ -171,7 +171,7 @@ export const Title = styled.h1`
   }
 `
 
-export const TitleSection = styled.div`
+export const TitleContainer = styled.div`
   grid-area: title;
   display: flex;
   align-items: center;
@@ -200,7 +200,7 @@ export const SearchForm = styled.form`
   }
 `
 
-export const QuerySection = styled.div`
+export const QueryContainer = styled.div`
   display: grid;
   grid-template-areas:
     'queryLabel'
@@ -224,8 +224,8 @@ export const QueryLabel = styled.label`
   align-self: flex-start;
 `
 
-export const QueryInputSection = styled.div`
-  ${inputSectionStyles}
+export const QueryInputContainer = styled.div`
+  ${inputContainerStyles}
   grid-area: queryInput;
   height: 100%;
   ${media.custom(360)} {
@@ -282,7 +282,7 @@ export const QueryButton = styled.button`
 `
 
 /* Calories */
-export const CaloriesSection = styled.div`
+export const CaloriesContainer = styled.div`
   display: grid;
   grid-template-areas:
     'minCaloriesLabel maxCaloriesLabel'
@@ -348,7 +348,7 @@ export const MaxCaloriesLabel = styled.label`
 `
 
 /* Exclude */
-export const ExcludeSection = styled.div`
+export const ExcludeContainer = styled.div`
   display: grid;
   grid-template-areas:
     'excludeLabel'
@@ -378,7 +378,7 @@ export const ExcludeLabel = styled.label`
   grid-area: excludeLabel;
 `
 
-export const ExcludeInputSection = styled.div`
+export const ExcludeInputContainer = styled.div`
   grid-area: excludeInput;
   height: 90%;
   ${media.custom(360)} {
@@ -393,7 +393,7 @@ export const ExcludeInputSection = styled.div`
   ${media.tablet} {
     width: 100%;
   }
-  ${inputSectionStyles}
+  ${inputContainerStyles}
 `
 
 export const ExcludeInput = styled.input`

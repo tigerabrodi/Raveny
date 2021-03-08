@@ -9,13 +9,13 @@ import {
   SearchForm,
   SearchMain,
   SearchIcon,
-  TitleSection,
+  TitleContainer,
   InputValidLengthText,
   Title,
-  QuerySection,
-  QueryInputSection,
+  QueryContainer,
+  QueryInputContainer,
   CharacterErrorMessage,
-  CaloriesSection,
+  CaloriesContainer,
   CaloriesErrorMessage,
   MaxCaloriesInput,
   MaxCaloriesLabel,
@@ -24,8 +24,8 @@ import {
   IngredientAddButton,
   ExcludeIngredientsList,
   ExcludeInput,
-  ExcludeInputSection,
-  ExcludeSection,
+  ExcludeInputContainer,
+  ExcludeContainer,
   IngredientName,
   IngredientRemoveButton,
   IngredientItem,
@@ -156,15 +156,15 @@ export const Search = () => {
 
   return (
     <SearchMain>
-      <TitleSection>
+      <TitleContainer>
         <Title>Start Cooking Today!</Title>
         <Pan role="img" title="A cooking pan." />
-      </TitleSection>
+      </TitleContainer>
 
       <SearchForm onSubmit={(event) => onSubmit(event)} autoComplete="off">
-        <QuerySection>
+        <QueryContainer>
           <QueryLabel htmlFor="search">Search recipes</QueryLabel>
-          <QueryInputSection>
+          <QueryInputContainer>
             <QueryInput
               value={searchValue}
               type="text"
@@ -190,7 +190,7 @@ export const Search = () => {
             <QueryButton type="submit" aria-label="Search for recipes">
               <SearchIcon title="Search Icon" />
             </QueryButton>
-          </QueryInputSection>
+          </QueryInputContainer>
 
           {showErrorCharacters && (
             <CharacterErrorMessage
@@ -201,9 +201,9 @@ export const Search = () => {
               Please enter at least three characters.
             </CharacterErrorMessage>
           )}
-        </QuerySection>
+        </QueryContainer>
 
-        <CaloriesSection>
+        <CaloriesContainer>
           <MinCaloriesLabel htmlFor="minCalories">
             Min Calories
           </MinCaloriesLabel>
@@ -247,14 +247,14 @@ export const Search = () => {
               Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           )}
-        </CaloriesSection>
+        </CaloriesContainer>
 
-        <ExcludeSection>
+        <ExcludeContainer>
           <ExcludeLabel htmlFor="excludeIngredients">
             Exclude ingredients
           </ExcludeLabel>
 
-          <ExcludeInputSection>
+          <ExcludeInputContainer>
             <ExcludeInput
               id="excludeIngredients"
               aria-describedby="excludeError"
@@ -274,7 +274,7 @@ export const Search = () => {
             >
               <AddIcon title="Add Icon" />
             </IngredientAddButton>
-          </ExcludeInputSection>
+          </ExcludeInputContainer>
 
           {(showErrorExcludedIngredients || showErrorCharacterIngredients) && (
             <ExcludeErrorMessage
@@ -311,7 +311,7 @@ export const Search = () => {
               ))}
             </ExcludeIngredientsList>
           )}
-        </ExcludeSection>
+        </ExcludeContainer>
       </SearchForm>
     </SearchMain>
   )
