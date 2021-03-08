@@ -1,7 +1,7 @@
 import {
-  InfoSection,
+  InfoContainer,
   HomeMain,
-  RecipeBookSection,
+  RecipeBookContainer,
   RecipeBook,
   InfoHeading,
   InfoLink,
@@ -10,15 +10,15 @@ import {
 
 export const Home = () => (
   <HomeMain>
-    <InfoSection>
+    <InfoContainer>
       <InfoHeading>Find Your Dream Recipes and Enjoy.</InfoHeading>
       <InfoLink to="/search">
         Search
-        <SearchIcon />
+        <SearchIcon aria-hidden="true" />
       </InfoLink>
-    </InfoSection>
-    <RecipeBookSection>
-      <RecipeBook />
-    </RecipeBookSection>
+    </InfoContainer>
+    <RecipeBookContainer>
+      <RecipeBook role="img" aria-label="Recipe book" />
+    </RecipeBookContainer>
   </HomeMain>
 )

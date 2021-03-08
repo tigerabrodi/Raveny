@@ -25,7 +25,7 @@ export const HomeMain = styled.main`
   }
 `
 
-export const InfoSection = styled.section`
+export const InfoContainer = styled.div`
   grid-area: info;
   height: 80%;
   width: 100%;
@@ -139,7 +139,7 @@ export const SearchIcon = styled(Search)`
   }
 `
 
-export const RecipeBookSection = styled.section`
+export const RecipeBookContainer = styled.div`
   grid-area: image;
   position: relative;
   height: 100%;
