@@ -26,6 +26,8 @@ export const Navigation = () => {
     }
   }, [isToggled])
 
+  const toggleHamburgerMenu = () => setIsToggled(!isToggled)
+
   return (
     <>
       <IntersectingElement ref={setIntersectingElement} aria-hidden="true" />
@@ -52,7 +54,7 @@ export const Navigation = () => {
         </LinkSection>
         <HamburgerMenuWrapper
           isToggled={isToggled}
-          onClick={() => setIsToggled(!isToggled)}
+          onClick={toggleHamburgerMenu}
           type="button"
           aria-label={
             isToggled ? 'Close Hamburger Menu' : 'Open Hamburger Menu'
