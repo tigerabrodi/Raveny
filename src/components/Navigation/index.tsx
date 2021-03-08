@@ -28,13 +28,13 @@ export const Navigation = () => {
 
   return (
     <>
-      <IntersectingElement ref={setIntersectingElement} />
+      <IntersectingElement ref={setIntersectingElement} aria-hidden="true" />
       <Nav shouldShowShadow={!isVisible}>
         <LogoWrapper>
           <LogoLink to="/" onClick={() => setIsToggled(false)} ref={focusRef}>
             Raveny
           </LogoLink>
-          <LogoIcon role="img" title="Cooking pan." />
+          <LogoIcon role="img" aria-label="Cooking pan." />
         </LogoWrapper>
         <LinkSection isToggled={isToggled}>
           <Link to="/search" onClick={() => setIsToggled(false)}>
@@ -57,6 +57,7 @@ export const Navigation = () => {
           aria-label={
             isToggled ? 'Close Hamburger Menu' : 'Open Hamburger Menu'
           }
+          aria-expanded={isToggled ? 'true' : 'false'}
         >
           <HamburgerMenuLine topToggled={isToggled} />
           <HamburgerMenuLine hideMiddle={isToggled} />

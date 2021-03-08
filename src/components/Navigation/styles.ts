@@ -53,7 +53,7 @@ export const LogoIcon = styled(Logo)`
   }
 `
 
-export const LogoWrapper = styled.section`
+export const LogoWrapper = styled.div`
   position: relative;
   z-index: 10;
   display: flex;
@@ -88,7 +88,7 @@ export const LogoLink = styled(RouterLink)`
   }
 `
 
-export const LinkSection = styled.section<{ isToggled: boolean }>`
+export const LinkSection = styled.div<{ isToggled: boolean }>`
   position: fixed;
   z-index: -10;
   top: 45%;
