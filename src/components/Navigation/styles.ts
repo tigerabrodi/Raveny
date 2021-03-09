@@ -88,7 +88,7 @@ export const LogoLink = styled(RouterLink)`
   }
 `
 
-export const LinkSection = styled.div<{ isToggled: boolean }>`
+export const LinkContainer = styled.div<{ isToggled: boolean }>`
   position: fixed;
   z-index: -10;
   top: 45%;

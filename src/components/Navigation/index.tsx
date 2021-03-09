@@ -7,7 +7,7 @@ import {
   HamburgerMenuWrapper,
   IntersectingElement,
   Link,
-  LinkSection,
+  LinkContainer,
   LogoIcon,
   LogoLink,
   LogoWrapper,
@@ -39,7 +39,7 @@ export const Navigation = () => {
           </LogoLink>
           <LogoIcon role="img" aria-label="Cooking pan." />
         </LogoWrapper>
-        <LinkSection isToggled={isToggled} ref={linkSectionRef}>
+        <LinkContainer isToggled={isToggled} ref={linkSectionRef}>
           <Link to="/search" onClick={() => setIsToggled(false)}>
             Search
           </Link>
@@ -52,7 +52,7 @@ export const Navigation = () => {
           <Link to="/recipes/low-carb" onClick={() => setIsToggled(false)}>
             Low Carb
           </Link>
-        </LinkSection>
+        </LinkContainer>
         <HamburgerMenuWrapper
           isToggled={isToggled}
           onClick={toggleHamburgerMenu}
