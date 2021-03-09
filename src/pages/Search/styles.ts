@@ -103,6 +103,7 @@ const inputStyles = css`
   }
   &::placeholder {
     color: ${({ theme }) => theme.colors.Gray};
+    opacity: 0.8;
   }
   &:focus {
     outline: none;

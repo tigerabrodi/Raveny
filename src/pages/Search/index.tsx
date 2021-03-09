@@ -168,11 +168,10 @@ export const Search = () => {
             <QueryInput
               value={searchValue}
               type="text"
-              placeholder="Search For Recipes..."
+              placeholder="Chicken"
               id="search"
               name="searchValue"
               onChange={(event) => handleChange(event)}
-              aria-describedby="searchInputError"
             />
 
             <InputValidLengthText
@@ -187,18 +186,14 @@ export const Search = () => {
               {searchLengthValidation}
             </InputValidLengthText>
 
-            <QueryButton type="submit" aria-label="Search for recipes">
-              <SearchIcon title="Search Icon" />
+            <QueryButton type="submit" aria-label="Search">
+              <SearchIcon aria-hidden="true" />
             </QueryButton>
           </QueryInputContainer>
 
           {showErrorCharacters && (
-            <CharacterErrorMessage
-              role="alert"
-              id="searchInputError"
-              aria-label="Please enter at least three characters."
-            >
-              Please enter at least three characters.
+            <CharacterErrorMessage role="alert">
+              Please enter at least 3 characters to search for recipes.
             </CharacterErrorMessage>
           )}
         </QueryContainer>
@@ -218,7 +213,6 @@ export const Search = () => {
             onChange={(event) =>
               event.target.validity.valid && handleChange(event)
             }
-            aria-describedby="caloriesError"
           />
 
           <MaxCaloriesLabel htmlFor="maxCalories">
@@ -235,15 +229,10 @@ export const Search = () => {
             onChange={(event) =>
               event.target.validity.valid && handleChange(event)
             }
-            aria-describedby="caloriesError"
           />
 
           {showErrorCalories && (
-            <CaloriesErrorMessage
-              id="caloriesError"
-              role="alert"
-              aria-label="Minimum Calories must be less than Maximum Calories."
-            >
+            <CaloriesErrorMessage role="alert">
               Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           )}
@@ -257,8 +246,7 @@ export const Search = () => {
           <ExcludeInputContainer>
             <ExcludeInput
               id="excludeIngredients"
-              aria-describedby="excludeError"
-              placeholder="Exclude ingredients..."
+              placeholder="Milk"
               name="excludeValue"
               value={excludeValue}
               onKeyDown={(event) =>
@@ -277,21 +265,11 @@ export const Search = () => {
           </ExcludeInputContainer>
 
           {(showErrorExcludedIngredients || showErrorCharacterIngredients) && (
-            <ExcludeErrorMessage
-              role="alert"
-              id="excludeError"
-              aria-label={
-                showErrorCharacterIngredients
-                  ? 'Please enter at least 3 characters for the ingredient to be excluded.'
-                  : showErrorExcludedIngredients
-                  ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
-                  : ''
-              }
-            >
+            <ExcludeErrorMessage role="alert">
               {showErrorCharacterIngredients
                 ? 'Please enter at least 3 characters for the ingredient to be excluded.'
                 : showErrorExcludedIngredients
-                ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
+                ? `Ingredient ${isIngredientAlreadyExcluded} is already being included.`
                 : null}
             </ExcludeErrorMessage>
           )}
@@ -301,7 +279,7 @@ export const Search = () => {
                 <IngredientItem key={id}>
                   <IngredientName>{name}</IngredientName>
                   <IngredientRemoveButton
-                    aria-label="Remove ingredient from being excluded"
+                    aria-label={`Remove ${name} ingredient from being exclude`}
                     type="button"
                     onClick={() => onRemoveIngredient(id)}
                   >
