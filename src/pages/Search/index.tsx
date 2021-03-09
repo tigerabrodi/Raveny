@@ -192,7 +192,10 @@ export const Search = () => {
           </QueryInputContainer>
 
           {showErrorCharacters && (
-            <CharacterErrorMessage role="alert">
+            <CharacterErrorMessage
+              role="alert"
+              aria-label="Please enter at least 3 characters to search for recipes"
+            >
               Please enter at least 3 characters to search for recipes.
             </CharacterErrorMessage>
           )}
@@ -232,7 +235,10 @@ export const Search = () => {
           />
 
           {showErrorCalories && (
-            <CaloriesErrorMessage role="alert">
+            <CaloriesErrorMessage
+              role="alert"
+              aria-label="Minimum Calories must be less than Maximum Calories"
+            >
               Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           )}
@@ -265,7 +271,16 @@ export const Search = () => {
           </ExcludeInputContainer>
 
           {(showErrorExcludedIngredients || showErrorCharacterIngredients) && (
-            <ExcludeErrorMessage role="alert">
+            <ExcludeErrorMessage
+              role="alert"
+              aria-label={
+                showErrorCharacterIngredients
+                  ? 'Please enter at least 3 characters for the ingredient to be excluded'
+                  : showErrorExcludedIngredients
+                  ? `Ingredient ${isIngredientAlreadyExcluded} is already being included`
+                  : undefined
+              }
+            >
               {showErrorCharacterIngredients
                 ? 'Please enter at least 3 characters for the ingredient to be excluded.'
                 : showErrorExcludedIngredients
