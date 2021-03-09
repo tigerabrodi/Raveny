@@ -14,9 +14,7 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/max calories/i), '1500')
       userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
@@ -58,9 +56,7 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/min calories/i), '1500')
       userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
@@ -104,12 +100,10 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
@@ -153,18 +147,16 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'meat')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
@@ -208,7 +200,7 @@ describe('searching recipes', () => {
 
     userEvent.type(screen.getByLabelText(/search recipes/i), 'meat')
 
-    userEvent.click(screen.getByRole('button', { name: /Search for recipes/i }))
+    userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
     await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
