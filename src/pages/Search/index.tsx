@@ -256,7 +256,7 @@ export const Search = () => {
               type="text"
             />
             <IngredientAddButton
-              aria-label="Add ingredient to be excluded"
+              aria-label="Exclude ingredient"
               type="button"
               onClick={() => onAddIngredient(excludeValue)}
             >
