@@ -7,7 +7,7 @@ it('should allow a typical user flow', () => {
 
   cy.findByLabelText(/search recipes/i).type('chicken')
 
-  cy.findByRole('button', { name: /Search for recipes/i }).click()
+  cy.findByRole('button', { name: /Search/i }).click()
 
   cy.findAllByRole('link').should('have.length', 14)
 
