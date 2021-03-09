@@ -34,7 +34,7 @@ test('should allow simple user search flow', async () => {
 
   userEvent.type(screen.getByLabelText(/Search recipes/i), 'chicken')
 
-  userEvent.click(screen.getByRole('button', { name: /Search for recipes/i }))
+  userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
   await waitForElementToBeRemoved(() => screen.queryByLabelText(/loading/i))
 
