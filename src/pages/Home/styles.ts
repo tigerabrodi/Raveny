@@ -23,61 +23,74 @@ export const HomeMain = styled.main`
     grid-template-rows: none;
     align-items: flex-start;
   }
+  ${media.custom(1700)} {
+    width: 90%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `
 
 export const InfoContainer = styled.div`
   grid-area: info;
-  height: 80%;
   width: 100%;
+  height: 24rem;
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  ${media.custom(400)} {
+    height: 26rem;
+  }
+  ${media.phone} {
+    height: 34rem;
+    justify-content: space-between;
+  }
+  ${media.tablet} {
+    height: 80%;
+    justify-content: space-evenly;
+  }
 `
 
 export const InfoHeading = styled.h1`
   font-family: ${({ theme }) => theme.fonts.Lora};
+  font-weight: 600;
+  font-size: clamp(4rem, 11vw, 6.2rem);
+  color: ${({ theme }) => theme.colors.White};
   text-align: center;
   letter-spacing: 0.1rem;
-  color: ${({ theme }) => theme.colors.White};
-  font-weight: 600;
-  font-size: clamp(4rem, 10vw, 6rem);
   text-shadow: 0.2rem 0.4rem 0.6rem black;
-  ${media.custom(360)} {
-    padding: 0 2rem;
-  }
-  ${media.custom(375)} {
-    padding: 0 3rem;
-  }
-  ${media.custom(400)} {
-    padding: 0 4rem;
+  max-width: 13ch;
+  ${media.phone} {
+    max-width: 12ch;
+    font-size: clamp(5.5rem, 11vw, 6.2rem);
   }
   ${media.tablet} {
-    padding: 0;
     font-size: 7rem;
   }
   ${media.desktop} {
-    font-size: min(5.5vw, 11rem);
+    font-size: 8rem;
+  }
+  ${media.custom(1700)} {
+    font-size: 12rem;
   }
 `
 export const InfoLink = styled(Link)`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.Orange};
-  letter-spacing: 0.2rem;
-  width: 17rem;
-  height: 5rem;
-  font-size: 2.5rem;
-  border: 0.2rem solid ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-weight: 600;
+  font-size: 2.7rem;
+  color: ${({ theme }) => theme.colors.Orange};
+  border: 0.2rem solid ${({ theme }) => theme.colors.Orange};
+  width: 15rem;
+  height: 6rem;
+  text-decoration: none;
+  letter-spacing: 0.2rem;
   display: flex;
   align-items: center;
   position: relative;
   justify-content: center;
   transition: all 0.4s;
   z-index: 5;
-  padding: 1rem 0;
-  margin: 2rem 0;
   &:active {
     transform: scale(0.95);
   }
@@ -86,13 +99,15 @@ export const InfoLink = styled(Link)`
     box-shadow: 0 0.2rem 1rem black;
   }
   ${media.phone} {
-    margin: 1rem 0;
-    width: 19rem;
-    height: 6rem;
-    font-size: 3rem;
     padding: 0;
+    height: 7rem;
+    width: 20rem;
+    font-size: 3.5rem;
   }
   ${media.tablet} {
+    width: 22rem;
+    height: 8rem;
+    font-size: 3.5rem;
     &::after {
       content: '';
       position: absolute;
@@ -114,9 +129,14 @@ export const InfoLink = styled(Link)`
     }
   }
   ${media.desktop} {
-    width: max(19rem, 15vw);
-    height: max(6rem, 5vw);
-    font-size: max(3rem, 2.3vw);
+    width: 25rem;
+    height: 9rem;
+    font-size: 4.3rem;
+  }
+  ${media.custom(1700)} {
+    width: 28rem;
+    height: 11rem;
+    font-size: 5rem;
   }
 `
 
@@ -126,16 +146,22 @@ export const SearchIcon = styled(Search)`
   top: 2%;
   transition: all 0.4s;
   fill: ${({ theme }) => theme.colors.Orange};
-  width: 2.5rem;
-  height: 2.5rem;
+  height: 2.4rem;
+  width: 2.4rem;
   ${media.phone} {
-    width: 2.8rem;
     height: 2.8rem;
+    width: 2.8rem;
+  }
+  ${media.tablet} {
+    margin-left: 1rem;
   }
   ${media.desktop} {
-    margin-left: 1rem;
-    width: min(2.4vw, 3.5rem);
-    height: min(2.4vw, 3.5rem);
+    height: 3.3rem;
+    width: 3.3rem;
+  }
+  ${media.custom(1700)} {
+    height: 4rem;
+    width: 4rem;
   }
 `
 
@@ -163,11 +189,12 @@ export const RecipeBook = styled(RecipeBookSVG)`
   animation: ${pulse} 1s alternate infinite;
   filter: drop-shadow(0 0 0.3rem ${({ theme }) => theme.colors.Brown});
   position: absolute;
-  left: 50%;
-  top: 40%;
   transform: translate(-50%, -50%);
   height: 70%;
+  top: 50%;
+  left: 52%;
   ${media.phone} {
+    left: 50%;
     height: 90%;
   }
   ${media.tablet} {
