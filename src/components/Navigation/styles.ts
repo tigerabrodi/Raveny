@@ -48,9 +48,7 @@ export const LogoIcon = styled(Logo)`
   height: 4.5rem;
   margin-left: 0.5rem;
   position: relative;
-  ${media.tablet} {
-    top: 0.3rem;
-  }
+  top: 0.3rem;
 `
 
 export const LogoWrapper = styled.div`
@@ -68,7 +66,7 @@ export const LogoWrapper = styled.div`
 export const LogoLink = styled(RouterLink)`
   text-decoration: none;
   font-family: ${({ theme }) => theme.fonts.Lora};
-  font-size: max(3rem, 2vw);
+  font-size: 3.5rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Orange};
   margin: 0 1rem 0 2rem;
