@@ -8,6 +8,7 @@ export const theme: DefaultTheme = {
   colors: {
     Brown: '#854d27',
     Orange: '#dd7230',
+    LightOrange: '#ff904c',
     Black: '#171717',
     White: '#ffffff',
     Gray: '#D3D3D3',
