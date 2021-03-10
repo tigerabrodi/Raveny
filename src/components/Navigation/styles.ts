@@ -44,11 +44,16 @@ export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
 `
 
 export const LogoIcon = styled(Logo)`
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-left: 0.5rem;
+  height: 3.8rem;
+  width: 3.8rem;
+  top: 0.1rem;
   position: relative;
-  top: 0.3rem;
+  ${media.phone} {
+    margin-left: 0.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    top: 0.3rem;
+  }
 `
 
 export const LogoWrapper = styled.div`
@@ -66,15 +71,12 @@ export const LogoWrapper = styled.div`
 export const LogoLink = styled(RouterLink)`
   text-decoration: none;
   font-family: ${({ theme }) => theme.fonts.Lora};
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Orange};
   margin: 0 1rem 0 2rem;
   text-shadow: 0.2rem 0.4rem 0.6rem black;
   transition: all 0.2s;
-  &:hover {
-    transform: translateY(-0.2rem);
-  }
   &:focus {
     outline: none;
   }
@@ -82,7 +84,13 @@ export const LogoLink = styled(RouterLink)`
     outline: 0.1rem solid ${({ theme }) => theme.colors.White};
   }
   ${media.phone} {
+    font-size: 3.5rem;
     margin: 0 1rem 0 4rem;
+  }
+  ${media.tablet} {
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
   }
 `
 
