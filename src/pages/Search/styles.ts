@@ -7,25 +7,18 @@ import { wrapperStyles } from 'styles'
 
 /* Common Styles */
 const caloriesInputStyles = css`
-  font-size: 1.7rem;
   text-align: center;
   color: ${({ theme }) => theme.colors.Gray};
   background-color: ${({ theme }) => theme.colors.Black};
   border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   transition: 0.3s;
-  height: 100%;
-  width: 45%;
-  ${media.phone} {
-    width: 25%;
-    height: 70%;
-  }
+  width: 9rem;
+  font-size: 2rem;
+  height: 5rem;
   ${media.tablet} {
-    width: 20%;
-    height: 80%;
-  }
-  ${media.desktop} {
-    max-width: 11rem;
-    font-size: 2.3rem;
+    width: 11rem;
+    height: 6rem;
+    font-size: 2.5rem;
   }
   &:focus {
     outline: none;
@@ -53,9 +46,8 @@ const buttonStyles = css`
     width: 15%;
   }
   ${media.tablet} {
-    height: 98%;
-    width: 10%;
-    left: 94.9%;
+    width: 13%;
+    left: 93.4%;
     &:hover {
       background-color: ${({ theme }) => theme.colors.Orange};
       border-left: 0.1rem solid ${({ theme }) => theme.colors.Brown};
@@ -70,6 +62,10 @@ const buttonStyles = css`
     &:active svg {
       transform: scale(0.95);
     }
+  }
+  ${media.desktop} {
+    width: 10%;
+    left: 94.9%;
   }
   &:focus {
     outline: none;
@@ -107,8 +103,11 @@ const inputContainerStyles = css`
   width: 100%;
   position: relative;
   ${media.tablet} {
-    width: 75%;
+    width: 85%;
     max-width: 108rem;
+  }
+  ${media.desktop} {
+    width: 75%;
   }
   &:focus-within {
     box-shadow: 0 0.3rem 0.5rem black;
@@ -133,15 +132,21 @@ export const SearchMain = styled.main`
   grid-template-areas:
     'title'
     'search';
-  grid-template-rows: 1fr 10fr;
+  justify-self: center;
   justify-items: center;
   align-items: center;
   width: 95%;
-  justify-self: center;
+  grid-template-rows: 5% 95%;
+  padding-top: 1rem;
+  height: 75rem;
   ${media.phone} {
     width: 98%;
+    padding-top: 5rem;
+    height: 88rem;
   }
   ${media.tablet} {
+    min-height: calc(100vh - 18rem);
+    height: auto;
     grid-template-rows: 1fr 4fr;
   }
 `
@@ -170,13 +175,15 @@ export const TitleContainer = styled.div`
   grid-area: title;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   ${media.tablet} {
-    width: 70%;
+    width: 92%;
+    justify-content: space-evenly;
     border-bottom: 0.3rem solid ${({ theme }) => theme.colors.Orange};
   }
   ${media.desktop} {
+    width: 70%;
     width: auto;
   }
 `
@@ -184,14 +191,15 @@ export const TitleContainer = styled.div`
 /* Search Query */
 export const SearchForm = styled.form`
   width: 100%;
-  height: 90%;
   grid-area: search;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  height: 100%;
   ${media.phone} {
-    height: 80%;
+    justify-content: space-between;
+    height: auto;
   }
 `
 
@@ -201,15 +209,15 @@ export const QueryContainer = styled.div`
     'queryLabel'
     'queryInput'
     'characterErrorMessage';
-  grid-template-rows: 1fr 4fr 2fr;
+  grid-template-rows: auto 40% 25%;
   width: 100%;
-  height: 28%;
+  height: 16rem;
   align-items: center;
   justify-items: center;
-  align-content: space-around;
-  row-gap: 0.5rem;
+  align-content: space-between;
   ${media.phone} {
-    row-gap: 1.5rem;
+    min-height: 25rem;
+    height: auto;
   }
 `
 
@@ -223,12 +231,6 @@ export const QueryInputContainer = styled.div`
   ${inputContainerStyles}
   grid-area: queryInput;
   height: 100%;
-  ${media.custom(360)} {
-    height: 85%;
-  }
-  ${media.custom(375)} {
-    height: 80%;
-  }
   ${media.phone} {
     height: 7rem;
   }
@@ -250,13 +252,14 @@ export const InputValidLengthText = styled.span<{
   left: 73.5%;
   ${media.phone} {
     font-size: 1.5rem;
-    left: 82%;
+    left: 81%;
   }
   ${media.tablet} {
     top: 80%;
-    left: 87.8%;
+    left: 84%;
   }
   ${media.desktop} {
+    left: 87.8%;
     font-size: 1.6rem;
   }
 `
@@ -282,23 +285,13 @@ export const CaloriesContainer = styled.div`
   align-items: center;
   justify-items: center;
   align-content: space-between;
-  height: 25%;
-  row-gap: 0.5rem;
-  ${media.custom(360)} {
-    height: 30%;
-  }
-  ${media.custom(375)} {
-    height: 25%;
-  }
-  ${media.custom(400)} {
-    height: 35%;
-  }
+  height: 16rem;
   ${media.phone} {
-    height: 25%;
-    row-gap: 0;
+    height: 17rem;
   }
-  ${media.desktop} {
-    height: 30%;
+  ${media.tablet} {
+    margin-top: 2rem;
+    height: 20rem;
   }
 `
 
@@ -313,16 +306,17 @@ export const MaxCaloriesInput = styled.input`
 `
 
 export const caloriesLabelStyles = css`
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Lora};
   text-shadow: 0 0.2rem 0.2rem black;
   font-weight: bold;
   ${media.phone} {
-    font-size: 2.2rem;
+    align-self: center;
+    font-size: 2.5rem;
   }
   ${media.desktop} {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 `
 
@@ -347,18 +341,15 @@ export const ExcludeContainer = styled.div`
   grid-template-rows: 1fr 2fr 1fr 2fr;
   justify-items: center;
   align-items: center;
-  height: 40%;
+  height: 25rem;
   width: 100%;
-  row-gap: 0.5rem;
-  ${media.tablet} {
-    height: 35%;
+  ${media.phone} {
+    height: 26.5rem;
   }
   ${media.tablet} {
-    row-gap: 0.5rem;
-    height: 40%;
-  }
-  ${media.desktop} {
-    height: 45%;
+    height: 35rem;
+    grid-template-rows: auto 40% 10% 30%;
+    margin-top: 2rem;
   }
 `
 
@@ -369,15 +360,9 @@ export const ExcludeLabel = styled.label`
 
 export const ExcludeInputContainer = styled.div`
   grid-area: excludeInput;
-  height: 90%;
-  ${media.custom(360)} {
-    height: 100%;
-  }
-  ${media.custom(375)} {
-    height: 100%;
-  }
+  height: 75%;
   ${media.phone} {
-    height: 70%;
+    height: 6.5rem;
   }
   ${media.tablet} {
     width: 100%;
@@ -413,6 +398,7 @@ export const IngredientItem = styled.li`
   border-radius: 0.5rem;
   border: 0.2rem solid ${({ theme }) => theme.colors.Brown};
   box-shadow: 0 0.3rem 0.4rem black;
+  padding: 0 0.5rem;
   ${media.phone} {
     height: 50%;
   }
@@ -481,11 +467,13 @@ const ErrorMessage = styled.span`
   font-weight: bold;
   letter-spacing: 0.2rem;
   animation: ${errorAnim} 0.1s forwards;
+  max-width: 35ch;
   ${media.custom(400)} {
     font-size: 1.5rem;
   }
   ${media.phone} {
     font-size: 1.7rem;
+    max-width: max-content;
   }
   ${media.tablet} {
     font-size: 2rem;
