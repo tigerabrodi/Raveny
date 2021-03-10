@@ -53,8 +53,9 @@ const buttonStyles = css`
     width: 15%;
   }
   ${media.tablet} {
-    left: 93.5%;
-    width: 13%;
+    height: 98%;
+    width: 10%;
+    left: 94.9%;
     &:hover {
       background-color: ${({ theme }) => theme.colors.Orange};
       border-left: 0.1rem solid ${({ theme }) => theme.colors.Brown};
@@ -69,15 +70,6 @@ const buttonStyles = css`
     &:active svg {
       transform: scale(0.95);
     }
-  }
-  ${media.desktop} {
-    left: 95.5%;
-    height: 98%;
-    width: 9%;
-  }
-  ${media.custom(1600)} {
-    left: 96.5%;
-    width: 7%;
   }
   &:focus {
     outline: none;
@@ -115,13 +107,8 @@ const inputContainerStyles = css`
   width: 100%;
   position: relative;
   ${media.tablet} {
-    width: 100%;
-  }
-  ${media.desktop} {
-    width: 90%;
-  }
-  ${media.custom(1600)} {
-    width: 80%;
+    width: 75%;
+    max-width: 108rem;
   }
   &:focus-within {
     box-shadow: 0 0.3rem 0.5rem black;
@@ -168,7 +155,14 @@ export const Title = styled.h1`
   text-shadow: 0.2rem 0.4rem 0.6rem black;
   letter-spacing: 0.1rem;
   ${media.tablet} {
-    font-size: max(4.5rem, 4vw);
+    font-size: 5rem;
+  }
+  ${media.desktop} {
+    font-size: 6rem;
+    margin-right: 5rem;
+  }
+  ${media.custom(1124)} {
+    font-size: 8rem;
   }
 `
 
@@ -183,7 +177,7 @@ export const TitleContainer = styled.div`
     border-bottom: 0.3rem solid ${({ theme }) => theme.colors.Orange};
   }
   ${media.desktop} {
-    width: 65%;
+    width: auto;
   }
 `
 
@@ -260,17 +254,10 @@ export const InputValidLengthText = styled.span<{
   }
   ${media.tablet} {
     top: 80%;
-    left: 85%;
+    left: 87.8%;
   }
   ${media.desktop} {
-    left: 89%;
     font-size: 1.6rem;
-  }
-  ${media.custom(1500)} {
-    left: 89.5%;
-  }
-  ${media.custom(1600)} {
-    left: 91.5%;
   }
 `
 
@@ -291,6 +278,7 @@ export const CaloriesContainer = styled.div`
     'caloriesErrorMessage caloriesErrorMessage';
   grid-template-rows: 1fr 1fr 1fr;
   width: 100%;
+  max-width: 140rem;
   align-items: center;
   justify-items: center;
   align-content: space-between;
@@ -527,14 +515,18 @@ export const Pan = styled(PanSVG)`
   display: none;
   ${media.tablet} {
     position: relative;
-    width: 8rem;
-    height: 10rem;
+    display: block;
     transform: scale(-1, 1);
     animation: ${animCook} 1s infinite alternate;
-    display: block;
-    margin-right: 2rem;
-    width: max(7rem, 7.5vw);
-    height: max(9rem, 9.5vw);
+    width: 10rem;
+    height: 12rem;
+  }
+  ${media.desktop} {
+    width: 11rem;
+    height: 14rem;
+  }
+  ${media.custom(1124)} {
+    width: 13rem;
   }
 `
 
