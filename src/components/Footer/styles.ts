@@ -30,6 +30,6 @@ export const TextLink = styled.a`
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: 1.8rem;
   text-shadow: 0 0 0.5rem black;
-  color: ${({ theme }) => theme.colors.Orange};
+  color: ${({ theme }) => theme.colors.LightOrange};
   text-decoration: underline;
 `
