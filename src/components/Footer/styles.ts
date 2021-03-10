@@ -31,5 +31,5 @@ export const TextLink = styled.a`
   font-size: 1.8rem;
   text-shadow: 0 0 0.5rem black;
   color: ${({ theme }) => theme.colors.Orange};
-  text-decoration: none;
+  text-decoration: underline;
 `
