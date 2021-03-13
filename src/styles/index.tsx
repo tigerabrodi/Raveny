@@ -1,6 +1,6 @@
 import { ReactComponent as CheckIcon } from 'assets/check.svg'
 import { ReactComponent as WarnIcon } from 'assets/warn.svg'
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components/macro'
 import { media } from 'theme/media'
 
 /* Common Styles */
@@ -9,10 +9,14 @@ export const labelWrapperStyles = css`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: 89%;
+  flex-wrap: wrap;
 `
 
 export const labelStyles = css`
+  text-shadow: 0 0.2rem 0.2rem black;
+  font-weight: bold;
+  white-space: pre-wrap;
   text-transform: capitalize;
   font-size: 1rem;
   font-weight: 700;
@@ -24,10 +28,7 @@ export const labelStyles = css`
     font-size: 1.2rem;
   }
   ${media.tablet} {
-    font-size: 1.4rem;
-  }
-  ${media.desktop} {
-    font-size: max(1.2rem, 0.8vw);
+    font-size: 1.2rem;
   }
 `
 
@@ -37,6 +38,10 @@ export const infoLabelStyles = css`
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   display: flex;
+  margin: 0.5rem 0;
+  text-shadow: 0 0.2rem 0.2rem black;
+  font-weight: bold;
+  white-space: pre-wrap;
   ${media.desktop} {
     font-size: max(1.8rem, 1.1vw);
   }
@@ -48,25 +53,27 @@ export const wrapperStyles = css`
   width: 100%;
 `
 
-/* Strong Tag */
-export const Strong = styled.strong`
-  text-shadow: 0 0.2rem 0.2rem black;
-  font-weight: bold;
-  white-space: pre-wrap;
+export const focusStyles = css`
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 0.3rem solid ${({ theme }) => theme.colors.White};
+    outline-offset: 0.2rem;
+  }
 `
 
 /* Icons */
 export const Check = styled(CheckIcon)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
   height: 3rem;
-  width: 2.3rem;
-  margin-left: 0.5rem;
+  width: 2rem;
 `
 
 export const Warn = styled(WarnIcon)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
   height: 3rem;
-  width: 2.3rem;
+  width: 2rem;
   color: ${({ theme }) => theme.colors.LightRed};
-  margin-left: 0.5rem;
+  margin-left: 0.4rem;
 `
