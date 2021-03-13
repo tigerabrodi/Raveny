@@ -8,7 +8,7 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_831501bed910fb207a99f7dbc3d9fa7d",
-        "label": "vegan",
+        "label": "veganrecipe",
         "image": "https://www.edamam.com/web-img/2c4/2c416387a52367920c34f792b8a9eefd.jpg",
         "source": "BBC Good Food",
         "url": "http://www.bbcgoodfood.com/recipes/4954/",
