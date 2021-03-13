@@ -2,7 +2,7 @@ import { useRavenyState } from 'context/RavenyContext'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
-  LoadMoreSpinnerSection,
+  LoadMoreSpinnerContainer,
   RecipesHeading,
   RecipesMain,
   RecipesSection,
@@ -42,9 +42,9 @@ export const HighProtein = () => {
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (
-        <LoadMoreSpinnerSection>
+        <LoadMoreSpinnerContainer>
           <LoadMoreSpinner />
-        </LoadMoreSpinnerSection>
+        </LoadMoreSpinnerContainer>
       ) : state.hasMoreRecipes ? (
         <IntersectingElementToLoadMore ref={setIntersectingElement} />
       ) : null}

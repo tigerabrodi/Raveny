@@ -3,7 +3,7 @@ import { ReactComponent as PanSVG } from 'assets/fried.svg'
 import { ReactComponent as Plus } from 'assets/plus.svg'
 import { ReactComponent as Search } from 'assets/search.svg'
 import { media } from 'theme/media'
-import { wrapperStyles } from 'styles'
+import { focusStyles, wrapperStyles } from 'styles'
 
 /* Common Styles */
 const caloriesInputStyles = css`
@@ -67,12 +67,7 @@ const buttonStyles = css`
     width: 10%;
     left: 94.9%;
   }
-  &:focus {
-    outline: none;
-  }
-  &:focus-visible {
-    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
-  }
+  ${focusStyles};
 `
 
 const inputStyles = css`
@@ -432,12 +427,7 @@ export const IngredientRemoveButton = styled.button`
   padding: 0.5rem;
   color: ${({ theme }) => theme.colors.White};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
-  &:focus-visible {
-    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
-  }
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
+  ${focusStyles};
 `
 
 /* Animations */
