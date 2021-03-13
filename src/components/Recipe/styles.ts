@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import {
+  focusStyles,
   infoLabelStyles,
   labelStyles,
   labelWrapperStyles,
@@ -41,7 +42,7 @@ export const RecipesHeading = styled.h1`
   text-shadow: 0.2rem 0.4rem 0.6rem black;
 `
 
-export const LoadMoreSpinnerSection = styled.section`
+export const LoadMoreSpinnerContainer = styled.div`
   grid-area: spinner;
   position: relative;
   width: 100%;
@@ -57,7 +58,7 @@ export const IntersectingElementToLoadMore = styled.div`
 `
 
 /* Styles for Recipe Component */
-export const RecipeWrapperLink = styled(Link)`
+export const RecipeWrapper = styled.article`
   text-decoration: none;
   height: 45rem;
   display: flex;
@@ -69,42 +70,49 @@ export const RecipeWrapperLink = styled(Link)`
   border-radius: 0.2rem;
   align-items: center;
   justify-content: space-around;
-  transition: all 0.3s;
-  cursor: pointer;
+  transition: all 0.2s;
   background-color: transparent;
-  &:hover {
-    transform: translateY(-0.5rem) scale(1.01);
-    box-shadow: 0 0 1rem ${({ theme }) => theme.colors.Orange};
-    background-color: rgba(221, 114, 48, 0.1);
-  }
   ${media.phone} {
-    height: 50rem;
+    height: 70rem;
     flex-basis: 50%;
   }
   ${media.tablet} {
     flex-basis: 35%;
+    min-width: 46.5rem;
+    height: 60rem;
+    &:hover {
+      transform: translateY(-0.1rem) scale(1.005);
+      box-shadow: 0 0 0.2rem ${({ theme }) => theme.colors.Orange};
+      background-color: rgba(221, 114, 48, 0.1);
+    }
   }
   ${media.desktop} {
     flex-basis: 30%;
-    max-width: 35%;
-    height: 55rem;
+    max-width: 32%;
   }
 `
 
 export const Title = styled.h1`
+  ${media.phone} {
+    margin: 1rem 0;
+  }
+`
+
+export const TitleLink = styled(Link)`
   text-shadow: 0 0.2rem 0.5rem black;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
   text-align: center;
-  font-size: 2.2rem;
+  font-size: clamp(1vw, 5.5vw, 3rem);
   text-decoration: underline;
-  ${media.phone} {
-    font-size: 3rem;
-  }
   ${media.tablet} {
-    font-size: max(2rem, 1.8vw);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
+  ${focusStyles};
 `
 
 export const Image = styled.img`
@@ -127,43 +135,46 @@ export const Image = styled.img`
   }
 `
 
-export const InfoSection = styled.section`
+export const InfoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  min-height: 25%;
+  height: 35%;
+  ${media.phone} {
+    height: auto;
+    min-height: 25%;
+  }
 `
 
-export const Serving = styled.h2`
+export const Serving = styled.p`
   ${infoLabelStyles}
 `
 
-export const Calories = styled.h2`
+export const Calories = styled.p`
   ${infoLabelStyles}
 `
 
-export const HealthSection = styled.section`
+export const HealthList = styled.ul`
   ${labelWrapperStyles}
+  width: 72%;
+  overflow: auto;
+  ${focusStyles};
 `
 
-export const DietSection = styled.section`
-  ${labelWrapperStyles}
-`
-
-export const Diet = styled.h3`
+export const Health = styled.li`
   ${labelStyles}
 `
 
-export const Health = styled.h3`
-  ${labelStyles}
-`
-
-export const CautionSection = styled.section`
+export const CautionList = styled.ul`
   ${labelWrapperStyles}
+  word-break: break-all;
+  align-items: flex-start;
+  width: auto;
+  max-width: 25%;
 `
 
-export const Caution = styled.h3`
+export const Caution = styled.li`
   ${labelStyles}
   color: ${({ theme }) => theme.colors.LightRed};
 `

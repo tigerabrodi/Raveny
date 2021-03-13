@@ -1,19 +1,19 @@
 import { Recipe as TRecipe } from 'types'
-import { Strong, Check, Warn } from 'styles'
+import { Check, Warn } from 'styles'
+import { useMedia } from 'hooks/useMedia'
 import { v4 as uuidv4 } from 'uuid'
 import {
-  RecipeWrapperLink,
-  Title,
+  RecipeWrapper,
   Image,
   Calories,
-  Diet,
   Health,
-  DietSection,
-  HealthSection,
-  CautionSection,
+  HealthList,
+  CautionList,
   Serving,
   Caution,
-  InfoSection,
+  InfoContainer,
+  TitleLink,
+  Title,
 } from './styles'
 
 type RecipeProps = {
@@ -32,45 +32,42 @@ export const Recipe = ({
     caloriesPerServing,
   },
 }: RecipeProps) => {
+  const isMobileLayout = useMedia('max', '425')
   return (
-    <RecipeWrapperLink to={`/recipe/${id}`} aria-label={label}>
-      <Title> {label} </Title>
-      <Image src={image} alt={label} />
-      <Calories>
-        <Strong>Calories: </Strong>
-        {caloriesPerServing}
-      </Calories>
-      <Serving>
-        <Strong>Servings: </Strong>
-        {servings}
-      </Serving>
-      <InfoSection>
+    <RecipeWrapper aria-label={label}>
+      <Title>
+        <TitleLink to={`/recipe/${id}`}>{label}</TitleLink>
+      </Title>
+      <Image src={image} alt="" aria-hidden="true" />
+      <Calories>{caloriesPerServing} Calories</Calories>
+      <Serving>{servings} Servings</Serving>
+      <InfoContainer>
         {cautions.length > 0 && (
-          <CautionSection>
+          <CautionList>
             {cautions.map((caution) => (
-              <Caution key={uuidv4()}>
-                <Strong>{caution}</Strong> <Warn />
+              <Caution key={uuidv4()} aria-label={caution}>
+                {caution} <Warn aria-hidden="true" />
               </Caution>
             ))}
-          </CautionSection>
+          </CautionList>
         )}
-        <DietSection>
-          {dietLabels.length > 0 &&
-            dietLabels.map((diet) => (
-              <Diet key={uuidv4()}>
-                <Strong>{diet}</Strong> <Check />
-              </Diet>
-            ))}
-        </DietSection>
-        <HealthSection>
-          {healthLabels.length > 0 &&
-            healthLabels.map((health) => (
-              <Health key={uuidv4()}>
-                <Strong>{health}</Strong> <Check />
+        {[...healthLabels, ...dietLabels].length > 0 && (
+          <HealthList
+            tabIndex={
+              ([...healthLabels, ...dietLabels].length > 8 && isMobileLayout) ||
+              [...healthLabels, ...dietLabels].length > 15
+                ? 0
+                : undefined
+            }
+          >
+            {[...healthLabels, ...dietLabels].map((label) => (
+              <Health key={uuidv4()} aria-label={label}>
+                {label} <Check aria-hidden="true" />
               </Health>
             ))}
-        </HealthSection>
-      </InfoSection>
-    </RecipeWrapperLink>
+          </HealthList>
+        )}
+      </InfoContainer>
+    </RecipeWrapper>
   )
 }
