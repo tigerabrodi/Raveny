@@ -158,7 +158,7 @@ export const Search = () => {
     <SearchMain>
       <TitleContainer>
         <Title>Start Cooking Today!</Title>
-        <Pan role="img" title="A cooking pan." />
+        <Pan aria-hidden="true" />
       </TitleContainer>
 
       <SearchForm onSubmit={(event) => onSubmit(event)} autoComplete="off">
