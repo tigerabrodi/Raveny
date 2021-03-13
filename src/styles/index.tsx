@@ -59,7 +59,7 @@ export const focusStyles = css`
   }
   &:focus-visible {
     outline: 0.3rem solid ${({ theme }) => theme.colors.White};
-    outline-offset: 0.2rem;
+    outline-offset: 0.3rem;
   }
 `
 
