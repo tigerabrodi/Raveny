@@ -78,7 +78,7 @@ test('should allow simple user search flow', async () => {
 
   getByRoleInDocument('heading', { name: /Servings 4/i, level: 2 })
 
-  getByRoleInDocument('heading', { name: /1057 calories/i, level: 2 })
+  expect(screen.getByText(/1057 calories/i)).toBeInTheDocument()
 
   getByRoleInDocument('heading', { name: /ingredients/i, level: 2 })
 
@@ -86,17 +86,11 @@ test('should allow simple user search flow', async () => {
     'listitem'
   )[0]
 
-  getWithinElementRoleInDocument(firstListItem, 'heading', {
-    name: /salt/i,
-    level: 3,
-  })
+  expect(within(firstListItem).getByText(/salt/i)).toBeInTheDocument()
 
   const secondListItem = within(screen.getByRole('list')).getAllByRole(
     'listitem'
   )[1]
 
-  getWithinElementRoleInDocument(secondListItem, 'heading', {
-    name: /frozen peas/i,
-    level: 3,
-  })
+  expect(within(secondListItem).getByText(/frozen peas/i)).toBeInTheDocument()
 })
