@@ -2,13 +2,13 @@ import { singleRecipeData } from 'mocks/data/single-recipe-data'
 import { v4 as uuidv4 } from 'uuid'
 import {
   RecipeImage,
-  RecipeInfoSection,
+  RecipeInfoContainer,
   RecipeMain,
   RecipeName,
   Servings,
   Time,
   Calories,
-  RecipeImageSection,
+  RecipeImageContainer,
   IngredientsList,
   TimeSection,
   ServingsSection,
@@ -32,7 +32,7 @@ const [recipe] = singleRecipeData
 export const RecipeDetailPage = () => (
   <RecipeMain>
     <RecipeName> {recipe.label} </RecipeName>
-    <RecipeInfoSection>
+    <RecipeInfoContainer>
       <TimeSection>
         <TimeHeading>Cooking Time</TimeHeading>
         <Time>{Math.round(recipe.totalTime)} mins</Time>
@@ -42,11 +42,11 @@ export const RecipeDetailPage = () => (
         <ServingsHeading>Servings</ServingsHeading>
         <Servings>{recipe.yield}</Servings>
       </ServingsSection>
-    </RecipeInfoSection>
-    <RecipeImageSection>
+    </RecipeInfoContainer>
+    <RecipeImageContainer>
       <RecipeImage src={recipe.image} alt={recipe.label} />
       <Calories>{recipe.calories} Calories</Calories>
-    </RecipeImageSection>
+    </RecipeImageContainer>
     <IngredientsSection>
       <IngredientsHeading>Ingredients</IngredientsHeading>
       <IngredientsList>
