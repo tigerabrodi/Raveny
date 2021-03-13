@@ -16,8 +16,6 @@ describe('search', () => {
 
     userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
-    screen.debug()
-
     getByRoleInDocument('alert', {
       name: /Please enter at least 3 characters to search for recipes/i,
     })
