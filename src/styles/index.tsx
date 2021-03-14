@@ -77,3 +77,13 @@ export const Warn = styled(WarnIcon)`
   color: ${({ theme }) => theme.colors.LightRed};
   margin-left: 0.4rem;
 `
+
+/* Assistive Technology only text */
+export const ATOnlyText = styled.span`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`
