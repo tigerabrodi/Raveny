@@ -33,6 +33,9 @@ export const Recipe = ({
   },
 }: RecipeProps) => {
   const isMobileLayout = useMedia('max', '425')
+  const labels = [...healthLabels, ...dietLabels]
+  const shouldTabIndex =
+    (labels.length > 8 && isMobileLayout) || labels.length > 15
   return (
     <RecipeWrapper aria-label={label}>
       <Title>
@@ -53,16 +56,9 @@ export const Recipe = ({
             ))}
           </CautionList>
         )}
-        {[...healthLabels, ...dietLabels].length > 0 && (
-          <HealthList
-            tabIndex={
-              ([...healthLabels, ...dietLabels].length > 8 && isMobileLayout) ||
-              [...healthLabels, ...dietLabels].length > 15
-                ? 0
-                : undefined
-            }
-          >
-            {[...healthLabels, ...dietLabels].map((label) => (
+        {labels.length > 0 && (
+          <HealthList tabIndex={shouldTabIndex ? 0 : undefined}>
+            {labels.map((label) => (
               <Health key={uuidv4()} aria-label={label}>
                 {label} <Check aria-hidden="true" />
               </Health>
