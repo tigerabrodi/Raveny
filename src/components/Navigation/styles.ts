@@ -2,6 +2,7 @@ import styled, { css, keyframes } from 'styled-components'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { ReactComponent as Logo } from 'assets/cooking-pan-food.svg'
 import { media } from 'theme/media'
+import { focusStyles } from 'styles'
 
 const animTopVisible = keyframes`
     to {
@@ -92,6 +93,7 @@ export const LogoLink = styled(RouterLink)`
       transform: translateY(-0.2rem);
     }
   }
+  ${focusStyles};
 `
 
 export const LinkContainer = styled.div<{ isToggled: boolean }>`
@@ -178,6 +180,7 @@ export const Link = styled(RouterLink).attrs({ activeClassName })`
       bottom: -0.4rem;
     }
   }
+  ${focusStyles};
 `
 
 type HamburgerMenuLineProps = {
