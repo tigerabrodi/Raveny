@@ -3,7 +3,7 @@ import { ReactComponent as RecipeBookSVG } from 'assets/recipe.svg'
 import { ReactComponent as Search } from 'assets/search.svg'
 import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
-import { wrapperStyles } from 'styles'
+import { focusStyles, wrapperStyles } from 'styles'
 
 export const HomeMain = styled.main`
   ${wrapperStyles}
@@ -138,6 +138,7 @@ export const InfoLink = styled(Link)`
     height: 11rem;
     font-size: 5rem;
   }
+  ${focusStyles};
 `
 
 export const SearchIcon = styled(Search)`
