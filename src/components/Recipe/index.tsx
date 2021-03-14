@@ -1,5 +1,5 @@
 import { Recipe as TRecipe } from 'types'
-import { Check, Warn } from 'styles'
+import { ATOnlyText, Check, Warn } from 'styles'
 import { useMedia } from 'hooks/useMedia'
 import { v4 as uuidv4 } from 'uuid'
 import {
@@ -36,7 +36,9 @@ export const Recipe = ({
   return (
     <RecipeWrapper aria-label={label}>
       <Title>
-        <TitleLink to={`/recipe/${id}`}>{label}</TitleLink>
+        <TitleLink to={`/recipe/${id}`}>
+          <ATOnlyText>Read more about recipe: </ATOnlyText> {label}
+        </TitleLink>
       </Title>
       <Image src={image} alt="" aria-hidden="true" />
       <Calories>{caloriesPerServing} Calories</Calories>
