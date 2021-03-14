@@ -86,4 +86,5 @@ export const ATOnlyText = styled.span`
   width: 1px;
   height: 1px;
   overflow: hidden;
+  white-space: pre-wrap;
 `
