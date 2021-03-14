@@ -68,7 +68,7 @@ export const Recipes = () => {
   ) : (
     <NoRecipesFoundMain>
       <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
-      <SadFace role="img" title="A sad looking emoji." />
+      <SadFace aria-hidden="true" />
       <Link to="/search">Back To Search</Link>
     </NoRecipesFoundMain>
   )
