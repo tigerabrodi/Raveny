@@ -37,7 +37,7 @@ export const Navigation = () => {
           <LogoLink to="/" onClick={() => setIsToggled(false)}>
             Raveny
           </LogoLink>
-          <LogoIcon role="img" aria-label="Cooking pan." />
+          <LogoIcon role="img" aria-label="Pan with food" />
         </LogoWrapper>
         <LinkContainer isToggled={isToggled} ref={linkSectionRef}>
           <Link to="/search" onClick={() => setIsToggled(false)}>
