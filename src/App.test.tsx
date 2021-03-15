@@ -6,10 +6,7 @@ import {
   waitForElementToBeRemoved,
   within,
 } from 'test/utils'
-import {
-  getByRoleInDocument,
-  getWithinElementRoleInDocument,
-} from 'utils/functions'
+import { getByRoleInDocument } from 'utils/functions'
 
 test('should allow simple user search flow', async () => {
   render(<App />)
