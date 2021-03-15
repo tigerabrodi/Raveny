@@ -2,7 +2,7 @@ import { useRavenyState } from 'context/RavenyContext'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
-  LoadMoreSpinnerSection,
+  LoadMoreSpinnerContainer,
   RecipesHeading,
   RecipesMain,
   RecipesSection,
@@ -58,9 +58,9 @@ export const Recipes = () => {
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (
-        <LoadMoreSpinnerSection>
+        <LoadMoreSpinnerContainer>
           <LoadMoreSpinner />
-        </LoadMoreSpinnerSection>
+        </LoadMoreSpinnerContainer>
       ) : state.hasMoreRecipes ? (
         <IntersectingElementToLoadMore ref={setIntersectingElement} />
       ) : null}
@@ -68,7 +68,7 @@ export const Recipes = () => {
   ) : (
     <NoRecipesFoundMain>
       <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
-      <SadFace role="img" title="A sad looking emoji." />
+      <SadFace aria-hidden="true" />
       <Link to="/search">Back To Search</Link>
     </NoRecipesFoundMain>
   )

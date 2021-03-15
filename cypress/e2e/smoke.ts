@@ -7,7 +7,7 @@ it('should allow a typical user flow', () => {
 
   cy.findByLabelText(/search recipes/i).type('chicken')
 
-  cy.findByRole('button', { name: /Search for recipes/i }).click()
+  cy.findByRole('button', { name: /Search/i }).click()
 
   cy.findAllByRole('link').should('have.length', 14)
 
@@ -19,5 +19,5 @@ it('should allow a typical user flow', () => {
 
   cy.findByRole('heading', { name: /baked chicken/i, level: 1 }).should('exist')
 
-  cy.findByRole('heading', { name: /225 Calories/i, level: 2 }).should('exist')
+  cy.findByText(/225 Calories/i).should('exist')
 })

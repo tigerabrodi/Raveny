@@ -9,7 +9,7 @@ export default {
 export const NoRecipesFound = () => (
   <NoRecipesFoundMain>
     <NoRecipesTitle>No Recipes Found!</NoRecipesTitle>
-    <SadFace role="img" title="A sad emoji." />
+    <SadFace aria-hidden="true" />
     <Link to="/search">Back To Search</Link>
   </NoRecipesFoundMain>
 )

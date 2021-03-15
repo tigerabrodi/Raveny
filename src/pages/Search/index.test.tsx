@@ -14,10 +14,10 @@ describe('search', () => {
       name: /Please enter at least three characters./i,
     })
 
-    userEvent.click(screen.getByRole('button', { name: /search for recipes/i }))
+    userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
     getByRoleInDocument('alert', {
-      name: /Please enter at least three characters./i,
+      name: /Please enter at least 3 characters to search for recipes/i,
     })
   })
 
@@ -35,13 +35,13 @@ describe('search', () => {
     userEvent.type(screen.getByLabelText(/Min Calories/i), '10000')
 
     queryByRoleNotInDocument('alert', {
-      name: /Minimum Calories must be less than Maximum Calories./i,
+      name: /Minimum Calories must be less than Maximum Calories/i,
     })
 
-    userEvent.click(screen.getByRole('button', { name: /Search for recipes/i }))
+    userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
     getByRoleInDocument('alert', {
-      name: /Minimum Calories must be less than Maximum Calories./i,
+      name: /Minimum Calories must be less than Maximum Calories/i,
     })
   })
 
@@ -50,21 +50,21 @@ describe('search', () => {
       render(<App />, { route: '/search' })
 
       queryByRoleNotInDocument('alert', {
-        name: /Please enter at least 3 characters for the ingredient to be excluded./i,
+        name: /Please enter at least 3 characters for the ingredient to be excluded/i,
       })
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
       getByRoleInDocument('alert', {
-        name: /Please enter at least 3 characters for the ingredient to be excluded./i,
+        name: /Please enter at least 3 characters for the ingredient to be excluded/i,
       })
 
       userEvent.type(screen.getByLabelText(/Exclude ingredients/i), 'chicken')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
       getWithinElementRoleInDocument(screen.getByRole('listitem'), 'heading', {
@@ -74,7 +74,7 @@ describe('search', () => {
 
       userEvent.click(
         screen.getByRole('button', {
-          name: /Remove ingredient from being excluded/i,
+          name: /Remove chicken ingredient from being exclude/i,
         })
       )
 
@@ -94,7 +94,7 @@ describe('search', () => {
       })
 
       queryByRoleNotInDocument('alert', {
-        name: /Please enter at least 3 characters for the ingredient to be excluded./i,
+        name: /Please enter at least 3 characters for the ingredient to be excluded/i,
       })
 
       userEvent.type(screen.getByLabelText(/Exclude ingredients/i), 'chicken')
@@ -102,7 +102,7 @@ describe('search', () => {
       userEvent.type(screen.getByLabelText(/Exclude ingredients/i), '{enter}')
 
       getByRoleInDocument('alert', {
-        name: 'Ingredient "Chicken" is already being included.',
+        name: 'Ingredient Chicken is already being included',
       })
     })
   })

@@ -8,7 +8,7 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_14ebd7d6d65f761843dba35202de4b37",
-        "label": "high protein",
+        "label": "high protein recipe",
         "image": "https://www.edamam.com/web-img/ba6/ba6f66d885e4d62a98055b088a5a85a3.jpg",
         "source": "BBC Good Food",
         "url": "http://www.bbcgoodfood.com/recipes/3645/",

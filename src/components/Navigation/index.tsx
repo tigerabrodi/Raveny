@@ -1,12 +1,13 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { useOnScreen } from 'hooks/useOnScreen'
+import { useTrapTabKey } from 'hooks/useTrapTabKey'
 import {
   HamburgerMenuLine,
   HamburgerMenuOverlay,
   HamburgerMenuWrapper,
   IntersectingElement,
   Link,
-  LinkSection,
+  LinkContainer,
   LogoIcon,
   LogoLink,
   LogoWrapper,
@@ -15,28 +16,30 @@ import {
 
 export const Navigation = () => {
   const [isToggled, setIsToggled] = useState(false)
-  const focusRef = useRef<HTMLAnchorElement | null>(null)
+
+  const linkSectionRef = useRef<HTMLDivElement>(null)
 
   const { isVisible, setIntersectingElement } = useOnScreen()
 
-  useEffect(() => {
-    /* Focus when toggled, relates to Keyboard Accessibility */
-    if (focusRef.current !== null && isToggled) {
-      focusRef.current.focus()
-    }
-  }, [isToggled])
+  const { firstButtonElementRef } = useTrapTabKey({
+    ref: linkSectionRef,
+    setOpen: setIsToggled,
+    pause: !isToggled,
+  })
+
+  const toggleHamburgerMenu = () => setIsToggled(!isToggled)
 
   return (
     <>
-      <IntersectingElement ref={setIntersectingElement} />
+      <IntersectingElement ref={setIntersectingElement} aria-hidden="true" />
       <Nav shouldShowShadow={!isVisible}>
         <LogoWrapper>
-          <LogoLink to="/" onClick={() => setIsToggled(false)} ref={focusRef}>
+          <LogoLink to="/" onClick={() => setIsToggled(false)}>
             Raveny
           </LogoLink>
-          <LogoIcon role="img" title="Cooking pan." />
+          <LogoIcon role="img" aria-label="Pan with food" />
         </LogoWrapper>
-        <LinkSection isToggled={isToggled}>
+        <LinkContainer isToggled={isToggled} ref={linkSectionRef}>
           <Link to="/search" onClick={() => setIsToggled(false)}>
             Search
           </Link>
@@ -49,14 +52,16 @@ export const Navigation = () => {
           <Link to="/recipes/low-carb" onClick={() => setIsToggled(false)}>
             Low Carb
           </Link>
-        </LinkSection>
+        </LinkContainer>
         <HamburgerMenuWrapper
           isToggled={isToggled}
-          onClick={() => setIsToggled(!isToggled)}
+          onClick={toggleHamburgerMenu}
           type="button"
           aria-label={
             isToggled ? 'Close Hamburger Menu' : 'Open Hamburger Menu'
           }
+          aria-expanded={isToggled ? 'true' : 'false'}
+          ref={firstButtonElementRef}
         >
           <HamburgerMenuLine topToggled={isToggled} />
           <HamburgerMenuLine hideMiddle={isToggled} />

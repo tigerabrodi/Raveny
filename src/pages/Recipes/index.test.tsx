@@ -1,10 +1,7 @@
 import { render, screen, userEvent } from 'test-utils'
 import App from 'App'
 import { waitForElementToBeRemoved } from '@testing-library/react'
-import {
-  getByRoleInDocument,
-  getWithinElementRoleInDocument,
-} from 'utils/functions'
+import { getByRoleInDocument } from 'utils/functions'
 
 describe('searching recipes', () => {
   describe('calories', () => {
@@ -14,41 +11,24 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/max calories/i), '1500')
       userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-      const recipe = screen.getByRole('link', { name: /low calories/i })
-
-      getWithinElementRoleInDocument(recipe, 'img', {
+      getByRoleInDocument('link', {
         name: /low calories/i,
       })
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /low calories/i,
-        level: 1,
-      })
+      expect(screen.getByText(/77 calories/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /calories: 77/i,
-        level: 2,
-      })
+      expect(screen.getByText(/4 servings/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /servings: 4/i,
-        level: 2,
-      })
-
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /FODMAP/i,
-        level: 3,
       })
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /Vegetarian/i,
-        level: 3,
       })
     })
 
@@ -58,41 +38,24 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/min calories/i), '1500')
       userEvent.type(screen.getByLabelText(/search recipes/i), 'blah')
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-      const recipe = screen.getByRole('link', { name: /high calories/i })
-
-      getWithinElementRoleInDocument(recipe, 'img', {
+      getByRoleInDocument('link', {
         name: /high calories/i,
       })
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /high calories/i,
-        level: 1,
-      })
+      expect(screen.getByText(/2331 calories/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /calories: 2331/i,
-        level: 2,
-      })
+      expect(screen.getByText(/1 servings/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /servings: 1/i,
-        level: 2,
-      })
-
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /fat-heavy/i,
-        level: 3,
       })
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /Vegetarian/i,
-        level: 3,
       })
     })
   })
@@ -104,46 +67,27 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-      const recipe = screen.getByRole('link', {
+      getByRoleInDocument('link', {
         name: /exclude one ingredient/i,
       })
 
-      getWithinElementRoleInDocument(recipe, 'img', {
-        name: /exclude one ingredient/i,
-      })
+      expect(screen.getByText(/271 calories/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /exclude one ingredient/i,
-        level: 1,
-      })
+      expect(screen.getByText(/6 servings/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /calories: 271/i,
-        level: 2,
-      })
-
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /servings: 6/i,
-        level: 2,
-      })
-
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /Low-Fat/i,
-        level: 3,
       })
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /Sugar-Conscious/i,
-        level: 3,
       })
     })
 
@@ -153,52 +97,33 @@ describe('searching recipes', () => {
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'chicken')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
       userEvent.type(screen.getByLabelText(/exclude ingredients/i), 'meat')
 
       userEvent.click(
-        screen.getByRole('button', { name: /Add ingredient to be excluded/i })
+        screen.getByRole('button', { name: /Exclude ingredient/i })
       )
 
-      userEvent.click(
-        screen.getByRole('button', { name: /search for recipes/i })
-      )
+      userEvent.click(screen.getByRole('button', { name: /search/i }))
 
       await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-      const recipe = screen.getByRole('link', {
+      getByRoleInDocument('link', {
         name: /exclude two ingredients/i,
       })
 
-      getWithinElementRoleInDocument(recipe, 'img', {
-        name: /exclude two ingredients/i,
-      })
+      expect(screen.getByText(/149 calories/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /exclude two ingredients/i,
-        level: 1,
-      })
+      expect(screen.getByText(/6 servings/i)).toBeInTheDocument()
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /calories: 149/i,
-        level: 2,
-      })
-
-      getWithinElementRoleInDocument(recipe, 'heading', {
-        name: /servings: 6/i,
-        level: 2,
-      })
-
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /Low-Carb/i,
-        level: 3,
       })
 
-      getWithinElementRoleInDocument(recipe, 'heading', {
+      getByRoleInDocument('listitem', {
         name: /Vegetarian/i,
-        level: 3,
       })
     })
   })
@@ -208,46 +133,31 @@ describe('searching recipes', () => {
 
     userEvent.type(screen.getByLabelText(/search recipes/i), 'meat')
 
-    userEvent.click(screen.getByRole('button', { name: /Search for recipes/i }))
+    userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
     await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-    const recipe = screen.getByRole('link', { name: /meat/i })
-
-    getWithinElementRoleInDocument(recipe, 'img', {
+    getByRoleInDocument('link', {
       name: /meat/i,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /meat/i,
-      level: 1,
-    })
+    expect(screen.getByText(/618 calories/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /calories: 618/i,
-      level: 2,
-    })
+    expect(screen.getByText(/6 servings/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /servings: 6/i,
-      level: 2,
-    })
-
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /sulfites/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /low-carb/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /Sugar-Conscious/i,
-      level: 3,
     })
   })
+
   test('should return vegan response', async () => {
     render(<App />)
 
@@ -257,35 +167,20 @@ describe('searching recipes', () => {
 
     getByRoleInDocument('heading', { name: 'Vegan' })
 
-    const recipe = screen.getByRole('link', { name: 'vegan' })
-
-    getWithinElementRoleInDocument(recipe, 'img', {
-      name: 'vegan',
+    getByRoleInDocument('link', {
+      name: /veganrecipe/i,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /vegan/i,
-      level: 1,
-    })
+    expect(screen.getByText(/11 calories/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /calories: 11/i,
-      level: 2,
-    })
+    expect(screen.getByText(/2 servings/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /servings: 2/i,
-      level: 2,
-    })
-
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /sulfites/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /Peanut-Free/i,
-      level: 3,
+    getByRoleInDocument('listitem', {
+      name: /peanut-free/i,
     })
   })
 
@@ -298,40 +193,24 @@ describe('searching recipes', () => {
 
     getByRoleInDocument('heading', { name: 'Low Carb' })
 
-    const recipe = screen.getByRole('link', { name: 'low carb' })
-
-    getWithinElementRoleInDocument(recipe, 'img', {
-      name: 'low carb',
+    getByRoleInDocument('link', {
+      name: /low carb recipe/i,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: 'low carb',
-      level: 1,
-    })
+    expect(screen.getByText(/572 calories/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /calories: 572/i,
-      level: 2,
-    })
+    expect(screen.getByText(/4 servings/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /servings: 4/i,
-      level: 2,
-    })
-
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /fodmap/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /low-carb/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /Sugar-Conscious/i,
-      level: 3,
     })
   })
 
@@ -344,40 +223,24 @@ describe('searching recipes', () => {
 
     getByRoleInDocument('heading', { name: 'High Protein' })
 
-    const recipe = screen.getByRole('link', { name: 'high protein' })
-
-    getWithinElementRoleInDocument(recipe, 'img', {
-      name: 'high protein',
+    getByRoleInDocument('link', {
+      name: /high protein recipe/i,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: 'high protein',
-      level: 1,
-    })
+    expect(screen.getByText(/436 calories/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /calories: 436/i,
-      level: 2,
-    })
+    expect(screen.getByText(/4 servings/i)).toBeInTheDocument()
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
-      name: /servings: 4/i,
-      level: 2,
-    })
-
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /sulfites/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /low-carb/i,
-      level: 3,
     })
 
-    getWithinElementRoleInDocument(recipe, 'heading', {
+    getByRoleInDocument('listitem', {
       name: /Tree-Nut-Free/i,
-      level: 3,
     })
   })
 })

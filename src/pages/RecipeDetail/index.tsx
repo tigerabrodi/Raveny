@@ -7,8 +7,8 @@ import { fetchSingleRecipe } from 'utils/fetchSingleRecipe'
 import {
   RecipeImage,
   Calories,
-  RecipeImageSection,
-  RecipeInfoSection,
+  RecipeImageContainer,
+  RecipeInfoContainer,
   RecipeMain,
   RecipeName,
   Servings,
@@ -45,7 +45,7 @@ export const RecipeDetail = () => {
   return state.stateType === 'singleRecipeState' && state.recipe ? (
     <RecipeMain>
       <RecipeName> {state.recipe.label} </RecipeName>
-      <RecipeInfoSection>
+      <RecipeInfoContainer>
         <TimeSection>
           <TimeHeading>Cooking Time</TimeHeading>
           <Time>{Math.round(state.recipe.totalTime)} mins</Time>
@@ -55,17 +55,17 @@ export const RecipeDetail = () => {
           <ServingsHeading>Servings</ServingsHeading>
           <Servings>{state.recipe.yield}</Servings>
         </ServingsSection>
-      </RecipeInfoSection>
-      <RecipeImageSection>
-        <RecipeImage src={state.recipe.image} alt={state.recipe.label} />
+      </RecipeInfoContainer>
+      <RecipeImageContainer>
+        <RecipeImage src={state.recipe.image} alt="" />
         <Calories>{state.recipe.caloriesPerServing} Calories</Calories>
-      </RecipeImageSection>
+      </RecipeImageContainer>
       <IngredientsSection>
         <IngredientsHeading>Ingredients</IngredientsHeading>
         <IngredientsList>
           {state.recipe.ingredients.map(({ image, text }) => (
             <IngredientItem key={uuidv4()}>
-              <IngredientImage src={image} alt={text} />
+              <IngredientImage src={image} alt="" />
               <IngredientText>{text}</IngredientText>
             </IngredientItem>
           ))}

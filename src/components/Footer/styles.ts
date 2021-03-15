@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { ReactComponent as HeartIcon } from 'assets/heart.svg'
+import { ReactComponent as ExternalIcon } from 'assets/external.svg'
+import { focusStyles } from 'styles'
 
 export const FooterWrapper = styled.footer`
   height: 8rem;
@@ -27,9 +29,20 @@ export const Heart = styled(HeartIcon)`
 `
 
 export const TextLink = styled.a`
+  position: relative;
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: 1.8rem;
   text-shadow: 0 0 0.5rem black;
-  color: ${({ theme }) => theme.colors.Orange};
-  text-decoration: none;
+  color: ${({ theme }) => theme.colors.LightOrange};
+  text-decoration: underline;
+  ${focusStyles};
+`
+
+export const External = styled(ExternalIcon)`
+  position: absolute;
+  top: -1.4rem;
+  right: -1.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: ${({ theme }) => theme.colors.LightOrange};
 `

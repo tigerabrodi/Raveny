@@ -1,7 +1,8 @@
-import { NotFoundMain, NotFoundSVG } from './styles'
+import { NotFoundLink, NotFoundMain, NotFoundTitle } from './styles'
 
 export const NotFound = () => (
   <NotFoundMain>
-    <NotFoundSVG role="img" title="A sad emoji." />
+    <NotFoundTitle>Page not found</NotFoundTitle>
+    <NotFoundLink to="/">Home</NotFoundLink>
   </NotFoundMain>
 )

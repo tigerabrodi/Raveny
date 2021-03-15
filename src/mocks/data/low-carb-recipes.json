@@ -8,7 +8,7 @@
     {
       "recipe": {
         "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_763b4b1ced75faae48164b68ee9e3fad",
-        "label": "low carb",
+        "label": "low carb recipe",
         "image": "https://www.edamam.com/web-img/d97/d9786408ecad48bff714e1076ae07f1b.jpg",
         "source": "Serious Eats",
         "url": "http://www.seriouseats.com/recipes/2012/05/spice-rubbed-grilled-flap-meat-sirloin-tip-recipe.html",

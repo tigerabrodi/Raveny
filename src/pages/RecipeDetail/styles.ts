@@ -8,7 +8,7 @@ export const RecipeMain = styled.main`
   grid-template-areas:
     'title'
     'info'
-    'imageSection'
+    'imageWrapper'
     'ingredients';
   row-gap: 1rem;
   align-items: center;
@@ -36,7 +36,7 @@ export const RecipeName = styled.h1`
   }
 `
 
-export const RecipeInfoSection = styled.section`
+export const RecipeInfoContainer = styled.div`
   grid-area: info;
   display: grid;
   grid-template-areas: 'time servings';
@@ -137,8 +137,8 @@ export const Servings = styled.span`
   }
 `
 
-export const RecipeImageSection = styled.section`
-  grid-area: imageSection;
+export const RecipeImageContainer = styled.div`
+  grid-area: imageWrapper;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,7 +160,7 @@ export const RecipeImage = styled.img`
   height: 80%;
 `
 
-export const Calories = styled.h2`
+export const Calories = styled.p`
   text-shadow: 0 0.2rem 0.5rem black;
   font-weight: 600;
   letter-spacing: 0.2rem;
@@ -239,7 +239,7 @@ export const IngredientImage = styled.img`
   }
 `
 
-export const IngredientText = styled.h3`
+export const IngredientText = styled.p`
   grid-area: text;
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.White};

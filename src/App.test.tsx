@@ -6,10 +6,7 @@ import {
   waitForElementToBeRemoved,
   within,
 } from 'test/utils'
-import {
-  getByRoleInDocument,
-  getWithinElementRoleInDocument,
-} from 'utils/functions'
+import { getByRoleInDocument } from 'utils/functions'
 
 test('should allow simple user search flow', async () => {
   render(<App />)
@@ -34,7 +31,7 @@ test('should allow simple user search flow', async () => {
 
   userEvent.type(screen.getByLabelText(/Search recipes/i), 'chicken')
 
-  userEvent.click(screen.getByRole('button', { name: /Search for recipes/i }))
+  userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
   await waitForElementToBeRemoved(() => screen.queryByLabelText(/loading/i))
 
@@ -42,89 +39,29 @@ test('should allow simple user search flow', async () => {
 
   getByRoleInDocument('heading', { name: /120230 Results/i, level: 1 })
 
-  const firstRecipe = screen.getByRole('link', { name: /Chicken Vesuvio/i })
+  const firstRecipeLink = screen.getByRole('link', { name: /Chicken Vesuvio/i })
 
-  getWithinElementRoleInDocument(firstRecipe, 'img', {
-    name: /Chicken Vesuvio/i,
-  })
+  expect(screen.getByText(/1057 calories/i)).toBeInTheDocument()
 
-  getWithinElementRoleInDocument(firstRecipe, 'heading', {
-    name: /Calories: 1057/i,
-    level: 2,
-  })
+  expect(screen.getByText(/4 servings/i)).toBeInTheDocument()
 
-  getWithinElementRoleInDocument(firstRecipe, 'heading', {
-    name: /Servings: 4/i,
-    level: 2,
-  })
-
-  getWithinElementRoleInDocument(firstRecipe, 'heading', {
-    name: /sulfites/i,
-    level: 3,
-  })
-
-  getWithinElementRoleInDocument(firstRecipe, 'heading', {
+  getByRoleInDocument('listitem', {
     name: /low-carb/i,
-    level: 3,
   })
 
-  getWithinElementRoleInDocument(firstRecipe, 'heading', {
-    name: /peanut-free/i,
-    level: 3,
-  })
-
-  getWithinElementRoleInDocument(firstRecipe, 'heading', {
-    name: /Tree-Nut-Free/i,
-    level: 3,
-  })
-
-  const secondRecipe = screen.getByRole('link', { name: /Chicken Paprikash/i })
-
-  getWithinElementRoleInDocument(secondRecipe, 'img', {
-    name: /Chicken Paprikash/i,
-  })
-
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
-    name: /Calories: 1011/i,
-    level: 2,
-  })
-
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
-    name: /Servings: 3/i,
-    level: 2,
-  })
-
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
+  getByRoleInDocument('listitem', {
     name: /sulfites/i,
-    level: 3,
   })
 
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
-    name: /FODMAP/i,
-    level: 3,
-  })
-
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
-    name: /high-protein/i,
-    level: 3,
-  })
-
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
+  getByRoleInDocument('listitem', {
     name: /peanut-free/i,
-    level: 3,
   })
 
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
+  getByRoleInDocument('listitem', {
     name: /Tree-Nut-Free/i,
-    level: 3,
   })
 
-  getWithinElementRoleInDocument(secondRecipe, 'heading', {
-    name: /Alcohol-Free/i,
-    level: 3,
-  })
-
-  userEvent.click(firstRecipe)
+  userEvent.click(firstRecipeLink)
 
   await waitForElementToBeRemoved(() => screen.queryByLabelText(/loading/i))
 
@@ -138,9 +75,7 @@ test('should allow simple user search flow', async () => {
 
   getByRoleInDocument('heading', { name: /Servings 4/i, level: 2 })
 
-  getByRoleInDocument('img', { name: /Chicken Vesuvio/i })
-
-  getByRoleInDocument('heading', { name: /1057 calories/i, level: 2 })
+  expect(screen.getByText(/1057 calories/i)).toBeInTheDocument()
 
   getByRoleInDocument('heading', { name: /ingredients/i, level: 2 })
 
@@ -148,21 +83,11 @@ test('should allow simple user search flow', async () => {
     'listitem'
   )[0]
 
-  getWithinElementRoleInDocument(firstListItem, 'img')
-
-  getWithinElementRoleInDocument(firstListItem, 'heading', {
-    name: /salt/i,
-    level: 3,
-  })
+  expect(within(firstListItem).getByText(/salt/i)).toBeInTheDocument()
 
   const secondListItem = within(screen.getByRole('list')).getAllByRole(
     'listitem'
   )[1]
 
-  getWithinElementRoleInDocument(secondListItem, 'img')
-
-  getWithinElementRoleInDocument(secondListItem, 'heading', {
-    name: /frozen peas/i,
-    level: 3,
-  })
+  expect(within(secondListItem).getByText(/frozen peas/i)).toBeInTheDocument()
 })

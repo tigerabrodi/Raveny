@@ -9,13 +9,13 @@ import {
   SearchForm,
   SearchMain,
   SearchIcon,
-  TitleSection,
+  TitleContainer,
   InputValidLengthText,
   Title,
-  QuerySection,
-  QueryInputSection,
+  QueryContainer,
+  QueryInputContainer,
   CharacterErrorMessage,
-  CaloriesSection,
+  CaloriesContainer,
   CaloriesErrorMessage,
   MaxCaloriesInput,
   MaxCaloriesLabel,
@@ -24,8 +24,8 @@ import {
   IngredientAddButton,
   ExcludeIngredientsList,
   ExcludeInput,
-  ExcludeInputSection,
-  ExcludeSection,
+  ExcludeInputContainer,
+  ExcludeContainer,
   IngredientName,
   IngredientRemoveButton,
   IngredientItem,
@@ -156,23 +156,22 @@ export const Search = () => {
 
   return (
     <SearchMain>
-      <TitleSection>
+      <TitleContainer>
         <Title>Start Cooking Today!</Title>
-        <Pan role="img" title="A cooking pan." />
-      </TitleSection>
+        <Pan aria-hidden="true" />
+      </TitleContainer>
 
       <SearchForm onSubmit={(event) => onSubmit(event)} autoComplete="off">
-        <QuerySection>
+        <QueryContainer>
           <QueryLabel htmlFor="search">Search recipes</QueryLabel>
-          <QueryInputSection>
+          <QueryInputContainer>
             <QueryInput
               value={searchValue}
               type="text"
-              placeholder="Search For Recipes..."
+              placeholder="Chicken"
               id="search"
               name="searchValue"
               onChange={(event) => handleChange(event)}
-              aria-describedby="searchInputError"
             />
 
             <InputValidLengthText
@@ -187,23 +186,22 @@ export const Search = () => {
               {searchLengthValidation}
             </InputValidLengthText>
 
-            <QueryButton type="submit" aria-label="Search for recipes">
-              <SearchIcon title="Search Icon" />
+            <QueryButton type="submit" aria-label="Search">
+              <SearchIcon aria-hidden="true" />
             </QueryButton>
-          </QueryInputSection>
+          </QueryInputContainer>
 
           {showErrorCharacters && (
             <CharacterErrorMessage
               role="alert"
-              id="searchInputError"
-              aria-label="Please enter at least three characters."
+              aria-label="Please enter at least 3 characters to search for recipes"
             >
-              Please enter at least three characters.
+              Please enter at least 3 characters to search for recipes.
             </CharacterErrorMessage>
           )}
-        </QuerySection>
+        </QueryContainer>
 
-        <CaloriesSection>
+        <CaloriesContainer>
           <MinCaloriesLabel htmlFor="minCalories">
             Min Calories
           </MinCaloriesLabel>
@@ -218,7 +216,6 @@ export const Search = () => {
             onChange={(event) =>
               event.target.validity.valid && handleChange(event)
             }
-            aria-describedby="caloriesError"
           />
 
           <MaxCaloriesLabel htmlFor="maxCalories">
@@ -235,30 +232,27 @@ export const Search = () => {
             onChange={(event) =>
               event.target.validity.valid && handleChange(event)
             }
-            aria-describedby="caloriesError"
           />
 
           {showErrorCalories && (
             <CaloriesErrorMessage
-              id="caloriesError"
               role="alert"
-              aria-label="Minimum Calories must be less than Maximum Calories."
+              aria-label="Minimum Calories must be less than Maximum Calories"
             >
               Minimum Calories must be less than Maximum Calories.
             </CaloriesErrorMessage>
           )}
-        </CaloriesSection>
+        </CaloriesContainer>
 
-        <ExcludeSection>
+        <ExcludeContainer>
           <ExcludeLabel htmlFor="excludeIngredients">
             Exclude ingredients
           </ExcludeLabel>
 
-          <ExcludeInputSection>
+          <ExcludeInputContainer>
             <ExcludeInput
               id="excludeIngredients"
-              aria-describedby="excludeError"
-              placeholder="Exclude ingredients..."
+              placeholder="Milk"
               name="excludeValue"
               value={excludeValue}
               onKeyDown={(event) =>
@@ -268,30 +262,29 @@ export const Search = () => {
               type="text"
             />
             <IngredientAddButton
-              aria-label="Add ingredient to be excluded"
+              aria-label="Exclude ingredient"
               type="button"
               onClick={() => onAddIngredient(excludeValue)}
             >
               <AddIcon title="Add Icon" />
             </IngredientAddButton>
-          </ExcludeInputSection>
+          </ExcludeInputContainer>
 
           {(showErrorExcludedIngredients || showErrorCharacterIngredients) && (
             <ExcludeErrorMessage
               role="alert"
-              id="excludeError"
               aria-label={
                 showErrorCharacterIngredients
-                  ? 'Please enter at least 3 characters for the ingredient to be excluded.'
+                  ? 'Please enter at least 3 characters for the ingredient to be excluded'
                   : showErrorExcludedIngredients
-                  ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
-                  : ''
+                  ? `Ingredient ${isIngredientAlreadyExcluded} is already being included`
+                  : undefined
               }
             >
               {showErrorCharacterIngredients
                 ? 'Please enter at least 3 characters for the ingredient to be excluded.'
                 : showErrorExcludedIngredients
-                ? `Ingredient "${isIngredientAlreadyExcluded}" is already being included.`
+                ? `Ingredient ${isIngredientAlreadyExcluded} is already being included.`
                 : null}
             </ExcludeErrorMessage>
           )}
@@ -301,7 +294,7 @@ export const Search = () => {
                 <IngredientItem key={id}>
                   <IngredientName>{name}</IngredientName>
                   <IngredientRemoveButton
-                    aria-label="Remove ingredient from being excluded"
+                    aria-label={`Remove ${name} ingredient from being exclude`}
                     type="button"
                     onClick={() => onRemoveIngredient(id)}
                   >
@@ -311,7 +304,7 @@ export const Search = () => {
               ))}
             </ExcludeIngredientsList>
           )}
-        </ExcludeSection>
+        </ExcludeContainer>
       </SearchForm>
     </SearchMain>
   )

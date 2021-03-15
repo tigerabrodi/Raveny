@@ -2,6 +2,7 @@ import styled, { css, keyframes } from 'styled-components'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { ReactComponent as Logo } from 'assets/cooking-pan-food.svg'
 import { media } from 'theme/media'
+import { focusStyles } from 'styles'
 
 const animTopVisible = keyframes`
     to {
@@ -44,16 +45,19 @@ export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
 `
 
 export const LogoIcon = styled(Logo)`
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-left: 0.5rem;
+  height: 3.8rem;
+  width: 3.8rem;
+  top: 0.1rem;
   position: relative;
-  ${media.tablet} {
+  ${media.phone} {
+    margin-left: 0.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     top: 0.3rem;
   }
 `
 
-export const LogoWrapper = styled.section`
+export const LogoWrapper = styled.div`
   position: relative;
   z-index: 10;
   display: flex;
@@ -68,15 +72,12 @@ export const LogoWrapper = styled.section`
 export const LogoLink = styled(RouterLink)`
   text-decoration: none;
   font-family: ${({ theme }) => theme.fonts.Lora};
-  font-size: max(3rem, 2vw);
+  font-size: 3rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.Orange};
   margin: 0 1rem 0 2rem;
   text-shadow: 0.2rem 0.4rem 0.6rem black;
   transition: all 0.2s;
-  &:hover {
-    transform: translateY(-0.2rem);
-  }
   &:focus {
     outline: none;
   }
@@ -84,11 +85,18 @@ export const LogoLink = styled(RouterLink)`
     outline: 0.1rem solid ${({ theme }) => theme.colors.White};
   }
   ${media.phone} {
+    font-size: 3.5rem;
     margin: 0 1rem 0 4rem;
   }
+  ${media.tablet} {
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
+  }
+  ${focusStyles};
 `
 
-export const LinkSection = styled.section<{ isToggled: boolean }>`
+export const LinkContainer = styled.div<{ isToggled: boolean }>`
   position: fixed;
   z-index: -10;
   top: 45%;
@@ -172,6 +180,7 @@ export const Link = styled(RouterLink).attrs({ activeClassName })`
       bottom: -0.4rem;
     }
   }
+  ${focusStyles};
 `
 
 type HamburgerMenuLineProps = {
@@ -223,12 +232,6 @@ export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
   align-items: center;
   justify-content: space-around;
   margin-right: 1rem;
-  &:focus {
-    outline: none;
-  }
-  &:focus-visible {
-    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
-  }
   ${media.tablet} {
     display: none;
     &:hover span {
@@ -240,6 +243,7 @@ export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
       background-color: ${({ theme }) => theme.colors.Orange};
     }
   }
+  ${focusStyles};
 `
 
 export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
