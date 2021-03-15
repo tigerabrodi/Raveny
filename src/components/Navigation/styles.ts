@@ -232,12 +232,6 @@ export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
   align-items: center;
   justify-content: space-around;
   margin-right: 1rem;
-  &:focus {
-    outline: none;
-  }
-  &:focus-visible {
-    outline: 0.1rem solid ${({ theme }) => theme.colors.White};
-  }
   ${media.tablet} {
     display: none;
     &:hover span {
@@ -249,6 +243,7 @@ export const HamburgerMenuWrapper = styled.button<{ isToggled: boolean }>`
       background-color: ${({ theme }) => theme.colors.Orange};
     }
   }
+  ${focusStyles};
 `
 
 export const HamburgerMenuOverlay = styled.div<{ isToggled: boolean }>`
