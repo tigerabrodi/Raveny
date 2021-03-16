@@ -4,7 +4,6 @@ import {
   RecipesMain,
   RecipesHeading,
   RecipesSection,
-  LoadMoreSpinnerContainer,
   IntersectingElementToLoadMore,
 } from 'components/Recipe/styles'
 import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
@@ -30,7 +29,7 @@ export const LowCarb = () => {
   useOnInfinite(href, isVisible)
 
   if (state.status === 'loading') {
-    return <FullPageSpinner />
+    return <FullPageSpinner loadingText="Loading recipes" />
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
@@ -42,9 +41,7 @@ export const LowCarb = () => {
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (
-        <LoadMoreSpinnerContainer>
-          <LoadMoreSpinner />
-        </LoadMoreSpinnerContainer>
+        <LoadMoreSpinner />
       ) : state.hasMoreRecipes ? (
         <IntersectingElementToLoadMore ref={setIntersectingElement} />
       ) : null}

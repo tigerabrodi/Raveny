@@ -2,7 +2,6 @@ import { useRavenyState } from 'context/RavenyContext'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
-  LoadMoreSpinnerContainer,
   RecipesHeading,
   RecipesMain,
   RecipesSection,
@@ -46,7 +45,7 @@ export const Recipes = () => {
   useOnInfinite(href, isVisible)
 
   if (state.status === 'loading') {
-    return <FullPageSpinner />
+    return <FullPageSpinner loadingText="Loading recipes" />
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
@@ -58,9 +57,7 @@ export const Recipes = () => {
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (
-        <LoadMoreSpinnerContainer>
-          <LoadMoreSpinner />
-        </LoadMoreSpinnerContainer>
+        <LoadMoreSpinner />
       ) : state.hasMoreRecipes ? (
         <IntersectingElementToLoadMore ref={setIntersectingElement} />
       ) : null}
