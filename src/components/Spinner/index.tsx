@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
 import { ReactComponent as LoadingSpinner } from 'assets/spinner.svg'
+import { ATOnlyText } from 'styles'
 
 const Main = styled.main`
   position: relative;
@@ -36,10 +37,27 @@ export const LoadMore = styled(LoadingSpinner)`
   height: 70%;
 `
 
-export const FullPageSpinner = () => (
+export const LoadMoreSpinnerContainer = styled.div`
+  grid-area: spinner;
+  position: relative;
+  width: 100%;
+  height: 10rem;
+`
+
+export const FullPageSpinner = ({ loadingText }: { loadingText: string }) => (
   <Main>
-    <FullPage aria-label="loading" />
+    <ATOnlyText aria-live="assertive" role="alert">
+      {loadingText}
+    </ATOnlyText>
+    <FullPage aria-hidden="true" />
   </Main>
 )
 
-export const LoadMoreSpinner = () => <LoadMore aria-label="loading" />
+export const LoadMoreSpinner = () => (
+  <LoadMoreSpinnerContainer>
+    <ATOnlyText aria-live="assertive" role="alert">
+      Loading more recipes
+    </ATOnlyText>
+    <LoadMore aria-hidden="true" />
+  </LoadMoreSpinnerContainer>
+)
