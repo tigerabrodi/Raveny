@@ -26,7 +26,7 @@ export const LowCarb = () => {
     threshold: 1,
   })
 
-  useOnInfinite(href, isVisible)
+  const { shouldFocusOnRecipeTitle } = useOnInfinite(href, isVisible)
 
   if (state.status === 'loading') {
     return <FullPageSpinner loadingText="Loading recipes" />
@@ -36,8 +36,12 @@ export const LowCarb = () => {
     <RecipesMain>
       <RecipesHeading>Low Carb</RecipesHeading>
       <RecipesSection>
-        {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={recipe.id} />
+        {state.recipes.map((recipe, index) => (
+          <Recipe
+            recipe={recipe}
+            key={recipe.id}
+            shouldFocusOnTitle={shouldFocusOnRecipeTitle(index)}
+          />
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (
