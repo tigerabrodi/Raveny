@@ -42,13 +42,6 @@ export const RecipesHeading = styled.h1`
   text-shadow: 0.2rem 0.4rem 0.6rem black;
 `
 
-export const LoadMoreSpinnerContainer = styled.div`
-  grid-area: spinner;
-  position: relative;
-  width: 100%;
-  height: 10rem;
-`
-
 export const IntersectingElementToLoadMore = styled.div`
   grid-area: spinner;
   background-color: transparent;
