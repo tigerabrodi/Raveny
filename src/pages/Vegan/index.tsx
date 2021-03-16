@@ -33,7 +33,7 @@ export const Vegan = () => {
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
-    <RecipesMain>
+    <RecipesMain id="maincontent">
       <RecipesHeading>Vegan</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe, index) => (

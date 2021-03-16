@@ -49,7 +49,7 @@ export const Recipes = () => {
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
-    <RecipesMain>
+    <RecipesMain id="maincontent">
       <RecipesHeading>{state.results} Results</RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe, index) => (
