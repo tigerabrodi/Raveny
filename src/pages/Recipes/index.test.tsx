@@ -13,7 +13,9 @@ describe('searching recipes', () => {
 
       userEvent.click(screen.getByRole('button', { name: /search/i }))
 
-      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText(/loading recipes/i)
+      )
 
       getByRoleInDocument('link', {
         name: /low calories/i,
@@ -40,7 +42,9 @@ describe('searching recipes', () => {
 
       userEvent.click(screen.getByRole('button', { name: /search/i }))
 
-      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText(/loading recipes/i)
+      )
 
       getByRoleInDocument('link', {
         name: /high calories/i,
@@ -72,7 +76,9 @@ describe('searching recipes', () => {
 
       userEvent.click(screen.getByRole('button', { name: /search/i }))
 
-      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText(/loading recipes/i)
+      )
 
       getByRoleInDocument('link', {
         name: /exclude one ingredient/i,
@@ -108,7 +114,9 @@ describe('searching recipes', () => {
 
       userEvent.click(screen.getByRole('button', { name: /search/i }))
 
-      await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText(/loading recipes/i)
+      )
 
       getByRoleInDocument('link', {
         name: /exclude two ingredients/i,
@@ -135,7 +143,9 @@ describe('searching recipes', () => {
 
     userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
-    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/loading recipes/i)
+    )
 
     getByRoleInDocument('link', {
       name: /meat/i,
@@ -163,7 +173,9 @@ describe('searching recipes', () => {
 
     userEvent.click(screen.getByRole('link', { name: 'Vegan' }))
 
-    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/loading recipes/i)
+    )
 
     getByRoleInDocument('heading', { name: 'Vegan' })
 
@@ -189,7 +201,9 @@ describe('searching recipes', () => {
 
     userEvent.click(screen.getByRole('link', { name: 'Low Carb' }))
 
-    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/loading recipes/i)
+    )
 
     getByRoleInDocument('heading', { name: 'Low Carb' })
 
@@ -219,7 +233,9 @@ describe('searching recipes', () => {
 
     userEvent.click(screen.getByRole('link', { name: 'High Protein' }))
 
-    await waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/loading recipes/i)
+    )
 
     getByRoleInDocument('heading', { name: 'High Protein' })
 
