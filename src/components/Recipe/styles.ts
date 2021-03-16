@@ -85,7 +85,7 @@ export const RecipeWrapper = styled.article`
   }
 `
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   ${media.phone} {
     margin: 1rem 0;
   }
