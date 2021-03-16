@@ -44,6 +44,22 @@ export const Nav = styled.nav<{ shouldShowShadow: boolean }>`
     `}
 `
 
+export const SkipLink = styled.a`
+  position: absolute;
+  left: 0;
+  top: -100rem;
+  box-shadow: 0 0.2rem 0.3rem black;
+  padding: 1rem 3rem;
+  z-index: 9999;
+  background-color: ${({ theme }) => theme.colors.Orange};
+  color: black;
+  font-size: 5rem;
+  font-weight: bold;
+  &:focus {
+    top: 0;
+  }
+`
+
 export const LogoIcon = styled(Logo)`
   height: 3.8rem;
   width: 3.8rem;
