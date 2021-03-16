@@ -39,7 +39,7 @@ export const RecipeDetail = () => {
   }, [recipeId, dispatch])
 
   if (state.status === 'loading') {
-    return <FullPageSpinner />
+    return <FullPageSpinner loadingText="Loading recipe" />
   }
 
   return state.stateType === 'singleRecipeState' && state.recipe ? (
