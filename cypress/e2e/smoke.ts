@@ -9,11 +9,11 @@ it('should allow a typical user flow', () => {
 
   cy.findByRole('button', { name: /Search/i }).click()
 
-  cy.findAllByRole('link').should('have.length', 14)
+  cy.findAllByRole('link').should('have.length', 15)
 
   cy.scrollTo('bottom')
 
-  cy.findAllByRole('link').should('have.length', 22)
+  cy.findAllByRole('link').should('have.length', 23)
 
   cy.findByRole('link', { name: /baked chicken/i }).click()
 
