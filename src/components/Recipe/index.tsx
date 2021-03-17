@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Recipe as TRecipe } from 'types'
 import { ATOnlyText, Check, Warn } from 'styles'
 import { useMedia } from 'hooks/useMedia'
@@ -18,6 +19,7 @@ import {
 
 type RecipeProps = {
   recipe: TRecipe
+  shouldFocusOnTitle: boolean
 }
 
 export const Recipe = ({
@@ -31,14 +33,24 @@ export const Recipe = ({
     yield: servings,
     caloriesPerServing,
   },
+  shouldFocusOnTitle,
 }: RecipeProps) => {
   const isMobileLayout = useMedia('max', '425')
   const labels = [...healthLabels, ...dietLabels]
   const shouldTabIndex =
     (labels.length > 8 && isMobileLayout) || labels.length > 15
+
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+
+  React.useEffect(() => {
+    if (shouldFocusOnTitle) {
+      titleRef.current?.focus()
+    }
+  }, [shouldFocusOnTitle])
+
   return (
     <RecipeWrapper aria-label={label}>
-      <Title>
+      <Title tabIndex={shouldFocusOnTitle ? -1 : undefined} ref={titleRef}>
         <TitleLink to={`/recipe/${id}`}>
           <ATOnlyText>Read more about recipe: </ATOnlyText> {label}
         </TitleLink>

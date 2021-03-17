@@ -9,7 +9,7 @@ import {
 } from './styles'
 
 export const Home = () => (
-  <HomeMain>
+  <HomeMain id="maincontent">
     <InfoContainer>
       <InfoHeading>Find Your Dream Recipes and Enjoy.</InfoHeading>
       <InfoLink to="/search">

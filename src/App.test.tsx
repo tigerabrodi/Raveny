@@ -33,7 +33,7 @@ test('should allow simple user search flow', async () => {
 
   userEvent.click(screen.getByRole('button', { name: /Search/i }))
 
-  await waitForElementToBeRemoved(() => screen.queryByLabelText(/loading/i))
+  await waitForElementToBeRemoved(() => screen.queryByText(/loading recipes/i))
 
   expect(window.location.pathname).toBe('/recipes')
 
@@ -63,7 +63,7 @@ test('should allow simple user search flow', async () => {
 
   userEvent.click(firstRecipeLink)
 
-  await waitForElementToBeRemoved(() => screen.queryByLabelText(/loading/i))
+  await waitForElementToBeRemoved(() => screen.queryByText(/loading recipe/i))
 
   expect(window.location.pathname).toBe(
     '/recipe/b79327d05b8e5b838ad6cfd9576b30b6'

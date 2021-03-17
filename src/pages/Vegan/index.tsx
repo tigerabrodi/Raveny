@@ -2,7 +2,6 @@ import { useRavenyState } from 'context/RavenyContext'
 import { Recipe } from 'components/Recipe'
 import {
   IntersectingElementToLoadMore,
-  LoadMoreSpinnerContainer,
   RecipesHeading,
   RecipesMain,
   RecipesSection,
@@ -27,24 +26,26 @@ export const Vegan = () => {
     threshold: 1,
   })
 
-  useOnInfinite(href, isVisible)
+  const { shouldFocusOnRecipeTitle } = useOnInfinite(href, isVisible)
 
   if (state.status === 'loading') {
-    return <FullPageSpinner />
+    return <FullPageSpinner loadingText="Loading recipes" />
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
-    <RecipesMain>
+    <RecipesMain id="maincontent">
       <RecipesHeading>Vegan</RecipesHeading>
       <RecipesSection>
-        {state.recipes.map((recipe) => (
-          <Recipe recipe={recipe} key={recipe.id} />
+        {state.recipes.map((recipe, index) => (
+          <Recipe
+            recipe={recipe}
+            key={recipe.id}
+            shouldFocusOnTitle={shouldFocusOnRecipeTitle(index)}
+          />
         ))}
       </RecipesSection>
       {state.status === 'loadingMore' ? (
-        <LoadMoreSpinnerContainer>
-          <LoadMoreSpinner />
-        </LoadMoreSpinnerContainer>
+        <LoadMoreSpinner />
       ) : state.hasMoreRecipes ? (
         <IntersectingElementToLoadMore ref={setIntersectingElement} />
       ) : null}

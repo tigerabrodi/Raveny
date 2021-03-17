@@ -5,4 +5,4 @@ export default {
   title: 'components/FullPageSpinner',
 }
 
-export const Spinner = () => <FullPageSpinner />
+export const Spinner = () => <FullPageSpinner loadingText="Loading recipes" />

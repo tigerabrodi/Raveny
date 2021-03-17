@@ -23,7 +23,6 @@ export const RecipeName = styled.h1`
   text-shadow: 0 0.2rem 0.5rem black;
   font-weight: 600;
   font-family: ${({ theme }) => theme.fonts.Lora};
-  color: ${({ theme }) => theme.colors.Orange};
   grid-area: title;
   color: ${({ theme }) => theme.colors.Orange};
   font-size: 3rem;
@@ -129,7 +128,6 @@ export const Time = styled.span`
 export const Servings = styled.span`
   text-shadow: 0 0.2rem 0.5rem black;
   font-family: ${({ theme }) => theme.fonts.Lora};
-  font-size: 2.5rem;
   color: ${({ theme }) => theme.colors.Orange};
   font-size: 2rem;
   ${media.phone} {

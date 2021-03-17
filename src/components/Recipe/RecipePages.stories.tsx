@@ -8,7 +8,6 @@ import {
   RecipesMain,
   RecipesSection,
   RecipesHeading,
-  LoadMoreSpinnerContainer,
   RecipeWrapper,
   Image,
   Calories,
@@ -142,9 +141,7 @@ export const RecipesPageWithLoadMoreSpinner = () => {
           )
         )}
       </RecipesSection>
-      <LoadMoreSpinnerContainer>
-        <LoadMoreSpinner />
-      </LoadMoreSpinnerContainer>
+      <LoadMoreSpinner />
     </RecipesMain>
   )
 }
