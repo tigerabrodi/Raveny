@@ -19,7 +19,6 @@ export const labelStyles = css`
   white-space: pre-wrap;
   text-transform: capitalize;
   font-size: 1rem;
-  font-weight: 700;
   color: ${({ theme }) => theme.colors.Green};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   display: flex;
@@ -34,7 +33,6 @@ export const labelStyles = css`
 
 export const infoLabelStyles = css`
   font-size: 1.8rem;
-  font-weight: 500;
   color: ${({ theme }) => theme.colors.Orange};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   display: flex;
