@@ -43,7 +43,11 @@ export const HighProtein = () => {
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain id="maincontent">
-      <RecipesHeading ref={headingToBeFocusedRef} tabIndex={-1}>
+      <RecipesHeading
+        ref={headingToBeFocusedRef}
+        tabIndex={-1}
+        aria-label="High Protein"
+      >
         <SkipToNavLink />
         High Protein
       </RecipesHeading>

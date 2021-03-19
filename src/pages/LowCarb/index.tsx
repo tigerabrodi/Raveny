@@ -43,7 +43,11 @@ export const LowCarb = () => {
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain id="maincontent">
-      <RecipesHeading ref={headingToBeFocusedRef} tabIndex={-1}>
+      <RecipesHeading
+        ref={headingToBeFocusedRef}
+        tabIndex={-1}
+        aria-label="Low Carb"
+      >
         <SkipToNavLink />
         Low Carb
       </RecipesHeading>

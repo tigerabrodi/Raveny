@@ -44,7 +44,11 @@ export const Vegan = () => {
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain id="maincontent">
-      <RecipesHeading ref={headingToBeFocusedRef} tabIndex={-1}>
+      <RecipesHeading
+        ref={headingToBeFocusedRef}
+        tabIndex={-1}
+        aria-label="Vegan"
+      >
         <SkipToNavLink />
         Vegan
       </RecipesHeading>
