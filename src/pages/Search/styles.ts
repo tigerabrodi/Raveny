@@ -3,7 +3,7 @@ import { ReactComponent as PanSVG } from 'assets/fried.svg'
 import { ReactComponent as Plus } from 'assets/plus.svg'
 import { ReactComponent as Search } from 'assets/search.svg'
 import { media } from 'theme/media'
-import { focusStyles, wrapperStyles } from 'styles'
+import { focusStyles, headingFocusStyles, wrapperStyles } from 'styles'
 
 export const SkipToNavLink = styled.a`
   position: absolute;
@@ -183,9 +183,7 @@ export const Title = styled.h1`
   ${media.custom(1124)} {
     font-size: 8rem;
   }
-  &:focus {
-    outline: none;
-  }
+  ${headingFocusStyles}
 `
 
 export const TitleContainer = styled.div`

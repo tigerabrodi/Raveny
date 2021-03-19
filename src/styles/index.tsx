@@ -61,6 +61,12 @@ export const focusStyles = css`
   }
 `
 
+export const headingFocusStyles = css`
+  &:focus {
+    outline: none;
+  }
+`
+
 /* Icons */
 export const Check = styled(CheckIcon)`
   filter: drop-shadow(0 0.2rem 0.2rem black);
