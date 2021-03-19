@@ -9,11 +9,14 @@ import {
 import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
 import { useOnScreen } from 'hooks/useOnScreen'
 import { useOnInfinite } from 'hooks/useOnInfinite'
+import { useHeadingFocus } from 'hooks/useHeadingFocus'
+import { SkipToNavLink } from 'components/SkipToNavLink'
 
 const apiURL = process.env.REACT_APP_API_URL
 
 export const HighProtein = () => {
   const { state } = useRavenyState()
+  const headingToBeFocusedRef = useHeadingFocus()
 
   const urlObject = new URL(apiURL!)
 
@@ -32,9 +35,18 @@ export const HighProtein = () => {
     return <FullPageSpinner loadingText="Loading recipes" />
   }
 
+  if (state.status === 'resolved') {
+    if (headingToBeFocusedRef.current) {
+      headingToBeFocusedRef.current.focus()
+    }
+  }
+
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain id="maincontent">
-      <RecipesHeading>High Protein</RecipesHeading>
+      <RecipesHeading ref={headingToBeFocusedRef} tabIndex={-1}>
+        <SkipToNavLink />
+        High Protein
+      </RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe, index) => (
           <Recipe

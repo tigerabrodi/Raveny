@@ -35,6 +35,7 @@ export const RecipesSection = styled.section`
 `
 
 export const RecipesHeading = styled.h1`
+  position: relative;
   grid-area: title;
   font-family: ${({ theme }) => theme.fonts.Lora};
   font-size: 5rem;

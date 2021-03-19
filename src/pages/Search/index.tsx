@@ -162,9 +162,7 @@ export const Search = () => {
     <SearchMain>
       <TitleContainer>
         <Title ref={headingToBeFocusedRef} tabIndex={-1}>
-          <SkipToNavLink targetId="navigation">
-            Skip to navigation
-          </SkipToNavLink>
+          <SkipToNavLink />
           Start Cooking Today!
         </Title>
         <Pan aria-hidden="true" />

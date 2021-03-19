@@ -2,8 +2,9 @@ import styled from 'styled-components/macro'
 
 export const SkipLink = styled.a`
   position: absolute;
-  top: -7rem;
-  left: -1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: bold;
   padding: 1rem 3rem;
@@ -19,10 +20,15 @@ export const SkipLink = styled.a`
 `
 
 type SkipToNavLinkProps = {
-  targetId: string
-  children: string
+  targetId?: string
+  children?: string
 }
 
-export const SkipToNavLink = ({ targetId, children }: SkipToNavLinkProps) => (
-  <SkipLink href={`#${targetId}`}>{children}</SkipLink>
+export const SkipToNavLink = ({
+  targetId = 'navigation',
+  children = 'Skip',
+}: SkipToNavLinkProps) => (
+  <SkipLink href={`#${targetId}`} aria-label="Skip to navigation">
+    {children}
+  </SkipLink>
 )
