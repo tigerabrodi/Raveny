@@ -17,7 +17,7 @@ const apiURL = process.env.REACT_APP_API_URL
 export const Vegan = () => {
   const { state } = useRavenyState()
 
-  const headingToBeFocusedRef = useHeadingFocus()
+  const headingToBeFocusedRef = useHeadingFocus(state.status)
 
   const urlObject = new URL(apiURL!)
 
@@ -34,12 +34,6 @@ export const Vegan = () => {
 
   if (state.status === 'loading') {
     return <FullPageSpinner loadingText="Loading recipes" />
-  }
-
-  if (state.status === 'resolved') {
-    if (headingToBeFocusedRef.current) {
-      headingToBeFocusedRef.current.focus()
-    }
   }
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
