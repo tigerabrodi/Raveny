@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState, KeyboardEvent } from 'react'
+import { useHeadingFocus } from 'hooks/useHeadingFocus'
 import { useHistory } from 'react-router-dom'
 import { capitalizeName } from 'utils/functions'
 import { v4 as uuidv4 } from 'uuid'
@@ -33,6 +34,7 @@ import {
   ExcludeLabel,
   AddIcon,
   QueryLabel,
+  SkipToNavLink,
 } from './styles'
 
 type SearchState = {
@@ -154,10 +156,15 @@ export const Search = () => {
     }
   }
 
+  const headingToBeFocusedRef = useHeadingFocus()
+
   return (
     <SearchMain>
       <TitleContainer>
-        <Title>Start Cooking Today!</Title>
+        <Title ref={headingToBeFocusedRef} tabIndex={-1}>
+          <SkipToNavLink href="#navigation">Skip to navigation</SkipToNavLink>
+          Start Cooking Today!
+        </Title>
         <Pan aria-hidden="true" />
       </TitleContainer>
 

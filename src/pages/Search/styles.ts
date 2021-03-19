@@ -5,6 +5,24 @@ import { ReactComponent as Search } from 'assets/search.svg'
 import { media } from 'theme/media'
 import { focusStyles, wrapperStyles } from 'styles'
 
+export const SkipToNavLink = styled.a`
+  position: absolute;
+  top: -7rem;
+  left: -1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem 3rem;
+  text-decoration: none;
+  text-shadow: none;
+  color: black;
+  background-color: ${({ theme }) => theme.colors.Orange};
+  border: 0.2rem solid black;
+  opacity: 0;
+  &:focus {
+    opacity: 1;
+  }
+`
+
 /* Common Styles */
 const caloriesInputStyles = css`
   text-align: center;
@@ -148,6 +166,7 @@ export const SearchMain = styled.main`
 
 /* Title Area */
 export const Title = styled.h1`
+  position: relative;
   font-size: min(5rem, 8vw);
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   color: ${({ theme }) => theme.colors.Orange};
@@ -163,6 +182,9 @@ export const Title = styled.h1`
   }
   ${media.custom(1124)} {
     font-size: 8rem;
+  }
+  &:focus {
+    outline: none;
   }
 `
 
