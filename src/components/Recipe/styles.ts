@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { media } from 'theme/media'
 import {
   focusStyles,
+  headingFocusStyles,
   infoLabelStyles,
   labelStyles,
   labelWrapperStyles,
@@ -41,6 +42,7 @@ export const RecipesHeading = styled.h1`
   font-size: 5rem;
   color: ${({ theme }) => theme.colors.Orange};
   text-shadow: 0.2rem 0.4rem 0.6rem black;
+  ${headingFocusStyles};
 `
 
 export const IntersectingElementToLoadMore = styled.div`
