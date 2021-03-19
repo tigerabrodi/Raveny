@@ -71,6 +71,8 @@ export const Search = () => {
 
   const history = useHistory()
 
+  const headingToBeFocusedRef = useHeadingFocus()
+
   const {
     searchValue,
     minCalories,
@@ -155,8 +157,6 @@ export const Search = () => {
       history.push(redirectRoute)
     }
   }
-
-  const headingToBeFocusedRef = useHeadingFocus()
 
   return (
     <SearchMain>
