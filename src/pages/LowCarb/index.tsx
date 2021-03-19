@@ -9,11 +9,14 @@ import {
 import { FullPageSpinner, LoadMoreSpinner } from 'components/Spinner'
 import { useOnScreen } from 'hooks/useOnScreen'
 import { useOnInfinite } from 'hooks/useOnInfinite'
+import { SkipToNavLink } from 'components/SkipToNavLink'
+import { useHeadingFocus } from 'hooks/useHeadingFocus'
 
 const apiURL = process.env.REACT_APP_API_URL
 
 export const LowCarb = () => {
   const { state } = useRavenyState()
+  const headingToBeFocusedRef = useHeadingFocus(state.status)
 
   const urlObject = new URL(apiURL!)
 
@@ -34,7 +37,14 @@ export const LowCarb = () => {
 
   return state.stateType === 'recipesState' && state.recipes.length > 0 ? (
     <RecipesMain id="maincontent">
-      <RecipesHeading>Low Carb</RecipesHeading>
+      <RecipesHeading
+        ref={headingToBeFocusedRef}
+        tabIndex={-1}
+        aria-label="Low Carb"
+      >
+        <SkipToNavLink />
+        Low Carb
+      </RecipesHeading>
       <RecipesSection>
         {state.recipes.map((recipe, index) => (
           <Recipe

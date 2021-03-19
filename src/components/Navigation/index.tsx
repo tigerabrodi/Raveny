@@ -35,7 +35,7 @@ export const Navigation = () => {
       <IntersectingElement ref={setIntersectingElement} aria-hidden="true" />
       <Nav shouldShowShadow={!isVisible}>
         <SkipLink href="#maincontent">Skip to main content</SkipLink>
-        <LogoWrapper>
+        <LogoWrapper id="navigation">
           <LogoLink to="/" onClick={() => setIsToggled(false)}>
             Raveny
           </LogoLink>
