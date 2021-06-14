@@ -8,7 +8,7 @@ My primary goal with this project was to work with React and apply various thing
 
 I also worked with TypeScript and wrote tests, E2E with Cypress and Integration with RTL, I also used MSW to mock the requests in my integration tests.
 
-After finishing this project, I consistently came back and made it more inclusive, considering I had a 3-month deep dive into Accessibility after the first finished version of this project. That is why the hook `useHeadingFocus` exists and other solutions that has improved the experience for users who are using assistive technologies.
+After finishing this project, I consistently came back and made it more inclusive, considering I had a 3-month deep dive into Accessibility after the first finished version of this project. That is why the hook `useHeadingFocus` exists and other solutions that have made this web app more inclusive.
 
 # Installation :page_with_curl:
 
